@@ -13,7 +13,7 @@ Then the <navTab> page should open correctly
 Examples:
 |navTab|
 |home|
-|get assitance|
+|get assistance|
 |information|
 |about us|
 |help|
