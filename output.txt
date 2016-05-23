@@ -1,0 +1,71 @@
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building DARE Automated Scripts 0.0.1-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ DARE_automated_scipts ---
+[INFO] Deleting /Users/johnviqueira/Development/Workspace/DA-Automation/target
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ DARE_automated_scipts ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/johnviqueira/Development/Workspace/DA-Automation/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.2:compile (default-compile) @ DARE_automated_scipts ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ DARE_automated_scipts ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 2 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.2:testCompile (default-testCompile) @ DARE_automated_scipts ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 3 source files to /Users/johnviqueira/Development/Workspace/DA-Automation/target/test-classes
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.18.1:test (default-test) @ DARE_automated_scipts ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ DARE_automated_scipts ---
+[WARNING] JAR will be empty - no content was marked for inclusion!
+[INFO] Building jar: /Users/johnviqueira/Development/Workspace/DA-Automation/target/DARE_automated_scipts-0.0.1-SNAPSHOT.jar
+[INFO] 
+[INFO] --- maven-failsafe-plugin:2.18.1:integration-test (default) @ DARE_automated_scipts ---
+[WARNING] File encoding has not been set, using platform encoding UTF-8, i.e. build is platform dependent! The file encoding for reports output files should be provided by the POM property ${project.reporting.outputEncoding}.
+[INFO] 
+[INFO] --- serenity-maven-plugin:1.1.26:aggregate (serenity-reports) @ DARE_automated_scipts ---
+[INFO] LOADING LOCAL PROPERTIES FROM /Users/johnviqueira/Development/Workspace/DA-Automation/serenity.properties 
+[INFO] LOADING LOCAL PROPERTIES FROM /Users/johnviqueira/Development/Workspace/DA-Automation/serenity.properties 
+[INFO] LOADING LOCAL PROPERTIES FROM /Users/johnviqueira/Development/Workspace/DA-Automation/serenity.properties 
+[INFO] webdriver.driver=chrome
+[INFO] webdriver.chrome.driver="misc/chromedriver"
+[INFO] serenity.console.colors=true
+[INFO] serenity.project.name=DAIP Automated Scripts
+[INFO] project.build.directory : /Users/johnviqueira/Development/Workspace/DA-Automation
+[INFO] project.reporting.OutputDirectory : null
+[INFO] OutputDirectory : /Users/johnviqueira/Development/Workspace/DA-Automation/target/site/serenity
+[INFO] current_project.base.dir: /Users/johnviqueira/Development/Workspace/DA-Automation
+Generating HTML Story Reports from /Users/johnviqueira/Development/Workspace/DA-Automation/target/site/serenity
+Generating HTML Story Reports to /Users/johnviqueira/Development/Workspace/DA-Automation/target/site/serenity
+[INFO] project.build.directory : /Users/johnviqueira/Development/Workspace/DA-Automation
+[INFO] project.reporting.OutputDirectory : null
+[INFO] OutputDirectory : /Users/johnviqueira/Development/Workspace/DA-Automation/target/site/serenity
+[INFO] Loading requirements from isExists=true path:/Users/johnviqueira/Development/Workspace/DA-Automation/src/test/resources/stories
+[INFO] Loading requirements from isExists=true path:/Users/johnviqueira/Development/Workspace/DA-Automation/src/test/resources/stories/regression
+Merging requirements = [Requirement{name='Regression', type='feature' parent = 'null', cardNumber='null'}]
+Merging requirements = []
+Merged requirements set = [Requirement{name='Regression', type='feature' parent = 'null', cardNumber='null'}]
+[INFO] REPORTS GENERATED IN /Users/johnviqueira/Development/Workspace/DA-Automation/target/site/serenity
+[INFO] REPORT HOME PAGE: /Users/johnviqueira/Development/Workspace/DA-Automation/target/site/serenity/index.html
+[INFO] Generating release reports for: []
+GENERATE CUSTOM REPORTS
+[INFO] 
+[INFO] --- maven-failsafe-plugin:2.18.1:verify (default) @ DARE_automated_scipts ---
+[INFO] Failsafe report directory: /Users/johnviqueira/Development/Workspace/DA-Automation/target/failsafe-reports
+[WARNING] File encoding has not been set, using platform encoding UTF-8, i.e. build is platform dependent! The file encoding for reports output files should be provided by the POM property ${project.reporting.outputEncoding}.
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 5.483 s
+[INFO] Finished at: 2016-05-23T11:25:53-04:00
+[INFO] Final Memory: 39M/340M
+[INFO] ------------------------------------------------------------------------

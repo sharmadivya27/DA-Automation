@@ -8,12 +8,12 @@ I want to run the daily regressions at least twice a day
 Scenario: Verify all of the navbar tabs to assert that the pages open correctly
 Given I am on the Disaster Assistance homepage
 When I click on each link in the top navigation bar
-Then the <navTabName> should open correctly
+Then the <navTab> page should open correctly
 
 Examples:
-|navbarTab		|
-|home			|
-|get_assistance	|
-|information	|
-|about_us		|
-|help			|
+|navTab|
+|home|
+|get assitance|
+|information|
+|about us|
+|help|
