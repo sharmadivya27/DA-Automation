@@ -18,13 +18,13 @@ public class HomepageRegression {
 		homePage.open();
 	}
 	
-	@When("I click on each link in the top navigation bar")
-	public void when_I_click_on_each_link_in_the_top_navigation_bar() {
-		homePage.clickOnHome();
+	@When("I click on <navMenuItem> within the top navigation bar")
+	public void when_I_click_on_each_link_in_the_top_navigation_bar(@Named("navMenuItem") String navMenuItem) {
+		homePage.clickOnNavigationMenu(navMenuItem);
 	}
 	
-	@Then("the <navTab> page should open correctly")
-	public void then_the_navigation_tab_should_open_correctly(@Named("navTab") String navTab) {
+	@Then("the <navMenuItem> page should open correctly")
+	public void then_the_navigation_tab_should_open_correctly(@Named("navMenuItem") String navMenuItem) {
 		Assert.assertTrue(true);
 	}
 	
