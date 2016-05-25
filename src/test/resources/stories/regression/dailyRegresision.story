@@ -18,3 +18,5 @@ Examples:
 |information|
 |about_us|
 |help|
+
+!-- Scenario 2
