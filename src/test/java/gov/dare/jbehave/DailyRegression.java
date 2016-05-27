@@ -4,29 +4,43 @@ import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
-import org.junit.Assert;
 
-import gov.dare.pageObjects.HomepageObject;
+import gov.dare.users.User;
+import net.thucydides.core.annotations.Steps;
 
-public class DailyRegression {
-	
-	HomepageObject homePage;
+/**
+ * More or less the starting point of the program. The flow of Serenity is as follows:
+ * 		- DAREAcceptanceSuite.java looks into the .story files
+ * 		- .story files run sequentially looking for the matching given, when, then
+ * 			annotations in this file.
+ * 		- "User" is the class that does human like things, such as the assertions
+ * 		- Back-end of web code happens in the pageObject classes
+ * 
+ * @author Chris Viqueira
+ */
+public class DailyRegression 
+{
+	@Steps
+	User user;
 
 	/** Scenario 1: Verify all of the navbar tabs to assert that the pages open correctly **/
 	
 	@Given("I am on the Disaster Assistance homepage")
-	public void given_I_am_on_the_disaster_assistance_homepage() {
-		homePage.open();
+	public void given_I_am_on_the_disaster_assistance_homepage() 
+	{
+		user.open_page();
 	}
 	
 	@When("I click on <navMenuItem> within the top navigation bar")
-	public void when_I_click_on_each_link_in_the_top_navigation_bar(@Named("navMenuItem") String navMenuItem) {
-		homePage.clickOnNavigationMenu(navMenuItem);
+	public void when_I_click_on_each_link_in_the_top_navigation_bar(@Named("navMenuItem") String navMenuItem) 
+	{
+		user.clickNavigation(navMenuItem);
 	}
 	
 	@Then("the <navMenuItem> page should open correctly")
-	public void then_the_navigation_tab_should_open_correctly(@Named("navMenuItem") String navMenuItem) {
-		Assert.assertTrue(true);
+	public void then_the_navigation_tab_should_open_correctly(@Named("navMenuItem") String navMenuItem) 
+	{
+		user.shouldSeeText(navMenuItem);
 	}
 	
 	/** Scenario 2: Verify all of the sub-tabs within each top navigation bar **/

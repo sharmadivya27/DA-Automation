@@ -1,6 +1,7 @@
 package gov.dare.pageObjects;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 
@@ -8,7 +9,6 @@ import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.DefaultUrl;
-import net.thucydides.core.annotations.Step;
 
 @DefaultUrl("http://www.disasterassistance.gov")
 public class HomepageObject extends PageObject 
@@ -19,11 +19,16 @@ public class HomepageObject extends PageObject
 	public HomepageObject (WebDriver driver)
 	{
 		super(driver);
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
 	}
+	
+	//////////////////////////////////////////////////////////////////////////////////////////
 	
 	@FindBy(xpath="//nav[@id='nav']/ul/li[@class[contains(., 'menu__item')]]")
 	private List<WebElementFacade> mainNavMenu;
-	final class NavMenuItem {	//struct like object to reference the navbar web objects stored in "mainNavBar" by name
+	final class NavMenuItem 
+	{	//menu items pulled sequentially, referencing by name looks nicer
 		static final short home = 0;
 		static final short getAssistance = 1;
 		static final short information = 2;
@@ -35,8 +40,7 @@ public class HomepageObject extends PageObject
 	 * Clicks on the menu item passed into the function.
 	 * @param menuItem - takes a menu item from the "examples" section under scenario 1 in dailyRegression.story
 	 */
-	@Step
-	public void clickOnNavigationMenu(String menuItem)
+	public void clickMainNavigationMenu(String menuItem)
 	{
 		switch(menuItem)
 		{
@@ -44,7 +48,7 @@ public class HomepageObject extends PageObject
 		{
 			mainNavMenu.get(NavMenuItem.home).click();
 		} break;
-		case "get_assistance":
+		case "get assistance":
 		{
 			mainNavMenu.get(NavMenuItem.getAssistance).click();
 		} break;
@@ -52,7 +56,7 @@ public class HomepageObject extends PageObject
 		{
 			mainNavMenu.get(NavMenuItem.information).click();
 		} break;
-		case "about_us":
+		case "about us":
 		{
 			mainNavMenu.get(NavMenuItem.aboutUs).click();
 		} break;
@@ -67,6 +71,16 @@ public class HomepageObject extends PageObject
 		} break;
 
 		} // end switch
+	}
+	
+	//////////////////////////////////////////////////////////////////////////////////////////
+	
+	@FindBy(className="page__title title")
+	private WebElementFacade pageTitle;
+	
+	public String pullPageTitle() 
+	{
+		return pageTitle.getText();
 	}
 	
 }
