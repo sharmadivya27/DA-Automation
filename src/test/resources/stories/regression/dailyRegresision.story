@@ -17,3 +17,12 @@ Examples:
 |information|
 |about us|
 |help|
+
+Scenario: Verify all of the subtabs under the each different tab
+Given I am on the Disaster Assistance homepage
+When I click on the <subTab> tab under the <navMenuItem> menu item
+Then the <subTab> page should open correctly
+
+Examples:
+|subTab|
+|

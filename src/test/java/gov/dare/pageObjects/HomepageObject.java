@@ -28,13 +28,15 @@ public class HomepageObject extends PageObject
 	@FindBy(xpath="//nav[@id='nav']/ul/li[@class[contains(., 'menu__item')]]")
 	private List<WebElementFacade> mainNavMenu;
 	final class NavMenuItem 
-	{	//menu items pulled sequentially, referencing by name looks nicer
+	{	 //menu items pulled sequentially, referencing by name looks nicer
 		static final short home = 0;
 		static final short getAssistance = 1;
 		static final short information = 2;
 		static final short aboutUs = 3;
 		static final short help = 4;
 	}
+	
+//	@FindBy(xpath="//")
 	
 	/**
 	 * Clicks on the menu item passed into the function.
@@ -75,12 +77,20 @@ public class HomepageObject extends PageObject
 	
 	//////////////////////////////////////////////////////////////////////////////////////////
 	
-	@FindBy(className="page__title title")
+	@FindBy(xpath="//*[@class='page__title title']")
 	private WebElementFacade pageTitle;
 	
 	public String pullPageTitle() 
 	{
 		return pageTitle.getText();
+	}
+	
+	@FindBy(xpath="//*//div[@id='address-lookup-container']")
+	private WebElementFacade addressLookup;
+	
+	public boolean isHomepage()
+	{
+		return addressLookup.isDisplayed();
 	}
 	
 }

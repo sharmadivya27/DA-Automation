@@ -40,8 +40,30 @@ public class DailyRegression
 	@Then("the <navMenuItem> page should open correctly")
 	public void then_the_navigation_tab_should_open_correctly(@Named("navMenuItem") String navMenuItem) 
 	{
-		user.shouldSeeText(navMenuItem);
+		if(navMenuItem.equalsIgnoreCase("home"))
+		{
+			user.shouldSeeAddressLookup();
+		}
+		else
+		{
+			user.shouldSeeText(navMenuItem);
+		}
+		
 	}
 	
 	/** Scenario 2: Verify all of the sub-tabs within each top navigation bar **/
+		
+	//given see above
+	
+	@When("I click on the <subTab> tab under the <navMenuItem> menu item")
+	public void when_I_click_on_the_current_subTab(@Named("subTab") String subTab)
+	{
+		
+	}
+	
+	@Then("the <subTab> page should open correctly")
+	public void then_the_subTab_page_should_open_correctly()
+	{
+		
+	}
 }

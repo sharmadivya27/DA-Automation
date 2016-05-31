@@ -35,4 +35,10 @@ public class User
 		//lower case to account for case mismatching
 		Assert.assertEquals(expected.toLowerCase(), pageTitle.toLowerCase());
 	}
+	
+	@Step
+	public void shouldSeeAddressLookup()
+	{
+		Assert.assertEquals(true, homepage.isHomepage());
+	}
 }
