@@ -24,7 +24,7 @@ public class User
 	@Step
 	public void clickNavigation(String menuItem)
 	{
-		homepage.clickMainNavigationMenu(menuItem);
+		homepage.clickParentNavNodes(menuItem);
 	}
 	
 	@Step
@@ -37,8 +37,15 @@ public class User
 	}
 	
 	@Step
+	public void shouldSeeXLandingPageNodes(short expected)
+	{
+		Assert.assertEquals(expected, homepage.numberOfLandingPageNodes());
+	}
+	
+	@Step
 	public void shouldSeeAddressLookup()
 	{
 		Assert.assertEquals(true, homepage.isHomepage());
 	}
+	
 }

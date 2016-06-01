@@ -26,7 +26,7 @@ public class HomepageObject extends PageObject
 	//////////////////////////////////////////////////////////////////////////////////////////
 	
 	@FindBy(xpath="//nav[@id='nav']/ul/li[@class[contains(., 'menu__item')]]")
-	private List<WebElementFacade> mainNavMenu;
+	private List<WebElementFacade> navParentNode;
 	final class NavMenuItem 
 	{	 //menu items pulled sequentially, referencing by name looks nicer
 		static final short home = 0;
@@ -36,42 +36,201 @@ public class HomepageObject extends PageObject
 		static final short help = 4;
 	}
 	
-//	@FindBy(xpath="//")
-	
 	/**
 	 * Clicks on the menu item passed into the function.
 	 * @param menuItem - takes a menu item from the "examples" section under scenario 1 in dailyRegression.story
 	 */
-	public void clickMainNavigationMenu(String menuItem)
+	public void clickParentNavNodes(String menuItem)
 	{
 		switch(menuItem)
 		{
 		case "home":
 		{
-			mainNavMenu.get(NavMenuItem.home).click();
+			navParentNode.get(NavMenuItem.home).click();
 		} break;
+		
 		case "get assistance":
 		{
-			mainNavMenu.get(NavMenuItem.getAssistance).click();
+			navParentNode.get(NavMenuItem.getAssistance).click();
 		} break;
+		
 		case "information":
 		{
-			mainNavMenu.get(NavMenuItem.information).click();
+			navParentNode.get(NavMenuItem.information).click();
 		} break;
+		
 		case "about us":
 		{
-			mainNavMenu.get(NavMenuItem.aboutUs).click();
+			navParentNode.get(NavMenuItem.aboutUs).click();
 		} break;
+		
 		case "help":
 		{
-			mainNavMenu.get(NavMenuItem.help).click();
+			navParentNode.get(NavMenuItem.help).click();
 		} break;
+		
 		default:
 		{
 			//TODO better error checking
 			System.err.println("ERROR: something weird got passed in from scenario 1 in dailyRegression.story");
 		} break;
 
+		} // end switch
+	}
+	
+	//////////////////////////////////////////////////////////////////////////////////////////
+	
+	@FindBy(xpath="//div[@id='landing-page-container']/a")
+	private List<WebElementFacade> landingPageNode;
+	
+	public short numberOfLandingPageNodes()
+	{
+		return (short) landingPageNode.size();
+	}
+	
+	//////////////////////////////////////////////////////////////////////////////////////////
+	
+	@FindBy(xpath="//nav[@id='nav']//ul/li[@class[contains(., 'menu__item is-leaf')]]")
+	private List<WebElementFacade> navChildNode;
+	
+	public void clickChildNavNode(String menuItem)
+	{
+		switch(menuItem)
+		{
+		//Get Assistance parent node
+		case "address look-up":
+		{
+			
+		} break;
+		
+		case "find assistance":
+		{
+			
+		} break;
+		
+		case "apply online":
+		{
+			
+		} break;
+		
+		case "check your status":
+		{
+			
+		} break;
+		
+		case "assistance by catgory":
+		{
+			
+		} break;
+		
+		case "assistance by federal agency":
+		{
+			
+		} break;
+		
+		case "application checklist":
+		{
+			
+		} break;
+		
+		case "forms":
+		{
+			
+		} break;
+		
+		//Information parent node
+		case "news feeds":
+		{
+			
+		} break;
+		
+		case "immediate needs":
+		{
+			
+		} break;
+		
+		case "moving forward":
+		{
+			
+		} break;
+		
+		case "community resources":
+		{
+			
+		} break;
+		
+		case "disabilities or access and functional needs":
+		{
+			
+		} break;
+		
+		case "older americans":
+		{
+			
+		} break;
+		
+		case "children and families":
+		{
+			
+		} break;
+		
+		case "disaster types":
+		{
+			
+		} break;
+		
+		case "foreign disasters":
+		{
+			
+		} break;
+		
+		case "fact sheets":
+		{
+			
+		} break;
+		
+		//About us parent node
+		case "overview":
+		{
+			
+		} break;
+		
+		case "partners":
+		{
+			
+		} break;
+		
+		//Help parent node
+		case "faqs":
+		{
+			
+		} break;
+		
+		case "contact us":
+		{
+			
+		} break;
+		
+		case "privacy policy":
+		{
+			
+		} break;
+		
+		case "accessibility":
+		{
+			
+		} break;
+		
+		case "download plug-ins":
+		{
+			
+		} break;
+		
+		default:
+		{
+			System.err.println("What did you pass me??");
+		} break;
+		
 		} // end switch
 	}
 	
@@ -84,6 +243,8 @@ public class HomepageObject extends PageObject
 	{
 		return pageTitle.getText();
 	}
+	
+	//////////////////////////////////////////////////////////////////////////////////////////
 	
 	@FindBy(xpath="//*//div[@id='address-lookup-container']")
 	private WebElementFacade addressLookup;

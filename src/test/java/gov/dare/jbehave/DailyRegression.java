@@ -51,6 +51,12 @@ public class DailyRegression
 		
 	}
 	
+	@Then("there should be <numNodes> landing page nodes")
+	public void and_the_number_of_landing_page_nodes_should_match(@Named("numNodes") short numNodes)
+	{
+		user.shouldSeeXLandingPageNodes(numNodes);
+	}
+	
 	/** Scenario 2: Verify all of the sub-tabs within each top navigation bar **/
 		
 	//given see above
