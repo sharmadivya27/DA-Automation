@@ -1,5 +1,6 @@
 package gov.dare.pageObjects;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -9,14 +10,16 @@ import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.DefaultUrl;
+import net.thucydides.core.annotations.findby.By;
 
+@SuppressWarnings("deprecation")
 @DefaultUrl("http://www.disasterassistance.gov")
-public class HomepageObject extends PageObject 
+public class DApage extends PageObject 
 {
 	/**
 	 * Not sure if you really need constructor but keeping it in since Serenity manual uses this 
 	 */
-	public HomepageObject (WebDriver driver)
+	public DApage (WebDriver driver)
 	{
 		super(driver);
 		driver.manage().window().maximize();
@@ -88,150 +91,31 @@ public class HomepageObject extends PageObject
 		return (short) landingPageNode.size();
 	}
 	
-	//////////////////////////////////////////////////////////////////////////////////////////
-	
-	@FindBy(xpath="//nav[@id='nav']//ul/li[@class[contains(., 'menu__item is-leaf')]]")
-	private List<WebElementFacade> navChildNode;
-	
-	public void clickChildNavNode(String menuItem)
+	public void clickLandingPageNode(String landingNode)
 	{
-		switch(menuItem)
+		Iterator<WebElementFacade> iter = landingPageNode.iterator();
+		WebElementFacade node = null;
+		while(iter.hasNext()) //Will look through the nodes pulled from the web site to find current case
 		{
-		//Get Assistance parent node
-		case "address look-up":
-		{
+			WebElementFacade tempNode = iter.next();
+			String tempTitle = tempNode.findElement(By.className("lp-link-title")).getText();
 			
-		} break;
+			if(landingNode.equalsIgnoreCase(tempTitle))
+			{
+				node = tempNode;
+				break;
+			}
+		}
 		
-		case "find assistance":
+		if(node == null)
 		{
-			
-		} break;
-		
-		case "apply online":
+			System.err.println("COULD NOT FIND LANDING PAGE NODE");
+		}
+		else
 		{
-			
-		} break;
+			node.click();
+		}
 		
-		case "check your status":
-		{
-			
-		} break;
-		
-		case "assistance by catgory":
-		{
-			
-		} break;
-		
-		case "assistance by federal agency":
-		{
-			
-		} break;
-		
-		case "application checklist":
-		{
-			
-		} break;
-		
-		case "forms":
-		{
-			
-		} break;
-		
-		//Information parent node
-		case "news feeds":
-		{
-			
-		} break;
-		
-		case "immediate needs":
-		{
-			
-		} break;
-		
-		case "moving forward":
-		{
-			
-		} break;
-		
-		case "community resources":
-		{
-			
-		} break;
-		
-		case "disabilities or access and functional needs":
-		{
-			
-		} break;
-		
-		case "older americans":
-		{
-			
-		} break;
-		
-		case "children and families":
-		{
-			
-		} break;
-		
-		case "disaster types":
-		{
-			
-		} break;
-		
-		case "foreign disasters":
-		{
-			
-		} break;
-		
-		case "fact sheets":
-		{
-			
-		} break;
-		
-		//About us parent node
-		case "overview":
-		{
-			
-		} break;
-		
-		case "partners":
-		{
-			
-		} break;
-		
-		//Help parent node
-		case "faqs":
-		{
-			
-		} break;
-		
-		case "contact us":
-		{
-			
-		} break;
-		
-		case "privacy policy":
-		{
-			
-		} break;
-		
-		case "accessibility":
-		{
-			
-		} break;
-		
-		case "download plug-ins":
-		{
-			
-		} break;
-		
-		default:
-		{
-			System.err.println("What did you pass me??");
-		} break;
-		
-		} // end switch
 	}
 	
 	//////////////////////////////////////////////////////////////////////////////////////////
@@ -249,7 +133,7 @@ public class HomepageObject extends PageObject
 	@FindBy(xpath="//*//div[@id='address-lookup-container']")
 	private WebElementFacade addressLookup;
 	
-	public boolean isHomepage()
+	public boolean addressLookupIsDisplayed()
 	{
 		return addressLookup.isDisplayed();
 	}

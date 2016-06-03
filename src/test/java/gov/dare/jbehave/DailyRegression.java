@@ -28,13 +28,13 @@ public class DailyRegression
 	@Given("I am on the Disaster Assistance homepage")
 	public void given_I_am_on_the_disaster_assistance_homepage() 
 	{
-		user.open_page();
+		user.open_home_page();
 	}
 	
 	@When("I click on <navMenuItem> within the top navigation bar")
 	public void when_I_click_on_each_link_in_the_top_navigation_bar(@Named("navMenuItem") String navMenuItem) 
 	{
-		user.clickNavigation(navMenuItem);
+		user.clickParentNavigationTab(navMenuItem);
 	}
 	
 	@Then("the <navMenuItem> page should open correctly")
@@ -48,7 +48,6 @@ public class DailyRegression
 		{
 			user.shouldSeeText(navMenuItem);
 		}
-		
 	}
 	
 	@Then("there should be <numNodes> landing page nodes")
@@ -57,19 +56,26 @@ public class DailyRegression
 		user.shouldSeeXLandingPageNodes(numNodes);
 	}
 	
-	/** Scenario 2: Verify all of the sub-tabs within each top navigation bar **/
-		
-	//given see above
 	
-	@When("I click on the <subTab> tab under the <navMenuItem> menu item")
-	public void when_I_click_on_the_current_subTab(@Named("subTab") String subTab)
-	{
+	/** Scenario 2: Verify all of the nodes on the "Get Assistance" landing page **/
 		
+	@Given("I am on the Get Assistance landing page")
+	public void given_I_am_on_the_Get_Assistance_landing_page()
+	{
+		user.open_page("https://www.disasterassistance.gov/get-assistance");
 	}
 	
-	@Then("the <subTab> page should open correctly")
-	public void then_the_subTab_page_should_open_correctly()
+	@When("I click on the <landingPageNode> landing page node")
+	public void when_I_click_on_the_landing_page_node(@Named("landingPageNode") String landingPageNode)
 	{
-		
+		user.clickLandingPageNode(landingPageNode);
 	}
+	
+	@Then("the <landingPageNode> page should open correctly")
+	public void then_the_landing_page_node_should_open_correctly(@Named("landingPageNode") String landingPageNode)
+	{
+		user.shouldSeePage(landingPageNode);
+	}
+	
+	/** Scenario 3: Verify all of the nodes on the "Information" landing page **/
 }

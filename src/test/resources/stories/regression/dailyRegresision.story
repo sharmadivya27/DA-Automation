@@ -21,7 +21,52 @@ Examples:
 |about us|2|
 |help|5|
 
-Scenario: Verify all of the subtabs under the each different tab
-Given I am on the Disaster Assistance homepage
-When I click on the <subTab> tab under the <navMenuItem> menu item
-Then the <subTab> page should open correctly
+Scenario: Verify all of the nodes on the "Get Assistance" landing page
+Given I am on the Get Assistance landing page
+When I click on the <landingPageNode> landing page node
+Then the <landingPageNode> page should open correctly
+
+Examples:
+|landingPageNode|
+|address look-up|
+|find assistance|
+|apply online|
+|check your status|
+|assistance by category|
+|assistance by federal agency|
+|application checklist|
+|forms|
+
+Scenario: Verify all of the nodes on the "Information" landing page
+@meta
+@skip
+
+Examples:
+|news feeds|
+|immediate needs|
+|moving forward|
+|community resources|
+|disabilities or access and functional needs|
+|older americans|
+|children and families|
+|disaster types|
+|foreign disasters|
+|fact sheets|
+
+Scenario: Verify all of the nodes on the "About Us" landing page
+@meta
+@skip
+
+Examples:
+|overview|
+|partners|
+
+Scenario: Verify all of the nodes on the "Help" landing page
+@meta
+@skip
+
+|faqs|
+|contact us|
+|privacy policy|
+|accessibility|
+|download plug-ins|
