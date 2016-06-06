@@ -22,6 +22,8 @@ Examples:
 |help|5|
 
 Scenario: Verify all of the nodes on the "Get Assistance" landing page
+Meta:
+@skip
 Given I am on the Get Assistance landing page
 When I click on the <landingPageNode> landing page node
 Then the <landingPageNode> page should open correctly
@@ -30,15 +32,9 @@ Examples:
 |landingPageNode|
 |address look-up|
 |find assistance|
-|apply online|
-|check your status|
-|assistance by category|
-|assistance by federal agency|
-|application checklist|
-|forms|
 
 Scenario: Verify all of the nodes on the "Information" landing page
-@meta
+Meta:
 @skip
 
 Examples:
@@ -52,9 +48,16 @@ Examples:
 |disaster types|
 |foreign disasters|
 |fact sheets|
+!-- Add these in as they are completed.
+|apply online|
+|check your status|
+|assistance by category|
+|assistance by federal agency|
+|application checklist|
+|forms|
 
 Scenario: Verify all of the nodes on the "About Us" landing page
-@meta
+Meta:
 @skip
 
 Examples:
@@ -62,7 +65,7 @@ Examples:
 |partners|
 
 Scenario: Verify all of the nodes on the "Help" landing page
-@meta
+Meta:
 @skip
 
 |faqs|

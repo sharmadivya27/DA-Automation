@@ -30,55 +30,31 @@ public class DApage extends PageObject
 	
 	@FindBy(xpath="//nav[@id='nav']/ul/li[@class[contains(., 'menu__item')]]")
 	private List<WebElementFacade> navParentNode;
-	final class NavMenuItem 
-	{	 //menu items pulled sequentially, referencing by name looks nicer
-		static final short home = 0;
-		static final short getAssistance = 1;
-		static final short information = 2;
-		static final short aboutUs = 3;
-		static final short help = 4;
-	}
 	
-	/**
-	 * Clicks on the menu item passed into the function.
-	 * @param menuItem - takes a menu item from the "examples" section under scenario 1 in dailyRegression.story
-	 */
+	//this and child node basically duplicates, fix this later
 	public void clickParentNavNodes(String menuItem)
 	{
-		switch(menuItem)
+		Iterator<WebElementFacade> iter = navParentNode.iterator();
+		WebElementFacade tab = null;
+		while(iter.hasNext())
 		{
-		case "home":
-		{
-			navParentNode.get(NavMenuItem.home).click();
-		} break;
+			WebElementFacade tempTab = iter.next();
+			String tempTitle = tempTab.getText();
+			
+			if(menuItem.equalsIgnoreCase(tempTitle))
+			{
+				tab = tempTab;
+			}
+		}
 		
-		case "get assistance":
+		if(tab == null)
 		{
-			navParentNode.get(NavMenuItem.getAssistance).click();
-		} break;
-		
-		case "information":
+			System.err.println("COULD NOT FIND TAB WITH THAT TITLE");
+		}
+		else
 		{
-			navParentNode.get(NavMenuItem.information).click();
-		} break;
-		
-		case "about us":
-		{
-			navParentNode.get(NavMenuItem.aboutUs).click();
-		} break;
-		
-		case "help":
-		{
-			navParentNode.get(NavMenuItem.help).click();
-		} break;
-		
-		default:
-		{
-			//TODO better error checking
-			System.err.println("ERROR: something weird got passed in from scenario 1 in dailyRegression.story");
-		} break;
-
-		} // end switch
+			tab.click();
+		}
 	}
 	
 	//////////////////////////////////////////////////////////////////////////////////////////
@@ -138,4 +114,11 @@ public class DApage extends PageObject
 		return addressLookup.isDisplayed();
 	}
 	
+	@FindBy(xpath="//div[@id='block-daip-responsive-questionnaire-responsive-questionnaire-block']")
+	private WebElementFacade questionnaire;
+	
+	public boolean questionnaireIsDisplayed()
+	{
+		return questionnaire.isDisplayed();
+	}
 }

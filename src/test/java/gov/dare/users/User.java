@@ -57,145 +57,145 @@ public class User
 	////////////////////////////////////////////////////////////////////////////////////////////
 	
 	@Step
-	public void shouldSeePage(String expectedPage)
+	public void shouldSeePage(String expected)
 	{
-		switch(expectedPage)
+		switch(expected)
 		{
-			//Get Assistance parent node
-			case "address look-up":
-			{
-				Assert.assertEquals(true, page.addressLookupIsDisplayed());
-			} break;
+		//Get Assistance parent node
+		case "address look-up":
+		{
+			Assert.assertEquals(true, page.addressLookupIsDisplayed());
+		} break;
+		
+		case "find assistance":
+		{
+			Assert.assertEquals(true, page.questionnaireIsDisplayed());
+		} break;
+		
+		case "apply online":
+		{
 			
-			case "find assistance":
-			{
-				
-			} break;
+		} break;
+		
+		case "check your status":
+		{
 			
-			case "apply online":
-			{
-				
-			} break;
+		} break;
+		
+		case "assistance by catgory":
+		{
 			
-			case "check your status":
-			{
-				
-			} break;
+		} break;
+		
+		case "assistance by federal agency":
+		{
 			
-			case "assistance by catgory":
-			{
-				
-			} break;
+		} break;
+		
+		case "application checklist":
+		{
 			
-			case "assistance by federal agency":
-			{
-				
-			} break;
+		} break;
+		
+		case "forms":
+		{
 			
-			case "application checklist":
-			{
-				
-			} break;
+		} break;
+		
+		//Information parent node
+		case "news feeds":
+		{
 			
-			case "forms":
-			{
-				
-			} break;
+		} break;
+		
+		case "immediate needs":
+		{
 			
-			//Information parent node
-			case "news feeds":
-			{
-				
-			} break;
+		} break;
+		
+		case "moving forward":
+		{
 			
-			case "immediate needs":
-			{
-				
-			} break;
+		} break;
+		
+		case "community resources":
+		{
 			
-			case "moving forward":
-			{
-				
-			} break;
+		} break;
+		
+		case "disabilities or access and functional needs":
+		{
 			
-			case "community resources":
-			{
-				
-			} break;
+		} break;
+		
+		case "older americans":
+		{
 			
-			case "disabilities or access and functional needs":
-			{
-				
-			} break;
+		} break;
+		
+		case "children and families":
+		{
 			
-			case "older americans":
-			{
-				
-			} break;
+		} break;
+		
+		case "disaster types":
+		{
 			
-			case "children and families":
-			{
-				
-			} break;
+		} break;
+		
+		case "foreign disasters":
+		{
 			
-			case "disaster types":
-			{
-				
-			} break;
+		} break;
+		
+		case "fact sheets":
+		{
 			
-			case "foreign disasters":
-			{
-				
-			} break;
+		} break;
+		
+		//About us parent node
+		case "overview":
+		{
 			
-			case "fact sheets":
-			{
-				
-			} break;
+		} break;
+		
+		case "partners":
+		{
 			
-			//About us parent node
-			case "overview":
-			{
-				
-			} break;
+		} break;
+		
+		//Help parent node
+		case "faqs":
+		{
 			
-			case "partners":
-			{
-				
-			} break;
+		} break;
+		
+		case "contact us":
+		{
 			
-			//Help parent node
-			case "faqs":
-			{
-				
-			} break;
+		} break;
+		
+		case "privacy policy":
+		{
 			
-			case "contact us":
-			{
-				
-			} break;
+		} break;
+		
+		case "accessibility":
+		{
 			
-			case "privacy policy":
-			{
-				
-			} break;
+		} break;
+		
+		case "download plug-ins":
+		{
 			
-			case "accessibility":
-			{
-				
-			} break;
-			
-			case "download plug-ins":
-			{
-				
-			} break;
-			
-			default:
-			{
-				System.err.println("INVALID PAGE SENT");
-			} break;
-			
-			} // end switch
+		} break;
+		
+		default:
+		{
+			System.err.println("INVALID PAGE SENT");
+		} break;
+		
+		} // end switch
 	}
 	
 }
