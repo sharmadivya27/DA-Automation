@@ -121,4 +121,28 @@ public class DApage extends PageObject
 	{
 		return questionnaire.isDisplayed();
 	}
+	
+	@FindBy(xpath="//a[@href[contains(., 'TextCaptcha')]]")
+	private WebElementFacade textCaptcha;
+	
+	public boolean textCaptchaIsDisplayed()
+	{
+		return textCaptcha.isDisplayed();
+	}
+	
+	@FindBy(xpath="//*[@id='pageContent']")
+	private WebElementFacade checkStatusPageContent;
+	
+	public boolean checkStatusPageIsDisplayed()
+	{
+		return checkStatusPageContent.isDisplayed();
+	}
+	
+	@FindBy(xpath="//*[@class[contains(., 'accordion') and not(contains(., 'name'))]]")
+	private List<WebElementFacade> accordionBlocks;
+	
+	public short getNumberAccordions()
+	{
+		return (short) accordionBlocks.size();
+	}
 }

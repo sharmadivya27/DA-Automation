@@ -7,36 +7,36 @@ import net.thucydides.core.annotations.Step;
 
 public class User 
 {
-	DApage page;
+	DApage daPage;
 	
 	@Step
 	public void open_home_page() 
 	{
-		page.open();
+		daPage.open();
 	}
 	
 	@Step
 	public void open_page(String url)
 	{
-		page.openAt(url);
+		daPage.openAt(url);
 	}
 	
 	@Step
 	public void clickParentNavigationTab(String menuItem)
 	{
-		page.clickParentNavNodes(menuItem);
+		daPage.clickParentNavNodes(menuItem);
 	}
 	
 	@Step
 	public void clickLandingPageNode(String subTab)
 	{
-		page.clickLandingPageNode(subTab);
+		daPage.clickLandingPageNode(subTab);
 	}
 	
 	@Step
 	public void shouldSeeText(String expected)
 	{
-		String pageTitle = page.pullPageTitle();
+		String pageTitle = daPage.pullPageTitle();
 		
 		//lower case to account for case mismatching
 		Assert.assertEquals(expected.toLowerCase(), pageTitle.toLowerCase());
@@ -45,46 +45,46 @@ public class User
 	@Step
 	public void shouldSeeXLandingPageNodes(short expected)
 	{
-		Assert.assertEquals(expected, page.numberOfLandingPageNodes());
+		Assert.assertEquals(expected, daPage.numberOfLandingPageNodes());
 	}
 	
 	@Step
 	public void shouldSeeAddressLookup()
 	{
-		Assert.assertEquals(true, page.addressLookupIsDisplayed());
+		Assert.assertEquals(true, daPage.addressLookupIsDisplayed());
 	}
 	
 	////////////////////////////////////////////////////////////////////////////////////////////
 	
 	@Step
-	public void shouldSeePage(String expected)
+	public void shouldSeePage(String page)
 	{
-		switch(expected)
+		switch(page)
 		{
 		//Get Assistance parent node
 		case "address look-up":
 		{
-			Assert.assertEquals(true, page.addressLookupIsDisplayed());
+			Assert.assertEquals(true, daPage.addressLookupIsDisplayed());
 		} break;
 		
 		case "find assistance":
 		{
-			Assert.assertEquals(true, page.questionnaireIsDisplayed());
+			Assert.assertEquals(true, daPage.questionnaireIsDisplayed());
 		} break;
 		
 		case "apply online":
 		{
-			
+			Assert.assertEquals(true, daPage.textCaptchaIsDisplayed());
 		} break;
 		
 		case "check your status":
 		{
-			
+			Assert.assertEquals(true, daPage.checkStatusPageIsDisplayed());
 		} break;
 		
 		case "assistance by catgory":
 		{
-			
+			Assert.assertEquals(15, daPage.getNumberAccordions());	//counted manually 6/6/16
 		} break;
 		
 		case "assistance by federal agency":
