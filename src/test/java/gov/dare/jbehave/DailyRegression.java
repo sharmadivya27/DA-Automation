@@ -40,22 +40,14 @@ public class DailyRegression
 	@Then("the <navMenuItem> page should open correctly")
 	public void then_the_navigation_tab_should_open_correctly(@Named("navMenuItem") String navMenuItem) 
 	{
-		if(navMenuItem.equalsIgnoreCase("home"))
-		{
-			user.shouldSeeAddressLookup();
-		}
-		else
-		{
-			user.shouldSeeText(navMenuItem);
-		}
+		user.shouldSeePage(navMenuItem);
 	}
 	
 	@Then("there should be <numNodes> landing page nodes")
 	public void and_the_number_of_landing_page_nodes_should_match(@Named("numNodes") short numNodes)
 	{
-		user.shouldSeeXLandingPageNodes(numNodes);
+		user.shouldSeeLandingPageNodes(numNodes);
 	}
-	
 	
 	/** Scenario 2: Verify all of the nodes on the "Get Assistance" landing page **/
 		

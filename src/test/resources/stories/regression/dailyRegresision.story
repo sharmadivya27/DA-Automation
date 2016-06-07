@@ -29,7 +29,14 @@ Then the <landingPageNode> page should open correctly
 
 Examples:
 |landingPageNode|
+|address look-up|
+|find assistance|
+|apply online|
+|check your status|
 |assistance by category|
+|assistance by federal agency|
+|application checklist|
+|forms|
 
 Scenario: Verify all of the nodes on the "Information" landing page
 Meta:
@@ -46,15 +53,6 @@ Examples:
 |disaster types|
 |foreign disasters|
 |fact sheets|
-!-- Add these in as they are completed.
-|address look-up|
-|find assistance|
-|apply online|
-|check your status|
-|assistance by category|
-|assistance by federal agency|
-|application checklist|
-|forms|
 
 Scenario: Verify all of the nodes on the "About Us" landing page
 Meta:

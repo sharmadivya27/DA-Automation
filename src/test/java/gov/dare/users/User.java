@@ -1,6 +1,7 @@
 package gov.dare.users;
 
 import org.junit.Assert;
+import org.openqa.selenium.NoSuchElementException;
 
 import gov.dare.pageObjects.DApage;
 import net.thucydides.core.annotations.Step;
@@ -34,33 +35,53 @@ public class User
 	}
 	
 	@Step
-	public void shouldSeeText(String expected)
-	{
-		String pageTitle = daPage.pullPageTitle();
-		
-		//lower case to account for case mismatching
-		Assert.assertEquals(expected.toLowerCase(), pageTitle.toLowerCase());
-	}
-	
-	@Step
-	public void shouldSeeXLandingPageNodes(short expected)
+	public void shouldSeeLandingPageNodes(short expected)
 	{
 		Assert.assertEquals(expected, daPage.numberOfLandingPageNodes());
-	}
-	
-	@Step
-	public void shouldSeeAddressLookup()
-	{
-		Assert.assertEquals(true, daPage.addressLookupIsDisplayed());
 	}
 	
 	////////////////////////////////////////////////////////////////////////////////////////////
 	
 	@Step
-	public void shouldSeePage(String page)
+	public void shouldSeePage(String expectedPageName)
 	{
-		switch(page)
+		String pageTitle = "";
+		try 
 		{
+			pageTitle = daPage.pullPageTitle();
+		}
+		catch (NoSuchElementException e)
+		{
+			//do nothing
+		}
+		
+		switch(expectedPageName)
+		{
+		case "home":
+		{
+			Assert.assertEquals(true, daPage.addressLookupIsDisplayed());
+		} break;
+		
+		case "get assistance":
+		{
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
+		} break;
+		
+		case "information":
+		{
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
+		} break;
+		
+		case "about us":
+		{
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
+		} break;
+		
+		case "help":
+		{
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
+		} break;
+		
 		//Get Assistance parent node
 		case "address look-up":
 		{
@@ -89,17 +110,17 @@ public class User
 		
 		case "assistance by federal agency":
 		{
-			
+			Assert.assertEquals(14, daPage.getNumberAccordions()); //counted manually 6/6/16
 		} break;
 		
 		case "application checklist":
 		{
-			
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
 		} break;
 		
 		case "forms":
 		{
-			
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
 		} break;
 		
 		//Information parent node
