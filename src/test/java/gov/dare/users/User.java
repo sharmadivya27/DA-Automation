@@ -126,89 +126,89 @@ public class User
 		//Information parent node
 		case "news feeds":
 		{
-			
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
 		} break;
 		
 		case "immediate needs":
 		{
-			
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
 		} break;
 		
 		case "moving forward":
 		{
-			
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
 		} break;
 		
 		case "community resources":
 		{
-			
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
 		} break;
 		
 		case "disabilities or access and functional needs":
 		{
-			
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
 		} break;
 		
 		case "older americans":
 		{
-			
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
 		} break;
 		
 		case "children and families":
 		{
-			
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
 		} break;
 		
 		case "disaster types":
 		{
-			
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
 		} break;
 		
 		case "foreign disasters":
 		{
-			
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
 		} break;
 		
 		case "fact sheets":
 		{
-			
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
 		} break;
 		
 		//About us parent node
 		case "overview":
 		{
-			
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
 		} break;
 		
 		case "partners":
 		{
-			
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
 		} break;
 		
 		//Help parent node
 		case "faqs":
 		{
-			
+			Assert.assertEquals(27, daPage.getNumberAccordions()); //counted manually 6/8/16
 		} break;
 		
 		case "contact us":
 		{
-			
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
 		} break;
 		
 		case "privacy policy":
 		{
-			
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
 		} break;
 		
 		case "accessibility":
 		{
-			
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
 		} break;
 		
 		case "download plug-ins":
 		{
-			
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
 		} break;
 		
 		default:

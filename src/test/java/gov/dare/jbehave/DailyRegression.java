@@ -24,7 +24,6 @@ public class DailyRegression
 	User user;
 
 	/** Scenario 1: Verify all of the navbar tabs to assert that the pages open correctly **/
-	
 	@Given("I am on the Disaster Assistance homepage")
 	public void given_I_am_on_the_disaster_assistance_homepage() 
 	{
@@ -49,8 +48,8 @@ public class DailyRegression
 		user.shouldSeeLandingPageNodes(numNodes);
 	}
 	
+	
 	/** Scenario 2: Verify all of the nodes on the "Get Assistance" landing page **/
-		
 	@Given("I am on the Get Assistance landing page")
 	public void given_I_am_on_the_Get_Assistance_landing_page()
 	{
@@ -69,5 +68,37 @@ public class DailyRegression
 		user.shouldSeePage(landingPageNode);
 	}
 	
+	
 	/** Scenario 3: Verify all of the nodes on the "Information" landing page **/
+	@Given ("I am on the Information landing page")
+	public void given_I_am_on_the_Information_landing_page()
+	{
+		user.open_page("https://www.disasterassistance.gov/information");
+	}
+
+	//when see scenario 2
+	//then see scenario 2
+	
+	
+	/** Scenario 4: Verify all of the nodes on the "About Us" landing page **/
+	@Given ("I am on the About Us landing page")
+	public void given_I_am_on_the_About_Us_landing_page()
+	{
+		user.open_page("https://www.disasterassistance.gov/about-us");
+	}
+	
+	//when see scenario 2
+	//then see scenario 2
+	
+	
+	/** Scenario 5: Verify all of the nodes on the "Help" landing page **/
+	@Given ("I am on the Help landing page")
+	public void given_I_am_on_the_Help_landing_page()
+	{
+		user.open_page("https://www.disasterassistance.gov/help");
+	}
+	
+	//when see scenario 2
+	//then see scenario 2	
+	
 }

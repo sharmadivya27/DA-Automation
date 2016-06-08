@@ -74,9 +74,9 @@ public class DApage extends PageObject
 		while(iter.hasNext()) //Will look through the nodes pulled from the web site to find current case
 		{
 			WebElementFacade tempNode = iter.next();
-			String tempTitle = tempNode.findElement(By.className("lp-link-title")).getText();
+			String tempTitle = tempNode.findElement(By.className("lp-link-title")).getText().toLowerCase();
 			
-			if(landingNode.equalsIgnoreCase(tempTitle))
+			if(tempTitle.contains(landingNode))
 			{
 				node = tempNode;
 				break;
@@ -138,7 +138,7 @@ public class DApage extends PageObject
 		return checkStatusPageContent.isDisplayed();
 	}
 	
-	@FindBy(xpath="//*[@class[contains(., 'accordion') and not(contains(., 'name'))]]")
+	@FindBy(xpath="//div[@class[contains(., 'accordion') and not(contains(., 'name'))]]")
 	private List<WebElementFacade> accordionBlocks;
 	
 	public short getNumberAccordions()
