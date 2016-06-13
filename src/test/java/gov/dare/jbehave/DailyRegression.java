@@ -91,7 +91,7 @@ public class DailyRegression {
 
 	// when see scenario 2
 	// then see scenario 2
-
+	
 	/**
 	 * Scenario 6: Verify results of the questionnaire on the "Find Assistance"
 	 * page

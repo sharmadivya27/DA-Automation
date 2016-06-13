@@ -20,9 +20,9 @@ public class DApage extends PageObject {
 	 * Not sure if you really need constructor but keeping it in since Serenity
 	 * manual uses this
 	 */
-
+	
 	private JavascriptExecutor jse;
-
+	
 	public DApage(WebDriver driver) {
 		super(driver);
 		jse = (JavascriptExecutor) driver;
