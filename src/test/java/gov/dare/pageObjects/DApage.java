@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
 import net.serenitybdd.core.annotations.findby.FindBy;
@@ -133,14 +134,14 @@ public class DApage extends PageObject {
 	}
 
 	@FindBy(id = "stateSelector")
-	private WebElement stateSelector;
+	private WebElementFacade stateSelector;
 	@FindBy(xpath = "//fieldset//label[@class[contains(., 'radio')] and text()[not(contains(., 'No')) and not(contains(., 'Unknown'))]]")
 	private List<WebElementFacade> questionnaireButtons;
 
 	public void completeQuestionnaire() {
 		Iterator<WebElementFacade> iter = questionnaireButtons.iterator();
 		while (iter.hasNext()) {
-			WebElement temp = iter.next();
+			WebElementFacade temp = iter.next();
 			temp.click();
 			jse.executeScript("window.scrollBy(0,50)", "");
 		}
