@@ -92,4 +92,22 @@ public class DailyRegression {
 	// when see scenario 2
 	// then see scenario 2
 
+	/**
+	 * Scenario 6: Verify results of the questionnaire on the "Find Assistance"
+	 * page
+	 **/
+	@Given("I am on the Find Assistance page")
+	public void given_I_am_on_the_Find_Assistance_page() {
+		user.open_page("https://www.disasterassistance.gov/get-assistance/find-assistance");
+	}
+
+	@When("I answer 'Yes' on all questions")
+	public void when_I_answer_Yes_on_all_questions() {
+		user.completeQuestionnaire();
+	}
+
+	@Then("I should accumulate 73 results")
+	public void I_should_accumulate_73_results() {
+		user.checkResults();
+	}
 }

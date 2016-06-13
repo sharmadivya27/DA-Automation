@@ -19,8 +19,12 @@ public class DApage extends PageObject {
 	 * Not sure if you really need constructor but keeping it in since Serenity
 	 * manual uses this
 	 */
+
+	private JavascriptExecutor jse;
+
 	public DApage(WebDriver driver) {
 		super(driver);
+		jse = (JavascriptExecutor) driver;
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
 	}
@@ -126,5 +130,27 @@ public class DApage extends PageObject {
 
 	public short getNumberAccordions() {
 		return (short) accordionBlocks.size();
+	}
+
+	@FindBy(id = "stateSelector")
+	private WebElement stateSelector;
+	@FindBy(xpath = "//fieldset//label[@class[contains(., 'radio')] and text()[not(contains(., 'No')) and not(contains(., 'Unknown'))]]")
+	private List<WebElementFacade> questionnaireButtons;
+
+	public void completeQuestionnaire() {
+		Iterator<WebElementFacade> iter = questionnaireButtons.iterator();
+		while (iter.hasNext()) {
+			WebElement temp = iter.next();
+			temp.click();
+			jse.executeScript("window.scrollBy(0,50)", "");
+		}
+		stateSelector.sendKeys("Alabama");
+	}
+
+	@FindBy(id = "benefit-counter-count")
+	private WebElementFacade benefitCounter;
+
+	public boolean checkResults() {
+		return benefitCounter.getText().equalsIgnoreCase("73");
 	}
 }
