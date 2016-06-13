@@ -14,135 +14,117 @@ import net.thucydides.core.annotations.findby.By;
 
 @SuppressWarnings("deprecation")
 @DefaultUrl("http://www.disasterassistance.gov")
-public class DApage extends PageObject 
-{
+public class DApage extends PageObject {
 	/**
-	 * Not sure if you really need constructor but keeping it in since Serenity manual uses this 
+	 * Not sure if you really need constructor but keeping it in since Serenity
+	 * manual uses this
 	 */
-	public DApage (WebDriver driver)
-	{
+	public DApage(WebDriver driver) {
 		super(driver);
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
 	}
-	
+
 	//////////////////////////////////////////////////////////////////////////////////////////
-	
-	@FindBy(xpath="//nav[@id='nav']/ul/li[@class[contains(., 'menu__item')]]")
+
+	@FindBy(xpath = "//nav[@id='nav']/ul/li[@class[contains(., 'menu__item')]]")
 	private List<WebElementFacade> navParentNode;
-	
-	//this and child node basically duplicates, fix this later
-	public void clickParentNavNodes(String menuItem)
-	{
+
+	// this and child node basically duplicates, fix this later
+	public void clickParentNavNodes(String menuItem) {
 		Iterator<WebElementFacade> iter = navParentNode.iterator();
 		WebElementFacade tab = null;
-		while(iter.hasNext())
-		{
+		while (iter.hasNext()) {
 			WebElementFacade tempTab = iter.next();
 			String tempTitle = tempTab.getText();
-			
-			if(menuItem.equalsIgnoreCase(tempTitle))
-			{
+
+			if (menuItem.equalsIgnoreCase(tempTitle)) {
 				tab = tempTab;
 			}
 		}
-		
-		if(tab == null)
-		{
+
+		if (tab == null) {
 			System.err.println("COULD NOT FIND TAB WITH THAT TITLE");
-		}
-		else
-		{
+		} else {
 			tab.click();
 		}
 	}
-	
+
 	//////////////////////////////////////////////////////////////////////////////////////////
-	
-	@FindBy(xpath="//div[@id='landing-page-container']/a")
+
+	@FindBy(xpath = "//div[@id='landing-page-container']/a")
 	private List<WebElementFacade> landingPageNode;
-	
-	public short numberOfLandingPageNodes()
-	{
+
+	public short numberOfLandingPageNodes() {
 		return (short) landingPageNode.size();
 	}
-	
-	public void clickLandingPageNode(String landingNode)
-	{
+
+	public void clickLandingPageNode(String landingNode) {
 		Iterator<WebElementFacade> iter = landingPageNode.iterator();
 		WebElementFacade node = null;
-		while(iter.hasNext()) //Will look through the nodes pulled from the web site to find current case
+		while (iter.hasNext()) // Will look through the nodes pulled from the
+								// web site to find current case
 		{
 			WebElementFacade tempNode = iter.next();
 			String tempTitle = tempNode.findElement(By.className("lp-link-title")).getText().toLowerCase();
-			
-			if(tempTitle.contains(landingNode))
-			{
+
+			if (tempTitle.contains(landingNode)) {
 				node = tempNode;
 				break;
 			}
 		}
-		
-		if(node == null)
-		{
+
+		if (node == null) {
 			System.err.println("COULD NOT FIND LANDING PAGE NODE");
-		}
-		else
-		{
+		} else {
 			node.click();
 		}
-		
+
 	}
-	
+
 	//////////////////////////////////////////////////////////////////////////////////////////
-	
-	@FindBy(xpath="//*[@class='page__title title']")
+
+	@FindBy(xpath = "//*[@class='page__title title']")
 	private WebElementFacade pageTitle;
-	
-	public String pullPageTitle() 
-	{
+
+	public String pullPageTitle() {
 		return pageTitle.getText();
 	}
-	
+
 	//////////////////////////////////////////////////////////////////////////////////////////
-	
-	@FindBy(xpath="//*//div[@id='address-lookup-container']")
+
+	@FindBy(xpath = "//*//div[@id='address-lookup-container']")
 	private WebElementFacade addressLookup;
-	
-	public boolean addressLookupIsDisplayed()
-	{
+
+	public boolean addressLookupIsDisplayed() {
 		return addressLookup.isDisplayed();
 	}
-	
-	@FindBy(xpath="//div[@id='block-daip-responsive-questionnaire-responsive-questionnaire-block']")
+
+	@FindBy(xpath = "//div[@id='block-daip-responsive-questionnaire-responsive-questionnaire-block']")
 	private WebElementFacade questionnaire;
-	
-	public boolean questionnaireIsDisplayed()
-	{
+
+	public boolean questionnaireIsDisplayed() {
 		return questionnaire.isDisplayed();
 	}
-	
-	@FindBy(xpath="//a[@href[contains(., 'TextCaptcha')]]")
+
+	@FindBy(xpath = "//a[@href[contains(., 'TextCaptcha')]]")
 	private WebElementFacade textCaptcha;
-	
-	public boolean textCaptchaIsDisplayed()
-	{
+
+	public boolean textCaptchaIsDisplayed() {
 		return textCaptcha.isDisplayed();
 	}
-	
-	@FindBy(xpath="//*[@id='pageContent']")
+
+	@FindBy(xpath = "//*[@id='pageContent']")
 	private WebElementFacade checkStatusPageContent;
-	
-	public boolean checkStatusPageIsDisplayed()
-	{
+
+	public boolean checkStatusPageIsDisplayed() {
 		return checkStatusPageContent.isDisplayed();
 	}
-	
-	@FindBy(xpath="//div[@class[contains(., 'accordion') and not(contains(., 'name'))]]")
+
+	@FindBy(xpath = "//div[@class[contains(., 'accordion') and not(contains(., 'name'))]]")
 	private List<WebElementFacade> accordionBlocks;
-	
-	public short getNumberAccordions()
-	{
+
+	public short getNumberAccordions() {
 		return (short) accordionBlocks.size();
 	}
 }
