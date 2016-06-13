@@ -213,5 +213,15 @@ public class User {
 
 		} // end switch
 	}
+	
+	@Step
+	public void completeQuestionnaire() {
+		daPage.completeQuestionnaire();
+	}
+
+	@Step
+	public void checkResults() {
+		daPage.checkResults();
+	}
 
 }
