@@ -220,8 +220,20 @@ public class User {
 	}
 
 	@Step
-	public void checkResults() {
-		daPage.checkResults();
+	public void checkAllResults() {
+		Assert.assertTrue(daPage.checkAllResults());
+	}
+	
+	@Step
+	public void getEmploymentResults() {
+		daPage.clickEmployment();
+		Assert.assertTrue(daPage.checkEmploymentResults());
+		daPage.getEmploymentResults();
+	}
+	
+	@Step
+	public void verifyEmploymentResults() {
+		daPage.verifyEmploymentResults();
 	}
 
 }

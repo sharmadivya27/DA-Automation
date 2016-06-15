@@ -1,5 +1,6 @@
 package gov.dare.pageObjects;
 
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -7,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
+import junit.framework.Assert;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
@@ -20,9 +22,9 @@ public class DApage extends PageObject {
 	 * Not sure if you really need constructor but keeping it in since Serenity
 	 * manual uses this
 	 */
-	
+
 	private JavascriptExecutor jse;
-	
+
 	public DApage(WebDriver driver) {
 		super(driver);
 		jse = (JavascriptExecutor) driver;
@@ -151,7 +153,42 @@ public class DApage extends PageObject {
 	@FindBy(id = "benefit-counter-count")
 	private WebElementFacade benefitCounter;
 
-	public boolean checkResults() {
+	public boolean checkAllResults() {
 		return benefitCounter.getText().equalsIgnoreCase("73");
+	}
+
+	@FindBy(id = "Employment2211")
+	private WebElementFacade employmentbutton;
+
+	public void clickEmployment() {
+		employmentbutton.click();
+	}
+
+	public boolean checkEmploymentResults() {
+		return benefitCounter.getText().equalsIgnoreCase("9");
+	}
+
+	public void getEmploymentResults() {
+		benefitCounter.click();
+	}
+	
+	@FindBy(xpath = "//div[@id[contains(., 'result') and not(contains(., 'name'))]]")
+	List<WebElementFacade> employmentResults;
+	
+	List<String> employmentBenefits = Arrays.asList("American Job Centers Network", "Disaster Umemployment Assistance",
+													"Umemployment Insurance", "Disaster Recovery Center",
+													"Internaional Terrorism Victim Expense Reimbursement Program",
+													"Savings Bond Redemption and Replacement");
+	public boolean verifyEmploymentResults() {
+		boolean allFound = true;
+		Iterator<WebElementFacade> iter = employmentResults.iterator();
+		while (iter.hasNext()) {
+			WebElementFacade temp = iter.next();
+			if(!employmentBenefits.contains(temp.getText())) {
+				allFound = false;
+			}
+			jse.executeScript("window.scrollBy(0,50)", "");
+		}
+		return allFound;
 	}
 }
