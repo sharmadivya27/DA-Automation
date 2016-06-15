@@ -1,4 +1,4 @@
-package gov.dare;
+package gov.disasterassistance.daip.test;
 
 import net.serenitybdd.jbehave.SerenityStories;
 

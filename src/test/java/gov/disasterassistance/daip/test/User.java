@@ -1,9 +1,8 @@
-package gov.dare.users;
+package gov.disasterassistance.daip.test;
 
 import org.junit.Assert;
 import org.openqa.selenium.NoSuchElementException;
 
-import gov.dare.pageObjects.DApage;
 import net.thucydides.core.annotations.Step;
 
 public class User {

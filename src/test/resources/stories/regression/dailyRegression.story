@@ -90,4 +90,4 @@ Scenario: Verify results of the questionnaire on the "Find Assistance" page
 Meta:
 Given I am on the Find Assistance page
 When I answer 'Yes' on all questions
-Then I should accumulate 73 results 
+Then I should accumulate 73 results
