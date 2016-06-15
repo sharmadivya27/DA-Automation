@@ -1,6 +1,0 @@
-Click on all of the top navigation tabs
-
-Narrative:
-In order to efficiently test the important parts of the DA site
-As a tester
-I want to click on each of the tabs in the navigation menu to assure that they are linked correctly

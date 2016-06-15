@@ -1,9 +1,0 @@
-*.sh
-/target/
-.classpath
-.project
-<<<<<<< HEAD
-.settings/
-=======
-.settings/
->>>>>>> c8a43ad6b2ce8150a1ba21de69d4318a15d12db5

@@ -5,6 +5,12 @@ import org.openqa.selenium.NoSuchElementException;
 
 import net.thucydides.core.annotations.Step;
 
+//*************************************************************************
+//Class: ShellCommandTest
+//Description:
+//
+/** @author Chris Viqueira **/
+// *************************************************************************
 public class User {
 	DApage daPage;
 
@@ -18,6 +24,11 @@ public class User {
 		daPage.openAt(url);
 	}
 
+	@Step 
+	public void clickNavNode(String node) {
+		daPage.clickNavNode(node);
+	}
+	
 	@Step
 	public void clickParentNavigationTab(String menuItem) {
 		daPage.clickParentNavNodes(menuItem);
@@ -45,182 +56,145 @@ public class User {
 		}
 
 		switch (expectedPageName) {
-		case "home": {
+		case "home":
 			Assert.assertEquals(true, daPage.addressLookupIsDisplayed());
-		}
 			break;
 
-		case "get assistance": {
+		case "get assistance":
 			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-		}
 			break;
 
-		case "information": {
+		case "information":
 			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-		}
 			break;
 
-		case "about us": {
+		case "about us":
 			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-		}
 			break;
 
-		case "help": {
+		case "help":
 			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-		}
 			break;
 
 		// Get Assistance parent node
-		case "address look-up": {
+		case "address look-up":
 			Assert.assertEquals(true, daPage.addressLookupIsDisplayed());
-		}
 			break;
 
-		case "find assistance": {
+		case "find assistance":
 			Assert.assertEquals(true, daPage.questionnaireIsDisplayed());
-		}
 			break;
 
-		case "apply online": {
+		case "apply online":
 			Assert.assertEquals(true, daPage.textCaptchaIsDisplayed());
-		}
 			break;
 
-		case "check your status": {
+		case "check your status":
 			Assert.assertEquals(true, daPage.checkStatusPageIsDisplayed());
-		}
 			break;
 
-		case "assistance by catgory": {
-			Assert.assertEquals(15, daPage.getNumberAccordions()); // counted
-																	// manually
-																	// 6/6/16
-		}
+		case "assistance by catgory":
+			Assert.assertEquals(15, daPage.getNumberAccordions());
 			break;
 
-		case "assistance by federal agency": {
-			Assert.assertEquals(14, daPage.getNumberAccordions()); // counted
-																	// manually
-																	// 6/6/16
-		}
+		case "assistance by federal agency":
+			Assert.assertEquals(14, daPage.getNumberAccordions());
 			break;
 
-		case "application checklist": {
+		case "application checklist":
 			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-		}
 			break;
 
-		case "forms": {
+		case "forms":
 			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-		}
 			break;
 
 		// Information parent node
-		case "news feeds": {
+		case "news feeds":
 			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-		}
 			break;
 
-		case "immediate needs": {
+		case "immediate needs":
 			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-		}
 			break;
 
-		case "moving forward": {
+		case "moving forward":
 			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-		}
 			break;
 
-		case "community resources": {
+		case "community resources":
 			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-		}
 			break;
 
-		case "disabilities or access and functional needs": {
+		case "disabilities or access and functional needs":
 			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-		}
 			break;
 
-		case "older americans": {
+		case "older americans":
 			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-		}
 			break;
 
-		case "children and families": {
+		case "children and families":
 			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-		}
 			break;
 
-		case "disaster types": {
+		case "disaster types":
 			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-		}
 			break;
 
-		case "foreign disasters": {
+		case "foreign disasters":
 			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-		}
 			break;
 
-		case "fact sheets": {
+		case "fact sheets":
 			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-		}
 			break;
 
 		// About us parent node
-		case "overview": {
+		case "overview":
 			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-		}
 			break;
 
-		case "partners": {
+		case "partners":
 			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-		}
 			break;
 
 		// Help parent node
-		case "faqs": {
-			Assert.assertEquals(27, daPage.getNumberAccordions()); // counted
-																	// manually
-																	// 6/8/16
-		}
+		case "faqs":
+			Assert.assertEquals(27, daPage.getNumberAccordions());
 			break;
 
-		case "contact us": {
+		case "contact us":
 			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-		}
 			break;
 
-		case "privacy policy": {
+		case "privacy policy":
 			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-		}
 			break;
 
-		case "accessibility": {
+		case "accessibility":
 			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-		}
 			break;
 
-		case "download plug-ins": {
+		case "download plug-ins":
 			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-		}
 			break;
 
-		default: {
+		default:
 			System.err.println("INVALID PAGE SENT");
-		}
 			break;
 
 		} // end switch
 	}
-	
+
 	@Step
 	public void completeQuestionnaire() {
 		daPage.completeQuestionnaire();
 	}
 
 	@Step
-	public void checkResults() {
-		daPage.checkResults();
+	public void checkQuestionnaireResults() {
+		Assert.assertEquals(73, daPage.getBenefitCounter());
 	}
 
 }

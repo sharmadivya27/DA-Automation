@@ -7,20 +7,21 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
+import net.serenitybdd.core.annotations.findby.By;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.DefaultUrl;
-import net.thucydides.core.annotations.findby.By;
 
-@SuppressWarnings("deprecation")
+
+//*************************************************************************
+//Class: DApage
+//Description: Using Selenium Webdriver, this class handles web related 
+//	code such as pulling elements from the given site.
+//
+/** @author Chris Viqueira **/
 @DefaultUrl("http://www.disasterassistance.gov")
 public class DApage extends PageObject {
-	/**
-	 * Not sure if you really need constructor but keeping it in since Serenity
-	 * manual uses this
-	 */
-	
 	private JavascriptExecutor jse;
 	
 	public DApage(WebDriver driver) {
@@ -34,6 +35,38 @@ public class DApage extends PageObject {
 
 	@FindBy(xpath = "//nav[@id='nav']/ul/li[@class[contains(., 'menu__item')]]")
 	private List<WebElementFacade> navParentNode;
+	
+	@FindBy(xpath = "//div[@class='lp-link-title']/../../..")
+	private List<WebElementFacade> landingPageNode;
+	
+	private List<WebElementFacade> allElements;
+	
+	//NOTE(chris)
+	//Fix the none clickable landingPageNode
+	public void clickNavNode(String node) {
+		if(allElements.isEmpty())
+		{
+			allElements.addAll(landingPageNode);
+			allElements.addAll(navParentNode);
+		}
+		Iterator<WebElementFacade> iter = allElements.iterator();
+		WebElementFacade tab = null;
+		while (iter.hasNext()) {
+			WebElementFacade tempTab = iter.next();
+			String tempTitle = tempTab.getText();
+
+			if (node.equalsIgnoreCase(tempTitle)) {
+				tab = tempTab;
+			}
+		}
+
+		if (tab == null) {
+			System.err.println("COULD NOT FIND NODE WITH THAT TITLE");
+		} else {
+			tab.click();
+		}
+	}
+	
 
 	// this and child node basically duplicates, fix this later
 	public void clickParentNavNodes(String menuItem) {
@@ -55,14 +88,11 @@ public class DApage extends PageObject {
 		}
 	}
 
-	//////////////////////////////////////////////////////////////////////////////////////////
 
-	@FindBy(xpath = "//div[@id='landing-page-container']/a")
-	private List<WebElementFacade> landingPageNode;
-
-	public short numberOfLandingPageNodes() {
-		return (short) landingPageNode.size();
+	public int numberOfLandingPageNodes() {
+		return landingPageNode.size();
 	}
+	
 
 	public void clickLandingPageNode(String landingNode) {
 		Iterator<WebElementFacade> iter = landingPageNode.iterator();
@@ -87,7 +117,6 @@ public class DApage extends PageObject {
 
 	}
 
-	//////////////////////////////////////////////////////////////////////////////////////////
 
 	@FindBy(xpath = "//*[@class='page__title title']")
 	private WebElementFacade pageTitle;
@@ -96,7 +125,6 @@ public class DApage extends PageObject {
 		return pageTitle.getText();
 	}
 
-	//////////////////////////////////////////////////////////////////////////////////////////
 
 	@FindBy(xpath = "//*//div[@id='address-lookup-container']")
 	private WebElementFacade addressLookup;
@@ -104,6 +132,7 @@ public class DApage extends PageObject {
 	public boolean addressLookupIsDisplayed() {
 		return addressLookup.isDisplayed();
 	}
+	
 
 	@FindBy(xpath = "//div[@id='block-daip-responsive-questionnaire-responsive-questionnaire-block']")
 	private WebElementFacade questionnaire;
@@ -111,6 +140,7 @@ public class DApage extends PageObject {
 	public boolean questionnaireIsDisplayed() {
 		return questionnaire.isDisplayed();
 	}
+	
 
 	@FindBy(xpath = "//a[@href[contains(., 'TextCaptcha')]]")
 	private WebElementFacade textCaptcha;
@@ -118,6 +148,7 @@ public class DApage extends PageObject {
 	public boolean textCaptchaIsDisplayed() {
 		return textCaptcha.isDisplayed();
 	}
+	
 
 	@FindBy(xpath = "//*[@id='pageContent']")
 	private WebElementFacade checkStatusPageContent;
@@ -125,16 +156,19 @@ public class DApage extends PageObject {
 	public boolean checkStatusPageIsDisplayed() {
 		return checkStatusPageContent.isDisplayed();
 	}
+	
 
 	@FindBy(xpath = "//div[@class[contains(., 'accordion') and not(contains(., 'name'))]]")
 	private List<WebElementFacade> accordionBlocks;
 
-	public short getNumberAccordions() {
-		return (short) accordionBlocks.size();
+	public int getNumberAccordions() {
+		return accordionBlocks.size();
 	}
+	
 
 	@FindBy(id = "stateSelector")
 	private WebElementFacade stateSelector;
+	
 	@FindBy(xpath = "//fieldset//label[@class[contains(., 'radio')] and text()[not(contains(., 'No')) and not(contains(., 'Unknown'))]]")
 	private List<WebElementFacade> questionnaireButtons;
 
@@ -147,11 +181,12 @@ public class DApage extends PageObject {
 		}
 		stateSelector.sendKeys("Alabama");
 	}
+	
 
 	@FindBy(id = "benefit-counter-count")
 	private WebElementFacade benefitCounter;
 
-	public boolean checkResults() {
-		return benefitCounter.getText().equalsIgnoreCase("73");
+	public int getBenefitCounter() {
+		return Integer.parseInt(benefitCounter.getText());
 	}
 }
