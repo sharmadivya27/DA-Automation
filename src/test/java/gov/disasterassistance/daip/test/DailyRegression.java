@@ -26,8 +26,8 @@ public class DailyRegression {
 
 	@When("I click on <navMenuItem> within the top navigation bar")
 	public void when_I_click_on_each_link_in_the_top_navigation_bar(@Named("navMenuItem") String navMenuItem) {
-		user.clickParentNavigationTab(navMenuItem);
-//		user.clickNavNode(navMenuItem);
+//		user.clickParentNavigationTab(navMenuItem);
+		user.clickNavNode(navMenuItem);
 	}
 
 	@Then("the <navMenuItem> page should open correctly")
@@ -49,8 +49,8 @@ public class DailyRegression {
 
 	@When("I click on the <landingPageNode> landing page node")
 	public void when_I_click_on_the_landing_page_node(@Named("landingPageNode") String landingPageNode) {
-		user.clickLandingPageNode(landingPageNode);
-//		user.clickNavNode(landingPageNode);
+//		user.clickLandingPageNode(landingPageNode);
+		user.clickNavNode(landingPageNode);
 	}
 
 	@Then("the <landingPageNode> page should open correctly")

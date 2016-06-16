@@ -1,5 +1,6 @@
-package gov.disasterassistance.daip.test;
+package gov.disasterassistance.daip.test.pageObject;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -21,30 +22,29 @@ import net.thucydides.core.annotations.DefaultUrl;
 //
 /** @author Chris Viqueira **/
 @DefaultUrl("http://www.disasterassistance.gov")
-public class DApage extends PageObject {
+public class DAPage extends PageObject {
 	private JavascriptExecutor jse;
 	
-	public DApage(WebDriver driver) {
+	public DAPage(WebDriver driver) {
 		super(driver);
 		jse = (JavascriptExecutor) driver;
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
 	}
 
-	//////////////////////////////////////////////////////////////////////////////////////////
 
 	@FindBy(xpath = "//nav[@id='nav']/ul/li[@class[contains(., 'menu__item')]]")
 	private List<WebElementFacade> navParentNode;
 	
-	@FindBy(xpath = "//div[@class='lp-link-title']/../../..")
+	@FindBy(xpath="//div[@id='landing-page-container']/a")
 	private List<WebElementFacade> landingPageNode;
 	
-	private List<WebElementFacade> allElements;
+	private List<WebElementFacade> allElements = new ArrayList<WebElementFacade>();
 	
 	//NOTE(chris)
 	//Fix the none clickable landingPageNode
 	public void clickNavNode(String node) {
-		if(allElements.isEmpty())
+		if(allElements == null || allElements.isEmpty())
 		{
 			allElements.addAll(landingPageNode);
 			allElements.addAll(navParentNode);
@@ -53,10 +53,11 @@ public class DApage extends PageObject {
 		WebElementFacade tab = null;
 		while (iter.hasNext()) {
 			WebElementFacade tempTab = iter.next();
-			String tempTitle = tempTab.getText();
-
+			String tempTitle = getNodeTitle(tempTab);
+			
 			if (node.equalsIgnoreCase(tempTitle)) {
 				tab = tempTab;
+				break;
 			}
 		}
 
@@ -67,6 +68,19 @@ public class DApage extends PageObject {
 		}
 	}
 	
+
+	private String getNodeTitle(WebElementFacade tempTab) {
+		String ret;
+		try {
+			ret = tempTab.findElement(By.className("lp-link-title")).getText().toLowerCase();
+		}
+		catch (Exception e){
+			ret = tempTab.getText();
+		}
+		
+		return ret;
+	}
+
 
 	// this and child node basically duplicates, fix this later
 	public void clickParentNavNodes(String menuItem) {

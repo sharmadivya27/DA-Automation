@@ -3,6 +3,7 @@ package gov.disasterassistance.daip.test;
 import org.junit.Assert;
 import org.openqa.selenium.NoSuchElementException;
 
+import gov.disasterassistance.daip.test.pageObject.DAPage;
 import net.thucydides.core.annotations.Step;
 
 //*************************************************************************
@@ -12,7 +13,7 @@ import net.thucydides.core.annotations.Step;
 /** @author Chris Viqueira **/
 // *************************************************************************
 public class User {
-	DApage daPage;
+	DAPage daPage;
 
 	@Step
 	public void open_home_page() {
