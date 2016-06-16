@@ -223,7 +223,7 @@ public class User {
 	public void checkAllResults() {
 		Assert.assertTrue(daPage.checkAllResults());
 	}
-	
+	/**
 	@Step
 	public void getEmploymentResults() {
 		daPage.clickEmployment();
@@ -235,5 +235,5 @@ public class User {
 	public void verifyEmploymentResults() {
 		daPage.verifyEmploymentResults();
 	}
-
+	**/
 }

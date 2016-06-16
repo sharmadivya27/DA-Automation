@@ -89,6 +89,7 @@ Then I should accumulate 73 results
 
 Scenario: Verify benefits results display according to use cases
 Meta:
+@skip
 Given I am on the Find Assistance page
 When I choose only Employment
 When I should obtain 9 results

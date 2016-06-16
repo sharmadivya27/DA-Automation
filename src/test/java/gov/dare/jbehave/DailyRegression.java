@@ -115,7 +115,7 @@ public class DailyRegression {
 	 * Scenario 7: Verify benefits results display according to use cases"
 	 * page
 	 **/
-
+	/**
 	@When("I choose only Employment")
 	public void when_I_choose_only_Employment() {
 		user.getEmploymentResults();
@@ -125,4 +125,5 @@ public class DailyRegression {
 	public void then_I_should_obtain_9_results() {
 		user.verifyEmploymentResults();
 	}
+	**/
 }

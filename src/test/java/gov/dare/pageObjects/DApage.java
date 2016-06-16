@@ -171,7 +171,7 @@ public class DApage extends PageObject {
 	public void getEmploymentResults() {
 		benefitCounter.click();
 	}
-	
+	/**
 	@FindBy(xpath = "//div[@id[contains(., 'result') and not(contains(., 'name'))]]")
 	List<WebElementFacade> employmentResults;
 	
@@ -191,4 +191,5 @@ public class DApage extends PageObject {
 		}
 		return allFound;
 	}
+	**/
 }
