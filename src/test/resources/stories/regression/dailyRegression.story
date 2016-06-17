@@ -86,24 +86,11 @@ Meta:
 @skip
 Given I am on the Find Assistance page
 When I answer 'Yes' on all questions
-<<<<<<< HEAD
-<<<<<<< 39941b88eb10e342ca4c2e8b0e5395afb1956392
 Then I should accumulate 73 results
-=======
-=======
->>>>>>> refs/remotes/origin/master
-Then I should accumulate 73 results 
 
 Scenario: Verify benefits results display according to use cases
 Meta:
-<<<<<<< HEAD
-Given I am on the Find Assistance page
-When I choose only Employment
-When I should obtain 9 results
->>>>>>> Verify Employment Results
-=======
 @skip
 Given I am on the Find Assistance page
 When I choose only Employment
 When I should obtain 9 results
->>>>>>> refs/remotes/origin/master
