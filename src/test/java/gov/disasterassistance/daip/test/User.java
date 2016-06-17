@@ -25,7 +25,7 @@ public class User {
 		daPage.openAt(url);
 	}
 
-	@Step 
+	@Step
 	public void clickNavNode(String node) {
 		daPage.clickNavNode(node);
 	}
@@ -197,5 +197,33 @@ public class User {
 	public void checkQuestionnaireResults() {
 		Assert.assertEquals(73, daPage.getBenefitCounter());
 	}
-
+	
+	@Step
+	public void getEmploymentResults() {
+		daPage.clickEmployment();
+		Assert.assertTrue(daPage.checkEmploymentResults());
+		daPage.getEmploymentResults();
+	}
+	
+	@Step
+	public void verifyEmploymentResults() {
+		daPage.verifyEmploymentResults();
+	}
+	@Step
+	public void checkAllResults() {
+		Assert.assertTrue(daPage.checkAllResults());
+	}
+	/**
+	@Step
+	public void getEmploymentResults() {
+		daPage.clickEmployment();
+		Assert.assertTrue(daPage.checkEmploymentResults());
+		daPage.getEmploymentResults();
+	}
+	
+	@Step
+	public void verifyEmploymentResults() {
+		daPage.verifyEmploymentResults();
+	}
+	**/
 }
