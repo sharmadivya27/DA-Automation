@@ -190,40 +190,22 @@ public class User {
 
 	@Step
 	public void completeQuestionnaire() {
-		daPage.completeQuestionnaire();
+		daPage.completeFullQuestionnaire();
 	}
 
 	@Step
 	public void checkQuestionnaireResults() {
-		Assert.assertEquals(73, daPage.getBenefitCounter());
+		Assert.assertEquals(73, daPage.getQuestionnaireResults());
 	}
 	
 	@Step
 	public void getEmploymentResults() {
 		daPage.clickEmployment();
-		Assert.assertTrue(daPage.checkEmploymentResults());
-		daPage.getEmploymentResults();
+		daPage.getFOAResultsPage();
 	}
 	
 	@Step
 	public void verifyEmploymentResults() {
 		daPage.verifyEmploymentResults();
 	}
-	@Step
-	public void checkAllResults() {
-		Assert.assertTrue(daPage.checkAllResults());
-	}
-	/**
-	@Step
-	public void getEmploymentResults() {
-		daPage.clickEmployment();
-		Assert.assertTrue(daPage.checkEmploymentResults());
-		daPage.getEmploymentResults();
-	}
-	
-	@Step
-	public void verifyEmploymentResults() {
-		daPage.verifyEmploymentResults();
-	}
-	**/
 }

@@ -7,6 +7,7 @@ I want to run the daily regressions at least twice a day
 
 Scenario: Verify all of the navbar tabs to assert that the pages open correctly
 Meta:
+@skip
 Given I am on the Disaster Assistance homepage
 When I click on <navMenuItem> within the top navigation bar
 Then the <navMenuItem> page should open correctly
@@ -22,6 +23,7 @@ Examples:
 
 Scenario: Verify all of the nodes on the "Get Assistance" landing page
 Meta:
+@skip
 Given I am on the Get Assistance landing page
 When I click on the <landingPageNode> landing page node
 Then the <landingPageNode> page should open correctly
@@ -39,6 +41,7 @@ Examples:
 
 Scenario: Verify all of the nodes on the "Information" landing page
 Meta:
+@skip
 Given I am on the Information landing page
 When I click on the <landingPageNode> landing page node
 Then the <landingPageNode> page should open correctly
@@ -70,6 +73,7 @@ Examples:
 
 Scenario: Verify all of the nodes on the "Help" landing page
 Meta:
+@skip
 Given I am on the Help landing page
 When I click on the <landingPageNode> landing page node
 Then the <landingPageNode> page should open correctly
@@ -90,7 +94,6 @@ Then I should accumulate 73 results
 
 Scenario: Verify benefits results display according to use cases
 Meta:
-@skip
 Given I am on the Find Assistance page
 When I choose only Employment
-When I should obtain 9 results
+Then I should obtain 9 results

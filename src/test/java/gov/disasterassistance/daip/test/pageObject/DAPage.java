@@ -167,10 +167,11 @@ public class DAPage extends PageObject {
 	@FindBy(id = "stateSelector")
 	private WebElementFacade stateSelector;
 
+	//TODO find a good way of extracting the individual buttons 
 	@FindBy(xpath = "//fieldset//label[@class[contains(., 'radio')] and text()[not(contains(., 'No')) and not(contains(., 'Unknown'))]]")
 	private List<WebElementFacade> questionnaireButtons;
 
-	public void completeQuestionnaire() {
+	public void completeFullQuestionnaire() {
 		Iterator<WebElementFacade> iter = questionnaireButtons.iterator();
 		while (iter.hasNext()) {
 			WebElementFacade temp = iter.next();
@@ -179,43 +180,39 @@ public class DAPage extends PageObject {
 		}
 		stateSelector.sendKeys("Alabama");
 	}
+	
 
 	@FindBy(id = "benefit-counter-count")
 	private WebElementFacade benefitCounter;
 
-	public int getBenefitCounter() {
+	public int getQuestionnaireResults() {
 		return Integer.parseInt(benefitCounter.getText());
 	}
 
-	public boolean checkAllResults() {
-		return benefitCounter.getText().equalsIgnoreCase("73");
-	}
-
+	//TODO extract this from the questionnaire buttons query
 	@FindBy(id = "Employment2211")
-	private WebElementFacade employmentbutton;
+	private WebElementFacade employmentCheckbox;
 
 	public void clickEmployment() {
-		employmentbutton.click();
+		employmentCheckbox.click();
 	}
 
-	public boolean checkEmploymentResults() {
-		return benefitCounter.getText().equalsIgnoreCase("9");
-	}
-
-	public void getEmploymentResults() {
-		benefitCounter.click();
-	}
 
 	@FindBy(xpath = "//div[@id[contains(., 'result') and not(contains(., 'name'))]]")
-	List<WebElementFacade> employmentResults;
+	List<WebElementFacade> FOAResults;
+	
+	public void getFOAResultsPage() {
+		benefitCounter.click();
+	}
 
 	List<String> employmentBenefits = Arrays.asList("American Job Centers Network", "Disaster Umemployment Assistance",
 			"Umemployment Insurance", "Disaster Recovery Center",
 			"Internaional Terrorism Victim Expense Reimbursement Program", "Savings Bond Redemption and Replacement");
 
+	//TODO fix this so it returns number of results
 	public boolean verifyEmploymentResults() {
 		boolean allFound = true;
-		Iterator<WebElementFacade> iter = employmentResults.iterator();
+		Iterator<WebElementFacade> iter = FOAResults.iterator();
 		while (iter.hasNext()) {
 			WebElementFacade temp = iter.next();
 			if (!employmentBenefits.contains(temp.getText())) {
