@@ -5,7 +5,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
 import net.serenitybdd.core.annotations.findby.By;
@@ -23,11 +22,9 @@ import net.thucydides.core.annotations.DefaultUrl;
 /** @author Chris Viqueira **/
 @DefaultUrl("http://www.disasterassistance.gov")
 public class DAPage extends PageObject {
-	private JavascriptExecutor jse;
 	
 	public DAPage(WebDriver driver) {
 		super(driver);
-		jse = (JavascriptExecutor) driver;
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
 	}
@@ -191,7 +188,7 @@ public class DAPage extends PageObject {
 		while (iter.hasNext()) {
 			WebElementFacade temp = iter.next();
 			temp.click();
-			jse.executeScript("window.scrollBy(0,50)", "");
+			this.evaluateJavascript("window.scrollBy(0,50)");
 		}
 		stateSelector.sendKeys("Alabama");
 	}

@@ -61,6 +61,7 @@ Examples:
 
 Scenario: Verify all of the nodes on the "About Us" landing page
 Meta:
+@skip
 Given I am on the About Us landing page
 When I click on the <landingPageNode> landing page node
 Then the <landingPageNode> page should open correctly
@@ -87,7 +88,6 @@ Examples:
 
 Scenario: Verify results of the questionnaire on the "Find Assistance" page
 Meta:
-@skip
 Given I am on the Find Assistance page
 When I answer 'Yes' on all questions
 Then I should accumulate 73 results

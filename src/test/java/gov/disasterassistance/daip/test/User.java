@@ -3,11 +3,11 @@ package gov.disasterassistance.daip.test;
 import org.junit.Assert;
 import org.openqa.selenium.NoSuchElementException;
 
-import gov.disasterassistance.daip.test.pageObject.DAPage;
+import gov.disasterassistance.daip.test.pageObject.*;
 import net.thucydides.core.annotations.Step;
 
 //*************************************************************************
-//Class: ShellCommandTest
+//Class: User
 //Description:
 //
 /** @author Chris Viqueira **/
