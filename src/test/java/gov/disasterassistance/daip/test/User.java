@@ -209,5 +209,21 @@ public class User {
 	public void verifyEmploymentResults() {
 		daPage.verifyEmploymentResults();
 	}
-
+	@Step
+	public void checkAllResults() {
+		Assert.assertTrue(daPage.checkAllResults());
+	}
+	/**
+	@Step
+	public void getEmploymentResults() {
+		daPage.clickEmployment();
+		Assert.assertTrue(daPage.checkEmploymentResults());
+		daPage.getEmploymentResults();
+	}
+	
+	@Step
+	public void verifyEmploymentResults() {
+		daPage.verifyEmploymentResults();
+	}
+	**/
 }

@@ -117,5 +117,22 @@ public class DailyRegression {
 	@Then("I should obtain 9 results")
 	public void then_I_should_obtain_9_results() {
 		user.verifyEmploymentResults();
+		user.checkAllResults();
 	}
+	
+	/**
+	 * Scenario 7: Verify benefits results display according to use cases"
+	 * page
+	 **/
+	/**
+	@When("I choose only Employment")
+	public void when_I_choose_only_Employment() {
+		user.getEmploymentResults();
+	}
+
+	@Then("I should obtain 9 results")
+	public void then_I_should_obtain_9_results() {
+		user.verifyEmploymentResults();
+	}
+	**/
 }
