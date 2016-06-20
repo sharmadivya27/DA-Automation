@@ -27,6 +27,10 @@ public class DAPage extends PageObject {
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
 	}
+	
+	public void clearCookies() {
+		this.getDriver().manage().deleteAllCookies();
+	}
 
 	@FindBy(xpath = "//nav[@id='nav']/ul/li[@class[contains(., 'menu__item')]]")
 	private List<WebElementFacade> navParentNode;
@@ -221,4 +225,6 @@ public class DAPage extends PageObject {
 	public int getNumEmploymentResults() {
 		return FOAResults.size();
 	}
+	
+	
 }

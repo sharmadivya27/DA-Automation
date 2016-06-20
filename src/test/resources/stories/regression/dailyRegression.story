@@ -95,6 +95,14 @@ Then I should accumulate 73 results
 
 Scenario: Verify benefits results display according to use cases
 Meta:
+@skip
 Given I am on the Find Assistance page
 When I choose only Employment
 Then I should obtain 9 results
+
+Scenario: Verify the number of Federal Agencies and their benefits
+Meta:
+Given
+When
+Then
+
