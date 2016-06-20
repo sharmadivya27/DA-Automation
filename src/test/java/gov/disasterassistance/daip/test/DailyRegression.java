@@ -7,13 +7,12 @@ import org.jbehave.core.annotations.When;
 
 import net.thucydides.core.annotations.Steps;
 
-//*************************************************************************
-//Class: DailyRegression
-//Description: Starting point of the program; more or less. Scenarios
-//	from the .story files are matched with the annotation in this file.
-//
-/** @author Chris Viqueira **/
-//*************************************************************************
+/*************************************************************************
+ *	Starting point of the program; more or less. Scenarios
+ *	from the .story files are matched with the annotation in this file.
+ *
+ * @author Chris Viqueira
+ ************************************************************************/
 public class DailyRegression {
 	@Steps
 	User user;
@@ -26,7 +25,6 @@ public class DailyRegression {
 
 	@When("I click on <navMenuItem> within the top navigation bar")
 	public void when_I_click_on_each_link_in_the_top_navigation_bar(@Named("navMenuItem") String navMenuItem) {
-//		user.clickParentNavigationTab(navMenuItem);
 		user.clickNavNode(navMenuItem);
 	}
 
@@ -49,7 +47,6 @@ public class DailyRegression {
 
 	@When("I click on the <landingPageNode> landing page node")
 	public void when_I_click_on_the_landing_page_node(@Named("landingPageNode") String landingPageNode) {
-//		user.clickLandingPageNode(landingPageNode);
 		user.clickNavNode(landingPageNode);
 	}
 
@@ -105,7 +102,8 @@ public class DailyRegression {
 	}
 	
 	
-	 //Scenario 7: Verify benefits results display according to use cases page
+	
+	//Scenario 7: Verify benefits results display according to use cases page
 	
 	// Given see scenario 6
 	

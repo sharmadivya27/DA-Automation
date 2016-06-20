@@ -6,12 +6,13 @@ import org.openqa.selenium.NoSuchElementException;
 import gov.disasterassistance.daip.test.pageObject.*;
 import net.thucydides.core.annotations.Step;
 
-//*************************************************************************
-//Class: User
-//Description:
-//
-/** @author Chris Viqueira **/
-// *************************************************************************
+/*************************************************************************
+ * 	The "user" that is performing all of the actions on the web page.
+ * 	Provides an extra layer of abstraction so all the functions called
+ *  are named to emulate actions that a real user would perform.
+ * 
+ * @author Chris Viqueira
+ ************************************************************************/
 public class User {
 	DAPage daPage;
 
@@ -31,24 +32,19 @@ public class User {
 	public void clickNavNode(String node) {
 		daPage.clickNavNode(node);
 	}
-	
-	@Step
-	public void clickParentNavigationTab(String menuItem) {
-		daPage.clickParentNavNodes(menuItem);
-	}
-
-	@Step
-	public void clickLandingPageNode(String subTab) {
-		daPage.clickLandingPageNode(subTab);
-	}
 
 	@Step
 	public void shouldSeeLandingPageNodes(short expected) {
 		Assert.assertEquals(expected, daPage.numberOfLandingPageNodes());
 	}
 
-	////////////////////////////////////////////////////////////////////////////////////////////
 
+	/************************************************************************
+	* 	Runs the assertions to make sure a page is valid using
+	* 	simple checks such as comparing the page title.
+	*
+	*	@param expectedPageName : name of the page being tested
+	*************************************************************************/	
 	@Step
 	public void shouldSeePage(String expectedPageName) {
 		String pageTitle = "";
@@ -202,7 +198,7 @@ public class User {
 	
 	@Step
 	public void getEmploymentResults() {
-		daPage.clickEmployment();
+		daPage.clickEmploymentCheckbox();
 		daPage.getFOAResultsPage();
 	}
 	
