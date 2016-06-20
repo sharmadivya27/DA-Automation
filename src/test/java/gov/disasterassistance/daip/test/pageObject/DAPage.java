@@ -1,7 +1,6 @@
 package gov.disasterassistance.daip.test.pageObject;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -167,7 +166,6 @@ public class DAPage extends PageObject {
 	@FindBy(id = "stateSelector")
 	private WebElementFacade stateSelector;
 
-	//TODO find a good way of extracting the individual buttons 
 	@FindBy(xpath = "//fieldset//label[@class[contains(., 'radio')] and text()[not(contains(., 'No')) and not(contains(., 'Unknown'))]]")
 	private List<WebElementFacade> questionnaireButtons;
 
@@ -181,6 +179,20 @@ public class DAPage extends PageObject {
 		stateSelector.sendKeys("Alabama");
 	}
 	
+	//TODO still doesn't distinguish between the yes buttons, just looks at the text by the clickable button
+	private WebElementFacade getQuestionnaireButton(String buttonName) {
+		Iterator<WebElementFacade> iter = questionnaireButtons.iterator();
+		WebElementFacade btn = null;
+		while(iter.hasNext()){
+			WebElementFacade temp = iter.next();
+			if(temp.containsText(buttonName)) {
+				btn = temp;
+				break;
+			}
+		}
+		return btn;
+	}
+	
 
 	@FindBy(id = "benefit-counter-count")
 	private WebElementFacade benefitCounter;
@@ -189,37 +201,24 @@ public class DAPage extends PageObject {
 		return Integer.parseInt(benefitCounter.getText());
 	}
 
-	//TODO extract this from the questionnaire buttons query
-	@FindBy(id = "Employment2211")
-	private WebElementFacade employmentCheckbox;
-
 	public void clickEmployment() {
-		employmentCheckbox.click();
+		getQuestionnaireButton("Employment").click();
 	}
 
-
-	@FindBy(xpath = "//div[@id[contains(., 'result') and not(contains(., 'name'))]]")
+	@FindBy(xpath = "//div[@class='foaccordionable']")
 	List<WebElementFacade> FOAResults;
 	
 	public void getFOAResultsPage() {
 		benefitCounter.click();
 	}
 
-	List<String> employmentBenefits = Arrays.asList("American Job Centers Network", "Disaster Umemployment Assistance",
-			"Umemployment Insurance", "Disaster Recovery Center",
+	//These show up with more than just employment benefits
+	/*List<String> employmentBenefits = Arrays.asList("American Job Centers Network", "Disaster Umemployment Assistance",
+			"Umemployment Insurance", "203(h) Mortgage Insurance,", "Disaster Recovery Center", 
 			"Internaional Terrorism Victim Expense Reimbursement Program", "Savings Bond Redemption and Replacement");
+			*/
 
-	//TODO fix this so it returns number of results
-	public boolean verifyEmploymentResults() {
-		boolean allFound = true;
-		Iterator<WebElementFacade> iter = FOAResults.iterator();
-		while (iter.hasNext()) {
-			WebElementFacade temp = iter.next();
-			if (!employmentBenefits.contains(temp.getText())) {
-				allFound = false;
-			}
-			this.evaluateJavascript("window.scrollBy(0,50)");
-		}
-		return allFound;
+	public int getNumEmploymentResults() {
+		return FOAResults.size();
 	}
 }

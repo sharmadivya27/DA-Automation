@@ -206,6 +206,6 @@ public class User {
 	
 	@Step
 	public void verifyEmploymentResults() {
-		daPage.verifyEmploymentResults();
+		Assert.assertEquals(9, daPage.getNumEmploymentResults());
 	}
 }
