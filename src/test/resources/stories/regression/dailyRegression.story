@@ -102,7 +102,7 @@ Then I should obtain 9 results
 
 Scenario: Verify the number of Federal Agencies and their benefits
 Meta:
-Given
-When
-Then
+Given I am on the Assistance by Federal Agency page
+When I check on each Federal Agency accordion
+Then the number of benefits should match with its count
 

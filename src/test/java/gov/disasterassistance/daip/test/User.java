@@ -3,6 +3,7 @@ package gov.disasterassistance.daip.test;
 import org.junit.Assert;
 import org.openqa.selenium.NoSuchElementException;
 
+import gov.disasterassistance.daip.test.exceptions.BenefitCountException;
 import gov.disasterassistance.daip.test.pageObject.*;
 import net.thucydides.core.annotations.Step;
 
@@ -205,5 +206,10 @@ public class User {
 	@Step
 	public void verifyEmploymentResults() {
 		Assert.assertEquals(9, daPage.getNumEmploymentResults());
+	}
+	
+	@Step
+	public void checkFederalBenefits() throws BenefitCountException {
+		daPage.checkFederalBenefits();
 	}
 }

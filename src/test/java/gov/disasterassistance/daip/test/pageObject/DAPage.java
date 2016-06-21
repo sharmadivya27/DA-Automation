@@ -6,7 +6,10 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
+import gov.disasterassistance.daip.test.exceptions.BenefitCountException;
+import net.serenitybdd.core.annotations.findby.By;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
@@ -64,6 +67,9 @@ public class DAPage extends PageObject {
 	@FindBy(xpath = "//*[@class='page__title title']")
 	private WebElementFacade pageTitle;
 
+        @FindBy(xpath = "//ul[@class='expand-collapse']/li")
+	List<WebElementFacade> federalAgencyAccordions;
+    
 	@FindBy(xpath = "//nav[@id='nav']/ul/li[@class[contains(., 'menu__item')]]")
 	private List<WebElementFacade> navParentNode;
 
@@ -180,5 +186,35 @@ public class DAPage extends PageObject {
 
 	public int getNumEmploymentResults() {
 		return FOAResults.size();
+	}
+
+	public WebElementFacade getFederalAgency(String federalAgencyName) {
+		Iterator<WebElementFacade> iter = federalAgencyAccordions.iterator();
+		WebElementFacade accordion = null;
+		while(iter.hasNext()){
+			WebElementFacade temp = iter.next();
+			if(temp.containsText(federalAgencyName)) {
+				accordion = temp;
+				break;
+			}
+		}
+		return accordion;
+	}
+	
+	public void checkFederalBenefits() throws BenefitCountException {
+		Iterator<WebElementFacade> federalAgencyIter = federalAgencyAccordions.iterator();
+		while(federalAgencyIter.hasNext()) {
+			WebElementFacade federalAgency = federalAgencyIter.next();
+			String departmentNameAndBenefits = federalAgency.getText();
+			String departmentName = departmentNameAndBenefits.substring(0, departmentNameAndBenefits.length()-2).trim();
+			int benefitCount = Integer.parseInt(departmentNameAndBenefits.substring(departmentNameAndBenefits.length()-2).trim());
+
+			List<WebElement> benefits = this.getDriver().findElements(By.xpath("//div[@class='accordion-name-text' and "
+					+ "text()[contains(., '" + departmentName + "')]]/../../ul//li"));
+			
+			if(benefits.size() != benefitCount) {
+				throw new BenefitCountException("Incorrect number of benefits");
+			}
+		}
 	}
 }
