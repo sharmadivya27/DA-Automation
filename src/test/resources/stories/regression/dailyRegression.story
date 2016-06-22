@@ -102,7 +102,14 @@ Then I should obtain 9 results
 
 Scenario: Verify the number of Federal Agencies and their benefits
 Meta:
+@skip
 Given I am on the Assistance by Federal Agency page
 When I check on each Federal Agency accordion
 Then the number of benefits should match with its count
+
+Scenario: Verify states in the declared disaster map are clickable
+Meta:
+Given I am on the Disaster Assistance homepage
+When I am viewing the declared disaster map
+Then states with disasters should be clickable
 

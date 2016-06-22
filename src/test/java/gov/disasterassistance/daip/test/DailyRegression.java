@@ -6,6 +6,7 @@ import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
 import gov.disasterassistance.daip.test.exceptions.BenefitCountException;
+import gov.disasterassistance.daip.test.exceptions.StateException;
 import net.thucydides.core.annotations.Steps;
 
 /*************************************************************************
@@ -126,11 +127,25 @@ public class DailyRegression {
 	}
 	@When("I check on each Federal Agency accordion")
 	public void when_I_check_each_Federal_Agency_accordion() {
-		//user.getEmploymentResults();
+		
 	}
 
 	@Then("the number of benefits should match with its count")
 	public void then_the_number_of_benefits_should_match_with_its_count() throws BenefitCountException {
 		user.checkFederalBenefits();
+	}
+	
+	 //Scenario 8: Verify benefits results display according to use cases page
+	
+	//Given see scenario 1
+	
+	@When("I am viewing the declared disaster map")
+	public void when_I_an_viewing_the_declared_disaster_map() {
+		
+	}
+
+	@Then("states with disasters should be clickable")
+	public void then_states_with_disasters_should_be_clickable() throws StateException {
+		user.checkDisasterMap();
 	}
 }
