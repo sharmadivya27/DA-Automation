@@ -92,7 +92,7 @@ public class DailyRegression {
 		user.open_page("https://www.disasterassistance.gov/get-assistance/find-assistance");
 	}
 
-	@When("I answer 'Yes' on all questions")
+	@When("I fully complete the questionnaire")
 	public void when_I_answer_Yes_on_all_questions() {
 		user.completeQuestionnaire();
 	}
@@ -132,5 +132,20 @@ public class DailyRegression {
 	@Then("the number of benefits should match with its count")
 	public void then_the_number_of_benefits_should_match_with_its_count() throws BenefitCountException {
 		user.checkFederalBenefits();
+	}
+	
+	//Scenario 9: Verify all the functionality of the FOA questionnaire
+	
+	// given on the FOA page, declared above
+	// when I complete the questionnaire, declared above
+	
+	@When("expand all the accordions")
+	public void and_expand_all_the_accordions() {
+//		user.clickExpandAll();
+	}
+	
+	@Then("I should see all of the content under the accordions")
+	public void then_I_should_see_all_content_under_accordions() {
+		
 	}
 }

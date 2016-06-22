@@ -90,7 +90,7 @@ Scenario: Verify results of the questionnaire on the "Find Assistance" page
 Meta:
 @skip
 Given I am on the Find Assistance page
-When I answer 'Yes' on all questions
+When I fully complete the questionnaire
 Then I should accumulate 73 results
 
 Scenario: Verify benefits results display according to use cases
@@ -102,7 +102,16 @@ Then I should obtain 9 results
 
 Scenario: Verify the number of Federal Agencies and their benefits
 Meta:
+@skip
 Given I am on the Assistance by Federal Agency page
 When I check on each Federal Agency accordion
 Then the number of benefits should match with its count
+
+Scenario: Verify all the functionality of the FOA questionnaire
+@skip
+Given I am on the Find Assistance page
+When I fully complete the questionnaire
+And expand all the accordions
+Then I should see all of the content under the accordions
+
 

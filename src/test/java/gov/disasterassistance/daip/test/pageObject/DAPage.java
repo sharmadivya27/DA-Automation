@@ -58,8 +58,18 @@ public class DAPage extends PageObject {
 	@FindBy(xpath = "//*//div[@id='address-lookup-container']")
 	private WebElementFacade addressLookup;
 	
+	//Find assistance page
 	@FindBy(xpath = "//div[@class='foaccordionable']")
-	List<WebElementFacade> FOAResults;
+	private List<WebElementFacade> FOAResults;
+	
+	@FindBy(xpath = "//div[@class[contains(., 'accordbody')]]")
+	private List<WebElementFacade> FOAAccordionBody;
+	
+	@FindBy(xpath = "//div[@id='expand-all-button']")
+	private WebElementFacade expandAllButton;
+	
+	@FindBy(xpath = "//div[@id='collapse-all-button']")
+	private WebElementFacade collapseAllButton;
 	
 	@FindBy(id = "benefit-counter-count")
 	private WebElementFacade benefitCounter;
@@ -67,8 +77,8 @@ public class DAPage extends PageObject {
 	@FindBy(xpath = "//*[@class='page__title title']")
 	private WebElementFacade pageTitle;
 
-        @FindBy(xpath = "//ul[@class='expand-collapse']/li")
-	List<WebElementFacade> federalAgencyAccordions;
+	@FindBy(xpath = "//ul[@class='expand-collapse']/li")
+	private List<WebElementFacade> federalAgencyAccordions;
     
 	@FindBy(xpath = "//nav[@id='nav']/ul/li[@class[contains(., 'menu__item')]]")
 	private List<WebElementFacade> navParentNode;
@@ -144,6 +154,36 @@ public class DAPage extends PageObject {
 		return btn;
 	}
 	
+	public WebElementFacade getFederalAgency(String federalAgencyName) {
+		Iterator<WebElementFacade> iter = federalAgencyAccordions.iterator();
+		WebElementFacade accordion = null;
+		while(iter.hasNext()){
+			WebElementFacade temp = iter.next();
+			if(temp.containsText(federalAgencyName)) {
+				accordion = temp;
+				break;
+			}
+		}
+		return accordion;
+	}
+	
+	public void checkFederalBenefits() throws BenefitCountException {
+		Iterator<WebElementFacade> federalAgencyIter = federalAgencyAccordions.iterator();
+		while(federalAgencyIter.hasNext()) {
+			WebElementFacade federalAgency = federalAgencyIter.next();
+			String departmentNameAndBenefits = federalAgency.getText();
+			String departmentName = departmentNameAndBenefits.substring(0, departmentNameAndBenefits.length()-2).trim();
+			int benefitCount = Integer.parseInt(departmentNameAndBenefits.substring(departmentNameAndBenefits.length()-2).trim());
+
+			List<WebElement> benefits = this.getDriver().findElements(By.xpath("//div[@class='accordion-name-text' and "
+					+ "text()[contains(., '" + departmentName + "')]]/../../ul//li"));
+			
+			if(benefits.size() != benefitCount) {
+				throw new BenefitCountException("Incorrect number of benefits");
+			}
+		}
+	}
+	
 	public int numberOfLandingPageNodes() {
 		return landingPageNode.size();
 	}
@@ -187,34 +227,12 @@ public class DAPage extends PageObject {
 	public int getNumEmploymentResults() {
 		return FOAResults.size();
 	}
-
-	public WebElementFacade getFederalAgency(String federalAgencyName) {
-		Iterator<WebElementFacade> iter = federalAgencyAccordions.iterator();
-		WebElementFacade accordion = null;
-		while(iter.hasNext()){
-			WebElementFacade temp = iter.next();
-			if(temp.containsText(federalAgencyName)) {
-				accordion = temp;
-				break;
-			}
-		}
-		return accordion;
+	
+	public void expandFOAResults() {
+		expandAllButton.click();
 	}
 	
-	public void checkFederalBenefits() throws BenefitCountException {
-		Iterator<WebElementFacade> federalAgencyIter = federalAgencyAccordions.iterator();
-		while(federalAgencyIter.hasNext()) {
-			WebElementFacade federalAgency = federalAgencyIter.next();
-			String departmentNameAndBenefits = federalAgency.getText();
-			String departmentName = departmentNameAndBenefits.substring(0, departmentNameAndBenefits.length()-2).trim();
-			int benefitCount = Integer.parseInt(departmentNameAndBenefits.substring(departmentNameAndBenefits.length()-2).trim());
-
-			List<WebElement> benefits = this.getDriver().findElements(By.xpath("//div[@class='accordion-name-text' and "
-					+ "text()[contains(., '" + departmentName + "')]]/../../ul//li"));
-			
-			if(benefits.size() != benefitCount) {
-				throw new BenefitCountException("Incorrect number of benefits");
-			}
-		}
+	public boolean accordVisible() {
+		return FOAAccordionBody.get(0).isVisible();
 	}
 }

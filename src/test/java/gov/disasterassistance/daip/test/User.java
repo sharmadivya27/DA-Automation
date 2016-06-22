@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.openqa.selenium.NoSuchElementException;
 
 import gov.disasterassistance.daip.test.exceptions.BenefitCountException;
-import gov.disasterassistance.daip.test.pageObject.*;
+import gov.disasterassistance.daip.test.pageObject.DAPage;
 import net.thucydides.core.annotations.Step;
 
 /*************************************************************************
@@ -190,6 +190,7 @@ public class User {
 	@Step
 	public void completeQuestionnaire() {
 		daPage.completeFullQuestionnaire();
+		daPage.getFOAResultsPage();
 	}
 
 	@Step
@@ -211,5 +212,15 @@ public class User {
 	@Step
 	public void checkFederalBenefits() throws BenefitCountException {
 		daPage.checkFederalBenefits();
+	}
+	
+	@Step
+	public void clickExpandAll() {
+		daPage.expandFOAResults();
+	}
+	
+	@Step
+	public void verifyExpandedMaterial() {
+		Assert.assertTrue(daPage.accordVisible());
 	}
 }
