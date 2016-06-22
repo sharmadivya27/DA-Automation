@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import gov.disasterassistance.daip.test.exceptions.BenefitCountException;
+import gov.disasterassistance.daip.test.exceptions.StateException;
 import net.serenitybdd.core.annotations.findby.By;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.PageObject;
@@ -16,10 +17,10 @@ import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.DefaultUrl;
 
 /*************************************************************************
- *	Using Selenium Webdriver, this class handles web related 
- *	code such as pulling elements from the given site.
+ * Using Selenium Webdriver, this class handles web related code such as pulling
+ * elements from the given site.
  *
- *	@author Chris Viqueira
+ * @author Chris Viqueira
  *************************************************************************/
 @DefaultUrl("http://www.disasterassistance.gov")
 public class DAPage extends PageObject {
@@ -29,32 +30,32 @@ public class DAPage extends PageObject {
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
 	}
-	
+
 	public void clearCookies() {
 		this.getDriver().manage().deleteAllCookies();
 	}
-	
-	//*************************************************************************
-	//	FindBy / private variables section
-	
+
+	// *************************************************************************
+	// FindBy / private variables section
+
 	@FindBy(id = "stateSelector")
 	private WebElementFacade stateSelector;
 
 	@FindBy(xpath = "//fieldset//label[@class[contains(., 'radio')] and text()[not(contains(., 'No')) and not(contains(., 'Unknown'))]]")
 	private List<WebElementFacade> questionnaireButtons;
-	
+
 	@FindBy(xpath = "//div[@class[contains(., 'accordion') and not(contains(., 'name'))]]")
 	private List<WebElementFacade> accordionBlocks;
-	
+
 	@FindBy(xpath = "//*[@id='pageContent']")
 	private WebElementFacade checkStatusPageContent;
-	
+
 	@FindBy(xpath = "//a[@href[contains(., 'TextCaptcha')]]")
 	private WebElementFacade textCaptcha;
-	
+
 	@FindBy(xpath = "//div[@id='block-daip-responsive-questionnaire-responsive-questionnaire-block']")
 	private WebElementFacade questionnaire;
-	
+
 	@FindBy(xpath = "//*//div[@id='address-lookup-container']")
 	private WebElementFacade addressLookup;
 	
@@ -73,36 +74,44 @@ public class DAPage extends PageObject {
 	
 	@FindBy(id = "benefit-counter-count")
 	private WebElementFacade benefitCounter;
-	
+
 	@FindBy(xpath = "//*[@class='page__title title']")
 	private WebElementFacade pageTitle;
 
 	@FindBy(xpath = "//ul[@class='expand-collapse']/li")
-	private List<WebElementFacade> federalAgencyAccordions;
-    
+
+	List<WebElementFacade> federalAgencyAccordions;
+
 	@FindBy(xpath = "//nav[@id='nav']/ul/li[@class[contains(., 'menu__item')]]")
 	private List<WebElementFacade> navParentNode;
 
 	@FindBy(xpath = "//div[@id='landing-page-container']/a")
 	private List<WebElementFacade> landingPageNode;
 
+	@FindBy(xpath = "//*[@class='state selected single-state-group']")
+	private List<WebElementFacade> disasterStates;
+
+	@FindBy(xpath = "//*[@class='state']")
+	private List<WebElementFacade> greyStates;
+
 	private List<WebElementFacade> allElements = new ArrayList<WebElementFacade>();
-	
-	//*************************************************************************
-	//	Functions
+
+	// *************************************************************************
+	// Functions
 
 	/*************************************************************************
-	 	Searches through the main menu nodes and current landing
-	 	page nodes to find the element with the same name that was passed.
-		Once it finds the node it will click on the button. 
-		
-		@param node : Name of the node to be clicked on
-	*************************************************************************/
+	 * Searches through the main menu nodes and current landing page nodes to
+	 * find the element with the same name that was passed. Once it finds the
+	 * node it will click on the button.
+	 * 
+	 * @param node
+	 *            : Name of the node to be clicked on
+	 *************************************************************************/
 	public void clickNavNode(String node) {
 		allElements.clear();
 		allElements.addAll(landingPageNode);
 		allElements.addAll(navParentNode);
-		
+
 		Iterator<WebElementFacade> iter = allElements.iterator();
 		WebElementFacade element = null;
 		while (iter.hasNext()) {
@@ -114,15 +123,14 @@ public class DAPage extends PageObject {
 				break;
 			}
 		}
-		
+
 		element.click();
 	}
 
-	
 	/*************************************************************************
-		Completes the entire FOA questionnaire checking every
-	 	box, saying yes to every question, and picking a state.
-	*************************************************************************/
+	 * Completes the entire FOA questionnaire checking every box, saying yes to
+	 * every question, and picking a state.
+	 *************************************************************************/
 	public void completeFullQuestionnaire() {
 		Iterator<WebElementFacade> iter = questionnaireButtons.iterator();
 		while (iter.hasNext()) {
@@ -132,62 +140,98 @@ public class DAPage extends PageObject {
 		}
 		stateSelector.sendKeys("Alabama");
 	}
-	
-	
+
 	/*************************************************************************
-		Clicks an individual element from the list of all of the 
-		questionnaire buttons.
-		
-		@param buttonName : The name of the element to be clicked
+	 * Clicks an individual element from the list of all of the questionnaire
+	 * buttons.
+	 * 
+	 * @param buttonName
+	 *            : The name of the element to be clicked
 	 *************************************************************************/
-	//TODO still doesn't distinguish between the yes buttons, just looks at the text by the clickable button
+	// TODO still doesn't distinguish between the yes buttons, just looks at the
+	// text by the clickable button
 	private WebElementFacade getQuestionnaireButton(String buttonName) {
 		Iterator<WebElementFacade> iter = questionnaireButtons.iterator();
 		WebElementFacade btn = null;
-		while(iter.hasNext()){
+		while (iter.hasNext()) {
 			WebElementFacade temp = iter.next();
-			if(temp.containsText(buttonName)) {
+			if (temp.containsText(buttonName)) {
 				btn = temp;
 				break;
 			}
 		}
 		return btn;
 	}
-	
+
+	/*************************************************************************
+	 * Returns the element that correlates with the parameter provided from the
+	 * list of all of the questionnaire buttons.
+	 * 
+	 * @param federalAgencyName
+	 *            : The name of the agency to be returned
+	 *************************************************************************/
 	public WebElementFacade getFederalAgency(String federalAgencyName) {
 		Iterator<WebElementFacade> iter = federalAgencyAccordions.iterator();
 		WebElementFacade accordion = null;
-		while(iter.hasNext()){
+		while (iter.hasNext()) {
 			WebElementFacade temp = iter.next();
-			if(temp.containsText(federalAgencyName)) {
+			if (temp.containsText(federalAgencyName)) {
 				accordion = temp;
 				break;
 			}
 		}
 		return accordion;
 	}
-	
+
+	/*************************************************************************
+	 * Iterates through each Federal Agency and verifies that the number of
+	 * benefits displayed correlates with its respective benefit counter.
+	 *************************************************************************/
 	public void checkFederalBenefits() throws BenefitCountException {
 		Iterator<WebElementFacade> federalAgencyIter = federalAgencyAccordions.iterator();
-		while(federalAgencyIter.hasNext()) {
+		while (federalAgencyIter.hasNext()) {
 			WebElementFacade federalAgency = federalAgencyIter.next();
 			String departmentNameAndBenefits = federalAgency.getText();
-			String departmentName = departmentNameAndBenefits.substring(0, departmentNameAndBenefits.length()-2).trim();
-			int benefitCount = Integer.parseInt(departmentNameAndBenefits.substring(departmentNameAndBenefits.length()-2).trim());
+			String departmentName = departmentNameAndBenefits.substring(0, departmentNameAndBenefits.length() - 2)
+					.trim();
+			int benefitCount = Integer
+					.parseInt(departmentNameAndBenefits.substring(departmentNameAndBenefits.length() - 2).trim());
 
 			List<WebElement> benefits = this.getDriver().findElements(By.xpath("//div[@class='accordion-name-text' and "
 					+ "text()[contains(., '" + departmentName + "')]]/../../ul//li"));
-			
-			if(benefits.size() != benefitCount) {
+
+			if (benefits.size() != benefitCount) {
 				throw new BenefitCountException("Incorrect number of benefits");
 			}
 		}
 	}
-	
+
+	/*************************************************************************
+	 * Checks if all states with disasters are clickable on the disaster map and
+	 * if all other states are visible.
+	 * 
+	 *************************************************************************/
+	public void checkStates() throws StateException {
+		Iterator<WebElementFacade> disasterStateIter = disasterStates.iterator();
+		Iterator<WebElementFacade> greyStateIter = greyStates.iterator();
+		while (disasterStateIter.hasNext()) {
+			WebElementFacade state = disasterStateIter.next();
+			if (!state.isEnabled()) {
+				throw new StateException("Unclickable state.");
+			}
+		}
+		while (greyStateIter.hasNext()) {
+			WebElementFacade state = greyStateIter.next();
+			if (!state.isVisible()) {
+				throw new StateException("State not visible.");
+			}
+		}
+	}
+
 	public int numberOfLandingPageNodes() {
 		return landingPageNode.size();
 	}
-	
+
 	public String pullPageTitle() {
 		return pageTitle.getText();
 	}

@@ -4,7 +4,12 @@ import org.junit.Assert;
 import org.openqa.selenium.NoSuchElementException;
 
 import gov.disasterassistance.daip.test.exceptions.BenefitCountException;
+<<<<<<< HEAD
 import gov.disasterassistance.daip.test.pageObject.DAPage;
+=======
+import gov.disasterassistance.daip.test.exceptions.StateException;
+import gov.disasterassistance.daip.test.pageObject.*;
+>>>>>>> f0ce147b873d9575923aa9f452bdce1aea930262
 import net.thucydides.core.annotations.Step;
 
 /*************************************************************************
@@ -222,5 +227,10 @@ public class User {
 	@Step
 	public void verifyExpandedMaterial() {
 		Assert.assertTrue(daPage.accordVisible());
+	}
+		
+	@Step
+	public void checkDisasterMap() throws StateException {
+		daPage.checkStates();
 	}
 }
