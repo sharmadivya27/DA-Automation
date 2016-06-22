@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.openqa.selenium.NoSuchElementException;
 
 import gov.disasterassistance.daip.test.exceptions.BenefitCountException;
+import gov.disasterassistance.daip.test.exceptions.StateException;
 import gov.disasterassistance.daip.test.pageObject.*;
 import net.thucydides.core.annotations.Step;
 
@@ -211,5 +212,10 @@ public class User {
 	@Step
 	public void checkFederalBenefits() throws BenefitCountException {
 		daPage.checkFederalBenefits();
+	}
+	
+	@Step
+	public void checkDisasterMap() throws StateException {
+		daPage.checkStates();
 	}
 }
