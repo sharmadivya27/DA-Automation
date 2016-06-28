@@ -7,7 +7,7 @@ import gov.disasterassistance.daip.test.exceptions.BenefitCountException;
 import gov.disasterassistance.daip.test.exceptions.FeedException;
 import gov.disasterassistance.daip.test.exceptions.LocalResourcesException;
 import gov.disasterassistance.daip.test.exceptions.StateException;
-import gov.disasterassistance.daip.test.pageObject.*;
+import gov.disasterassistance.daip.test.pageObject.DAPage;
 import net.thucydides.core.annotations.Step;
 
 /*************************************************************************
@@ -193,11 +193,12 @@ public class User {
 	@Step
 	public void completeQuestionnaire() {
 		daPage.completeFullQuestionnaire();
+		daPage.getFOAResultsPage();
 	}
 
 	@Step
 	public void checkQuestionnaireResults() {
-		Assert.assertEquals(73, daPage.getQuestionnaireResults());
+		Assert.assertEquals(73, daPage.getNumQuestionnaireResults());
 	}
 	
 	@Step
@@ -216,6 +217,28 @@ public class User {
 		daPage.checkFederalBenefits();
 	}
 	
+	@Step
+	public void clickExpandAll() {
+		daPage.topOfPage();
+		daPage.expandFOAResults();
+	}
+	
+	@Step
+	public void clickCollapseAll() {
+		daPage.topOfPage();
+		daPage.collapseFOAResults();
+	}
+	
+	@Step
+	public void verifyFOAExpandedContentVisible() {
+		Assert.assertEquals(73, daPage.getNumExpandedQuestionnaireResults());
+	}
+	
+	@Step
+	public void verifyFOAExpandedContentHidden() {
+		Assert.assertEquals(0, daPage.getNumExpandedQuestionnaireResults());
+	}
+		
 	@Step
 	public void checkDisasterMap() throws StateException {
 		daPage.checkDisasterMap();

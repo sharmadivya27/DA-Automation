@@ -95,7 +95,7 @@ public class DailyRegression {
 		user.open_page("https://www.disasterassistance.gov/get-assistance/find-assistance");
 	}
 
-	@When("I answer 'Yes' on all questions")
+	@When("I fully complete the questionnaire")
 	public void when_I_answer_Yes_on_all_questions() {
 		user.completeQuestionnaire();
 	}
@@ -178,4 +178,30 @@ public class DailyRegression {
 	public void then_information_on_resources_should_be_visible() throws LocalResourcesException {
 		user.verifyLocalResources();
 	}
+	
+	//Scenario 9: Verify all the functionality of the FOA questionnaire
+	
+	// given on the FOA page, declared above
+	// when I complete the questionnaire, declared above
+	
+	@When("expand all the accordions")
+	public void and_expand_all_the_accordions() {
+		user.clickExpandAll();
+	}
+	
+	@Then("I should see all of the content under the accordions")
+	public void then_I_should_see_all_content_under_accordions() {
+		user.verifyFOAExpandedContentVisible();
+	}
+	
+	@When("I close all of the accordions")
+	public void when_I_close_all_the_accordions() {
+		user.clickCollapseAll();
+	}
+	
+	@Then("none of the accordion content should be visible") 
+	public void then_none_of_the_accordion_content_should_be_visible() {
+		user.verifyFOAExpandedContentHidden();
+	}
+	
 }
