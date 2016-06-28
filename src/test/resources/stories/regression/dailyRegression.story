@@ -109,12 +109,15 @@ Then the number of benefits should match with its count
 
 Scenario: Verify all the functionality of the FOA questionnaire
 Meta:
+@skip
 Given I am on the Find Assistance page
 When I fully complete the questionnaire
 And expand all the accordions
 Then I should see all of the content under the accordions
 When I close all of the accordions
 Then none of the accordion content should be visible
+And the 6 FOAs that everyone qualifies for should be visible under Additional Assistance and Resources
+And each FOA should expand and collapse individually
 
 Scenario: Verify states in the declared disaster map are clickable
 Meta:

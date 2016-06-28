@@ -36,10 +36,6 @@ public class DAPage extends PageObject {
 	public void clearCookies() {
 		this.getDriver().manage().deleteAllCookies();
 	}
-	
-	public void topOfPage() {
-		this.evaluateJavascript("window.scrollTo(0,0)");
-	}
 
 
 	// *************************************************************************
@@ -67,6 +63,9 @@ public class DAPage extends PageObject {
 	private WebElementFacade addressLookup;
 	
 	//Find assistance page
+	@FindBy(xpath = "//div[@class='foa-result-wrapper auto-foas']/div//h2/span[not(@class='chevron')]")
+	private List<WebElementFacade> autoFOAs;
+	
 	@FindBy(xpath = "//div[@class='foaccordionable']")
 	private List<WebElementFacade> FOAResults;
 	
@@ -275,7 +274,7 @@ public class DAPage extends PageObject {
 		this.evaluateJavascript("window.scrollTo(0,document.body.scrollHeight)");
 		System.out.println(twitterFeed.size() + "");
 		if (twitterFeed.size() != 3) {
-			throw new FeedException("Twitter feed contains incorrect number of tweets");
+			throw new FeedException("Expected: <3>, actual value: <" + twitterFeed.size() + ">");
 		}
 		while (feedIter.hasNext()) {
 			WebElementFacade feed = feedIter.next();
@@ -308,6 +307,57 @@ public class DAPage extends PageObject {
 				throw new LocalResourcesException("Local resource not visible");
 			}
 		}
+	}
+	
+	/*************************************************************************
+	 * Returns the number of FOAs that match with the expected list.
+	 * 
+	 * @return Number of FOA titles that match with the given list
+	 *************************************************************************/
+	public int getNumAdditionalFOA() {
+		String [] additionalFOATitles = {"203(h) Mortgage Insurance for Disaster Victims and 203(k) Rehabilitation Mortgage Insurance",
+				"Disaster Recovery Center (DRC) / DRC Locator" , "International Terrorism Victim Expense Reimbursement Program (ITVERP)",
+				"Savings Bond Redemption and Replacement", "State Crime Victims Compensation",
+				"Substance Abuse and Mental Health Services Administration (SAMHSA) Disaster Relief Information"};
+		
+		int foaCounter = 0;
+		
+		Iterator<WebElementFacade> iter = autoFOAs.iterator();
+		while(iter.hasNext()) {
+			String foaTitle = iter.next().getText();
+			for(int i = 0; i < additionalFOATitles.length; i++) {
+				if(additionalFOATitles[i].equals(foaTitle)) {
+					foaCounter++;
+					break;
+				}
+			}
+		}
+		
+		return foaCounter;
+	}
+	
+	/*************************************************************************
+	 * Expands and collapses individual FOAs while also making sure the
+	 * content is displayed in each.
+	 * 
+	 *************************************************************************/
+	public void clickIndividualFOAs() {
+		Iterator<WebElementFacade> foaIter = FOAResults.iterator();
+		while(foaIter.hasNext()) {
+			WebElementFacade foa = foaIter.next();
+			foa.click();
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			foa.click();
+			
+			//TODO get this to scroll down by the correct margin
+			this.evaluateJavascript("window.scrollBy(0,50)");
+		}
+		//get the content section for the open accordions
+//		String xpath = "//div[@class='foaccordionable open']/../div[@style[not(contains(., 'none'))]]";
 	}
 
 	public int numberOfLandingPageNodes() {

@@ -5,10 +5,7 @@ import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
-import gov.disasterassistance.daip.test.exceptions.BenefitCountException;
-import gov.disasterassistance.daip.test.exceptions.FeedException;
-import gov.disasterassistance.daip.test.exceptions.LocalResourcesException;
-import gov.disasterassistance.daip.test.exceptions.StateException;
+import gov.disasterassistance.daip.test.exceptions.*;
 import net.thucydides.core.annotations.Steps;
 
 /*************************************************************************
@@ -21,7 +18,7 @@ public class DailyRegression {
 	@Steps
 	User user;
 
-	//Scenario 1: Verify all of the navbar tabs to assert that the pages open correctly
+	//Scenario: Verify all of the navbar tabs to assert that the pages open correctly
 	@Given("I am on the Disaster Assistance homepage")
 	public void given_I_am_on_the_disaster_assistance_homepage() {
 		user.open_home_page();
@@ -43,7 +40,7 @@ public class DailyRegression {
 	}
 
 	
-	//Scenario 2: Verify all of the nodes on the "Get Assistance" landing page
+	//Scenario: Verify all of the nodes on the "Get Assistance" landing page
 	@Given("I am on the Get Assistance landing page")
 	public void given_I_am_on_the_Get_Assistance_landing_page() {
 		user.open_page("https://www.disasterassistance.gov/get-assistance");
@@ -60,36 +57,36 @@ public class DailyRegression {
 	}
 	
 
-	//Scenario 3: Verify all of the nodes on the "Information" landing page
+	//Scenario: Verify all of the nodes on the "Information" landing page
 	@Given("I am on the Information landing page")
 	public void given_I_am_on_the_Information_landing_page() {
 		user.open_page("https://www.disasterassistance.gov/information");
 	}
 
-	// when see scenario 2
-	// then see scenario 2
+	// when see above
+	// then see above
 
 	
-	//Scenario 4: Verify all of the nodes on the "About Us" landing page
+	//Scenario: Verify all of the nodes on the "About Us" landing page
 	@Given("I am on the About Us landing page")
 	public void given_I_am_on_the_About_Us_landing_page() {
 		user.open_page("https://www.disasterassistance.gov/about-us");
 	}
 
-	// when see scenario 2
-	// then see scenario 2
+	// when see above
+	// then see above
 
-	//Scenario 5: Verify all of the nodes on the "Help" landing page
+	//Scenario: Verify all of the nodes on the "Help" landing page
 	@Given("I am on the Help landing page")
 	public void given_I_am_on_the_Help_landing_page() {
 		user.open_page("https://www.disasterassistance.gov/help");
 	}
 
-	// when see scenario 2
-	// then see scenario 2
+	// when see above
+	// then see above
 	
 	
-	//Scenario 6: Verify results of the questionnaire on the "Find Assistance" page
+	//Scenario: Verify results of the questionnaire on the "Find Assistance" page
 	@Given("I am on the Find Assistance page")
 	public void given_I_am_on_the_Find_Assistance_page() {
 		user.open_page("https://www.disasterassistance.gov/get-assistance/find-assistance");
@@ -107,9 +104,9 @@ public class DailyRegression {
 	
 	
 	
-	//Scenario 7: Verify benefits results display according to use cases page
+	//Scenario: Verify benefits results display according to use cases page
 	
-	// Given see scenario 6
+	// Given see above
 	
 	@When("I choose only Employment")
 	public void when_I_choose_only_Employment() {
@@ -121,7 +118,7 @@ public class DailyRegression {
 		user.verifyEmploymentResults();
 	}
 	
-	 //Scenario 8: Verify benefits results display according to use cases page
+	//Scenario: Verify benefits results display according to use cases page
 	
 	@Given("I am on the Assistance by Federal Agency page")
 	public void given_I_am_on_the_Assistance_by_Federal_Agency_page() {
@@ -137,9 +134,9 @@ public class DailyRegression {
 		user.checkFederalBenefits();
 	}
 	
-	 //Scenario 8: Verify benefits results display according to use cases page
+	//Scenario: Verify benefits results display according to use cases page
 	
-	//Given see scenario 1
+	//Given see above
 	
 	@When("I am viewing the declared disaster map")
 	public void when_I_an_viewing_the_declared_disaster_map() throws StateException {
@@ -151,9 +148,10 @@ public class DailyRegression {
 		user.checkStates();
 	}
 	
-	 //Scenario 9: Verify that the FEMA Twitter feed is present on the homepage
 	
-	//Given see scenario 1
+	//Scenario: Verify that the FEMA Twitter feed is present on the homepage
+	
+	//Given see above
 	
 	@When("I am viewing the FEMA Twitter feed")
 	public void when_I_am_viewing_the_FEMA_twitter_feed() throws FeedException {
@@ -165,9 +163,10 @@ public class DailyRegression {
 		user.checkTwitterFeed();
 	}
 	
-	 //Scenario 9: Verify Local Resources flows correctly
 	
-	//Given see scenario 1
+	//Scenario: Verify Local Resources flows correctly
+	
+	//Given see above
 	
 	@When("I am attempting to find local resources")
 	public void when_I_am_attempting_to_find_local_resources() {
@@ -179,7 +178,7 @@ public class DailyRegression {
 		user.verifyLocalResources();
 	}
 	
-	//Scenario 9: Verify all the functionality of the FOA questionnaire
+	//Scenario: Verify all the functionality of the FOA questionnaire
 	
 	// given on the FOA page, declared above
 	// when I complete the questionnaire, declared above
@@ -201,7 +200,17 @@ public class DailyRegression {
 	
 	@Then("none of the accordion content should be visible") 
 	public void then_none_of_the_accordion_content_should_be_visible() {
-		user.verifyFOAExpandedContentHidden();
+		user.verifyFOAExpandedContentIsHidden();
+	}
+	
+	@Then("the 6 FOAs that everyone qualifies for should be visible under Additional Assistance and Resources")
+	public void and_6_foas_should_be_visible_under_Additional_Assistance_Resources() {
+		user.verifyNumberOfAdditionalFOA();
+	}
+	
+	@Then("each FOA should expand and collapse individually")
+	public void and_each_FOA_should_expand_and_collapse_individually() {
+		user.verifyAllAccordionsExpandAndCollapse();
 	}
 	
 }

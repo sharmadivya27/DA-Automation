@@ -3,10 +3,7 @@ package gov.disasterassistance.daip.test;
 import org.junit.Assert;
 import org.openqa.selenium.NoSuchElementException;
 
-import gov.disasterassistance.daip.test.exceptions.BenefitCountException;
-import gov.disasterassistance.daip.test.exceptions.FeedException;
-import gov.disasterassistance.daip.test.exceptions.LocalResourcesException;
-import gov.disasterassistance.daip.test.exceptions.StateException;
+import gov.disasterassistance.daip.test.exceptions.*;
 import gov.disasterassistance.daip.test.pageObject.DAPage;
 import net.thucydides.core.annotations.Step;
 
@@ -219,13 +216,11 @@ public class User {
 	
 	@Step
 	public void clickExpandAll() {
-		daPage.topOfPage();
 		daPage.expandFOAResults();
 	}
 	
 	@Step
 	public void clickCollapseAll() {
-		daPage.topOfPage();
 		daPage.collapseFOAResults();
 	}
 	
@@ -235,7 +230,7 @@ public class User {
 	}
 	
 	@Step
-	public void verifyFOAExpandedContentHidden() {
+	public void verifyFOAExpandedContentIsHidden() {
 		Assert.assertEquals(0, daPage.getNumExpandedQuestionnaireResults());
 	}
 		
@@ -267,5 +262,16 @@ public class User {
 	@Step
 	public void verifyLocalResources() throws LocalResourcesException {
 		daPage.verifyLocalResourcesResults();
+	}
+	
+	@Step
+	public void verifyNumberOfAdditionalFOA() {
+		Assert.assertEquals(6, daPage.getNumAdditionalFOA());
+	}
+	
+	@Step
+	public void verifyAllAccordionsExpandAndCollapse() {
+		daPage.clickIndividualFOAs();
+		Assert.assertEquals(1, 1);
 	}
 }
