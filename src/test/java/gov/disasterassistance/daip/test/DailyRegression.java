@@ -6,6 +6,8 @@ import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
 import gov.disasterassistance.daip.test.exceptions.BenefitCountException;
+import gov.disasterassistance.daip.test.exceptions.FeedException;
+import gov.disasterassistance.daip.test.exceptions.LocalResourcesException;
 import gov.disasterassistance.daip.test.exceptions.StateException;
 import net.thucydides.core.annotations.Steps;
 
@@ -140,13 +142,41 @@ public class DailyRegression {
 	//Given see scenario 1
 	
 	@When("I am viewing the declared disaster map")
-	public void when_I_an_viewing_the_declared_disaster_map() {
-		
+	public void when_I_an_viewing_the_declared_disaster_map() throws StateException {
+		user.checkDisasterMap();
 	}
 
 	@Then("states with disasters should be clickable")
 	public void then_states_with_disasters_should_be_clickable() throws StateException {
-		user.checkDisasterMap();
+		user.checkStates();
+	}
+	
+	 //Scenario 9: Verify that the FEMA Twitter feed is present on the homepage
+	
+	//Given see scenario 1
+	
+	@When("I am viewing the FEMA Twitter feed")
+	public void when_I_am_viewing_the_FEMA_twitter_feed() throws FeedException {
+		user.checkTwitterFeedBlock();
+	}
+
+	@Then("the most recent tweets should be displayed")
+	public void then_the_most_recent_tweets_should_be_displayed() throws FeedException {
+		user.checkTwitterFeed();
+	}
+	
+	 //Scenario 9: Verify Local Resources flows correctly
+	
+	//Given see scenario 1
+	
+	@When("I am attempting to find local resources")
+	public void when_I_am_attempting_to_find_local_resources() {
+		user.lookUpLocation();
+	}
+
+	@Then("information on resources should be visible")
+	public void then_information_on_resources_should_be_visible() throws LocalResourcesException {
+		user.verifyLocalResources();
 	}
 	
 	//Scenario 9: Verify all the functionality of the FOA questionnaire

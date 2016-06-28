@@ -9,6 +9,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import gov.disasterassistance.daip.test.exceptions.BenefitCountException;
+import gov.disasterassistance.daip.test.exceptions.FeedException;
+import gov.disasterassistance.daip.test.exceptions.LocalResourcesException;
 import gov.disasterassistance.daip.test.exceptions.StateException;
 import net.serenitybdd.core.annotations.findby.By;
 import net.serenitybdd.core.annotations.findby.FindBy;
@@ -98,6 +100,21 @@ public class DAPage extends PageObject {
 
 	@FindBy(xpath = "//*[@class='state']")
 	private List<WebElementFacade> greyStates;
+
+	@FindBy(xpath = "//*[@id='svg2']")
+	private WebElementFacade disasterMap;
+
+	@FindBy(xpath = "//*[@class='timeline-TweetList-tweet customisable-border']")
+	private List<WebElementFacade> twitterFeed;
+
+	@FindBy(xpath = "//*[@id='block-twitter-block-1']")
+	private WebElementFacade twitterFeedBlock;
+
+	@FindBy(xpath = "//*[@id=\"local-resources-input\"]")
+	private WebElementFacade localResourcesTextbox;
+
+	@FindBy(xpath = "//*[@class='location-item clickable']")
+	private List<WebElementFacade> localResourcesResults;
 
 	private List<WebElementFacade> allElements = new ArrayList<WebElementFacade>();
 	
@@ -239,6 +256,60 @@ public class DAPage extends PageObject {
 		}
 	}
 
+	/*************************************************************************
+	 * Verifies that the disaster map is visible on the homepage.
+	 * 
+	 *************************************************************************/
+	public void checkDisasterMap() throws StateException {
+		if (!disasterMap.isVisible()) {
+			throw new StateException("Disaster map not visible");
+		}
+	}
+
+	/*************************************************************************
+	 * Checks that the twitter feed is visible with the most recent tweets.
+	 * 
+	 *************************************************************************/
+	public void checkTwitterFeed() throws FeedException {
+		Iterator<WebElementFacade> feedIter = twitterFeed.iterator();
+		this.evaluateJavascript("window.scrollTo(0,document.body.scrollHeight)");
+		System.out.println(twitterFeed.size() + "");
+		if (twitterFeed.size() != 3) {
+			throw new FeedException("Twitter feed contains incorrect number of tweets");
+		}
+		while (feedIter.hasNext()) {
+			WebElementFacade feed = feedIter.next();
+			if (!feed.isVisible()) {
+				throw new FeedException("Twitter feed not visible");
+			}
+		}
+	}
+
+	/*************************************************************************
+	 * Verifies that the FEMA twitter feed is visible on the homepage.
+	 * 
+	 *************************************************************************/
+	public void checkTwitterFeedBlock() throws FeedException {
+		if (!twitterFeedBlock.isVisible()) {
+			throw new FeedException("Twitter feed not visible");
+		}
+	}
+
+	/*************************************************************************
+	 * Verifies that local resources results are visible and appear on the
+	 * homepage.
+	 * 
+	 *************************************************************************/
+	public void verifyLocalResourcesResults() throws LocalResourcesException {
+		Iterator<WebElementFacade> localResourcesIter = localResourcesResults.iterator();
+		while (localResourcesIter.hasNext()) {
+			WebElementFacade resource = localResourcesIter.next();
+			if (!resource.isVisible()) {
+				throw new LocalResourcesException("Local resource not visible");
+			}
+		}
+	}
+
 	public int numberOfLandingPageNodes() {
 		return landingPageNode.size();
 	}
@@ -303,4 +374,7 @@ public class DAPage extends PageObject {
 		backButtonFOA.click();
 	}
 	
+	public void lookUpLocation() {
+		localResourcesTextbox.sendKeys("New York, NY");
+	}
 }

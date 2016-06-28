@@ -4,6 +4,8 @@ import org.junit.Assert;
 import org.openqa.selenium.NoSuchElementException;
 
 import gov.disasterassistance.daip.test.exceptions.BenefitCountException;
+import gov.disasterassistance.daip.test.exceptions.FeedException;
+import gov.disasterassistance.daip.test.exceptions.LocalResourcesException;
 import gov.disasterassistance.daip.test.exceptions.StateException;
 import gov.disasterassistance.daip.test.pageObject.DAPage;
 import net.thucydides.core.annotations.Step;
@@ -239,6 +241,31 @@ public class User {
 		
 	@Step
 	public void checkDisasterMap() throws StateException {
+		daPage.checkDisasterMap();
+	}
+	
+	@Step
+	public void checkStates() throws StateException {
 		daPage.checkStates();
+	}
+	
+	@Step
+	public void checkTwitterFeedBlock() throws FeedException {
+		daPage.checkTwitterFeedBlock();
+	}
+	
+	@Step
+	public void checkTwitterFeed() throws FeedException {
+		daPage.checkTwitterFeed();
+	}
+	
+	@Step
+	public void lookUpLocation() {
+		daPage.lookUpLocation();
+	}
+	
+	@Step
+	public void verifyLocalResources() throws LocalResourcesException {
+		daPage.verifyLocalResourcesResults();
 	}
 }

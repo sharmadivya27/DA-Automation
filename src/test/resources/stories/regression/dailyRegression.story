@@ -123,3 +123,17 @@ Given I am on the Disaster Assistance homepage
 When I am viewing the declared disaster map
 Then states with disasters should be clickable
 
+Scenario: Verify that the FEMA Twitter feed is present on the homepage
+Meta:
+@skip
+Given I am on the Disaster Assistance homepage
+When I am viewing the FEMA Twitter feed
+Then the most recent tweets should be displayed
+
+Scenario: Verify Local Resources flows correctly
+Meta:
+@skip
+Given I am on the Disaster Assistance homepage
+When I am attempting to find local resources
+Then information on resources should be visible
+
