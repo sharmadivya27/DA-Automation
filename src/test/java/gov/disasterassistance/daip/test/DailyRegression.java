@@ -156,12 +156,22 @@ public class DailyRegression {
 	
 	@When("expand all the accordions")
 	public void and_expand_all_the_accordions() {
-//		user.clickExpandAll();
+		user.clickExpandAll();
 	}
 	
 	@Then("I should see all of the content under the accordions")
 	public void then_I_should_see_all_content_under_accordions() {
-		
+		user.verifyFOAExpandedContentVisible();
+	}
+	
+	@When("I close all of the accordions")
+	public void when_I_close_all_the_accordions() {
+		user.clickCollapseAll();
+	}
+	
+	@Then("none of the accordion content should be visible") 
+	public void then_none_of_the_accordion_content_should_be_visible() {
+		user.verifyFOAExpandedContentHidden();
 	}
 	
 }

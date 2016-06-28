@@ -108,14 +108,17 @@ When I check on each Federal Agency accordion
 Then the number of benefits should match with its count
 
 Scenario: Verify all the functionality of the FOA questionnaire
-@skip
+Meta:
 Given I am on the Find Assistance page
 When I fully complete the questionnaire
 And expand all the accordions
 Then I should see all of the content under the accordions
+When I close all of the accordions
+Then none of the accordion content should be visible
 
 Scenario: Verify states in the declared disaster map are clickable
 Meta:
+@skip
 Given I am on the Disaster Assistance homepage
 When I am viewing the declared disaster map
 Then states with disasters should be clickable
