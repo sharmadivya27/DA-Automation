@@ -210,7 +210,7 @@ public class DailyRegression {
 	
 	@Then("each FOA should expand and collapse individually")
 	public void and_each_FOA_should_expand_and_collapse_individually() {
-		user.verifyAllAccordionsExpandAndCollapse();
+		user.verifyIndividualAccordionContent();
 	}
 	
 }

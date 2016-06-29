@@ -270,8 +270,7 @@ public class User {
 	}
 	
 	@Step
-	public void verifyAllAccordionsExpandAndCollapse() {
-		daPage.clickIndividualFOAs();
-		Assert.assertEquals(1, 1);
+	public void verifyIndividualAccordionContent() {
+		Assert.assertEquals(73, daPage.clickIndividualFOAs());
 	}
 }

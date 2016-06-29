@@ -37,7 +37,6 @@ public class DAPage extends PageObject {
 		this.getDriver().manage().deleteAllCookies();
 	}
 
-
 	// *************************************************************************
 	// FindBy / private variables section
 
@@ -61,23 +60,22 @@ public class DAPage extends PageObject {
 
 	@FindBy(xpath = "//*//div[@id='address-lookup-container']")
 	private WebElementFacade addressLookup;
-	
-	//Find assistance page
+
 	@FindBy(xpath = "//div[@class='foa-result-wrapper auto-foas']/div//h2/span[not(@class='chevron')]")
 	private List<WebElementFacade> autoFOAs;
-	
+
 	@FindBy(xpath = "//div[@class='foaccordionable']")
 	private List<WebElementFacade> FOAResults;
-	
+
 	@FindBy(xpath = "//div[@class='foaccordionable open']")
 	private List<WebElementFacade> FOAExpandedResults;
-	
+
 	@FindBy(xpath = "//div[@class='foatoolbar-plusminus']")
 	private WebElementFacade expandAllButton;
-	
+
 	@FindBy(xpath = "//div[@class='foatoolbar-minus']")
 	private WebElementFacade collapseAllButton;
-	
+
 	@FindBy(id = "benefit-counter-count")
 	private WebElementFacade benefitCounter;
 
@@ -85,7 +83,6 @@ public class DAPage extends PageObject {
 	private WebElementFacade pageTitle;
 
 	@FindBy(xpath = "//ul[@class='expand-collapse']/li")
-
 	List<WebElementFacade> federalAgencyAccordions;
 
 	@FindBy(xpath = "//nav[@id='nav']/ul/li[@class[contains(., 'menu__item')]]")
@@ -115,13 +112,13 @@ public class DAPage extends PageObject {
 	@FindBy(xpath = "//*[@class='location-item clickable']")
 	private List<WebElementFacade> localResourcesResults;
 
-	private List<WebElementFacade> allElements = new ArrayList<WebElementFacade>();
-	
 	@FindBy(xpath = "//button[@title='Next']")
 	private WebElementFacade nextButtonFOA;
-	
+
 	@FindBy(xpath = "//button[@title='Back ']")
 	private WebElementFacade backButtonFOA;
+
+	private List<WebElementFacade> allElements = new ArrayList<WebElementFacade>();
 
 	// *************************************************************************
 	// Functions
@@ -157,6 +154,7 @@ public class DAPage extends PageObject {
 	/*************************************************************************
 	 * Completes the entire FOA questionnaire checking every box, saying yes to
 	 * every question, and picking a state.
+	 * 
 	 *************************************************************************/
 	public void completeFullQuestionnaire() {
 		Iterator<WebElementFacade> iter = questionnaireButtons.iterator();
@@ -166,6 +164,7 @@ public class DAPage extends PageObject {
 			this.evaluateJavascript("window.scrollBy(0,50)");
 		}
 		stateSelector.sendKeys("Alabama");
+
 	}
 
 	/*************************************************************************
@@ -213,6 +212,7 @@ public class DAPage extends PageObject {
 	/*************************************************************************
 	 * Iterates through each Federal Agency and verifies that the number of
 	 * benefits displayed correlates with its respective benefit counter.
+	 * 
 	 *************************************************************************/
 	public void checkFederalBenefits() throws BenefitCountException {
 		Iterator<WebElementFacade> federalAgencyIter = federalAgencyAccordions.iterator();
@@ -308,56 +308,93 @@ public class DAPage extends PageObject {
 			}
 		}
 	}
-	
+
 	/*************************************************************************
 	 * Returns the number of FOAs that match with the expected list.
 	 * 
 	 * @return Number of FOA titles that match with the given list
 	 *************************************************************************/
 	public int getNumAdditionalFOA() {
-		String [] additionalFOATitles = {"203(h) Mortgage Insurance for Disaster Victims and 203(k) Rehabilitation Mortgage Insurance",
-				"Disaster Recovery Center (DRC) / DRC Locator" , "International Terrorism Victim Expense Reimbursement Program (ITVERP)",
+		String[] additionalFOATitles = {
+				"203(h) Mortgage Insurance for Disaster Victims and 203(k) Rehabilitation Mortgage Insurance",
+				"Disaster Recovery Center (DRC) / DRC Locator",
+				"International Terrorism Victim Expense Reimbursement Program (ITVERP)",
 				"Savings Bond Redemption and Replacement", "State Crime Victims Compensation",
-				"Substance Abuse and Mental Health Services Administration (SAMHSA) Disaster Relief Information"};
-		
+				"Substance Abuse and Mental Health Services Administration (SAMHSA) Disaster Relief Information" };
+
 		int foaCounter = 0;
-		
+
 		Iterator<WebElementFacade> iter = autoFOAs.iterator();
-		while(iter.hasNext()) {
+		while (iter.hasNext()) {
 			String foaTitle = iter.next().getText();
-			for(int i = 0; i < additionalFOATitles.length; i++) {
-				if(additionalFOATitles[i].equals(foaTitle)) {
+			for (int i = 0; i < additionalFOATitles.length; i++) {
+				if (additionalFOATitles[i].equals(foaTitle)) {
 					foaCounter++;
 					break;
 				}
 			}
 		}
-		
+
 		return foaCounter;
 	}
-	
+
 	/*************************************************************************
-	 * Expands and collapses individual FOAs while also making sure the
-	 * content is displayed in each.
+	 * Expands and collapses individual FOAs while also making sure the content
+	 * is displayed in each.
 	 * 
+	 * @return The number of FOAs it clicked and checked for content
 	 *************************************************************************/
-	public void clickIndividualFOAs() {
+	// TODO Finish this story check print and email buttons
+	// TODO Clean this up somehow in the future
+	//	Find a way around using multiple thread.sleeps?
+	public int clickIndividualFOAs() {
+
+		int successCounter = 0;
 		Iterator<WebElementFacade> foaIter = FOAResults.iterator();
-		while(foaIter.hasNext()) {
+		while (foaIter.hasNext()) {
 			WebElementFacade foa = foaIter.next();
-			foa.click();
+			
+			//TODO find a better and more succinct way to write this
+			this.evaluateJavascript("window.scrollTo(0," + foa.getLocation().getY() + "); "
+					+ "window.scrollBy(0, -(window.screen.availHeight / 2))");
+
+			try {
+				foa.click();
+			} catch (Exception e) {
+				this.evaluateJavascript("window.scrollTo(0,document.body.scrollHeight)"); // scroll to end of page
+				foa.click();
+			}
+
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+
+			WebElement openContent = this.getDriver().findElement(
+					By.xpath("//div[@class='foaccordionable open']/.." + "/div[@style[not(contains(., 'none'))]]"));
+
+			if (openContent.isDisplayed()) {
+				successCounter++;
+			}
+
 			foa.click();
-			
-			//TODO get this to scroll down by the correct margin
-			this.evaluateJavascript("window.scrollBy(0,50)");
+
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
-		//get the content section for the open accordions
-//		String xpath = "//div[@class='foaccordionable open']/../div[@style[not(contains(., 'none'))]]";
+
+		return successCounter;
+
+		// And expand all the accordions
+		// Then I should see all of the content under the accordions
+		// When I close all of the accordions
+		// Then none of the accordion content should be visible
+		// And the 6 FOAs that everyone qualifies for should be visible under
+		// Additional Assistance and Resources
 	}
 
 	public int numberOfLandingPageNodes() {
@@ -389,7 +426,7 @@ public class DAPage extends PageObject {
 	}
 
 	public int getNumQuestionnaireResults() {
-		return Integer.parseInt(benefitCounter.getText());
+		return FOAResults.size();
 	}
 
 	public void clickEmploymentCheckbox() {
@@ -403,27 +440,27 @@ public class DAPage extends PageObject {
 	public int getNumEmploymentResults() {
 		return FOAResults.size();
 	}
-	
+
 	public void expandFOAResults() {
 		expandAllButton.click();
 	}
-	
+
 	public void collapseFOAResults() {
 		collapseAllButton.click();
 	}
-	
+
 	public int getNumExpandedQuestionnaireResults() {
 		return FOAExpandedResults.size();
 	}
-	
+
 	public void clickNextFOA() {
 		nextButtonFOA.click();
 	}
-	
+
 	public void clickBackFOA() {
 		backButtonFOA.click();
 	}
-	
+
 	public void lookUpLocation() {
 		localResourcesTextbox.sendKeys("New York, NY");
 	}
