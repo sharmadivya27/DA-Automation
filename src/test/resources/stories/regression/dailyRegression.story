@@ -95,10 +95,9 @@ Then I should accumulate 73 results
 
 Scenario: Verify benefits results display according to use cases
 Meta:
-@skip
 Given I am on the Find Assistance page
-When I choose only Employment
-Then I should obtain 9 results
+When I choose only Employment and expand all the accordions
+Then I should obtain 9 results and see all the content under the accordions
 
 Scenario: Verify the number of Federal Agencies and their benefits
 Meta:
@@ -109,6 +108,7 @@ Then the number of benefits should match with its count
 
 Scenario: Verify all the functionality of the FOA questionnaire
 Meta:
+@skip
 Given I am on the Find Assistance page
 When I fully complete the questionnaire
 And expand all the accordions

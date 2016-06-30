@@ -3,7 +3,11 @@ package gov.disasterassistance.daip.test;
 import org.junit.Assert;
 import org.openqa.selenium.NoSuchElementException;
 
-import gov.disasterassistance.daip.test.exceptions.*;
+import gov.disasterassistance.daip.test.exceptions.BenefitCountException;
+import gov.disasterassistance.daip.test.exceptions.EmploymentException;
+import gov.disasterassistance.daip.test.exceptions.FeedException;
+import gov.disasterassistance.daip.test.exceptions.LocalResourcesException;
+import gov.disasterassistance.daip.test.exceptions.StateException;
 import gov.disasterassistance.daip.test.pageObject.DAPage;
 import net.thucydides.core.annotations.Step;
 
@@ -205,8 +209,9 @@ public class User {
 	}
 	
 	@Step
-	public void verifyEmploymentResults() {
+	public void verifyEmploymentResultsandVisibility() throws EmploymentException {
 		Assert.assertEquals(9, daPage.getNumEmploymentResults());
+		daPage.verifyEmploymentVisibility();
 	}
 	
 	@Step
@@ -226,7 +231,7 @@ public class User {
 	
 	@Step
 	public void verifyFOAExpandedContentVisible() {
-		Assert.assertEquals(73, daPage.getNumExpandedQuestionnaireResults());
+		Assert.assertEquals(73, daPage.getNumEmploymentResults());
 	}
 	
 	@Step

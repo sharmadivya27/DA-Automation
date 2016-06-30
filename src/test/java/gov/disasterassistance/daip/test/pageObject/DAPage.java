@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import gov.disasterassistance.daip.test.exceptions.BenefitCountException;
+import gov.disasterassistance.daip.test.exceptions.EmploymentException;
 import gov.disasterassistance.daip.test.exceptions.FeedException;
 import gov.disasterassistance.daip.test.exceptions.LocalResourcesException;
 import gov.disasterassistance.daip.test.exceptions.StateException;
@@ -36,6 +37,7 @@ public class DAPage extends PageObject {
 	public void clearCookies() {
 		this.getDriver().manage().deleteAllCookies();
 	}
+
 
 	// *************************************************************************
 	// FindBy / private variables section
@@ -447,6 +449,26 @@ public class DAPage extends PageObject {
 		}
 		
 		return contentCounter;
+		
+	}
+	
+	/*************************************************************************
+	 * Verifies that Employment results and content are visible and appear under
+	 * the accordions.
+	 * 
+	 * @throws EmploymentException
+	 * 
+	 *************************************************************************/
+	public void verifyEmploymentVisibility() throws EmploymentException {
+		Iterator<WebElementFacade> FOAResultsIter = FOAResults.iterator();
+		Iterator<WebElementFacade> FOAExpandedResultsIter = FOAResults.iterator();
+		while (FOAResultsIter.hasNext() && FOAExpandedResultsIter.hasNext()) {
+			WebElementFacade result = FOAResultsIter.next();
+			WebElementFacade expandedResult = FOAExpandedResultsIter.next();
+			if (!result.isVisible() || !expandedResult.isVisible()) {
+				throw new EmploymentException("Employment results not visible");
+			}
+		}
 	}
 
 	public int numberOfLandingPageNodes() {
@@ -490,7 +512,7 @@ public class DAPage extends PageObject {
 	}
 
 	public int getNumEmploymentResults() {
-		return FOAResults.size();
+		return FOAExpandedResults.size();
 	}
 
 	public void expandFOAResults() {
