@@ -6,6 +6,7 @@ import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
 import gov.disasterassistance.daip.test.exceptions.BenefitCountException;
+import gov.disasterassistance.daip.test.exceptions.EmploymentException;
 import gov.disasterassistance.daip.test.exceptions.FeedException;
 import gov.disasterassistance.daip.test.exceptions.LocalResourcesException;
 import gov.disasterassistance.daip.test.exceptions.StateException;
@@ -111,14 +112,15 @@ public class DailyRegression {
 	
 	// Given see scenario 6
 	
-	@When("I choose only Employment")
-	public void when_I_choose_only_Employment() {
+	@When("I choose only Employment and expand all the accordions")
+	public void when_I_choose_only_Employment_and_expand_all_the_accordions() {
 		user.getEmploymentResults();
+		user.clickExpandAll();
 	}
 
-	@Then("I should obtain 9 results")
-	public void then_I_should_obtain_9_results() {
-		user.verifyEmploymentResults();
+	@Then("I should obtain 9 results and see all the content under the accordions")
+	public void then_I_should_obtain_9_results_and_see_all_the_content_under_the_accordions() throws EmploymentException {
+		user.verifyEmploymentResultsandVisibility();
 	}
 	
 	 //Scenario 8: Verify benefits results display according to use cases page

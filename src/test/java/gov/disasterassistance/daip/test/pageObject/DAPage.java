@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import gov.disasterassistance.daip.test.exceptions.BenefitCountException;
+import gov.disasterassistance.daip.test.exceptions.EmploymentException;
 import gov.disasterassistance.daip.test.exceptions.FeedException;
 import gov.disasterassistance.daip.test.exceptions.LocalResourcesException;
 import gov.disasterassistance.daip.test.exceptions.StateException;
@@ -36,11 +37,10 @@ public class DAPage extends PageObject {
 	public void clearCookies() {
 		this.getDriver().manage().deleteAllCookies();
 	}
-	
+
 	public void topOfPage() {
 		this.evaluateJavascript("window.scrollTo(0,0)");
 	}
-
 
 	// *************************************************************************
 	// FindBy / private variables section
@@ -65,20 +65,20 @@ public class DAPage extends PageObject {
 
 	@FindBy(xpath = "//*//div[@id='address-lookup-container']")
 	private WebElementFacade addressLookup;
-	
-	//Find assistance page
+
+	// Find assistance page
 	@FindBy(xpath = "//div[@class='foaccordionable']")
 	private List<WebElementFacade> FOAResults;
-	
+
 	@FindBy(xpath = "//div[@class='foaccordionable open']")
 	private List<WebElementFacade> FOAExpandedResults;
-	
+
 	@FindBy(xpath = "//div[@class='foatoolbar-plusminus']")
 	private WebElementFacade expandAllButton;
-	
+
 	@FindBy(xpath = "//div[@class='foatoolbar-minus']")
 	private WebElementFacade collapseAllButton;
-	
+
 	@FindBy(id = "benefit-counter-count")
 	private WebElementFacade benefitCounter;
 
@@ -117,10 +117,10 @@ public class DAPage extends PageObject {
 	private List<WebElementFacade> localResourcesResults;
 
 	private List<WebElementFacade> allElements = new ArrayList<WebElementFacade>();
-	
+
 	@FindBy(xpath = "//button[@title='Next']")
 	private WebElementFacade nextButtonFOA;
-	
+
 	@FindBy(xpath = "//button[@title='Back ']")
 	private WebElementFacade backButtonFOA;
 
@@ -310,6 +310,25 @@ public class DAPage extends PageObject {
 		}
 	}
 
+	/*************************************************************************
+	 * Verifies that Employment results and content are visible and appear under
+	 * the accordions.
+	 * 
+	 * @throws EmploymentException
+	 * 
+	 *************************************************************************/
+	public void verifyEmploymentVisibility() throws EmploymentException {
+		Iterator<WebElementFacade> FOAResultsIter = FOAResults.iterator();
+		Iterator<WebElementFacade> FOAExpandedResultsIter = FOAResults.iterator();
+		while (FOAResultsIter.hasNext() && FOAExpandedResultsIter.hasNext()) {
+			WebElementFacade result = FOAResultsIter.next();
+			WebElementFacade expandedResult = FOAExpandedResultsIter.next();
+			if (!result.isVisible() || !expandedResult.isVisible()) {
+				throw new EmploymentException("Employment results not visible");
+			}
+		}
+	}
+
 	public int numberOfLandingPageNodes() {
 		return landingPageNode.size();
 	}
@@ -339,7 +358,7 @@ public class DAPage extends PageObject {
 	}
 
 	public int getNumQuestionnaireResults() {
-		return Integer.parseInt(benefitCounter.getText());
+		return FOAResults.size();
 	}
 
 	public void clickEmploymentCheckbox() {
@@ -351,29 +370,29 @@ public class DAPage extends PageObject {
 	}
 
 	public int getNumEmploymentResults() {
-		return FOAResults.size();
+		return FOAExpandedResults.size();
 	}
-	
+
 	public void expandFOAResults() {
 		expandAllButton.click();
 	}
-	
+
 	public void collapseFOAResults() {
 		collapseAllButton.click();
 	}
-	
+
 	public int getNumExpandedQuestionnaireResults() {
 		return FOAExpandedResults.size();
 	}
-	
+
 	public void clickNextFOA() {
 		nextButtonFOA.click();
 	}
-	
+
 	public void clickBackFOA() {
 		backButtonFOA.click();
 	}
-	
+
 	public void lookUpLocation() {
 		localResourcesTextbox.sendKeys("New York, NY");
 	}
