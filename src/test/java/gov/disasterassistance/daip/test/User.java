@@ -273,4 +273,9 @@ public class User {
 	public void verifyIndividualAccordionContent() {
 		Assert.assertEquals(73, daPage.clickIndividualFOAs());
 	}
+	
+	@Step
+	public void seesFOAFooter() {
+		Assert.assertTrue(daPage.foaFooterIsVisible());
+	}
 }

@@ -117,6 +117,12 @@ public class DAPage extends PageObject {
 
 	@FindBy(xpath = "//button[@title='Back ']")
 	private WebElementFacade backButtonFOA;
+	
+	@FindBy(xpath = "//div[@id='qtr-footer-section']/div")
+	private List<WebElementFacade> FOAfooter;
+	
+	@FindBy(xpath = "//div[@class='checklist-accordion-button']")
+	private List<WebElementFacade> FOAChecklistAccordions;
 
 	private List<WebElementFacade> allElements = new ArrayList<WebElementFacade>();
 
@@ -388,13 +394,59 @@ public class DAPage extends PageObject {
 		}
 
 		return successCounter;
-
-		// And expand all the accordions
-		// Then I should see all of the content under the accordions
-		// When I close all of the accordions
-		// Then none of the accordion content should be visible
-		// And the 6 FOAs that everyone qualifies for should be visible under
-		// Additional Assistance and Resources
+	}
+	
+	/*************************************************************************
+	 * Returns true if you can see both of the buttons on the footer of
+	 * the FOA questionnaire page. Currently it is only looking for the next
+	 * and back buttons
+	 * 
+	 * @return true if the next and back buttons are visible
+	 *************************************************************************/
+	public boolean foaFooterIsVisible() {
+		Iterator<WebElementFacade> iter = FOAfooter.iterator();
+		int textMatchCounter = 0;
+		
+		while(iter.hasNext()) {
+			WebElement button = iter.next().findElement(By.tagName("button"));
+			if(button.isDisplayed()) {
+				textMatchCounter++;
+			}
+		}
+		
+		return (textMatchCounter == 2);
+	}
+	
+	/*************************************************************************
+	 * Opens and closes each accordion on the final page of the
+	 * questionnaire and returns the number of content sections it could see
+	 * 
+	 * @return number of content sections visible
+	 *************************************************************************/
+	public int numApplyOnlineFOAs() {
+		Iterator<WebElementFacade> iter = FOAChecklistAccordions.iterator();
+		int contentCounter = 0;
+		
+		while(iter.hasNext()) {
+			WebElementFacade accordion = iter.next();
+			
+			try {
+				accordion.click();
+			} catch (Exception e) {
+				this.evaluateJavascript("window.scrollTo(0,document.body.scrollHeight)"); // scroll to end of page
+				accordion.click();
+			}
+			
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
+			
+		}
+		
+		return contentCounter;
 	}
 
 	public int numberOfLandingPageNodes() {

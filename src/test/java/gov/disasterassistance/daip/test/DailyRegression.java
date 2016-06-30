@@ -213,4 +213,9 @@ public class DailyRegression {
 		user.verifyIndividualAccordionContent();
 	}
 	
+	@Then("the next and back buttons are displayed")
+	public void and_the_next_and_back_buttons_are_displayed() {
+		user.seesFOAFooter();
+	}
+	
 }
