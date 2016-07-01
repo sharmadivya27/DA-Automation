@@ -283,4 +283,24 @@ public class User {
 	public void seesFOAFooter() {
 		Assert.assertTrue(daPage.foaFooterIsVisible());
 	}
+	
+	@Step
+	public void clicksNextFOA() {
+		daPage.clickNextFOA();
+	}
+	
+	@Step
+	public void testsApplyOnlineAccordions() {
+		Assert.assertEquals(3, daPage.numApplyOnlineFOAs());
+	}
+	
+	@Step
+	public void clicksApplyOnline() {
+		daPage.clickApplyOnline();
+	}
+	
+	@Step
+	public void shouldSeeDAC() {
+		Assert.assertTrue(daPage.textCaptchaIsDisplayed());
+	}
 }

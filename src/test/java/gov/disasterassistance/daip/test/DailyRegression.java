@@ -223,4 +223,25 @@ public class DailyRegression {
 		user.seesFOAFooter();
 	}
 	
+	@When("I click next")
+	public void when_user_clicks_next() {
+		user.clicksNextFOA();
+	}
+	
+	@Then("the 3 accordions should expand, collapse, and have content visible when open")
+	public void then_the_3_accordions_expand_collapse_and_content_is_visible() {
+		user.testsApplyOnlineAccordions();
+	}
+	
+	@When("I click apply online") 
+	public void when_user_clicks_apply_online() {
+		user.clicksApplyOnline();
+	}
+	
+	@Then("the DAC page should load and Captcha should be displayed")
+	public void then_DAC_page_should_load_and_Captcha_is_Visible() {
+		user.shouldSeeDAC();
+	}
+	
+	
 }

@@ -120,10 +120,10 @@ public class DAPage extends PageObject {
 	@FindBy(xpath = "//button[@title='Back ']")
 	private WebElementFacade backButtonFOA;
 	
-	@FindBy(xpath = "//div[@id='qtr-footer-section']/div")
+	@FindBy(xpath = "//*[@class[contains(., 'qButton') and not(contains(., 'session'))]]")
 	private List<WebElementFacade> FOAfooter;
 	
-	@FindBy(xpath = "//div[@class='checklist-accordion-button']")
+	@FindBy(xpath = "//div[@class='accordionable' and @id]")
 	private List<WebElementFacade> FOAChecklistAccordions;
 
 	private List<WebElementFacade> allElements = new ArrayList<WebElementFacade>();
@@ -352,7 +352,6 @@ public class DAPage extends PageObject {
 	 * 
 	 * @return The number of FOAs it clicked and checked for content
 	 *************************************************************************/
-	// TODO Finish this story check print and email buttons
 	// TODO Clean this up somehow in the future
 	//	Find a way around using multiple thread.sleeps?
 	public int clickIndividualFOAs() {
@@ -410,14 +409,14 @@ public class DAPage extends PageObject {
 		int textMatchCounter = 0;
 		
 		while(iter.hasNext()) {
-			WebElement button = iter.next().findElement(By.tagName("button"));
-			if(button.isDisplayed()) {
+			if(iter.next().isDisplayed()) {
 				textMatchCounter++;
 			}
 		}
 		
-		return (textMatchCounter == 2);
+		return (textMatchCounter == 2 || textMatchCounter == 1);
 	}
+	
 	
 	/*************************************************************************
 	 * Opens and closes each accordion on the final page of the
@@ -445,6 +444,19 @@ public class DAPage extends PageObject {
 				e.printStackTrace();
 			}
 			
+			WebElement openContent = accordion.findElement(By.tagName("div"));
+			
+			if(openContent.isDisplayed()) {
+				contentCounter++;
+			}
+			
+			accordion.click();
+			
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 			
 		}
 		
@@ -461,7 +473,7 @@ public class DAPage extends PageObject {
 	 *************************************************************************/
 	public void verifyEmploymentVisibility() throws EmploymentException {
 		Iterator<WebElementFacade> FOAResultsIter = FOAResults.iterator();
-		Iterator<WebElementFacade> FOAExpandedResultsIter = FOAResults.iterator();
+		Iterator<WebElementFacade> FOAExpandedResultsIter = FOAExpandedResults.iterator();
 		while (FOAResultsIter.hasNext() && FOAExpandedResultsIter.hasNext()) {
 			WebElementFacade result = FOAResultsIter.next();
 			WebElementFacade expandedResult = FOAExpandedResultsIter.next();
@@ -538,4 +550,9 @@ public class DAPage extends PageObject {
 	public void lookUpLocation() {
 		localResourcesTextbox.sendKeys("New York, NY");
 	}
+	
+	public void clickApplyOnline() {
+		FOAfooter.get(FOAfooter.size() - 1).click();
+	}
+	
 }
