@@ -102,9 +102,6 @@ public class DAPage extends PageObject {
 	@FindBy(xpath = "//*[@id='svg2']")
 	private WebElementFacade disasterMap;
 
-	@FindBy(xpath = "//*[@class='timeline-TweetList-tweet customisable-border']")
-	private List<WebElementFacade> twitterFeed;
-
 	@FindBy(xpath = "//*[@id='block-twitter-block-1']")
 	private WebElementFacade twitterFeedBlock;
 
@@ -268,6 +265,8 @@ public class DAPage extends PageObject {
 	 * 
 	 *************************************************************************/
 	public void checkDisasterMap() throws StateException {
+		this.evaluateJavascript("arguments[0].scrollIntoView(true);", disasterMap);
+		
 		if (!disasterMap.isVisible()) {
 			throw new StateException("Disaster map not visible");
 		}
@@ -278,15 +277,18 @@ public class DAPage extends PageObject {
 	 * 
 	 *************************************************************************/
 	public void checkTwitterFeed() throws FeedException {
-		Iterator<WebElementFacade> feedIter = twitterFeed.iterator();
 		this.evaluateJavascript("window.scrollTo(0,document.body.scrollHeight)");
-		System.out.println(twitterFeed.size() + "");
-		if (twitterFeed.size() != 3) {
-			throw new FeedException("Expected: <3>, actual value: <" + twitterFeed.size() + ">");
+		
+		//NOTE(Chris):
+		//Have to switch iframe to see element could cause other issues (maybe)
+		List<WebElement> recentTweets = this.getDriver().switchTo().frame("twitter-widget-0").findElements(By.xpath("//ol[@class='timeline-TweetList']/li"));
+		Iterator<WebElement> twiterator = recentTweets.iterator();
+		
+		if(recentTweets.size() != 3) {
+			throw new FeedException("Expected: <3>, actual value: <" + recentTweets.size() + ">");
 		}
-		while (feedIter.hasNext()) {
-			WebElementFacade feed = feedIter.next();
-			if (!feed.isVisible()) {
+		while(twiterator.hasNext()) {
+			if (!twiterator.next().isDisplayed()) {
 				throw new FeedException("Twitter feed not visible");
 			}
 		}
