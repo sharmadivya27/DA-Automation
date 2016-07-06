@@ -436,7 +436,7 @@ public class DAPage extends PageObject {
 			try {
 				accordion.click();
 			} catch (Exception e) {
-				this.evaluateJavascript("window.scrollTo(0,document.body.scrollHeight)"); // scroll to end of page
+				this.evaluateJavascript("arguments[0].scrollIntoView(true);", accordion);
 				accordion.click();
 			}
 			
@@ -451,8 +451,6 @@ public class DAPage extends PageObject {
 			if(openContent.isDisplayed()) {
 				contentCounter++;
 			}
-			
-			accordion.click();
 			
 			try {
 				Thread.sleep(1000);
