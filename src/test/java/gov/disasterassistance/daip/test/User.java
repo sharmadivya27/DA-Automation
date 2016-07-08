@@ -61,28 +61,34 @@ public class User {
 
 		switch (expectedPageName) {
 		case "home":
+		case "inicio":
+		case "address look-up":
 			Assert.assertEquals(true, daPage.addressLookupIsDisplayed());
 			break;
 
 		case "get assistance":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-
 		case "information":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-
 		case "about us":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-
 		case "help":
+		case "application checklist":
+		case "forms":
+		case "news feeds":
+		case "immediate needs":
+		case "moving forward":
+		case "community resources":
+		case "disabilities or access and functional needs":
+		case "older americans":
+		case "children and families":
+		case "disaster types":
+		case "foreign disasters":
+		case "fact sheets":
+		case "overview":
+		case "partners":
+		case "contact us":
+		case "privacy policy":
+		case "accessibility":
+		case "download plug-ins":
 			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-
-		// Get Assistance parent node
-		case "address look-up":
-			Assert.assertEquals(true, daPage.addressLookupIsDisplayed());
 			break;
 
 		case "find assistance":
@@ -105,83 +111,11 @@ public class User {
 			Assert.assertEquals(14, daPage.getNumberAccordions());
 			break;
 
-		case "application checklist":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-
-		case "forms":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-
-		// Information parent node
-		case "news feeds":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-
-		case "immediate needs":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-
-		case "moving forward":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-
-		case "community resources":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-
-		case "disabilities or access and functional needs":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-
-		case "older americans":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-
-		case "children and families":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-
-		case "disaster types":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-
-		case "foreign disasters":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-
-		case "fact sheets":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-
-		// About us parent node
-		case "overview":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-
-		case "partners":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-
+		
+		
 		// Help parent node
 		case "faqs":
 			Assert.assertEquals(27, daPage.getNumberAccordions());
-			break;
-
-		case "contact us":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-
-		case "privacy policy":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-
-		case "accessibility":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-
-		case "download plug-ins":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
 			break;
 
 		default:
@@ -189,6 +123,12 @@ public class User {
 			break;
 
 		} // end switch
+		
+//		|inicio|0|
+//		|obtener asistencia|9|
+//		|información|9|
+//		|acerca de|2|
+//		|ayuda|5|
 	}
 
 	@Step
