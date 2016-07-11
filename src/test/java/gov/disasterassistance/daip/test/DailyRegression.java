@@ -27,6 +27,11 @@ public class DailyRegression {
 	public void given_I_am_on_the_disaster_assistance_homepage() {
 		user.open_home_page();
 	}
+	
+	@Given("I am on the spanish Disaster Assistance homepage")
+	public void given_I_am_on_the_spanish_disaster_assistance_homepage() {
+		user.open_page("/es");
+	}
 
 	@When("I click on <navMenuItem> within the top navigation bar")
 	public void when_I_click_on_each_link_in_the_top_navigation_bar(@Named("navMenuItem") String navMenuItem) {
@@ -47,7 +52,7 @@ public class DailyRegression {
 	//Scenario: Verify all of the nodes on the "Get Assistance" landing page
 	@Given("I am on the Get Assistance landing page")
 	public void given_I_am_on_the_Get_Assistance_landing_page() {
-		user.open_page("https://www.disasterassistance.gov/get-assistance");
+		user.open_page("/get-assistance");
 	}
 
 	@When("I click on the <landingPageNode> landing page node")
@@ -64,7 +69,7 @@ public class DailyRegression {
 	//Scenario: Verify all of the nodes on the "Information" landing page
 	@Given("I am on the Information landing page")
 	public void given_I_am_on_the_Information_landing_page() {
-		user.open_page("https://www.disasterassistance.gov/information");
+		user.open_page("/information");
 	}
 
 	// when see above
@@ -74,7 +79,7 @@ public class DailyRegression {
 	//Scenario: Verify all of the nodes on the "About Us" landing page
 	@Given("I am on the About Us landing page")
 	public void given_I_am_on_the_About_Us_landing_page() {
-		user.open_page("https://www.disasterassistance.gov/about-us");
+		user.open_page("/about-us");
 	}
 
 	// when see above
@@ -83,7 +88,7 @@ public class DailyRegression {
 	//Scenario: Verify all of the nodes on the "Help" landing page
 	@Given("I am on the Help landing page")
 	public void given_I_am_on_the_Help_landing_page() {
-		user.open_page("https://www.disasterassistance.gov/help");
+		user.open_page("/help");
 	}
 
 	// when see above
@@ -93,7 +98,7 @@ public class DailyRegression {
 	//Scenario: Verify results of the questionnaire on the "Find Assistance" page
 	@Given("I am on the Find Assistance page")
 	public void given_I_am_on_the_Find_Assistance_page() {
-		user.open_page("https://www.disasterassistance.gov/get-assistance/find-assistance");
+		user.open_page("/get-assistance/find-assistance");
 	}
 
 	@When("I fully complete the questionnaire")
@@ -127,7 +132,7 @@ public class DailyRegression {
 	
 	@Given("I am on the Assistance by Federal Agency page")
 	public void given_I_am_on_the_Assistance_by_Federal_Agency_page() {
-		user.open_page("https://www.disasterassistance.gov/get-assistance/assistance-by-federal-agency");
+		user.open_page("/get-assistance/assistance-by-federal-agency");
 	}
 	@When("I check on each Federal Agency accordion")
 	public void when_I_check_each_Federal_Agency_accordion() {

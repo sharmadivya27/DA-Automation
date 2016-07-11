@@ -28,9 +28,9 @@ public class User {
 	}
 
 	@Step
-	public void open_page(String url) {
+	public void open_page(String directoryPath) {
 		daPage.clearCookies();
-		daPage.openAt(url);
+		daPage.openAt(daPage.defaultUrl + directoryPath);
 	}
 
 	@Step
@@ -123,12 +123,6 @@ public class User {
 			break;
 
 		} // end switch
-		
-//		|inicio|0|
-//		|obtener asistencia|9|
-//		|información|9|
-//		|acerca de|2|
-//		|ayuda|5|
 	}
 
 	@Step
