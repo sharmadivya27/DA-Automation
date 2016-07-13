@@ -143,6 +143,12 @@ public class User {
 	}
 	
 	@Step
+	public void getSpanishEmploymentResults() {
+		daPage.clickSpanishEmploymentCheckbox();
+		daPage.getFOAResultsPage();
+	}
+	
+	@Step
 	public void verifyEmploymentResultsandVisibility() throws EmploymentException {
 		Assert.assertEquals(9, daPage.getNumEmploymentResults());
 		daPage.verifyEmploymentVisibility();
@@ -206,6 +212,11 @@ public class User {
 	@Step
 	public void verifyNumberOfAdditionalFOA() {
 		Assert.assertEquals(6, daPage.getNumAdditionalFOA());
+	}
+	
+	@Step
+	public void verifyNumberOfAdditionalSpanishFOA() {
+		Assert.assertEquals(6, daPage.getNumAdditionalSpanishFOA());
 	}
 	
 	@Step
