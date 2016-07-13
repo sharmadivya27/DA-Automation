@@ -28,8 +28,8 @@ public class DailyRegression {
 		user.open_home_page();
 	}
 	
-	@Given("I am on the spanish Disaster Assistance homepage")
-	public void given_I_am_on_the_spanish_disaster_assistance_homepage() {
+	@Given("I am on the Spanish Disaster Assistance homepage")
+	public void given_I_am_on_the_Spanish_disaster_assistance_homepage() {
 		user.open_page("/es");
 	}
 
@@ -55,6 +55,11 @@ public class DailyRegression {
 		user.open_page("/get-assistance");
 	}
 
+	@Given("I am on the Get Assistance Spanish landing page")
+	public void given_I_am_on_the_Get_Assistance_Spanish_landing_page() {
+		user.open_page("/es/obtener-asistencia");
+	}
+	
 	@When("I click on the <landingPageNode> landing page node")
 	public void when_I_click_on_the_landing_page_node(@Named("landingPageNode") String landingPageNode) {
 		user.clickNavNode(landingPageNode);
@@ -71,7 +76,11 @@ public class DailyRegression {
 	public void given_I_am_on_the_Information_landing_page() {
 		user.open_page("/information");
 	}
-
+	
+	@Given("I am on the Information Spanish landing page")
+	public void given_I_am_on_the_Information_Spanish_landing_page() {
+		user.open_page("/es/información");
+	}
 	// when see above
 	// then see above
 
@@ -81,7 +90,11 @@ public class DailyRegression {
 	public void given_I_am_on_the_About_Us_landing_page() {
 		user.open_page("/about-us");
 	}
-
+	
+	@Given("I am on the About Us Spanish landing page")
+	public void given_I_am_on_the_About_Us_Spanish_landing_page() {
+		user.open_page("/es/acerca-de");
+	}
 	// when see above
 	// then see above
 
@@ -90,7 +103,11 @@ public class DailyRegression {
 	public void given_I_am_on_the_Help_landing_page() {
 		user.open_page("/help");
 	}
-
+	
+	@Given("I am on the Help Spanish landing page")
+	public void given_I_am_on_the_Help_Spanish_landing_page() {
+		user.open_page("/es/ayuda");
+	}
 	// when see above
 	// then see above
 	
@@ -99,6 +116,11 @@ public class DailyRegression {
 	@Given("I am on the Find Assistance page")
 	public void given_I_am_on_the_Find_Assistance_page() {
 		user.open_page("/get-assistance/find-assistance");
+	}
+
+	@Given("I am on the Find Assistance Spanish page")
+	public void given_I_am_on_the_Find_Assistance_Spanish_page() {
+		user.open_page("/es/obtener-asistencia/encuentre-asistencia");
 	}
 
 	@When("I fully complete the questionnaire")
@@ -122,18 +144,30 @@ public class DailyRegression {
 		user.getEmploymentResults();
 		user.clickExpandAll();
 	}
-
+	
+	@When("I choose only Empleo and expand all the accordions")
+	public void when_I_choose_only_Empleo_and_expand_all_the_accordions() {
+		user.getSpanishEmploymentResults();
+		user.clickExpandAll();
+	}
+	
 	@Then("I should obtain 9 results and see all the content under the accordions")
 	public void then_I_should_obtain_9_results_and_see_all_the_content_under_the_accordions() throws EmploymentException {
 		user.verifyEmploymentResultsandVisibility();
 	}
 	
-	//Scenario: Verify benefits results display according to use cases page
+	//Scenario: Verify benefits on Assistance by Federal Agency page
 	
 	@Given("I am on the Assistance by Federal Agency page")
 	public void given_I_am_on_the_Assistance_by_Federal_Agency_page() {
 		user.open_page("/get-assistance/assistance-by-federal-agency");
 	}
+	
+	@Given("I am on the Assistance by Federal Agency Spanish page")
+	public void given_I_am_on_the_Assistance_by_Federal_Agency_Spanish_page() {
+		user.open_page("/es/obtener-asistencia/asistencia-por-agencia-federal");
+	}
+	
 	@When("I check on each Federal Agency accordion")
 	public void when_I_check_each_Federal_Agency_accordion() {
 		
@@ -144,7 +178,7 @@ public class DailyRegression {
 		user.checkFederalBenefits();
 	}
 	
-	//Scenario: Verify benefits results display according to use cases page
+	//Scenario: Verify disaster map is visible
 	
 	//Given see above
 	
@@ -216,6 +250,11 @@ public class DailyRegression {
 	@Then("the 6 FOAs that everyone qualifies for should be visible under Additional Assistance and Resources")
 	public void and_6_foas_should_be_visible_under_Additional_Assistance_Resources() {
 		user.verifyNumberOfAdditionalFOA();
+	}
+	
+	@Then("the 6 Spanish FOAs that everyone qualifies for should be visible under Additional Assistance and Resources")
+	public void and_6_Spanish_foas_should_be_visible_under_Additional_Assistance_Resources() {
+		user.verifyNumberOfAdditionalSpanishFOA();
 	}
 	
 	@Then("each FOA should expand and collapse individually")

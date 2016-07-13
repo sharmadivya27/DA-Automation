@@ -351,6 +351,36 @@ public class DAPage extends PageObject {
 	}
 
 	/*************************************************************************
+	 * Returns the number of FOAs that match with the expected list.
+	 * 
+	 * @return Number of FOA titles that match with the given list
+	 *************************************************************************/
+	public int getNumAdditionalSpanishFOA() {
+		String[] additionalFOATitles = {
+				"Centros de Recuperación de Desastres (DRC) / Localizador de DRC",
+				"Indemnización Estatal para Víctimas del Crimen",
+				"Información de Asistencia para Desastres de la Administración de Servicios para el Abuso de Sustancias y Enfermedades Mentales (SAMHSA)",
+				"Programa de Reembolso de Gastos a las Víctimas del Terrorismo Internacional (ITVERP, por sus siglas en inglés)", 
+				"Seguro Hipotecario para Víctimas de Desastres - Sección 203(h) y Seguro Hipotecario para Rehabilitación - Sección 203(k)",
+				"Reemplazo y Liquidación de Bonos de Ahorros" };
+
+		int foaCounter = 0;
+
+		Iterator<WebElementFacade> iter = autoFOAs.iterator();
+		while (iter.hasNext()) {
+			String foaTitle = iter.next().getText();
+			for (int i = 0; i < additionalFOATitles.length; i++) {
+				if (additionalFOATitles[i].equals(foaTitle)) {
+					foaCounter++;
+					break;
+				}
+			}
+		}
+
+		return foaCounter;
+	}
+
+	/*************************************************************************
 	 * Expands and collapses individual FOAs while also making sure the content
 	 * is displayed in each.
 	 * 
@@ -521,6 +551,10 @@ public class DAPage extends PageObject {
 		getQuestionnaireButton("Employment").click();
 	}
 
+	public void clickSpanishEmploymentCheckbox() {
+		getQuestionnaireButton("Empleo").click();
+	}
+	
 	public void getFOAResultsPage() {
 		benefitCounter.click();
 	}
