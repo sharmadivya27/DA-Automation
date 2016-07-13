@@ -574,13 +574,19 @@ public class DAPage extends PageObject {
 	public int getNumExpandedQuestionnaireResults() {
 		return FOAExpandedResults.size();
 	}
+	
+	public List<WebElement> getFOAFooter() {
+		return this.getDriver().findElements(org.openqa.selenium.By.xpath("//*[@class[contains(., 'qButton') and not(contains(., 'session'))]]"));
+	}
 
 	public void clickNextFOA() {
-		nextButtonFOA.click();
+		List<WebElement> footer = getFOAFooter();
+		footer.get(footer.size()-1).click();
 	}
 
 	public void clickBackFOA() {
-		backButtonFOA.click();
+		List<WebElement> footer = getFOAFooter();
+		footer.get(0).click();
 	}
 
 	public void lookUpLocation() {
