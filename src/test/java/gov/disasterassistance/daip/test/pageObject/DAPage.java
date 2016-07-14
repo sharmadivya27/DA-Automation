@@ -113,12 +113,6 @@ public class DAPage extends PageObject {
 	@FindBy(xpath = "//*[@class='location-item clickable']")
 	private List<WebElementFacade> localResourcesResults;
 
-	@FindBy(xpath = "//button[@title='Next']")
-	private WebElementFacade nextButtonFOA;
-
-	@FindBy(xpath = "//button[@title='Back ']")
-	private WebElementFacade backButtonFOA;
-	
 	@FindBy(xpath = "//*[@class[contains(., 'qButton') and not(contains(., 'session'))]]")
 	private List<WebElementFacade> FOAfooter;
 	
@@ -281,13 +275,15 @@ public class DAPage extends PageObject {
 	public void checkTwitterFeed() throws FeedException {
 		this.evaluateJavascript("window.scrollTo(0,document.body.scrollHeight)");
 		
+		int expected = 3;
+		
 		//NOTE(Chris):
 		//Have to switch iframe to see element could cause other issues (maybe)
 		List<WebElement> recentTweets = this.getDriver().switchTo().frame("twitter-widget-0").findElements(By.xpath("//ol[@class='timeline-TweetList']/li"));
 		Iterator<WebElement> twiterator = recentTweets.iterator();
 		
-		if(recentTweets.size() != 3) {
-			throw new FeedException("Expected: <3>, actual value: <" + recentTweets.size() + ">");
+		if(recentTweets.size() != expected) {
+			throw new FeedException("Expected: <" + expected + ">, actual value: <" + recentTweets.size() + ">");
 		}
 		while(twiterator.hasNext()) {
 			if (!twiterator.next().isDisplayed()) {
