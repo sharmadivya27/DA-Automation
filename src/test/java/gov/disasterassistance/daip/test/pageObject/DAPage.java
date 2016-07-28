@@ -27,7 +27,7 @@ import net.thucydides.core.annotations.DefaultUrl;
  *************************************************************************/
 @DefaultUrl("http://www.disasterassistance.gov")
 public class DAPage extends PageObject {
-	
+
 	public String defaultUrl = "http://www.disasterassistance.gov";
 
 	public DAPage(WebDriver driver) {
@@ -39,7 +39,6 @@ public class DAPage extends PageObject {
 	public void clearCookies() {
 		this.getDriver().manage().deleteAllCookies();
 	}
-
 
 	// *************************************************************************
 	// FindBy / private variables section
@@ -95,6 +94,13 @@ public class DAPage extends PageObject {
 	@FindBy(xpath = "//div[@id='landing-page-container']/a")
 	private List<WebElementFacade> landingPageNode;
 
+//	@FindBy(xpath = "//div//ul//li//a[@class='print-email-search-icon']")
+	@FindBy(xpath = "//div//ul//li//a[@class='print-email-search-icon' and @id='check_status_icon']")
+	private List<WebElementFacade> quickLinks;
+
+	@FindBy(id = "//*[@id='email-icon']")
+	private WebElementFacade emailQuickLink;
+
 	@FindBy(xpath = "//*[@class='state selected single-state-group']")
 	private List<WebElementFacade> disasterStates;
 
@@ -115,7 +121,7 @@ public class DAPage extends PageObject {
 
 	@FindBy(xpath = "//*[@class[contains(., 'qButton') and not(contains(., 'session'))]]")
 	private List<WebElementFacade> FOAfooter;
-	
+
 	@FindBy(xpath = "//div[@class='accordionable' and @id]")
 	private List<WebElementFacade> FOAChecklistAccordions;
 
@@ -153,6 +159,33 @@ public class DAPage extends PageObject {
 	}
 
 	/*************************************************************************
+	 * Searches through the quick links to find the element with the same name
+	 * that was passed. Once it finds the link it will click on the button.
+	 * 
+	 * @param link
+	 *            : Name of the link to be clicked on
+	 *************************************************************************/
+
+	public void clickQuickLink(String link) {
+		allElements.clear();
+		allElements.addAll(quickLinks);
+		allElements.add(emailQuickLink);
+
+		Iterator<WebElementFacade> iter = allElements.iterator();
+		WebElementFacade element = null;
+		while (iter.hasNext()) {
+			WebElementFacade tempElement = iter.next();
+			String tempTitle = tempElement.getText();
+
+			if (tempTitle.toLowerCase().contains(link)) {
+				element = tempElement;
+				break;
+			}
+		}
+		element.click();
+	}
+
+	/*************************************************************************
 	 * Completes the entire FOA questionnaire checking every box, saying yes to
 	 * every question, and picking a state.
 	 * 
@@ -162,7 +195,7 @@ public class DAPage extends PageObject {
 		while (iter.hasNext()) {
 			WebElementFacade temp = iter.next();
 			temp.click();
-			this.evaluateJavascript("window.scrollBy(0,50)");
+			this.evaluateJavascript("window.scrollBy(0,50)", "");
 		}
 		stateSelector.sendKeys("Alabama");
 
@@ -262,7 +295,7 @@ public class DAPage extends PageObject {
 	 *************************************************************************/
 	public void checkDisasterMap() throws StateException {
 		this.evaluateJavascript("arguments[0].scrollIntoView(true);", disasterMap);
-		
+
 		if (!disasterMap.isVisible()) {
 			throw new StateException("Disaster map not visible");
 		}
@@ -274,18 +307,19 @@ public class DAPage extends PageObject {
 	 *************************************************************************/
 	public void checkTwitterFeed() throws FeedException {
 		this.evaluateJavascript("window.scrollTo(0,document.body.scrollHeight)");
-		
+
 		int expected = 3;
-		
-		//NOTE(Chris):
-		//Have to switch iframe to see element could cause other issues (maybe)
-		List<WebElement> recentTweets = this.getDriver().switchTo().frame("twitter-widget-0").findElements(By.xpath("//ol[@class='timeline-TweetList']/li"));
+
+		// NOTE(Chris):
+		// Have to switch iframe to see element could cause other issues (maybe)
+		List<WebElement> recentTweets = this.getDriver().switchTo().frame("twitter-widget-0")
+				.findElements(By.xpath("//ol[@class='timeline-TweetList']/li"));
 		Iterator<WebElement> twiterator = recentTweets.iterator();
-		
-		if(recentTweets.size() != expected) {
+
+		if (recentTweets.size() != expected) {
 			throw new FeedException("Expected: <" + expected + ">, actual value: <" + recentTweets.size() + ">");
 		}
-		while(twiterator.hasNext()) {
+		while (twiterator.hasNext()) {
 			if (!twiterator.next().isDisplayed()) {
 				throw new FeedException("Twitter feed not visible");
 			}
@@ -352,11 +386,10 @@ public class DAPage extends PageObject {
 	 * @return Number of FOA titles that match with the given list
 	 *************************************************************************/
 	public int getNumAdditionalSpanishFOA() {
-		String[] additionalFOATitles = {
-				"Centros de Recuperación de Desastres (DRC) / Localizador de DRC",
+		String[] additionalFOATitles = { "Centros de Recuperación de Desastres (DRC) / Localizador de DRC",
 				"Indemnización Estatal para Víctimas del Crimen",
 				"Información de Asistencia para Desastres de la Administración de Servicios para el Abuso de Sustancias y Enfermedades Mentales (SAMHSA)",
-				"Programa de Reembolso de Gastos a las Víctimas del Terrorismo Internacional (ITVERP, por sus siglas en inglés)", 
+				"Programa de Reembolso de Gastos a las Víctimas del Terrorismo Internacional (ITVERP, por sus siglas en inglés)",
 				"Seguro Hipotecario para Víctimas de Desastres - Sección 203(h) y Seguro Hipotecario para Rehabilitación - Sección 203(k)",
 				"Reemplazo y Liquidación de Bonos de Ahorros" };
 
@@ -383,22 +416,26 @@ public class DAPage extends PageObject {
 	 * @return The number of FOAs it clicked and checked for content
 	 *************************************************************************/
 	// TODO Clean this up somehow in the future
-	//	Find a way around using multiple thread.sleeps?
+	// Find a way around using multiple thread.sleeps?
 	public int clickIndividualFOAs() {
 
 		int successCounter = 0;
 		Iterator<WebElementFacade> foaIter = FOAResults.iterator();
 		while (foaIter.hasNext()) {
 			WebElementFacade foa = foaIter.next();
-			
-			//TODO find a better and more succinct way to write this
+			System.out.println(foa.getText());
+			// TODO find a better and more succinct way to write this
 			this.evaluateJavascript("window.scrollTo(0," + foa.getLocation().getY() + "); "
 					+ "window.scrollBy(0, -(window.screen.availHeight / 2))");
 
 			try {
 				foa.click();
 			} catch (Exception e) {
-				this.evaluateJavascript("window.scrollTo(0,document.body.scrollHeight)"); // scroll to end of page
+				this.evaluateJavascript("window.scrollTo(0,document.body.scrollHeight)"); // scroll
+																							// to
+																							// end
+																							// of
+																							// page
 				foa.click();
 			}
 
@@ -406,6 +443,10 @@ public class DAPage extends PageObject {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
+			}
+
+			if (successCounter == 73) {
+				break;
 			}
 
 			WebElement openContent = this.getDriver().findElement(
@@ -426,72 +467,71 @@ public class DAPage extends PageObject {
 
 		return successCounter;
 	}
-	
+
 	/*************************************************************************
-	 * Returns true if you can see both of the buttons on the footer of
-	 * the FOA questionnaire page. Currently it is only looking for the next
-	 * and back buttons
+	 * Returns true if you can see both of the buttons on the footer of the FOA
+	 * questionnaire page. Currently it is only looking for the next and back
+	 * buttons
 	 * 
 	 * @return true if the next and back buttons are visible
 	 *************************************************************************/
 	public boolean foaFooterIsVisible() {
 		Iterator<WebElementFacade> iter = FOAfooter.iterator();
 		int textMatchCounter = 0;
-		
-		while(iter.hasNext()) {
-			if(iter.next().isDisplayed()) {
+
+		while (iter.hasNext()) {
+			if (iter.next().isDisplayed()) {
 				textMatchCounter++;
 			}
 		}
-		
+
 		return (textMatchCounter == 2 || textMatchCounter == 1);
 	}
-	
-	
+
 	/*************************************************************************
-	 * Opens and closes each accordion on the final page of the
-	 * questionnaire and returns the number of content sections it could see
+	 * Opens and closes each accordion on the final page of the questionnaire
+	 * and returns the number of content sections it could see
 	 * 
 	 * @return number of content sections visible
 	 *************************************************************************/
 	public int numApplyOnlineFOAs() {
 		Iterator<WebElementFacade> iter = FOAChecklistAccordions.iterator();
 		int contentCounter = 0;
-		
-		while(iter.hasNext()) {
+
+		while (iter.hasNext()) {
 			WebElementFacade accordion = iter.next();
-			
+
 			try {
 				accordion.click();
 			} catch (Exception e) {
 				this.evaluateJavascript("arguments[0].scrollIntoView(true);", accordion);
 				accordion.click();
 			}
-			
+
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			
+
 			WebElement openContent = accordion.findElement(By.tagName("div"));
-			
-			if(openContent.isDisplayed()) {
+
+			if (openContent.isDisplayed()) {
 				contentCounter++;
 			}
-			
+
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			
+
 		}
-		
+
 		return contentCounter;
-		
+
 	}
-	
+
 	/*************************************************************************
 	 * Verifies that Employment results and content are visible and appear under
 	 * the accordions.
@@ -550,7 +590,7 @@ public class DAPage extends PageObject {
 	public void clickSpanishEmploymentCheckbox() {
 		getQuestionnaireButton("Empleo").click();
 	}
-	
+
 	public void getFOAResultsPage() {
 		benefitCounter.click();
 	}
@@ -570,14 +610,15 @@ public class DAPage extends PageObject {
 	public int getNumExpandedQuestionnaireResults() {
 		return FOAExpandedResults.size();
 	}
-	
+
 	public List<WebElement> getFOAFooter() {
-		return this.getDriver().findElements(org.openqa.selenium.By.xpath("//*[@class[contains(., 'qButton') and not(contains(., 'session'))]]"));
+		return this.getDriver().findElements(
+				org.openqa.selenium.By.xpath("//*[@class[contains(., 'qButton') and not(contains(., 'session'))]]"));
 	}
 
 	public void clickNextFOA() {
 		List<WebElement> footer = getFOAFooter();
-		footer.get(footer.size()-1).click();
+		footer.get(footer.size() - 1).click();
 	}
 
 	public void clickBackFOA() {
@@ -588,9 +629,9 @@ public class DAPage extends PageObject {
 	public void lookUpLocation() {
 		localResourcesTextbox.sendKeys("New York, NY");
 	}
-	
+
 	public void clickApplyOnline() {
 		FOAfooter.get(FOAfooter.size() - 1).click();
 	}
-	
+
 }

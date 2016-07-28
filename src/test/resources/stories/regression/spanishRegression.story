@@ -108,7 +108,7 @@ Then the number of benefits should match with its count
 
 Scenario: Verify all the functionality of the FOA Spanish questionnaire
 Meta:
-
+@skip
 Given I am on the Find Assistance Spanish page
 When I fully complete the questionnaire
 And expand all the accordions

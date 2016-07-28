@@ -39,6 +39,11 @@ public class User {
 	}
 
 	@Step
+	public void clickQuickLink(String quickLink) {
+		daPage.clickQuickLink(quickLink);
+	}
+	
+	@Step
 	public void shouldSeeLandingPageNodes(short expected) {
 		Assert.assertEquals(expected, daPage.numberOfLandingPageNodes());
 	}
@@ -117,7 +122,9 @@ public class User {
 		case "faqs":
 			Assert.assertEquals(27, daPage.getNumberAccordions());
 			break;
-
+		case "emails":
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
+			break;
 		default:
 			System.err.println("INVALID PAGE SENT");
 			break;

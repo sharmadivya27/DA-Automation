@@ -21,6 +21,18 @@ Examples:
 |about us|2|
 |help|5|
 
+Scenario: Verify all of the quick links to assert that the pages open correctly
+Meta:
+
+Given I am on the Disaster Assistance homepage
+When I click on <quickLinkItem> within the quick links bar
+Then the <quickLinkItem> page should open correctly
+
+Examples:
+|quickLinkItem|
+|check status|
+|email|
+
 Scenario: Verify all of the nodes on the "Get Assistance" landing page
 Meta:
 @skip
@@ -36,6 +48,7 @@ Examples:
 |check your status|
 |assistance by category|
 |assistance by federal agency|
+|other recovery help|
 |application checklist|
 |forms|
 
@@ -108,7 +121,7 @@ Then the number of benefits should match with its count
 
 Scenario: Verify all the functionality of the FOA questionnaire
 Meta:
-
+@skip
 Given I am on the Find Assistance page
 When I fully complete the questionnaire
 And expand all the accordions
