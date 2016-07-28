@@ -48,7 +48,19 @@ public class DailyRegression {
 		user.shouldSeeLandingPageNodes(numNodes);
 	}
 
-	
+	//Scenario: Verify all of the quick links to assert that the pages open correctly
+	//given see above
+
+	@When("I click on <quickLinkItem> within the quick links bar")
+	public void when_I_click_on_each_quicklink_in_the_quick_links_bar(@Named("quickLinkItem") String quickLinkItem) {
+		user.clickQuickLink(quickLinkItem);
+	}
+
+	@Then("the <quickLinkItem> page should open correctly")
+	public void then_the_quicklink_page_should_open_correctly(@Named("quickLinkItem") String quickLinkItem) {
+		user.shouldSeePage(quickLinkItem);
+	}
+
 	//Scenario: Verify all of the nodes on the "Get Assistance" landing page
 	@Given("I am on the Get Assistance landing page")
 	public void given_I_am_on_the_Get_Assistance_landing_page() {
