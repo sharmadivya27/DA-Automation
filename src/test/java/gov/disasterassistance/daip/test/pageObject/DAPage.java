@@ -94,12 +94,8 @@ public class DAPage extends PageObject {
 	@FindBy(xpath = "//div[@id='landing-page-container']/a")
 	private List<WebElementFacade> landingPageNode;
 
-//	@FindBy(xpath = "//div//ul//li//a[@class='print-email-search-icon']")
-	@FindBy(xpath = "//div//ul//li//a[@class='print-email-search-icon' and @id='check_status_icon']")
+	@FindBy(xpath = "//div//ul//li//a[@class='print-email-search-icon' or @class='print-mail print-email-search-icon']")
 	private List<WebElementFacade> quickLinks;
-
-	@FindBy(id = "//*[@id='email-icon']")
-	private WebElementFacade emailQuickLink;
 
 	@FindBy(xpath = "//*[@class='state selected single-state-group']")
 	private List<WebElementFacade> disasterStates;
@@ -169,7 +165,6 @@ public class DAPage extends PageObject {
 	public void clickQuickLink(String link) {
 		allElements.clear();
 		allElements.addAll(quickLinks);
-		allElements.add(emailQuickLink);
 
 		Iterator<WebElementFacade> iter = allElements.iterator();
 		WebElementFacade element = null;

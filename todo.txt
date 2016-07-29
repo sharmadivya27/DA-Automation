@@ -1,0 +1,15 @@
+- Add in "Other Recovery Help" to the get assistance tab scenario 
+- Add scenario for checking all the quicklinks on the homepage at the top
+~ Change sub-tab story to click on sub tab link through top nav instead of going through the landing page
+- Add in waits in places it commonly fails
+      * twitter feed
+      * most assertions that load a new page
+      * expanding 3 accordions on last page before DAC
+      * on the actual DAC page
+      * local resources to take screen shot
+      * other possibles...
+      
+- Add scenario for three big buttons on the homepage
+- Add ability to easily change from prod to staging
+- create bug for inconsistency after adding wait time (I'll do this if the waits don't fix the inconsistency
+- On index.html results page, clean up the language that displays (will get more input from others)

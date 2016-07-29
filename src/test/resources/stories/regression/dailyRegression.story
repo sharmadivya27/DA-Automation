@@ -32,7 +32,7 @@ Examples:
 |quickLinkItem|
 |find assistance|
 |apply online|
-|check status|
+|check your status|
 |email|
 
 Scenario: Verify the main links on homepage to assert that the pages open correctly
