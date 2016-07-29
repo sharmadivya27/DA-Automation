@@ -7,7 +7,7 @@ I want to run the daily regressions at least twice a day
 
 Scenario: Verify all of the navbar tabs to assert that the Spanish pages open correctly
 Meta:
-
+@skip
 Given I am on the Spanish Disaster Assistance homepage
 When I click on <navMenuItem> within the top navigation bar
 Then the <navMenuItem> page should open correctly
@@ -23,7 +23,7 @@ Examples:
 
 Scenario: Verify all of the nodes on the "Get Assistance" Spanish landing page
 Meta:
-
+@skip
 Given I am on the Get Assistance Spanish landing page
 When I click on the <landingPageNode> landing page node
 Then the <landingPageNode> page should open correctly
@@ -41,7 +41,7 @@ Examples:
 
 Scenario: Verify all of the nodes on the "Information" Spanish landing page
 Meta:
-
+@skip
 Given I am on the Information Spanish landing page
 When I click on the <landingPageNode> landing page node
 Then the <landingPageNode> page should open correctly
@@ -60,7 +60,7 @@ Examples:
 
 Scenario: Verify all of the nodes on the "About Us" Spanish landing page
 Meta:
-
+@skip
 Given I am on the About Us Spanish landing page
 When I click on the <landingPageNode> landing page node
 Then the <landingPageNode> page should open correctly
@@ -72,7 +72,7 @@ Examples:
 
 Scenario: Verify all of the nodes on the "Help" Spanish landing page
 Meta:
-
+@skip
 Given I am on the Help Spanish landing page
 When I click on the <landingPageNode> landing page node
 Then the <landingPageNode> page should open correctly
@@ -87,21 +87,21 @@ Examples:
 
 Scenario: Verify results of the questionnaire on the "Find Assistance" Spanish page
 Meta:
-
+@skip
 Given I am on the Find Assistance Spanish page
 When I fully complete the questionnaire
 Then I should accumulate 73 results
 
 Scenario: Verify Spanish benefits results display according to use cases
 Meta:
-
+@skip
 Given I am on the Find Assistance Spanish page
 When I choose only Empleo and expand all the accordions
 Then I should obtain 9 results and see all the content under the accordions
 
 Scenario: Verify the number of Federal Agencies and their benefits in Spanish
 Meta:
-
+@skip
 Given I am on the Assistance by Federal Agency Spanish page
 When I check on each Federal Agency accordion
 Then the number of benefits should match with its count
@@ -125,21 +125,21 @@ Then the DAC page should load and Captcha should be displayed
 
 Scenario: Verify states in the Spanish declared disaster map are clickable
 Meta:
-
+@skip
 Given I am on the Spanish Disaster Assistance homepage
 When I am viewing the declared disaster map
 Then states with disasters should be clickable
 
 Scenario: Verify that the FEMA Twitter feed is present on the Spanish homepage
 Meta:
-
+@skip
 Given I am on the Spanish Disaster Assistance homepage
 When I am viewing the FEMA Twitter feed
 Then the most recent tweets should be displayed
 
 Scenario: Verify Local Resources flows correctly on the Spanish homepage
 Meta:
-
+@skip
 Given I am on the Spanish Disaster Assistance homepage
 When I am attempting to find local resources
 Then information on resources should be visible
