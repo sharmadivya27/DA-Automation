@@ -186,6 +186,32 @@ public class DAPage extends PageObject {
 	}
 
 	/*************************************************************************
+	 * Searches through the main links to find the element with the same name
+	 * that was passed. Once it finds the link it will click on the button.
+	 * 
+	 * @param link
+	 *            : Name of the link to be clicked on
+	 *************************************************************************/
+
+	public void clickMainLink(String link) {
+		allElements.clear();
+		allElements.addAll(quickLinks);
+
+		Iterator<WebElementFacade> iter = allElements.iterator();
+		WebElementFacade element = null;
+		while (iter.hasNext()) {
+			WebElementFacade tempElement = iter.next();
+			String tempTitle = tempElement.getText();
+
+			if (tempTitle.toLowerCase().contains(link)) {
+				element = tempElement;
+				break;
+			}
+		}
+		element.click();
+	}
+	
+	/*************************************************************************
 	 * Completes the entire FOA questionnaire checking every box, saying yes to
 	 * every question, and picking a state.
 	 * 

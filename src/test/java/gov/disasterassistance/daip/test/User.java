@@ -44,6 +44,11 @@ public class User {
 	}
 	
 	@Step
+	public void clickMainLink(String mainLink) {
+		daPage.clickQuickLink(mainLink);
+	}
+	
+	@Step
 	public void shouldSeeLandingPageNodes(short expected) {
 		Assert.assertEquals(expected, daPage.numberOfLandingPageNodes());
 	}
