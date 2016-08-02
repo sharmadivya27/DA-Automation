@@ -96,7 +96,16 @@ public class DAPage extends PageObject {
 
 	@FindBy(xpath = "//div//ul//li//a[@class='print-email-search-icon' or @class='print-mail print-email-search-icon']")
 	private List<WebElementFacade> quickLinks;
-
+	
+	@FindBy(xpath = "//div//article[@class[contains(.,'node node-inline-icon-and-link view-mode-default clearfix')]][0]")
+	private WebElementFacade findAssistanceMainLink;
+	
+	@FindBy(xpath = "//div//article[@class[contains(.,'node node-inline-icon-and-link view-mode-default clearfix')]][1]")
+	private WebElementFacade applyOnlineMainLink;
+	
+	@FindBy(xpath = "//div//article[@class[contains(.,'node node-inline-icon-and-link view-mode-default clearfix')]][2]")
+	private WebElementFacade checkStatusMainLink;
+	
 	@FindBy(xpath = "//*[@class='state selected single-state-group']")
 	private List<WebElementFacade> disasterStates;
 
@@ -180,6 +189,34 @@ public class DAPage extends PageObject {
 		element.click();
 	}
 
+	/*************************************************************************
+	 * Searches through the main links to find the element with the same name
+	 * that was passed. Once it finds the link it will click on the button.
+	 * 
+	 * @param link
+	 *            : Name of the link to be clicked on
+	 *************************************************************************/
+
+	public void clickMainLink(String link) {
+		allElements.clear();
+		allElements.add(findAssistanceMainLink);
+		allElements.add(applyOnlineMainLink);
+		allElements.add(checkStatusMainLink);
+
+		Iterator<WebElementFacade> iter = allElements.iterator();
+		WebElementFacade element = null;
+		while (iter.hasNext()) {
+			WebElementFacade tempElement = iter.next();
+			String tempTitle = tempElement.getText();
+
+			if (tempTitle.toLowerCase().contains(link)) {
+				element = tempElement;
+				break;
+			}
+		}
+		element.click();
+	}
+	
 	/*************************************************************************
 	 * Completes the entire FOA questionnaire checking every box, saying yes to
 	 * every question, and picking a state.

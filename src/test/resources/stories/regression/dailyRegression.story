@@ -23,7 +23,7 @@ Examples:
 
 Scenario: Verify all of the quick links to assert that the pages open correctly
 Meta:
-
+@skip
 Given I am on the Disaster Assistance homepage
 When I click on <quickLinkItem> within the quick links bar
 Then the <quickLinkItem> page should open correctly
@@ -34,6 +34,19 @@ Examples:
 |apply online|
 |check your status|
 |email|
+
+Scenario: Verify the main links on homepage to assert that the pages open correctly
+Meta:
+
+Given I am on the Disaster Assistance homepage
+When I click on <mainLinksItem> within the main links bar
+Then the <mainLinksItem> page should open correctly
+
+Examples:
+|mainLinksItem|
+|find assistance|
+|apply online|
+|check your status|
 
 Scenario: Verify all of the nodes on the "Get Assistance" landing page
 Meta:
