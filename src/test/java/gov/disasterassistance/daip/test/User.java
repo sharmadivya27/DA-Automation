@@ -30,7 +30,7 @@ public class User {
 	@Step
 	public void open_page(String directoryPath) {
 		daPage.clearCookies();
-		daPage.openAt(daPage.defaultUrl + directoryPath);
+		daPage.openAt(daPage.defaultUrl + directoryPath + "?mobile=unL9HuS");
 	}
 
 	@Step
@@ -75,6 +75,7 @@ public class User {
 		case "information":
 		case "about us":
 		case "help":
+		case "other recovery help":
 		case "application checklist":
 		case "forms":
 		case "news feeds":
