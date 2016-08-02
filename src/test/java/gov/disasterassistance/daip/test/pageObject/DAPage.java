@@ -96,7 +96,16 @@ public class DAPage extends PageObject {
 
 	@FindBy(xpath = "//div//ul//li//a[@class='print-email-search-icon' or @class='print-mail print-email-search-icon']")
 	private List<WebElementFacade> quickLinks;
-
+	
+	@FindBy(xpath = "//div//article[@class[contains(.,'node node-inline-icon-and-link view-mode-default clearfix')]][0]")
+	private WebElementFacade findAssistanceMainLink;
+	
+	@FindBy(xpath = "//div//article[@class[contains(.,'node node-inline-icon-and-link view-mode-default clearfix')]][1]")
+	private WebElementFacade applyOnlineMainLink;
+	
+	@FindBy(xpath = "//div//article[@class[contains(.,'node node-inline-icon-and-link view-mode-default clearfix')]][2]")
+	private WebElementFacade checkStatusMainLink;
+	
 	@FindBy(xpath = "//*[@class='state selected single-state-group']")
 	private List<WebElementFacade> disasterStates;
 
@@ -190,7 +199,9 @@ public class DAPage extends PageObject {
 
 	public void clickMainLink(String link) {
 		allElements.clear();
-		allElements.addAll(quickLinks);
+		allElements.add(findAssistanceMainLink);
+		allElements.add(applyOnlineMainLink);
+		allElements.add(checkStatusMainLink);
 
 		Iterator<WebElementFacade> iter = allElements.iterator();
 		WebElementFacade element = null;

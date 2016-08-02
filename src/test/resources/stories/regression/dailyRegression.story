@@ -46,7 +46,7 @@ Examples:
 |mainLinksItem|
 |find assistance|
 |apply online|
-|check status|
+|check your status|
 
 Scenario: Verify all of the nodes on the "Get Assistance" landing page
 Meta:
