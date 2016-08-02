@@ -30,7 +30,13 @@ public class User {
 	@Step
 	public void open_page(String directoryPath) {
 		daPage.clearCookies();
-		daPage.openAt(daPage.defaultUrl + directoryPath + "?mobile=unL9HuS");
+		
+		String url = daPage.defaultUrl + directoryPath;
+		if(daPage.defaultUrl.contains("staging")) {
+			url += "?mobile=unL9HuS";
+		}
+		
+		daPage.openAt(url);
 	}
 
 	@Step

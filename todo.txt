@@ -7,7 +7,6 @@
       * local resources to take screen shot
       * other possibles...
       
-- Add scenario for three big buttons on the homepage
 - Add ability to easily change from prod to staging
 - create bug for inconsistency after adding wait time (I'll do this if the waits don't fix the inconsistency
 - On index.html results page, clean up the language that displays (will get more input from others)
