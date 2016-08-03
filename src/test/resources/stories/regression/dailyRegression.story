@@ -37,7 +37,7 @@ Examples:
 
 Scenario: Verify the main links on homepage to assert that the pages open correctly
 Meta:
-
+@skip
 Given I am on the Disaster Assistance homepage
 When I click on <mainLinksItem> within the main links bar
 Then the <mainLinksItem> page should open correctly
