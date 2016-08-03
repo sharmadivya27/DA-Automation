@@ -51,7 +51,7 @@ public class User {
 	
 	@Step
 	public void clickMainLink(String mainLink) {
-		daPage.clickQuickLink(mainLink);
+		daPage.clickMainLink(mainLink);
 	}
 	
 	@Step
@@ -81,7 +81,6 @@ public class User {
 		case "address look-up":
 			Assert.assertEquals(true, daPage.addressLookupIsDisplayed());
 			break;
-
 		case "get assistance":
 		case "information":
 		case "about us":
@@ -111,15 +110,27 @@ public class User {
 		case "find assistance":
 			Assert.assertEquals(true, daPage.questionnaireIsDisplayed());
 			break;
-
+			
+		case "encontrar ayuda" :
+			Assert.assertEquals(true, daPage.questionnaireIsDisplayed());
+			break;
+			
 		case "apply online":
 			Assert.assertEquals(true, daPage.textCaptchaIsDisplayed());
 			break;
-
+			
+		case "solicitar asistencia":
+			Assert.assertEquals(true, daPage.textCaptchaIsDisplayed());
+			break;
+			
 		case "check your status":
 			Assert.assertEquals(true, daPage.checkStatusPageIsDisplayed());
 			break;
-
+		
+		case "revisar estatus":
+			Assert.assertEquals(true, daPage.checkStatusPageIsDisplayed());
+			break;
+			
 		case "assistance by catgory":
 			Assert.assertEquals(15, daPage.getNumberAccordions());
 			break;
