@@ -127,9 +127,6 @@ public class DAPage extends PageObject {
 	@FindBy(xpath = "//*[@id='email-form-wrapper']")
 	private WebElementFacade emailLinkForm;
 	
-	@FindBy(xpath = "//*[@id='e-gov-delivery']")
-	private WebElementFacade emailNewsletterForm;
-	
 	private List<WebElementFacade> allElements = new ArrayList<WebElementFacade>();
 
 	// *************************************************************************
@@ -607,10 +604,6 @@ public class DAPage extends PageObject {
 	
 	public boolean emailFormIsDisplayed() {
 		return emailLinkForm.isDisplayed();
-	}
-	
-	public boolean emailNewsletterFormIsDisplayed() {
-		return emailNewsletterForm.isDisplayed();
 	}
 	
 	public int getNumberAccordions() {
