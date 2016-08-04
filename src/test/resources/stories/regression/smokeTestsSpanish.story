@@ -1,11 +1,9 @@
-Basic daily regression scripts for Spanish site
-
 Narrative:
 In order to assert that the basic functionality of https://www.disasterassistance.gov/es/ is working
 As a tester
 I want to run the daily regressions at least twice a day
 
-Scenario: Verify all of the navbar tabs to assert that the Spanish pages open correctly
+Scenario: (Spanish) Verify all of the navbar tabs to assert that the Spanish pages open correctly
 Meta:
 @skip
 Given I am on the Spanish Disaster Assistance homepage
@@ -21,7 +19,7 @@ Examples:
 |acerca de|2|
 |ayuda|5|
 
-Scenario: Verify all of the quick links to assert that the Spanish pages open correctly
+Scenario: (Spanish) Verify all of the quick links to assert that the Spanish pages open correctly
 Meta:
 @skip
 Given I am on the Spanish Disaster Assistance homepage
@@ -35,7 +33,7 @@ Examples:
 |revisar estatus|
 |correo electrónico|
 
-Scenario: Verify the main links on homepage to assert that the Spanish pages open correctly
+Scenario: (Spanish) Verify the main links on homepage to assert that the Spanish pages open correctly
 Meta:
 @skip
 Given I am on the Spanish Disaster Assistance homepage
@@ -48,7 +46,7 @@ Examples:
 |solicitar asistencia|
 |revisar estatus|
 
-Scenario: Verify all of the nodes on the "Get Assistance" Spanish landing page
+Scenario: (Spanish) Verify all of the nodes on the "Get Assistance" Spanish landing page
 Meta:
 @skip
 Given I am on the Get Assistance Spanish landing page
@@ -63,10 +61,11 @@ Examples:
 |revisar estatus|
 |asistencia por categoría|
 |asistencia por agencia federal|
+|otra ayuda para recuperación|
 |lista de verificación para aplicarse|
 |formularios|
 
-Scenario: Verify all of the nodes on the "Information" Spanish landing page
+Scenario: (Spanish) Verify all of the nodes on the "Information" Spanish landing page
 Meta:
 @skip
 Given I am on the Information Spanish landing page
@@ -85,7 +84,7 @@ Examples:
 |desastres en el extranjero|
 |hojas de datos|
 
-Scenario: Verify all of the nodes on the "About Us" Spanish landing page
+Scenario: (Spanish) Verify all of the nodes on the "About Us" Spanish landing page
 Meta:
 @skip
 Given I am on the About Us Spanish landing page
@@ -97,7 +96,7 @@ Examples:
 |descripción general|
 |socios|
 
-Scenario: Verify all of the nodes on the "Help" Spanish landing page
+Scenario: (Spanish) Verify all of the nodes on the "Help" Spanish landing page
 Meta:
 @skip
 Given I am on the Help Spanish landing page
@@ -112,28 +111,28 @@ Examples:
 |accesibilidad|
 |descargar plug-ins|
 
-Scenario: Verify results of the questionnaire on the "Find Assistance" Spanish page
+Scenario: (Spanish) Verify results of the questionnaire on the "Find Assistance" Spanish page
 Meta:
 @skip
 Given I am on the Find Assistance Spanish page
 When I fully complete the questionnaire
 Then I should accumulate 73 results
 
-Scenario: Verify Spanish benefits results display according to use cases
+Scenario: (Spanish) Verify Spanish benefits results display according to use cases
 Meta:
 @skip
 Given I am on the Find Assistance Spanish page
 When I choose only Empleo and expand all the accordions
 Then I should obtain 9 results and see all the content under the accordions
 
-Scenario: Verify the number of Federal Agencies and their benefits in Spanish
+Scenario: (Spanish) Verify the number of Federal Agencies and their benefits in Spanish
 Meta:
 @skip
 Given I am on the Assistance by Federal Agency Spanish page
 When I check on each Federal Agency accordion
 Then the number of benefits should match with its count
 
-Scenario: Verify all the functionality of the FOA Spanish questionnaire
+Scenario: (Spanish) Verify all the functionality of the FOA Spanish questionnaire
 Meta:
 @skip
 Given I am on the Find Assistance Spanish page
@@ -150,21 +149,21 @@ Then the 3 accordions should expand, collapse, and have content visible when ope
 When I click apply online
 Then the DAC page should load and Captcha should be displayed
 
-Scenario: Verify states in the Spanish declared disaster map are clickable
+Scenario: (Spanish) Verify states in the Spanish declared disaster map are clickable
 Meta:
 @skip
 Given I am on the Spanish Disaster Assistance homepage
 When I am viewing the declared disaster map
 Then states with disasters should be clickable
 
-Scenario: Verify that the FEMA Twitter feed is present on the Spanish homepage
+Scenario: (Spanish) Verify that the FEMA Twitter feed is present on the Spanish homepage
 Meta:
 @skip
 Given I am on the Spanish Disaster Assistance homepage
 When I am viewing the FEMA Twitter feed
 Then the most recent tweets should be displayed
 
-Scenario: Verify Local Resources flows correctly on the Spanish homepage
+Scenario: (Spanish) Verify Local Resources flows correctly on the Spanish homepage
 Meta:
 @skip
 Given I am on the Spanish Disaster Assistance homepage

@@ -30,7 +30,13 @@ public class User {
 	@Step
 	public void open_page(String directoryPath) {
 		daPage.clearCookies();
-		daPage.openAt(daPage.defaultUrl + directoryPath);
+		
+		String url = daPage.defaultUrl + directoryPath;
+		if(daPage.defaultUrl.contains("staging")) {
+			url += "?mobile=unL9HuS";
+		}
+		
+		daPage.openAt(url);
 	}
 
 	@Step
@@ -71,22 +77,62 @@ public class User {
 
 		switch (expectedPageName) {
 		case "home":
-			
 		case "inicio":
 			
-		// Get Assistance
 		case "get assistance":
-			Assert.assertEquals(true, daPage.landingPageNodeIsDisplayed());
-			break;
 		case "obtener asistencia":
-			Assert.assertEquals(true, daPage.landingPageNodeIsDisplayed());
+		case "information":
+		case "información":
+		case "about us":
+		case "acerca de":
+		case "help":
+		case "ayuda":
+		case "other recovery help":
+		case "otra ayuda para recuperación":
+		case "application checklist":
+		case "lista de verificación para aplicarse":
+		case "forms":
+		case "formularios":
+		case "news feeds":
+		case "canales de noticias":
+		case "immediate needs":
+		case "necesidades inmediatas":
+		case "moving forward":
+		case "community resources":
+		case "próximo paso":
+		case "disabilities or access and functional needs":
+		case "discapacidades o necesidades funcionales y de acceso":
+		case "older americans":
+		case "adultos mayores estadounidenses":
+		case "children and families":
+		case "niños y familias":
+		case "disaster types":
+		case "los Recursos del desastre":
+		case "foreign disasters":
+		case "desastres en el extranjero":
+		case "fact sheets":
+		case "hojas de datos":
+		case "overview":
+		case "descripción general":
+		case "partners":
+		case "socios":
+		case "contact us":
+		case "contáctenos":
+		case "privacy policy":
+		case "política de privacidad":
+		case "accessibility":
+		case "accesibilidad":
+		case "download plug-ins":
+		case "descargar plug-ins":
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
 			break;
+		
 		case "address look-up":
 			Assert.assertEquals(true, daPage.addressLookupIsDisplayed());
 			break;
 		case "buscar dirección":
 			Assert.assertEquals(true, daPage.addressLookupIsDisplayed());
-			break;
+			
 		case "find assistance":
 			Assert.assertEquals(true, daPage.questionnaireIsDisplayed());
 			break;
@@ -114,150 +160,14 @@ public class User {
 		case "assistance by federal agency":
 			Assert.assertEquals(14, daPage.getNumberAccordions());
 			break;
-		case "other recovery help":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-		case "otra ayuda para recuperación":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-		case "application checklist":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-		case "lista de verificación para aplicarse":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-		case "forms":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-		case "formularios":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-			
-		// Information
-		case "information":
-			Assert.assertEquals(true, daPage.landingPageNodeIsDisplayed());
-			break;
-		case "información":
-			Assert.assertEquals(true, daPage.landingPageNodeIsDisplayed());
-			break;
-		case "news feeds":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-		case "canales de noticias":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-		case "immediate needs":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-		case "necesidades inmediatas":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-		case "moving forward":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-		case "próximo paso":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-		case "disabilities or access and functional needs":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-		case "discapacidades o necesidades funcionales y de acceso":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-		case "older americans":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-		case "adultos mayores estadounidenses":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-		case "children and families":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-		case "niños y familias":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-		case "disaster types":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-		case "los Recursos del desastre":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-		case "foreign disasters":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-		case "desastres en el extranjero":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-		case "fact sheets":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-		case "hojas de datos":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-			
-		// About Us
-		case "about us":
-			Assert.assertEquals(true, daPage.landingPageNodeIsDisplayed());
-			break;
-		case "acerca de":
-			Assert.assertEquals(true, daPage.landingPageNodeIsDisplayed());
-			break;
-		case "overview":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-		case "descripción general":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-		case "partners":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			Assert.assertEquals(true, daPage.emailNewsletterFormIsDisplayed());
-			break;
-		case "socios":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			Assert.assertEquals(true, daPage.emailNewsletterFormIsDisplayed());
-			break;
-			
-		// Help
-		case "help":
-			Assert.assertEquals(true, daPage.landingPageNodeIsDisplayed());
-			break;
-		case "ayuda":
-			Assert.assertEquals(true, daPage.landingPageNodeIsDisplayed());
-			break;
+		
 		case "faqs":
 			Assert.assertEquals(27, daPage.getNumberAccordions());
 			break;
 		case "preguntas Comunes":
 			Assert.assertEquals(27, daPage.getNumberAccordions());
 			break;
-		case "contact us":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			Assert.assertEquals(true, daPage.emailNewsletterFormIsDisplayed());
-			break;
-		case "contáctenos":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			Assert.assertEquals(true, daPage.emailNewsletterFormIsDisplayed());
-			break;
-		case "privacy policy":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-		case "política de privacidad":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-		case "accessibility":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-		case "accesibilidad":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-		case "download plug-ins":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
-		case "descargar plug-ins":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
-			break;
 		
-		// Email quick link
 		case "emails":
 			Assert.assertEquals(true, daPage.emailFormIsDisplayed());
 			break;

@@ -1,5 +1,3 @@
-Basic daily regression scripts
-
 Narrative:
 In order to assert that the basic functionality of https://www.disasterassistance.gov/ is working
 As a tester
@@ -153,7 +151,7 @@ Then the DAC page should load and Captcha should be displayed
 
 Scenario: Verify states in the declared disaster map are clickable
 Meta:
-@skip
+
 Given I am on the Disaster Assistance homepage
 When I am viewing the declared disaster map
 Then states with disasters should be clickable
