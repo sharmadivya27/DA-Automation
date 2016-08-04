@@ -124,6 +124,9 @@ public class DAPage extends PageObject {
 	@FindBy(xpath = "//div[@class='accordionable' and @id]")
 	private List<WebElementFacade> FOAChecklistAccordions;
 
+	@FindBy(xpath = "//*[@id='email-form-wrapper']")
+	private WebElementFacade emailLinkForm;
+	
 	private List<WebElementFacade> allElements = new ArrayList<WebElementFacade>();
 
 	// *************************************************************************
@@ -194,7 +197,7 @@ public class DAPage extends PageObject {
 	public void clickMainLink(String link) {
 		allElements.clear();
 		allElements.addAll(mainLinks);
-		
+
 		Iterator<WebElementFacade> iter = allElements.iterator();
 		WebElementFacade element = null;
 		while (iter.hasNext()) {
@@ -208,7 +211,7 @@ public class DAPage extends PageObject {
 		}
 		element.click();
 	}
-	
+
 	/*************************************************************************
 	 * Completes the entire FOA questionnaire checking every box, saying yes to
 	 * every question, and picking a state.
@@ -598,7 +601,11 @@ public class DAPage extends PageObject {
 	public boolean checkStatusPageIsDisplayed() {
 		return checkStatusPageContent.isDisplayed();
 	}
-
+	
+	public boolean emailFormIsDisplayed() {
+		return emailLinkForm.isDisplayed();
+	}
+	
 	public int getNumberAccordions() {
 		return accordionBlocks.size();
 	}
