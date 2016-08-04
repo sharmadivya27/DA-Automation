@@ -28,7 +28,7 @@ import net.thucydides.core.annotations.DefaultUrl;
 @DefaultUrl("http://www.disasterassistance.gov")
 public class DAPage extends PageObject {
 
-	public String defaultUrl = "http://www.disasterassistance.gov";
+	public String defaultUrl = "http://staging.disasterassistance.gov";
 
 	public DAPage(WebDriver driver) {
 		super(driver);
@@ -579,22 +579,6 @@ public class DAPage extends PageObject {
 				throw new EmploymentException("Employment results not visible");
 			}
 		}
-	}
-
-	/*************************************************************************
-	 * Verifies that landing page nodes are visible.
-	 * 
-	 * @return true if all landing page nodes are visible
-	 *************************************************************************/
-	public boolean landingPageNodeIsDisplayed() {
-		Iterator<WebElementFacade> iter = landingPageNode.iterator();
-		while (iter.hasNext()) {
-			WebElementFacade tempElement = iter.next();
-			if (!tempElement.isDisplayed()) {
-				return false;
-			}
-		}
-		return true;
 	}
 
 	public int numberOfLandingPageNodes() {
