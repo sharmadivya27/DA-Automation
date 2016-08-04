@@ -71,76 +71,200 @@ public class User {
 
 		switch (expectedPageName) {
 		case "home":
+			
 		case "inicio":
+			
+		// Get Assistance
+		case "get assistance":
+			Assert.assertEquals(true, daPage.landingPageNodeIsDisplayed());
+			break;
+		case "obtener asistencia":
+			Assert.assertEquals(true, daPage.landingPageNodeIsDisplayed());
+			break;
 		case "address look-up":
 			Assert.assertEquals(true, daPage.addressLookupIsDisplayed());
 			break;
-		case "get assistance":
-		case "information":
-		case "about us":
-		case "help":
-		case "application checklist":
-		case "forms":
-		case "news feeds":
-		case "immediate needs":
-		case "moving forward":
-		case "community resources":
-		case "disabilities or access and functional needs":
-		case "older americans":
-		case "children and families":
-		case "disaster types":
-		case "foreign disasters":
-		case "fact sheets":
-		case "overview":
-		case "partners":
-		case "contact us":
-		case "privacy policy":
-		case "accessibility":
-		case "download plug-ins":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
+		case "buscar dirección":
+			Assert.assertEquals(true, daPage.addressLookupIsDisplayed());
 			break;
-
 		case "find assistance":
 			Assert.assertEquals(true, daPage.questionnaireIsDisplayed());
 			break;
-			
 		case "encontrar ayuda" :
 			Assert.assertEquals(true, daPage.questionnaireIsDisplayed());
 			break;
-			
 		case "apply online":
 			Assert.assertEquals(true, daPage.textCaptchaIsDisplayed());
 			break;
-			
 		case "solicitar asistencia":
 			Assert.assertEquals(true, daPage.textCaptchaIsDisplayed());
 			break;
-			
 		case "check your status":
 			Assert.assertEquals(true, daPage.checkStatusPageIsDisplayed());
 			break;
-		
 		case "revisar estatus":
 			Assert.assertEquals(true, daPage.checkStatusPageIsDisplayed());
 			break;
-			
 		case "assistance by catgory":
 			Assert.assertEquals(15, daPage.getNumberAccordions());
 			break;
-
+		case "asistencia por categoría":
+			Assert.assertEquals(15, daPage.getNumberAccordions());
+			break;
 		case "assistance by federal agency":
 			Assert.assertEquals(14, daPage.getNumberAccordions());
 			break;
-
-		
-		
-		// Help parent node
+		case "other recovery help":
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
+			break;
+		case "otra ayuda para recuperación":
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
+			break;
+		case "application checklist":
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
+			break;
+		case "lista de verificación para aplicarse":
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
+			break;
+		case "forms":
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
+			break;
+		case "formularios":
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
+			break;
+			
+		// Information
+		case "information":
+			Assert.assertEquals(true, daPage.landingPageNodeIsDisplayed());
+			break;
+		case "información":
+			Assert.assertEquals(true, daPage.landingPageNodeIsDisplayed());
+			break;
+		case "news feeds":
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
+			break;
+		case "canales de noticias":
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
+			break;
+		case "immediate needs":
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
+			break;
+		case "necesidades inmediatas":
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
+			break;
+		case "moving forward":
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
+			break;
+		case "próximo paso":
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
+			break;
+		case "disabilities or access and functional needs":
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
+			break;
+		case "discapacidades o necesidades funcionales y de acceso":
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
+			break;
+		case "older americans":
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
+			break;
+		case "adultos mayores estadounidenses":
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
+			break;
+		case "children and families":
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
+			break;
+		case "niños y familias":
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
+			break;
+		case "disaster types":
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
+			break;
+		case "los Recursos del desastre":
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
+			break;
+		case "foreign disasters":
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
+			break;
+		case "desastres en el extranjero":
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
+			break;
+		case "fact sheets":
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
+			break;
+		case "hojas de datos":
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
+			break;
+			
+		// About Us
+		case "about us":
+			Assert.assertEquals(true, daPage.landingPageNodeIsDisplayed());
+			break;
+		case "acerca de":
+			Assert.assertEquals(true, daPage.landingPageNodeIsDisplayed());
+			break;
+		case "overview":
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
+			break;
+		case "descripción general":
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
+			break;
+		case "partners":
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
+			Assert.assertEquals(true, daPage.emailNewsletterFormIsDisplayed());
+			break;
+		case "socios":
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
+			Assert.assertEquals(true, daPage.emailNewsletterFormIsDisplayed());
+			break;
+			
+		// Help
+		case "help":
+			Assert.assertEquals(true, daPage.landingPageNodeIsDisplayed());
+			break;
+		case "ayuda":
+			Assert.assertEquals(true, daPage.landingPageNodeIsDisplayed());
+			break;
 		case "faqs":
 			Assert.assertEquals(27, daPage.getNumberAccordions());
 			break;
-		case "emails":
+		case "preguntas Comunes":
+			Assert.assertEquals(27, daPage.getNumberAccordions());
+			break;
+		case "contact us":
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
+			Assert.assertEquals(true, daPage.emailNewsletterFormIsDisplayed());
+			break;
+		case "contáctenos":
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
+			Assert.assertEquals(true, daPage.emailNewsletterFormIsDisplayed());
+			break;
+		case "privacy policy":
 			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
 			break;
+		case "política de privacidad":
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
+			break;
+		case "accessibility":
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
+			break;
+		case "accesibilidad":
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
+			break;
+		case "download plug-ins":
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
+			break;
+		case "descargar plug-ins":
+			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
+			break;
+		
+		// Email quick link
+		case "emails":
+			Assert.assertEquals(true, daPage.emailFormIsDisplayed());
+			break;
+		case "correo electrónico":
+			Assert.assertEquals(true, daPage.emailFormIsDisplayed());
+			break;
+			
 		default:
 			System.err.println("INVALID PAGE SENT");
 			break;

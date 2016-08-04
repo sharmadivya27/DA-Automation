@@ -124,6 +124,12 @@ public class DAPage extends PageObject {
 	@FindBy(xpath = "//div[@class='accordionable' and @id]")
 	private List<WebElementFacade> FOAChecklistAccordions;
 
+	@FindBy(xpath = "//*[@id='email-form-wrapper']")
+	private WebElementFacade emailLinkForm;
+	
+	@FindBy(xpath = "//*[@id='e-gov-delivery']")
+	private WebElementFacade emailNewsletterForm;
+	
 	private List<WebElementFacade> allElements = new ArrayList<WebElementFacade>();
 
 	// *************************************************************************
@@ -194,7 +200,7 @@ public class DAPage extends PageObject {
 	public void clickMainLink(String link) {
 		allElements.clear();
 		allElements.addAll(mainLinks);
-		
+
 		Iterator<WebElementFacade> iter = allElements.iterator();
 		WebElementFacade element = null;
 		while (iter.hasNext()) {
@@ -208,7 +214,7 @@ public class DAPage extends PageObject {
 		}
 		element.click();
 	}
-	
+
 	/*************************************************************************
 	 * Completes the entire FOA questionnaire checking every box, saying yes to
 	 * every question, and picking a state.
@@ -575,6 +581,22 @@ public class DAPage extends PageObject {
 		}
 	}
 
+	/*************************************************************************
+	 * Verifies that landing page nodes are visible.
+	 * 
+	 * @return true if all landing page nodes are visible
+	 *************************************************************************/
+	public boolean landingPageNodeIsDisplayed() {
+		Iterator<WebElementFacade> iter = landingPageNode.iterator();
+		while (iter.hasNext()) {
+			WebElementFacade tempElement = iter.next();
+			if (!tempElement.isDisplayed()) {
+				return false;
+			}
+		}
+		return true;
+	}
+
 	public int numberOfLandingPageNodes() {
 		return landingPageNode.size();
 	}
@@ -598,7 +620,15 @@ public class DAPage extends PageObject {
 	public boolean checkStatusPageIsDisplayed() {
 		return checkStatusPageContent.isDisplayed();
 	}
-
+	
+	public boolean emailFormIsDisplayed() {
+		return emailLinkForm.isDisplayed();
+	}
+	
+	public boolean emailNewsletterFormIsDisplayed() {
+		return emailNewsletterForm.isDisplayed();
+	}
+	
 	public int getNumberAccordions() {
 		return accordionBlocks.size();
 	}
