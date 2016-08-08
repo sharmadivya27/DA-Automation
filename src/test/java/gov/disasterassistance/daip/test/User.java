@@ -78,7 +78,6 @@ public class User {
 		switch (expectedPageName) {
 		case "home":
 		case "inicio":
-			
 		case "get assistance":
 		case "obtener asistencia":
 		case "information":

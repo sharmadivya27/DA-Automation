@@ -460,17 +460,10 @@ public class DAPage extends PageObject {
 			} catch (Exception e) {
 				this.evaluateJavascript("window.scrollTo(0,document.body.scrollHeight)"); // scroll
 																							// to
-																							// end
-																							// of
-																							// page
 				foa.click();
 			}
 
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			pause(1000);
 
 			if (successCounter == 73) {
 				break;
@@ -485,11 +478,7 @@ public class DAPage extends PageObject {
 
 			foa.click();
 
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			pause(1000);
 		}
 
 		return successCounter;
@@ -535,11 +524,7 @@ public class DAPage extends PageObject {
 				accordion.click();
 			}
 
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			pause(1000);
 
 			WebElement openContent = accordion.findElement(By.tagName("div"));
 
@@ -547,11 +532,7 @@ public class DAPage extends PageObject {
 				contentCounter++;
 			}
 
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			pause(1000);
 
 		}
 
@@ -665,4 +646,11 @@ public class DAPage extends PageObject {
 		FOAfooter.get(FOAfooter.size() - 1).click();
 	}
 
+	private void pause(long time) {
+		try {
+			Thread.sleep(time);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
 }
