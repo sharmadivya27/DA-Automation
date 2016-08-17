@@ -10,3 +10,16 @@
 - Add ability to easily change from prod to staging
 - create bug for inconsistency after adding wait time (I'll do this if the waits don't fix the inconsistency
 - On index.html results page, clean up the language that displays (will get more input from others)
+
+
+Staging tests breaks because of the number of nodes on landing pages
+buscar dirección not found
+solicitar asistencia not found (DAC)
+asistencia por categoría assertion number failed
+otra ayuda para recuperation doesn’t exist on staging
+canales de noticas failed on staging because it’s different
+seeing 74 on FOA for some reason
+apply online not found (DAC)
+check status not showing up on staging?
+
+

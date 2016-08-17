@@ -76,8 +76,6 @@ public class User {
 		}
 
 		switch (expectedPageName) {
-		case "home":
-		case "inicio":
 		case "get assistance":
 		case "obtener asistencia":
 		case "information":
@@ -126,6 +124,8 @@ public class User {
 			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
 			break;
 		
+		case "home":
+		case "inicio":
 		case "address look-up":
 			Assert.assertEquals(true, daPage.addressLookupIsDisplayed());
 			break;

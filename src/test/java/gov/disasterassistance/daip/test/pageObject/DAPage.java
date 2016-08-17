@@ -28,7 +28,8 @@ import net.thucydides.core.annotations.DefaultUrl;
 @DefaultUrl("http://www.disasterassistance.gov")
 public class DAPage extends PageObject {
 
-	public String defaultUrl = "http://staging.disasterassistance.gov";
+//	public String defaultUrl = "http://staging.disasterassistance.gov";
+	public String defaultUrl = "http://www.disasterassistance.gov";
 
 	public DAPage(WebDriver driver) {
 		super(driver);
