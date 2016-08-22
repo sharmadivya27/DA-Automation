@@ -56,7 +56,9 @@ public class DAPage extends PageObject {
 	@FindBy(xpath = "//*[@id='pageContent']")
 	private WebElementFacade checkStatusPageContent;
 
-	@FindBy(xpath = "//a[@href[contains(., 'TextCaptcha')]]")
+	//"//a[@href[contains(., 'TextCaptcha')]]"
+	//"//form[@name='dacCaptchaForm' or @name='accountLoginForm']"
+	@FindBy(xpath = "//form[@name='dacCaptchaForm' or @name='accountLoginForm']")
 	private WebElementFacade textCaptcha;
 
 	@FindBy(xpath = "//div[@id='block-daip-responsive-questionnaire-responsive-questionnaire-block']")
@@ -647,7 +649,7 @@ public class DAPage extends PageObject {
 		FOAfooter.get(FOAfooter.size() - 1).click();
 	}
 
-	private void pause(long time) {
+	public void pause(long time) {
 		try {
 			Thread.sleep(time);
 		} catch (InterruptedException e) {

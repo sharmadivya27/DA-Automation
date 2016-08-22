@@ -9,6 +9,8 @@ import gov.disasterassistance.daip.test.exceptions.FeedException;
 import gov.disasterassistance.daip.test.exceptions.LocalResourcesException;
 import gov.disasterassistance.daip.test.exceptions.StateException;
 import gov.disasterassistance.daip.test.pageObject.DAPage;
+import gov.disasterassistance.daip.test.pageObject.DAPageParent;
+import gov.disasterassistance.daip.test.pageObject.aboutUs.DAOverview;
 import net.thucydides.core.annotations.Step;
 
 /*************************************************************************
@@ -21,6 +23,30 @@ import net.thucydides.core.annotations.Step;
 public class User {
 	DAPage daPage;
 
+	DAPageParent page;
+	
+	
+	
+	@Step
+	public void openTestPage() {
+		page.openTestPage();
+	}	
+	
+	@Step
+	public void goToNewPage() {
+		page.switchToPage(DAOverview.class);
+		page.openTestPage();
+	}
+
+	@Step
+	public void seeTitle() {
+		Assert.assertEquals("Wrong", page.getPageTitle());
+ 	}	
+	
+	
+	
+	/*******************************************************************************/
+	
 	@Step
 	public void open_home_page() {
 		daPage.clearCookies();
@@ -91,7 +117,7 @@ public class User {
 		case "forms":
 		case "formularios":
 		case "news feeds":
-		case "canales de noticias":
+		case "canales de noticias \"feeds\"":
 		case "immediate needs":
 		case "necesidades inmediatas":
 		case "moving forward":
@@ -127,10 +153,9 @@ public class User {
 		case "home":
 		case "inicio":
 		case "address look-up":
-			Assert.assertEquals(true, daPage.addressLookupIsDisplayed());
-			break;
 		case "buscar dirección":
 			Assert.assertEquals(true, daPage.addressLookupIsDisplayed());
+			break;
 			
 		case "find assistance":
 			Assert.assertEquals(true, daPage.questionnaireIsDisplayed());
@@ -184,6 +209,7 @@ public class User {
 	@Step
 	public void completeQuestionnaire() {
 		daPage.completeFullQuestionnaire();
+		daPage.pause(1000);
 		daPage.getFOAResultsPage();
 	}
 
@@ -302,6 +328,7 @@ public class User {
 	
 	@Step
 	public void shouldSeeDAC() {
+		daPage.pause(2000);
 		Assert.assertTrue(daPage.textCaptchaIsDisplayed());
 	}
 }
