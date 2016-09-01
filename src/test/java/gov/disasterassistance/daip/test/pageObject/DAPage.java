@@ -17,7 +17,6 @@ import net.serenitybdd.core.annotations.findby.By;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
-import net.thucydides.core.annotations.DefaultUrl;
 
 /*************************************************************************
  * Using Selenium Webdriver, this class handles web related code such as pulling
@@ -25,12 +24,11 @@ import net.thucydides.core.annotations.DefaultUrl;
  *
  * @author Chris Viqueira
  *************************************************************************/
-@DefaultUrl("http://www.disasterassistance.gov")
 public class DAPage extends PageObject {
 
-//	public String defaultUrl = "http://staging.disasterassistance.gov";
-	public String defaultUrl = "http://www.disasterassistance.gov";
-
+	private String env = System.getProperty("environment");
+	public String defaultUrl = "http://" + env + ".disasterassistance.gov";
+	
 	public DAPage(WebDriver driver) {
 		super(driver);
 		driver.manage().window().maximize();

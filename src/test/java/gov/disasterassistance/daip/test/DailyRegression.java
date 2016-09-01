@@ -45,7 +45,8 @@ public class DailyRegression {
 	//Scenario: Verify all of the navbar tabs to assert that the pages open correctly
 	@Given("I am on the Disaster Assistance homepage")
 	public void given_I_am_on_the_disaster_assistance_homepage() {
-		user.open_home_page();
+		//Homepage
+		user.open_page("");
 	}
 	
 	@Given("I am on the Spanish Disaster Assistance homepage")

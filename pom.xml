@@ -15,6 +15,7 @@
 		<serenity.version>1.1.36</serenity.version>
 		<serenity.jbehave.version>1.13.0</serenity.jbehave.version>
 		<webdriver.driver>chrome</webdriver.driver>
+		<environment>www</environment>
 	</properties>
 
 	<dependencies>

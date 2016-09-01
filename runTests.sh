@@ -22,9 +22,9 @@ case "$driver" in
 esac
 
 case "$environment" in
-	"staging")
+	"staging") 
 	;;
-	"prod")
+	"prod") environment="www"
 	;;
 	*) echo "$environment is not a valid environment, please use prod or staging"
 	quit=1
@@ -35,5 +35,5 @@ if [ $quit -eq 1 ]; then
 	exit
 fi
 
-mvn clean verify -Dwebdriver.driver=$driver -Denv=$environment 
+mvn clean verify -Dwebdriver.driver="$driver" -Denv="$environment" 
 open target/site/serenity/index.html 

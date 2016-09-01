@@ -46,12 +46,6 @@ public class User {
 	
 	
 	/*******************************************************************************/
-	
-	@Step
-	public void open_home_page() {
-		daPage.clearCookies();
-		daPage.open();
-	}
 
 	@Step
 	public void open_page(String directoryPath) {
