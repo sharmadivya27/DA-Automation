@@ -3,7 +3,8 @@ In order to assert the site is functioning barebones
 As a tester
 I want to run smoke tests to confirm nothing basic is broken
 
-Meta:
+Meta: @skip
+@server production
 
 Scenario: Test using different page objects
 Given that I am on the homepage

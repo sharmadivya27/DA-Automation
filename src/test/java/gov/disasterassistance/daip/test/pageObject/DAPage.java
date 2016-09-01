@@ -520,22 +520,9 @@ public class DAPage extends PageObject {
 		while (iter.hasNext()) {
 			WebElementFacade accordion = iter.next();
 
-			try {
-				accordion.click();
-			} catch (Exception e) {
-				this.evaluateJavascript("arguments[0].scrollIntoView(true);", accordion);
-				accordion.click();
-			}
-
-			pause(1000);
-
-			WebElement openContent = accordion.findElement(By.tagName("div"));
-
-			if (openContent.isDisplayed()) {
+			if (accordion.isDisplayed()) {
 				contentCounter++;
 			}
-
-			pause(1000);
 
 		}
 
@@ -627,8 +614,7 @@ public class DAPage extends PageObject {
 	}
 
 	public List<WebElement> getFOAFooter() {
-		return this.getDriver().findElements(
-				org.openqa.selenium.By.xpath("//*[@class[contains(., 'qButton') and not(contains(., 'session'))]]"));
+		return this.getDriver().findElements(By.xpath("//*[@class[contains(., 'qButton') and not(contains(., 'session'))]]"));
 	}
 
 	public void clickNextFOA() {

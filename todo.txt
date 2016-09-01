@@ -20,3 +20,9 @@ canales de noticas failed on staging because it’s different
 seeing 74 on FOA for some reason
 apply online not found (DAC)
 check status not showing up on staging?
+(ONLY ON STAGING)*Special supplements nutrition program for woman is the elusive 74th
+	- $x("//div[@id='foa-4717result']")
+*HUD public housing program
+	- $x("//div[@id='foa-4474result']")
+*Housing choicde voucher program
+	- $x("//div[@id='foa-4469result']")
