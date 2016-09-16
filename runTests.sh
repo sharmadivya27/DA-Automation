@@ -1,11 +1,11 @@
 #!/bin/bash
 
 driver=$1
-environment=$2
+env=$2
 quit=0
 
-if [ -z $driver -a -z $environment ]; then
-	environment="prod"
+if [ -z $driver -a -z $env ]; then
+	env="prod"
 	driver="chrome"
 fi
 
@@ -21,12 +21,14 @@ case "$driver" in
 	;;
 esac
 
-case "$environment" in
+case "$env" in
 	"staging") 
 	;;
-	"prod") environment="www"
+	"prod") env="www"
 	;;
-	*) echo "$environment is not a valid environment, please use prod or staging"
+	"testint")
+	;;
+	*) echo "$env is not a valid environment, please use prod, staging, or testint"
 	quit=1
 	;;
 esac
@@ -35,5 +37,5 @@ if [ $quit -eq 1 ]; then
 	exit
 fi
 
-mvn clean verify -Dwebdriver.driver="$driver" -Denv="$environment" 
+mvn clean verify -Dwebdriver.driver="$driver" -Denv="$env" 
 open target/site/serenity/index.html 
