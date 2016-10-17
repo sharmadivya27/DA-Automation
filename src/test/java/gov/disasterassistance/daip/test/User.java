@@ -224,11 +224,11 @@ public class User {
 		daPage.getFOAResultsPage();
 	}
 	
-	@Step
+	/*@Step
 	public void verifyEmploymentResultsandVisibility() throws EmploymentException {
 		Assert.assertEquals(9, daPage.getNumEmploymentResults());
 		daPage.verifyEmploymentVisibility();
-	}
+	}*/
 	
 	@Step
 	public void checkFederalBenefits() throws BenefitCountException {
