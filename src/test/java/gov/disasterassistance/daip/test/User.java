@@ -180,7 +180,7 @@ public class User {
 			break;
 		
 		case "faqs":
-			Assert.assertEquals(27, daPage.getNumberAccordions());
+			Assert.assertEquals(28, daPage.getNumberAccordions());
 			break;
 		case "preguntas Comunes":
 			Assert.assertEquals(27, daPage.getNumberAccordions());
@@ -204,12 +204,19 @@ public class User {
 	public void completeQuestionnaire() {
 		daPage.completeFullQuestionnaire();
 		daPage.pause(1000);
-		daPage.getFOAResultsPage();
 	}
 
 	@Step
 	public void checkQuestionnaireResults() {
+		daPage.getFOAResultsPage();
 		Assert.assertEquals(73, daPage.getNumQuestionnaireResults());
+	}
+	
+	@Step
+	public void checkResults() {
+		int i = daPage.getResultsVal();
+		daPage.getFOAResultsPage();
+		Assert.assertEquals(i, daPage.getNumQuestionnaireResults());
 	}
 	
 	@Step
@@ -237,6 +244,7 @@ public class User {
 	
 	@Step
 	public void clickExpandAll() {
+		daPage.getFOAResultsPage();
 		daPage.expandFOAResults();
 	}
 	
@@ -247,7 +255,9 @@ public class User {
 	
 	@Step
 	public void verifyFOAExpandedContentVisible() {
-		Assert.assertEquals(73, daPage.getNumEmploymentResults());
+		int i = daPage.getResultsVal();
+		clickExpandAll();
+		Assert.assertEquals(i, daPage.getNumEmploymentResults());
 	}
 	
 	@Step

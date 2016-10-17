@@ -602,6 +602,11 @@ public class DAPage extends PageObject {
 	public void expandFOAResults() {
 		expandAllButton.click();
 	}
+	
+	public int getResultsVal() {
+		int i = Integer.parseInt(benefitCounter.getText());
+		return i;
+	}
 
 	public void collapseFOAResults() {
 		collapseAllButton.click();
