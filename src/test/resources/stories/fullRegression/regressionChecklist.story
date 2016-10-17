@@ -93,7 +93,7 @@ Examples:
 |partners|
 
 Scenario: Verify all of the nodes on the "Help" landing page
-Meta:       
+Meta: @skip
 Given I am on the Help landing page
 When I click on the <landingPageNode> landing page node
 Then the <landingPageNode> page should open correctly
@@ -145,7 +145,7 @@ When I am viewing the declared disaster map
 Then states with disasters should be clickable
 
 Scenario: Dynamically verify results of the questionnaire on the "Find Assistance" page 
-Meta: @skip
+Meta: 
 Given I am on the Find Assistance page
 When I fully complete the questionnaire
 Then I should accumulate the same number of results as the text on the Get Results button 

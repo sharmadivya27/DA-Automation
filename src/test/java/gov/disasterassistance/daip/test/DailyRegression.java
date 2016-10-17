@@ -274,7 +274,7 @@ public class DailyRegression {
 	
 	@Then("I should accumulate the same number of results as the text on the Get Results button")
 	public void then_I_should_accumulate_same_number_of_results() {
-		
+		user.checkResults();
 	}
 	
 	//Scenario: Verify all the functionality of the FOA questionnaire
