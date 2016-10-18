@@ -3,7 +3,7 @@ In order to assert that the basic functionality of https://www.disasterassistanc
 As a tester
 I want to run the daily regressions at least twice a day
 
-Meta: @skip 
+Meta: 
 
 Scenario: Verify all of the navbar tabs to assert that the pages open correctly
 Meta: @skip      
@@ -93,7 +93,7 @@ Examples:
 |partners|
 
 Scenario: Verify all of the nodes on the "Help" landing page
-Meta: @skip        
+Meta: @skip
 Given I am on the Help landing page
 When I click on the <landingPageNode> landing page node
 Then the <landingPageNode> page should open correctly
@@ -107,7 +107,7 @@ Examples:
 |download plug-ins|
 
 Scenario: Verify results of the questionnaire on the "Find Assistance" page
-Meta: @skip        
+Meta: @skip
 Given I am on the Find Assistance page
 When I fully complete the questionnaire
 Then I should accumulate 73 results
@@ -125,11 +125,10 @@ When I check on each Federal Agency accordion
 Then the number of benefits should match with its count
 
 Scenario: Verify all the functionality of the FOA questionnaire
-Meta: @skip 
+Meta: @skip
 Given I am on the Find Assistance page
 When I fully complete the questionnaire
-And expand all the accordions
-Then I should see all of the content under the accordions
+Then I should expand all the accordions to see all of the content under the accordions
 When I close all of the accordions
 Then none of the accordion content should be visible
 And the 6 FOAs that everyone qualifies for should be visible under Additional Assistance and Resources
@@ -144,6 +143,12 @@ Meta: @skip
 Given I am on the Disaster Assistance homepage
 When I am viewing the declared disaster map
 Then states with disasters should be clickable
+
+Scenario: Dynamically verify results of the questionnaire on the "Find Assistance" page 
+Meta: 
+Given I am on the Find Assistance page
+When I fully complete the questionnaire
+Then I should accumulate the same number of results as the text on the Get Results button 
 
 Scenario: Verify that the FEMA Twitter feed is present on the homepage
 Meta: @skip        
