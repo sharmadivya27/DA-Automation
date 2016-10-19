@@ -222,7 +222,6 @@ public class User {
 	@Step
 	public void getEmploymentResults() {
 		daPage.clickEmploymentCheckbox();
-		daPage.getFOAResultsPage();
 	}
 	
 	@Step

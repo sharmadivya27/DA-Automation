@@ -107,13 +107,13 @@ Examples:
 |download plug-ins|
 
 Scenario: Verify results of the questionnaire on the "Find Assistance" page
-Meta: @skip
+Meta: 
 Given I am on the Find Assistance page
 When I fully complete the questionnaire
 Then I should accumulate 73 results
 
 Scenario: Verify benefits results display according to use cases
-Meta: @skip       
+Meta:        
 Given I am on the Find Assistance page
 When I choose only Employment and expand all the accordions
 Then I should obtain 9 results and see all the content under the accordions
@@ -125,7 +125,7 @@ When I check on each Federal Agency accordion
 Then the number of benefits should match with its count
 
 Scenario: Verify all the functionality of the FOA questionnaire
-Meta: @skip
+Meta: 
 Given I am on the Find Assistance page
 When I fully complete the questionnaire
 Then I should expand all the accordions to see all of the content under the accordions
