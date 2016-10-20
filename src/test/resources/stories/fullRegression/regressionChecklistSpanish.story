@@ -3,7 +3,7 @@ In order to assert that the basic functionality of https://www.disasterassistanc
 As a tester
 I want to run the daily regressions at least twice a day
 
-Meta: @skip  
+Meta: 
 
 Scenario: (Spanish) Verify all of the navbar tabs to assert that the Spanish pages open correctly
 Meta: @skip     
@@ -113,7 +113,7 @@ When I fully complete the questionnaire
 Then I should accumulate 73 results
 
 Scenario: (Spanish) Verify Spanish benefits results display according to use cases
-Meta: @skip     
+Meta: @skip 
 Given I am on the Find Assistance Spanish page
 When I choose only Empleo and expand all the accordions
 Then I should obtain 9 results and see all the content under the accordions
@@ -125,11 +125,10 @@ When I check on each Federal Agency accordion
 Then the number of benefits should match with its count
 
 Scenario: (Spanish) Verify all the functionality of the FOA Spanish questionnaire
-Meta: @skip     
+Meta: 
 Given I am on the Find Assistance Spanish page
 When I fully complete the questionnaire
-And expand all the accordions
-Then I should see all of the content under the accordions
+Then I should expand all the accordions to see all of the content under the accordions
 When I close all of the accordions
 Then none of the accordion content should be visible
 And the 6 Spanish FOAs that everyone qualifies for should be visible under Additional Assistance and Resources
