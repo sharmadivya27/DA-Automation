@@ -227,7 +227,6 @@ public class User {
 	@Step
 	public void getSpanishEmploymentResults() {
 		daPage.clickSpanishEmploymentCheckbox();
-		daPage.getFOAResultsPage();
 	}
 	
 	@Step
