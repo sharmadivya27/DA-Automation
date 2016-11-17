@@ -57,11 +57,6 @@ public class DAPage extends PageObject {
 	@FindBy(xpath = "//span[contains(., 'Disaster Assistance Center') or contains(.,'Centro de Asistencia por Desastre')]")
 	private WebElementFacade dacPage;
 
-	//"//a[@href[contains(., 'TextCaptcha')]]"
-	//"//form[@name='dacCaptchaForm' or @name='accountLoginForm']"
-	@FindBy(xpath = "//form[@name='dacCaptchaForm' or @name='accountLoginForm']")
-	private WebElementFacade textCaptcha;
-
 	@FindBy(xpath = "//div[@id='block-daip-responsive-questionnaire-responsive-questionnaire-block']")
 	private WebElementFacade questionnaire;
 
@@ -222,13 +217,14 @@ public class DAPage extends PageObject {
 	 * 
 	 *************************************************************************/
 	public void completeFullQuestionnaire() {
+		pause(8000);
 		Iterator<WebElementFacade> iter = questionnaireButtons.iterator();
 		while (iter.hasNext()) {
 			WebElementFacade temp = iter.next();
 			temp.click();
 			this.evaluateJavascript("window.scrollBy(0,50)", "");
 		}
-//		stateSelector.sendKeys("Alabama");
+		stateSelector.sendKeys("Alabama");
 
 	}
 
@@ -564,10 +560,6 @@ public class DAPage extends PageObject {
 
 	public boolean questionnaireIsDisplayed() {
 		return questionnaire.isDisplayed();
-	}
-
-	public boolean textCaptchaIsDisplayed() {
-		return textCaptcha.isDisplayed();
 	}
 
 	public boolean checkStatusPageIsDisplayed() {

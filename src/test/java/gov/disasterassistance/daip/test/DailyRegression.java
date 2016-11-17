@@ -331,8 +331,8 @@ public class DailyRegression {
 		user.clicksApplyOnline();
 	}
 	
-	@Then("the DAC page should load and Captcha should be displayed")
-	public void then_DAC_page_should_load_and_Captcha_is_Visible() {
+	@Then("the DAC page should load")
+	public void then_DAC_page_should_load() {
 		user.shouldSeeDAC();
 	}
 	

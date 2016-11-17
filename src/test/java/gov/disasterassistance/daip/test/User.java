@@ -324,6 +324,7 @@ public class User {
 	@Step
 	public void shouldSeeDAC() {
 		daPage.pause(2000);
-		Assert.assertTrue(daPage.textCaptchaIsDisplayed());
+		boolean dacPageVisible = (daPage.checkStatusPageIsDisplayed() || daPage.dacPageIsDisplayed());
+		Assert.assertEquals(true, dacPageVisible);
 	}
 }
