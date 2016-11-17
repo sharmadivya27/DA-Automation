@@ -591,10 +591,14 @@ public class DAPage extends PageObject {
 	}
 
 	public void clickEmploymentCheckbox() {
+		pause(8000);
+		this.evaluateJavascript("window.scrollBy(0,50)", "");
 		getQuestionnaireButton("Employment").click();
 	}
 
 	public void clickSpanishEmploymentCheckbox() {
+		pause(8000);
+		this.evaluateJavascript("window.scrollBy(0,50)", "");
 		getQuestionnaireButton("Empleo").click();
 	}
 
