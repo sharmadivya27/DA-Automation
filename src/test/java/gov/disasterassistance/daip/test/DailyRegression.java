@@ -21,7 +21,6 @@ import net.thucydides.core.annotations.Steps;
 public class DailyRegression {
 	@Steps
 	User user;
-
 	
 	@Given("that I am on the homepage")
 	public void given_that_I_am_home() {
