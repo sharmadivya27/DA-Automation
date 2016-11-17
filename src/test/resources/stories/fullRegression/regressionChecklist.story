@@ -3,7 +3,7 @@ In order to assert that the basic functionality of https://www.disasterassistanc
 As a tester
 I want to run the daily regressions at least twice a day
 
-Meta: @skip
+Meta: 
 
 Scenario: Verify all of the navbar tabs to assert that the pages open correctly
 Meta:   
