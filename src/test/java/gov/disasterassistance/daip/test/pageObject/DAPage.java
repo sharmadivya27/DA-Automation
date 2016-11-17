@@ -32,7 +32,7 @@ public class DAPage extends PageObject {
 	public DAPage(WebDriver driver) {
 		super(driver);
 		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
+		this.setImplicitTimeout(10, TimeUnit.SECONDS);
 	}
 
 	public void clearCookies() {
@@ -53,6 +53,9 @@ public class DAPage extends PageObject {
 
 	@FindBy(xpath = "//*[@id='pageContent']")
 	private WebElementFacade checkStatusPageContent;
+	
+	@FindBy(xpath = "//span[contains(., 'Disaster Assistance Center') or contains(.,'Centro de Asistencia por Desastre')]")
+	private WebElementFacade dacPage;
 
 	//"//a[@href[contains(., 'TextCaptcha')]]"
 	//"//form[@name='dacCaptchaForm' or @name='accountLoginForm']"
@@ -225,7 +228,7 @@ public class DAPage extends PageObject {
 			temp.click();
 			this.evaluateJavascript("window.scrollBy(0,50)", "");
 		}
-		stateSelector.sendKeys("Alabama");
+//		stateSelector.sendKeys("Alabama");
 
 	}
 
@@ -569,6 +572,10 @@ public class DAPage extends PageObject {
 
 	public boolean checkStatusPageIsDisplayed() {
 		return checkStatusPageContent.isDisplayed();
+	}
+	
+	public boolean dacPageIsDisplayed() {
+		return dacPage.isDisplayed();
 	}
 	
 	public boolean emailFormIsDisplayed() {

@@ -25,8 +25,6 @@ public class User {
 
 	DAPageParent page;
 	
-	
-	
 	@Step
 	public void openTestPage() {
 		page.openTestPage();
@@ -157,17 +155,12 @@ public class User {
 		case "encontrar ayuda" :
 			Assert.assertEquals(true, daPage.questionnaireIsDisplayed());
 			break;
-		case "apply online":
-			Assert.assertEquals(true, daPage.textCaptchaIsDisplayed());
-			break;
-		case "solicitar asistencia":
-			Assert.assertEquals(true, daPage.textCaptchaIsDisplayed());
-			break;
-		case "check your status":
-			Assert.assertEquals(true, daPage.checkStatusPageIsDisplayed());
-			break;
 		case "revisar estatus":
-			Assert.assertEquals(true, daPage.checkStatusPageIsDisplayed());
+		case "solicitar asistencia":
+		case "check your status":
+		case "apply online":
+			boolean dacPageVisible = (daPage.checkStatusPageIsDisplayed() || daPage.dacPageIsDisplayed());
+			Assert.assertEquals(true, dacPageVisible);
 			break;
 		case "assistance by catgory":
 			Assert.assertEquals(15, daPage.getNumberAccordions());
