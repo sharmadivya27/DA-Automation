@@ -6,7 +6,7 @@ I want to run the daily regressions at least twice a day
 Meta: 
 
 Scenario: (Spanish) Verify all of the navbar tabs to assert that the Spanish pages open correctly
-Meta: @skip     
+Meta: @skip    
 Given I am on the Spanish Disaster Assistance homepage
 When I click on <navMenuItem> within the top navigation bar
 Then the <navMenuItem> page should open correctly
@@ -34,7 +34,7 @@ Examples:
 |correo electrónico|
 
 Scenario: (Spanish) Verify the main links on homepage to assert that the Spanish pages open correctly
-Meta: @skip     
+Meta: @skip    
 Given I am on the Spanish Disaster Assistance homepage
 When I click on <mainLinksItem> within the main links bar
 Then the <mainLinksItem> page should open correctly
@@ -46,7 +46,7 @@ Examples:
 |revisar estatus|
 
 Scenario: (Spanish) Verify all of the nodes on the "Get Assistance" Spanish landing page
-Meta: @skip     
+Meta: @skip      
 Given I am on the Get Assistance Spanish landing page
 When I click on the <landingPageNode> landing page node
 Then the <landingPageNode> page should open correctly
@@ -107,13 +107,13 @@ Examples:
 |descargar plug-ins|
 
 Scenario: (Spanish) Verify results of the questionnaire on the "Find Assistance" Spanish page
-Meta: @skip    
+Meta: @skip   
 Given I am on the Find Assistance Spanish page
 When I fully complete the questionnaire
 Then I should accumulate 73 results
 
 Scenario: (Spanish) Verify Spanish benefits results display according to use cases
-Meta: @skip 
+Meta: @skip  
 Given I am on the Find Assistance Spanish page
 When I choose only Empleo and expand all the accordions
 Then I should obtain 9 results and see all the content under the accordions
@@ -151,7 +151,7 @@ When I am viewing the FEMA Twitter feed
 Then the most recent tweets should be displayed
 
 Scenario: (Spanish) Verify Local Resources flows correctly on the Spanish homepage
-Meta: @skip     
+Meta: @skip      
 Given I am on the Spanish Disaster Assistance homepage
 When I am attempting to find local resources
 Then information on resources should be visible
