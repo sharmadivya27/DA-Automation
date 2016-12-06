@@ -106,12 +106,6 @@ Examples:
 |accesibilidad|
 |descargar plug-ins|
 
-Scenario: (Spanish) Verify results of the questionnaire on the "Find Assistance" Spanish page
-Meta:      
-Given I am on the Find Assistance Spanish page
-When I fully complete the questionnaire
-Then I should accumulate 73 results
-
 Scenario: (Spanish) Verify Spanish benefits results display according to use cases
 Meta:      
 Given I am on the Find Assistance Spanish page

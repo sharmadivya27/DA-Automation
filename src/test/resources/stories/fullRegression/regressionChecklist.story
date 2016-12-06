@@ -106,12 +106,6 @@ Examples:
 |accessibility|
 |download plug-ins|
 
-Scenario: Verify results of the questionnaire on the "Find Assistance" page
-Meta:          
-Given I am on the Find Assistance page
-When I fully complete the questionnaire
-Then I should accumulate 73 results
-
 Scenario: Verify benefits results display according to use cases
 Meta:      
 Given I am on the Find Assistance page
