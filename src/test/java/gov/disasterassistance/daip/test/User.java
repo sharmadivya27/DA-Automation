@@ -27,13 +27,13 @@ public class User {
 	
 	@Step
 	public void openTestPage() {
-		page.openTestPage();
+		page.open();
 	}	
 	
 	@Step
 	public void goToNewPage() {
 		page.switchToPage(DAOverview.class);
-		page.openTestPage();
+		page.open();
 	}
 
 	@Step

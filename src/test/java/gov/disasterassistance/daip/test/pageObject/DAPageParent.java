@@ -5,7 +5,9 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 
 import net.serenitybdd.core.pages.PageObject;
+import net.thucydides.core.annotations.DefaultUrl;
 
+@DefaultUrl("https://www.disasterassistance.gov")
 public class DAPageParent extends PageObject {
 
 //	private final String pageTitle = "Home | DisasterAssistance.gov | Access to Disaster Help and Resources";
@@ -18,9 +20,5 @@ public class DAPageParent extends PageObject {
 
 	public String getPageTitle() {
 		return this.getDriver().getTitle();
-	}
-
-	public void openTestPage() {
-		this.getDriver().get("https://www.disasterassistance.gov");
 	}
 }
