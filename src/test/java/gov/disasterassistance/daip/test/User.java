@@ -9,8 +9,6 @@ import gov.disasterassistance.daip.test.exceptions.FeedException;
 import gov.disasterassistance.daip.test.exceptions.LocalResourcesException;
 import gov.disasterassistance.daip.test.exceptions.StateException;
 import gov.disasterassistance.daip.test.pageObject.DAPage;
-import gov.disasterassistance.daip.test.pageObject.DAPageParent;
-import gov.disasterassistance.daip.test.pageObject.aboutUs.DAOverview;
 import net.thucydides.core.annotations.Step;
 
 /*************************************************************************
@@ -22,28 +20,6 @@ import net.thucydides.core.annotations.Step;
  ************************************************************************/
 public class User {
 	DAPage daPage;
-
-	DAPageParent page;
-	
-	@Step
-	public void openTestPage() {
-		page.open();
-	}	
-	
-	@Step
-	public void goToNewPage() {
-		page.switchToPage(DAOverview.class);
-		page.open();
-	}
-
-	@Step
-	public void seeTitle() {
-		Assert.assertEquals("Wrong", page.getPageTitle());
- 	}	
-	
-	
-	
-	/*******************************************************************************/
 
 	@Step
 	public void open_page(String directoryPath) {

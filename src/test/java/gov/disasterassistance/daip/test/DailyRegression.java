@@ -22,25 +22,6 @@ public class DailyRegression {
 	@Steps
 	User user;
 	
-	@Given("that I am on the homepage")
-	public void given_that_I_am_home() {
-		user.openTestPage();
-	}	
-	
-	@When("I navigate to a different page")
-	public void when_I_navigate_away() {
-		user.goToNewPage();
-	}
-	
-	@Then("I should should see a different title than the homepage")
-	public void then_I_see_diff_title() {
-		user.seeTitle();
-	}
-	
-	
-	
-	/********************************************************************************/
-	
 	//Scenario: Verify all of the navbar tabs to assert that the pages open correctly
 	@Given("I am on the Disaster Assistance homepage")
 	public void given_I_am_on_the_disaster_assistance_homepage() {

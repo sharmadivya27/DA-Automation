@@ -16,7 +16,7 @@ Examples:
 |navMenuItem|numNodes|
 |inicio|0|
 |obtener asistencia|9|
-|información|9|
+|información|8|
 |acerca de|2|
 |ayuda|5|
 
@@ -71,7 +71,6 @@ Then the <landingPageNode> page should open correctly
 
 Examples:
 |landingPageNode|
-|canales de noticias "feeds"|
 |necesidades inmediatas|
 |próximo paso|
 |discapacidades o necesidades funcionales y de acceso|
