@@ -5,8 +5,7 @@ env=$2
 quit=0
 
 if [ -z $driver -a -z $env ]; then
-	env="prod"
-	driver="chrome"
+	echo "No drivers set, running tests with defaults"
 fi
 
 case "$driver" in 
@@ -38,4 +37,4 @@ if [ $quit -eq 1 ]; then
 fi
 
 mvn clean verify -Dwebdriver.driver="$driver" -Denv="$env" 
-open target/site/serenity/index.html 
+#open target/site/serenity/index.html 

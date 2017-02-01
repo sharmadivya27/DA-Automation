@@ -1,2 +1,0 @@
-~ Change sub-tab story to click on sub tab link through top nav instead of going through the landing page
-- On index.html results page, clean up the language that displays (will get more input from others)
