@@ -62,12 +62,6 @@ public class User {
 	*************************************************************************/	
 	@Step
 	public void shouldSeePage(String expectedPageName) {
-		String pageTitle = "";
-		try {
-			pageTitle = daPage.pullPageTitle();
-		} catch (NoSuchElementException e) {
-			// do nothing
-		}
 
 		switch (expectedPageName) {
 		case "get assistance":
@@ -115,7 +109,9 @@ public class User {
 		case "accesibilidad":
 		case "download plug-ins":
 		case "descargar plug-ins":
-			Assert.assertEquals(expectedPageName.toLowerCase(), pageTitle.toLowerCase());
+			// TODO: Should this assertion be done on all pages?
+			// If so, delete all cases above this and move this assertion to after switch
+			Assert.assertEquals(expectedPageName.toLowerCase(), daPage.pullPageTitle().toLowerCase());
 			break;
 		
 		case "home":
