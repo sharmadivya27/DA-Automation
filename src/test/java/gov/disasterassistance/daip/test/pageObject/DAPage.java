@@ -25,6 +25,22 @@ import net.serenitybdd.core.pages.WebElementFacade;
  * @author Chris Viqueira
  *************************************************************************/
 public class DAPage extends PageObject {
+	
+	/*********************************************/
+	
+	@FindBy(xpath="logo")
+	private WebElementFacade homeLogo;
+	
+	public void clickIcon() {
+		homeLogo.click();
+	}
+	
+	public String shouldSeeHome() {
+		return this.getTitle();
+	}
+	
+	
+	/*********************************************/
 
 	private String env = System.getProperty("environment");
 	public String defaultUrl = "http://" + env + ".disasterassistance.gov";

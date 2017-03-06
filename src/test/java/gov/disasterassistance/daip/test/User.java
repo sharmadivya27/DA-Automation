@@ -20,6 +20,26 @@ import net.thucydides.core.annotations.Step;
  ************************************************************************/
 public class User {
 	DAPage daPage;
+	
+	/*********************************************/
+	
+	@Step
+	public void home() {
+		daPage.getDriver().get("https://www.disasterassistance.gov");
+	}
+	
+	@Step
+	public void clickIcon() {
+		daPage.clickIcon();
+	}
+	
+	@Step
+	public void seeHome() {
+		Assert.assertEquals("Home | DisasterAssistance.gov | Access to Disaster Help and Resources", daPage.shouldSeeHome());
+	}
+	
+	
+	/*********************************************/
 
 	@Step
 	public void open_page(String directoryPath) {
@@ -303,4 +323,5 @@ public class User {
 		boolean dacPageVisible = (daPage.checkStatusPageIsDisplayed() || daPage.dacPageIsDisplayed());
 		Assert.assertEquals(true, dacPageVisible);
 	}
+
 }

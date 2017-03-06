@@ -22,6 +22,26 @@ public class DailyRegression {
 	@Steps
 	User user;
 	
+	/*********************************************/
+	
+	@Given("I am on the homepage")
+	public void given_homepage() {
+		user.home();
+	}
+	
+	@When("I click the icon")
+	public void click_icon() {
+		user.clickIcon();
+	}
+	
+	@Then("I should still be on the homepage")
+	public void see_home() {
+		user.seeHome();
+	}
+	
+	
+	/*********************************************/
+	
 	//Scenario: Verify all of the navbar tabs to assert that the pages open correctly
 	@Given("I am on the Disaster Assistance homepage")
 	public void given_I_am_on_the_disaster_assistance_homepage() {
