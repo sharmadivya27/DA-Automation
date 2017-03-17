@@ -116,7 +116,28 @@ public class DailyRegression {
 		user.shouldSeePage(landingPageNode);
 	}
 	
-
+	//Scenario: Verify all of the titles on the "News Feeds" landing page node 
+	@Given("I am on the News Feeds landing page node")
+	public void i_am_on_the_news_feeds_landing_page_node() {
+		user.open_page("/information/news-feeds");
+	}
+	
+	@When("I click on the link under each <subTitle>")
+	public void i_click_on_the_link(@Named("subTitle") String subTitle) {
+		user.clickOnTitle(subTitle);
+	}
+	
+	@Then("the link under the <subTitle> should open correctly")
+	public void then_the_link_under_the_subtitle_open_correctly(@Named("subTitle") String subTitle) {
+		user.shouldLoadPage(subTitle);
+	}
+	
+	/*//Scenario: Verify all of the titles on the "Immediate Needs" landing page node 
+	@Given("I am on the Immediate Needs landing page node")
+	public void i_am_on_the_immediate_needs_landing_page_node() {
+		user.open_page("/information/immediate-needs");
+	} */
+	
 	//Scenario: Verify all of the nodes on the "Information" landing page
 	@Given("I am on the Information landing page")
 	public void given_I_am_on_the_Information_landing_page() {
@@ -216,7 +237,7 @@ public class DailyRegression {
 	
 	@When("I check on each Federal Agency accordion")
 	public void when_I_check_each_Federal_Agency_accordion() {
-		
+		//FIXME ??
 	}
 
 	@Then("the number of benefits should match with its count")

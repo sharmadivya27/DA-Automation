@@ -7,78 +7,86 @@ import gov.disasterassistance.daip.test.exceptions.EmploymentException;
 import gov.disasterassistance.daip.test.exceptions.FeedException;
 import gov.disasterassistance.daip.test.exceptions.LocalResourcesException;
 import gov.disasterassistance.daip.test.exceptions.StateException;
+import gov.disasterassistance.daip.test.pageObject.DALandingPage;
+import gov.disasterassistance.daip.test.pageObject.DAFederalAgency;
+import gov.disasterassistance.daip.test.pageObject.DAHomepage;
 import gov.disasterassistance.daip.test.pageObject.DAPage;
+import gov.disasterassistance.daip.test.pageObject.DAQuestionnaire;
 import net.thucydides.core.annotations.Step;
 
 /*************************************************************************
- * 	The "user" that is performing all of the actions on the web page.
- * 	Provides an extra layer of abstraction so all the functions called
- *  are named to emulate actions that a real user would perform.
+ * The "user" that is performing all of the actions on the web page. Provides an
+ * extra layer of abstraction so all the functions called are named to emulate
+ * actions that a real user would perform.
  * 
  * @author Chris Viqueira
  ************************************************************************/
 public class User {
-	DAPage daPage;
-	
+	DAPage dapage;
+	DAHomepage daHomepage;
+	DAQuestionnaire daQuesPage;
+	DALandingPage daLanding;
+	DAFederalAgency daFedAgency;
+
 	/*********************************************/
-	
+
 	@Step
 	public void home() {
-		daPage.getDriver().get("https://www.disasterassistance.gov");
+		daHomepage.getDriver().get("https://www.disasterassistance.gov");
 	}
-	
+
 	@Step
 	public void clickIcon() {
-		daPage.clickIcon();
+		dapage.clickIcon();
 	}
-	
+
 	@Step
 	public void seeHome() {
-		Assert.assertEquals("Home | DisasterAssistance.gov | Access to Disaster Help and Resources", daPage.shouldSeeHome());
+		Assert.assertEquals("Home | DisasterAssistance.gov | Access to Disaster Help and Resources",
+				dapage.shouldSeeHome());
 	}
-	
-	
+
 	/*********************************************/
 
 	@Step
 	public void open_page(String directoryPath) {
-		daPage.clearCookies();
-		
-		String url = daPage.defaultUrl + directoryPath;
-		if(daPage.defaultUrl.contains("staging")) {
+		dapage.clearCookies();
+
+		String url = dapage.defaultUrl + directoryPath;
+		if (dapage.defaultUrl.contains("staging")) {
 			url += "?mobile=unL9HuS";
 		}
-		
-		daPage.openAt(url);
+
+		daHomepage.openAt(url);
 	}
 
 	@Step
 	public void clickNavNode(String node) {
-		daPage.clickNavNode(node);
+		daLanding.clickNavNode(node);
 	}
 
 	@Step
 	public void clickQuickLink(String quickLink) {
-		daPage.clickQuickLink(quickLink);
+		daHomepage.clickQuickLink(quickLink);
 	}
-	
+
 	@Step
 	public void clickMainLink(String mainLink) {
-		daPage.clickMainLink(mainLink);
+		daHomepage.clickMainLink(mainLink);
 	}
-	
+
 	@Step
 	public void shouldSeeLandingPageNodes(short expected) {
-		Assert.assertEquals(expected, daPage.numberOfLandingPageNodes());
+		Assert.assertEquals(expected, daHomepage.numberOfLandingPageNodes());
 	}
 
-
 	/************************************************************************
-	* 	Runs the assertions to make sure a page is valid using
-	* 	simple checks such as comparing the page title.
-	*
-	*	@param expectedPageName : name of the page being tested
-	*************************************************************************/	
+	 * Runs the assertions to make sure a page is valid using simple checks such
+	 * as comparing the page title.
+	 *
+	 * @param expectedPageName
+	 *            : name of the page being tested
+	 *************************************************************************/
 	@Step
 	public void shouldSeePage(String expectedPageName) {
 
@@ -129,54 +137,55 @@ public class User {
 		case "download plug-ins":
 		case "descargar plug-ins":
 			// TODO: Should this assertion be done on all pages?
-			// If so, delete all cases above this and move this assertion to after switch
-			Assert.assertEquals(expectedPageName.toLowerCase(), daPage.pullPageTitle().toLowerCase());
+			// If so, delete all cases above this and move this assertion to
+			// after switch
+			Assert.assertEquals(expectedPageName.toLowerCase(), daHomepage.pullPageTitle().toLowerCase());
 			break;
-		
+
 		case "home":
 		case "inicio":
 		case "address look-up":
 		case "buscar dirección":
-			Assert.assertEquals(true, daPage.addressLookupIsDisplayed());
+			Assert.assertEquals(true, daHomepage.addressLookupIsDisplayed());
 			break;
-			
+
 		case "find assistance":
-			Assert.assertEquals(true, daPage.questionnaireIsDisplayed());
+			Assert.assertEquals(true, daHomepage.questionnaireIsDisplayed());
 			break;
-		case "encontrar ayuda" :
-			Assert.assertEquals(true, daPage.questionnaireIsDisplayed());
+		case "encontrar ayuda":
+			Assert.assertEquals(true, daHomepage.questionnaireIsDisplayed());
 			break;
 		case "revisar estatus":
 		case "solicitar asistencia":
 		case "check your status":
 		case "apply online":
-			boolean dacPageVisible = (daPage.checkStatusPageIsDisplayed() || daPage.dacPageIsDisplayed());
+			boolean dacPageVisible = (daHomepage.checkStatusPageIsDisplayed() || daHomepage.dacPageIsDisplayed());
 			Assert.assertEquals(true, dacPageVisible);
 			break;
 		case "assistance by catgory":
-			Assert.assertEquals(15, daPage.getNumberAccordions());
+			Assert.assertEquals(15, daHomepage.getNumberAccordions());
 			break;
 		case "asistencia por categoría":
-			Assert.assertEquals(15, daPage.getNumberAccordions());
+			Assert.assertEquals(15, daHomepage.getNumberAccordions());
 			break;
 		case "assistance by federal agency":
-			Assert.assertEquals(14, daPage.getNumberAccordions());
+			Assert.assertEquals(14, daHomepage.getNumberAccordions());
 			break;
-		
+
 		case "faqs":
-			Assert.assertEquals(28, daPage.getNumberAccordions());
+			Assert.assertEquals(28, daHomepage.getNumberAccordions());
 			break;
 		case "preguntas Comunes":
-			Assert.assertEquals(27, daPage.getNumberAccordions());
+			Assert.assertEquals(27, daHomepage.getNumberAccordions());
 			break;
-		
+
 		case "emails":
-			Assert.assertEquals(true, daPage.emailFormIsDisplayed());
+			Assert.assertEquals(true, daHomepage.emailFormIsDisplayed());
 			break;
 		case "correo electrónico":
-			Assert.assertEquals(true, daPage.emailFormIsDisplayed());
+			Assert.assertEquals(true, daHomepage.emailFormIsDisplayed());
 			break;
-			
+
 		default:
 			System.err.println("INVALID PAGE SENT");
 			break;
@@ -185,137 +194,177 @@ public class User {
 	}
 
 	@Step
+	public void clickOnTitle(String subTitle) {
+		if (subTitle.equals("Recently Declared Disaster")) {
+			daLanding.clickOnDisasterLink();
+			daHomepage.pause(1000);
+		} else if (subTitle.equals("Severe Storms")) {
+			daLanding.clickOnSevereLink();
+			daHomepage.pause(1000); 
+		} else if (subTitle.equals("Hurricanes")) {
+			daLanding.clickOnHurricaneLink();
+			daHomepage.pause(1000);
+		} else if (subTitle.equals("Wildfire")) {
+			daLanding.clickOnWildfireLink();
+			daHomepage.pause(1000);
+		} else if (subTitle.equals("Drought")) {
+			daLanding.clickOnDroughtLink();
+			daHomepage.pause(1000);
+		} else if (subTitle.equals("Earthquakes")) {
+			daLanding.clickOnEarthquakeLink();
+			daHomepage.pause(1000);
+		}
+	}
+
+	@Step
+	public void shouldLoadPage(String subTitle) {
+		if (subTitle.equals("Recently Declared Disaster")) {
+			Assert.assertEquals("https://www.fema.gov/disaster/4305", daLanding.getUrl());
+		} else if (subTitle.equals("Severe Storms")) {
+			Assert.assertEquals("http://www.spc.noaa.gov/products/outlook/day1otlk_1630.html", daLanding.getUrl());
+		} else if (subTitle.equals("Hurricanes")) {
+			Assert.assertEquals("http://www.nhc.noaa.gov/", daLanding.getUrl());
+		} else if (subTitle.equals("Wildfire")) {
+			Assert.assertEquals("https://inciweb.nwcg.gov/incident/5139/", daLanding.getUrl());
+		} else if (subTitle.equals("Drought")) {
+			Assert.assertEquals("http://moderator.droughtreporter.unl.edu/RSSfeed/ImpactView/39289", daLanding.getUrl());
+		} else if (subTitle.equals("Earthquakes")) {
+			Assert.assertEquals("https://earthquake.usgs.gov/earthquakes/eventpage/ci37828544#executive", daLanding.getUrl());
+		}
+	}
+
+	@Step
 	public void completeQuestionnaire() {
-		daPage.completeFullQuestionnaire();
-		daPage.pause(1000);
+		daQuesPage.completeFullQuestionnaire();
+		daHomepage.pause(1000);
 	}
 
 	@Step
 	public void checkQuestionnaireResults() {
-		daPage.getFOAResultsPage();
-		Assert.assertEquals(73, daPage.getNumQuestionnaireResults());
+		daQuesPage.getFOAResultsPage();
+		Assert.assertEquals(73, daQuesPage.getNumQuestionnaireResults());
 	}
-	
+
 	@Step
 	public void checkResults() {
-		int i = daPage.getResultsVal();
-		daPage.getFOAResultsPage();
-		Assert.assertEquals(i, daPage.getNumQuestionnaireResults());
+		int i = daQuesPage.getResultsVal();
+		daQuesPage.getFOAResultsPage();
+		Assert.assertEquals(i, daQuesPage.getNumQuestionnaireResults());
 	}
-	
+
 	@Step
 	public void getEmploymentResults() {
-		daPage.clickEmploymentCheckbox();
+		daQuesPage.clickEmploymentCheckbox();
 	}
-	
+
 	@Step
 	public void getSpanishEmploymentResults() {
-		daPage.clickSpanishEmploymentCheckbox();
+		daQuesPage.clickSpanishEmploymentCheckbox();
 	}
-	
+
 	@Step
 	public void verifyEmploymentResultsandVisibility() throws EmploymentException {
-		Assert.assertEquals(9, daPage.getNumEmploymentResults());
-		daPage.verifyEmploymentVisibility();
+		Assert.assertEquals(9, daQuesPage.getNumEmploymentResults());
+		daQuesPage.verifyEmploymentVisibility();
 	}
-	
+
 	@Step
 	public void checkFederalBenefits() throws BenefitCountException {
-		daPage.checkFederalBenefits();
+		daFedAgency.checkFederalBenefits();
 	}
-	
+
 	@Step
 	public void clickExpandAll() {
-		daPage.getFOAResultsPage();
-		daPage.expandFOAResults();
+		daQuesPage.getFOAResultsPage();
+		daQuesPage.expandFOAResults();
 	}
-	
+
 	@Step
 	public void clickCollapseAll() {
-		daPage.collapseFOAResults();
+		daQuesPage.collapseFOAResults();
 	}
-	
+
 	@Step
 	public void verifyFOAExpandedContentVisible() {
-		int i = daPage.getResultsVal();
+		int i = daQuesPage.getResultsVal();
 		clickExpandAll();
-		Assert.assertEquals(i, daPage.getNumEmploymentResults());
+		Assert.assertEquals(i, daQuesPage.getNumEmploymentResults());
 	}
-	
+
 	@Step
 	public void verifyFOAExpandedContentIsHidden() {
-		Assert.assertEquals(0, daPage.getNumExpandedQuestionnaireResults());
+		Assert.assertEquals(0, daQuesPage.getNumExpandedQuestionnaireResults());
 	}
-		
+
 	@Step
 	public void checkDisasterMap() throws StateException {
-		daPage.checkDisasterMap();
+		daHomepage.checkDisasterMap();
 	}
-	
+
 	@Step
 	public void checkStates() throws StateException {
-		daPage.checkStates();
+		daHomepage.checkStates();
 	}
-	
+
 	@Step
 	public void checkTwitterFeedBlock() throws FeedException {
-		daPage.checkTwitterFeedBlock();
+		daHomepage.checkTwitterFeedBlock();
 	}
-	
+
 	@Step
 	public void checkTwitterFeed() throws FeedException {
-		daPage.checkTwitterFeed();
+		daHomepage.checkTwitterFeed();
 	}
-	
+
 	@Step
 	public void lookUpLocation() {
-		daPage.lookUpLocation();
+		daHomepage.lookUpLocation();
 	}
-	
+
 	@Step
 	public void verifyLocalResources() throws LocalResourcesException {
-		daPage.verifyLocalResourcesResults();
+		daHomepage.verifyLocalResourcesResults();
 	}
-	
+
 	@Step
 	public void verifyNumberOfAdditionalFOA() {
-		Assert.assertEquals(6, daPage.getNumAdditionalFOA());
+		Assert.assertEquals(6, daQuesPage.getNumAdditionalFOA());
 	}
-	
+
 	@Step
 	public void verifyNumberOfAdditionalSpanishFOA() {
-		Assert.assertEquals(6, daPage.getNumAdditionalSpanishFOA());
+		Assert.assertEquals(6, daQuesPage.getNumAdditionalSpanishFOA());
 	}
-	
+
 	@Step
 	public void verifyIndividualAccordionContent() {
-		Assert.assertEquals(73, daPage.clickIndividualFOAs());
+		Assert.assertEquals(73, daQuesPage.clickIndividualFOAs());
 	}
-	
+
 	@Step
 	public void seesFOAFooter() {
-		Assert.assertTrue(daPage.foaFooterIsVisible());
+		Assert.assertTrue(daQuesPage.foaFooterIsVisible());
 	}
-	
+
 	@Step
 	public void clicksNextFOA() {
-		daPage.clickNextFOA();
+		daQuesPage.clickNextFOA();
 	}
-	
+
 	@Step
 	public void testsApplyOnlineAccordions() {
-		Assert.assertEquals(3, daPage.numApplyOnlineFOAs());
+		Assert.assertEquals(3, daQuesPage.numApplyOnlineFOAs());
 	}
-	
+
 	@Step
 	public void clicksApplyOnline() {
-		daPage.clickApplyOnline();
+		daQuesPage.clickApplyOnline();
 	}
-	
+
 	@Step
 	public void shouldSeeDAC() {
-		daPage.pause(2000);
-		boolean dacPageVisible = (daPage.checkStatusPageIsDisplayed() || daPage.dacPageIsDisplayed());
+		daHomepage.pause(2000);
+		boolean dacPageVisible = (daQuesPage.checkStatusPageIsDisplayed() || daQuesPage.dacPageIsDisplayed());
 		Assert.assertEquals(true, dacPageVisible);
 	}
 
