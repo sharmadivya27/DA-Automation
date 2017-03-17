@@ -1,7 +1,6 @@
 package gov.disasterassistance.daip.test;
 
 import org.junit.Assert;
-import org.openqa.selenium.NoSuchElementException;
 
 import gov.disasterassistance.daip.test.exceptions.BenefitCountException;
 import gov.disasterassistance.daip.test.exceptions.EmploymentException;
