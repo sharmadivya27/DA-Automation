@@ -95,6 +95,21 @@ public class DailyRegression {
 		user.shouldSeePage(mainLinksItem);
 	}
 	
+	/*
+	//Scenario: Verify all the menu links on the "Get Assistance" tab
+	//given see above 
+	//FIXME
+	
+	@When("I click on the <menuLinks> in the Get Assistance tab")
+	public void when_i_click_on_the_menu_links_in_get_assistance_tab(@Named("menuLinks") String menuLinks) {
+		user.clickMenuLink(menuLinks); 
+	}
+	
+	@Then("the <menuLinks> page should open correctly") 
+	public void then_the_menu_links_page_should_open_correctly(@Named("menuLinks") String menuLinks) {
+		user.shouldSeePage(menuLinks);
+	}*/
+	
 	//Scenario: Verify all of the nodes on the "Get Assistance" landing page
 	@Given("I am on the Get Assistance landing page")
 	public void given_I_am_on_the_Get_Assistance_landing_page() {
@@ -127,16 +142,19 @@ public class DailyRegression {
 		user.clickOnTitle(subTitle);
 	}
 	
-	@Then("the link under the <subTitle> should open correctly")
-	public void then_the_link_under_the_subtitle_open_correctly(@Named("subTitle") String subTitle) {
+	@Then("the link under the <subTitle> should open")
+	public void then_the_link_under_the_subtitle_open(@Named("subTitle") String subTitle) {
 		user.shouldLoadPage(subTitle);
 	}
 	
-	/*//Scenario: Verify all of the titles on the "Immediate Needs" landing page node 
+	//Scenario: Verify all of the titles on the "Immediate Needs" landing page node 
 	@Given("I am on the Immediate Needs landing page node")
 	public void i_am_on_the_immediate_needs_landing_page_node() {
 		user.open_page("/information/immediate-needs");
-	} */
+	}
+	
+	//when see above
+	//then see above
 	
 	//Scenario: Verify all of the nodes on the "Information" landing page
 	@Given("I am on the Information landing page")
@@ -150,7 +168,25 @@ public class DailyRegression {
 	}
 	// when see above
 	// then see above
-
+	
+	//Scenario: Verify all the menu links on the "Information" tab
+	//given see above
+	
+	@When("I click on the <menuLinks> in the Information tab")
+	public void when_i_click_on_the_menu_links_in_information_tab(@Named("menuLinks") String menuLinks) {
+		//FIXME 
+	}
+	
+	//then see above
+	
+	//Scenario: Verify the More/Less button is on each of the landing page nodes under the "Information" landing page
+	//given see above
+	//when see above
+	
+	@Then("I click on the more button and content should appear under the title of the <landingPageNode>")
+	public void click_on_more_button_on_each_landing_page_node(@Named("landingPageNode") String landingPageNode) {
+		user.clickMore();
+	}
 	
 	//Scenario: Verify all of the nodes on the "About Us" landing page
 	@Given("I am on the About Us landing page")
@@ -163,7 +199,7 @@ public class DailyRegression {
 		user.open_page("/es/acerca-de");
 	}
 	// when see above
-	// then see above
+	// then see above    
 
 	//Scenario: Verify all of the nodes on the "Help" landing page
 	@Given("I am on the Help landing page")
@@ -199,8 +235,6 @@ public class DailyRegression {
 	public void I_should_accumulate_73_results() {
 		user.checkQuestionnaireResults();
 	}
-	
-	
 	
 	//Scenario: Verify benefits results display according to use cases page
 	
@@ -258,7 +292,6 @@ public class DailyRegression {
 	public void then_states_with_disasters_should_be_clickable() throws StateException {
 		user.checkStates();
 	}
-	
 	
 	//Scenario: Verify that the FEMA Twitter feed is present on the homepage
 	

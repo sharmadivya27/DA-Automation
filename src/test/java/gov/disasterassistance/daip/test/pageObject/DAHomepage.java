@@ -3,7 +3,9 @@ package gov.disasterassistance.daip.test.pageObject;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 import gov.disasterassistance.daip.test.exceptions.FeedException;
 import gov.disasterassistance.daip.test.exceptions.LocalResourcesException;
@@ -44,9 +46,45 @@ public class DAHomepage extends PageObject {
 
 	@FindBy(xpath = "//div//ul//li//a[@class='print-email-search-icon' or @class='print-mail print-email-search-icon']")
 	private List<WebElementFacade> quickLinks;
-
+ 
 	@FindBy(xpath = "//div[@class='block block-nodeblock homepage-main-links even']//article")
 	private List<WebElementFacade> mainLinks;
+	
+	@FindBy(xpath = "//*[@id='menu-get-assistance']")
+	private WebElementFacade getAssistanceTab;
+	
+	@FindBy(xpath = "//*[@id='menu-info']/a")
+	private WebElementFacade informationTab;
+	
+	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[1]/a")
+	private WebElementFacade addressLookUp;
+	
+	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[2]/a")
+	private WebElementFacade findAssistance;
+	
+	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[3]/a")
+	private WebElementFacade applyOnline;
+	
+	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[4]/a")
+	private WebElementFacade checkYourStatus;
+	
+	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[5]/a")
+	private WebElementFacade assistanceCategory;
+	
+	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[6]/a")
+	private WebElementFacade assistanceFederal;
+	
+	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[7]/a")
+	private WebElementFacade otherHelp;
+	
+	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[8]/a")
+	private WebElementFacade applicationChecklist;
+	
+	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[9]/a")
+	private WebElementFacade forms;
+	
+	@FindBy(xpath = "//*[@id='menu-info']/ul/li[1]/a")
+	private WebElementFacade newsFeeds;
 
 	@FindBy(xpath = "//*[@class='state selected single-state-group']")
 	private List<WebElementFacade> disasterStates;
@@ -124,7 +162,61 @@ public class DAHomepage extends PageObject {
 		}
 		element.click();
 	}
+	
+	public void mouseOver() {
+		Actions action = new Actions(getDriver());
+		action.moveToElement(informationTab).perform();
+		newsFeeds.click();
+	}
+	
+	/*public void mouseOver() {
+		Actions action = new Actions(getDriver());
+		action.moveToElement(getAssistanceTab).perform();
+		/*String mouseOverScript = "if(document.createEvent){var evObj = document.createEvent('MouseEvents');evObj.initEvent('mouseover', true, false); arguments[0].dispatchEvent(evObj);} else if(document.createEventObject) { arguments[0].fireEvent('onmouseover');}";
+	    JavascriptExecutor js = (JavascriptExecutor) getDriver();
+	    js.executeScript(mouseOverScript, getAssistanceTab);
+	}
 
+	public void clickAddressLink() {
+		Actions action = new Actions(getDriver());
+		action.moveToElement(getAssistanceTab).moveToElement(addressLookUp).perform();
+		addressLookUp.click();
+	}
+	
+	public void clickFindAssistanceLink() { 
+		Actions action = new Actions(getDriver());
+		action.moveToElement(getAssistanceTab).moveToElement(findAssistance).click().build().perform();
+		//findAssistance.click();
+	} 
+	
+	public void clickApplyOnlineLink() {
+		applyOnline.click();
+	}
+	
+	public void clickCheckStatus() {
+		checkYourStatus.click();
+	}
+	
+	public void clickAssistanceCategory() {
+		assistanceCategory.click();
+	}
+	
+	public void clickAssistanceFederal() {
+		assistanceFederal.click();
+	}
+	
+	public void clickOtherHelp() {
+		otherHelp.click();
+	}
+	
+	public void clickApplicationChecklist() {
+		applicationChecklist.click();
+	}
+	
+	public void clickFormsLink() {
+		forms.click();
+	}*/
+	
 	/*************************************************************************
 	 * Checks if all states with disasters are clickable on the disaster map and
 	 * if all other states are visible.

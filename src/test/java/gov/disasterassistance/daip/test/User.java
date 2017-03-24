@@ -59,6 +59,11 @@ public class User {
 
 		daHomepage.openAt(url);
 	}
+	
+	@Step 
+	public void clickNewsFeeds() {
+		daHomepage.mouseOver();
+	}
 
 	@Step
 	public void clickNavNode(String node) {
@@ -192,6 +197,35 @@ public class User {
 
 		} // end switch
 	}
+	
+	@Step
+	public void clickMore() {
+		daLanding.clickMore();
+		Assert.assertTrue(daLanding.contentDisplayed());
+	}
+	
+	/*@Step
+	public void clickMenuLink(String menuLink) {
+		if (menuLink.equals("Address Look-Up")) {
+			daHomepage.clickAddressLink();
+		} else if (menuLink.equals("Find Assistance")) {
+			daHomepage.clickFindAssistanceLink();
+		} else if (menuLink.equals("Apply Online")) {
+			daHomepage.clickApplyOnlineLink();
+		} else if (menuLink.equals("Check Your Status")) {
+			daHomepage.clickCheckStatus();
+		} else if (menuLink.equals("Assistance by Category")) {
+			daHomepage.clickAssistanceCategory();
+		} else if (menuLink.equals("Assistance by Federal Agency")) {
+			daHomepage.clickAssistanceFederal();
+		} else if (menuLink.equals("Other Recovery Help")) {
+			daHomepage.clickOtherHelp();
+		} else if (menuLink.equals("Application Checklist")) {
+			daHomepage.clickApplicationChecklist();
+		} else if (menuLink.equals("Forms")) {
+			daHomepage.clickFormsLink();
+		}
+	}*/
 
 	@Step
 	public void clickOnTitle(String subTitle) {
@@ -218,20 +252,9 @@ public class User {
 
 	@Step
 	public void shouldLoadPage(String subTitle) {
-		if (subTitle.equals("Recently Declared Disaster")) {
-			Assert.assertEquals("https://www.fema.gov/disaster/4305", daLanding.getUrl());
-		} else if (subTitle.equals("Severe Storms")) {
-			Assert.assertEquals("http://www.spc.noaa.gov/products/outlook/day1otlk_1630.html", daLanding.getUrl());
-		} else if (subTitle.equals("Hurricanes")) {
-			Assert.assertEquals("http://www.nhc.noaa.gov/", daLanding.getUrl());
-		} else if (subTitle.equals("Wildfire")) {
-			Assert.assertEquals("https://inciweb.nwcg.gov/incident/5139/", daLanding.getUrl());
-		} else if (subTitle.equals("Drought")) {
-			Assert.assertEquals("http://moderator.droughtreporter.unl.edu/RSSfeed/ImpactView/39289", daLanding.getUrl());
-		} else if (subTitle.equals("Earthquakes")) {
-			Assert.assertEquals("https://earthquake.usgs.gov/earthquakes/eventpage/ci37828544#executive", daLanding.getUrl());
-		}
+			Assert.assertTrue(daLanding.urlOpened());
 	}
+	
 
 	@Step
 	public void completeQuestionnaire() {
