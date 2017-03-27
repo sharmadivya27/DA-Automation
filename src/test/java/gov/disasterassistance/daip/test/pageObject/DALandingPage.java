@@ -15,27 +15,21 @@ public class DALandingPage extends PageObject {
 
 	@FindBy(xpath = "//nav[@id='nav']/ul/li[@class[contains(., 'menu__item')]]")
 	private List<WebElementFacade> navParentNode;
-
-	@FindBy(xpath = "//*[@id='block-aggregator-feed-8']/h2")
-	private WebElementFacade recentlyDeclared;
-
-	@FindBy(xpath = "//*[@id='block-aggregator-feed-19']/div/ul/li[1]/a")
-	private WebElementFacade severeStormLink;
-
-	@FindBy(xpath = "//*[@id='block-aggregator-feed-8']/div/ul/li[1]/a")
-	private WebElementFacade disasterLink;
-
-	@FindBy(xpath = "//*[@id='block-aggregator-feed-14']/div/ul/li/a")
-	private WebElementFacade hurricaneLink;
-
-	@FindBy(xpath = "//*[@id='block-aggregator-feed-23']/div/ul/li[1]/a")
-	private WebElementFacade wildfireLink;
-
-	@FindBy(xpath = "//*[@id='block-aggregator-feed-4']/div/ul/li[1]/a")
-	private WebElementFacade droughtLink;
-
-	@FindBy(xpath = "//*[@id='block-aggregator-feed-6']/div/ul/li[1]/a")
-	private WebElementFacade earthquakeLink;
+	
+	@FindBy(xpath = "//*[@id='U.S. Department of Homeland Security || U.S. Department of Homeland Security']")
+	private WebElementFacade evacuateLink;
+	
+	@FindBy(xpath = "//*[@id='Other Federal || Other Federal']")
+	private WebElementFacade shelterLink;
+	
+	@FindBy(xpath = "//*[@id='U.S. Department of Homeland Security || U.S. Department of Homeland Security']")
+	private WebElementFacade lostFamilyLink;
+	
+	@FindBy(xpath = "//*[@id='U.S. Department of Homeland Security || U.S. Department of Homeland Security']")
+	private WebElementFacade findingPetsLink;
+	
+	@FindBy(xpath = "//*[@id='U.S. Department of Health and Human Services || U.S. Department of Health and Human Services']")
+	private WebElementFacade safePlaceLink;
 
 	@FindBy(xpath = "//*[@id='more-less-text']")
 	private WebElementFacade moreButton;
@@ -75,42 +69,38 @@ public class DALandingPage extends PageObject {
 
 		element.click();
 	}
-
-	public void clickOnDisasterLink() {
-		disasterLink.click();
+	
+	public void clickEvacuate() {
+		evacuateLink.click();
 	}
-
-	public void clickOnSevereLink() {
-		severeStormLink.click();
+	
+	public void clickShelterInPlace() {
+		shelterLink.click();
 	}
-
-	public void clickOnHurricaneLink() {
-		hurricaneLink.click();
+	
+	public void clickFindingLostFamily() {
+		lostFamilyLink.click();
 	}
-
-	public void clickOnWildfireLink() {
-		wildfireLink.click();
+	
+	public void clickFindingPets() {
+		findingPetsLink.click();
 	}
-
-	public void clickOnDroughtLink() {
-		droughtLink.click();
-	}
-
-	public void clickOnEarthquakeLink() {
-		earthquakeLink.click();
+	
+	public void clickFindSafePlace() {
+		safePlaceLink.click();
 	}
 
 	public String getUrl() {
 		List<String> browserTabs = new ArrayList<String>(getDriver().getWindowHandles());
 		getDriver().switchTo().window(browserTabs.get(1));
 		String url = getDriver().getCurrentUrl();
-		getDriver().switchTo().window(browserTabs.get(0));
+		//getDriver().switchTo().window(browserTabs.get(0));
 		return url;
 	}
 
 	public boolean urlOpened() {
 		return getUrl().contains("www") || getUrl().contains(".gov") || getUrl().contains(".edu")
-				|| getUrl().contains(".html");
+				|| getUrl().contains(".html") || getUrl().contains(".org");
 	}
 
 	public void clickMore() {

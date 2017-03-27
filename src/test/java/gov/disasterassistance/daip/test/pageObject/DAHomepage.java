@@ -46,45 +46,96 @@ public class DAHomepage extends PageObject {
 
 	@FindBy(xpath = "//div//ul//li//a[@class='print-email-search-icon' or @class='print-mail print-email-search-icon']")
 	private List<WebElementFacade> quickLinks;
- 
+
 	@FindBy(xpath = "//div[@class='block block-nodeblock homepage-main-links even']//article")
 	private List<WebElementFacade> mainLinks;
-	
-	@FindBy(xpath = "//*[@id='menu-get-assistance']")
+
+	@FindBy(xpath = "//*[@id='menu-get-assistance']/a")
 	private WebElementFacade getAssistanceTab;
-	
-	@FindBy(xpath = "//*[@id='menu-info']/a")
-	private WebElementFacade informationTab;
-	
+
 	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[1]/a")
 	private WebElementFacade addressLookUp;
-	
+
 	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[2]/a")
 	private WebElementFacade findAssistance;
-	
+
 	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[3]/a")
 	private WebElementFacade applyOnline;
-	
+
 	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[4]/a")
 	private WebElementFacade checkYourStatus;
-	
+
 	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[5]/a")
-	private WebElementFacade assistanceCategory;
-	
+	private WebElementFacade assistanceByCategory;
+
 	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[6]/a")
-	private WebElementFacade assistanceFederal;
-	
+	private WebElementFacade assistanceByFederalAgency;
+
 	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[7]/a")
 	private WebElementFacade otherHelp;
-	
+
 	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[8]/a")
 	private WebElementFacade applicationChecklist;
-	
+
 	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[9]/a")
 	private WebElementFacade forms;
-	
+
+	@FindBy(xpath = "//*[@id='menu-info']/a")
+	private WebElementFacade informationTab;
+
 	@FindBy(xpath = "//*[@id='menu-info']/ul/li[1]/a")
 	private WebElementFacade newsFeeds;
+
+	@FindBy(xpath = "//*[@id='menu-info']/ul/li[2]/a")
+	private WebElementFacade immediateNeeds;
+
+	@FindBy(xpath = "//*[@id='menu-info']/ul/li[3]/a")
+	private WebElementFacade movingForward;
+
+	@FindBy(xpath = "//*[@id='menu-info']/ul/li[4]/a")
+	private WebElementFacade disabilities;
+
+	@FindBy(xpath = "//*[@id='menu-info']/ul/li[5]/a")
+	private WebElementFacade olderAmericans;
+
+	@FindBy(xpath = "//*[@id='menu-info']/ul/li[6]/a")
+	private WebElementFacade childrenFamilies;
+
+	@FindBy(xpath = "//*[@id='menu-info']/ul/li[7]/a")
+	private WebElementFacade disasterTypes;
+
+	@FindBy(xpath = "//*[@id='menu-info']/ul/li[8]/a")
+	private WebElementFacade foreignDisasters;
+
+	@FindBy(xpath = "//*[@id='menu-info']/ul/li[9]/a")
+	private WebElementFacade factSheets;
+
+	@FindBy(xpath = "//*[@id='menu-about']/a")
+	private WebElementFacade aboutUsTab;
+
+	@FindBy(xpath = "//*[@id='menu-about']/ul/li[1]/a")
+	private WebElementFacade overview;
+
+	@FindBy(xpath = "//*[@id='menu-about']/ul/li[2]/a")
+	private WebElementFacade partners;
+
+	@FindBy(xpath = "//*[@id='menu-help']/a")
+	private WebElementFacade helpTab;
+
+	@FindBy(xpath = "//*[@id='menu-help']/ul/li[1]/a")
+	private WebElementFacade faqs;
+
+	@FindBy(xpath = "//*[@id='menu-help']/ul/li[2]/a")
+	private WebElementFacade contactUs;
+
+	@FindBy(xpath = "//*[@id='menu-help']/ul/li[3]/a")
+	private WebElementFacade privacyPolicy;
+
+	@FindBy(xpath = "//*[@id='menu-help']/ul/li[4]/a")
+	private WebElementFacade accessibility;
+
+	@FindBy(xpath = "//*[@id='menu-help']/ul/li[5]/a")
+	private WebElementFacade downloadPlugIns;
 
 	@FindBy(xpath = "//*[@class='state selected single-state-group']")
 	private List<WebElementFacade> disasterStates;
@@ -124,7 +175,7 @@ public class DAHomepage extends PageObject {
 		allElements.clear();
 		allElements.addAll(quickLinks);
 		Iterator<WebElementFacade> iter = allElements.iterator();
-		WebElementFacade element = null;                        
+		WebElementFacade element = null;
 		while (iter.hasNext()) {
 			WebElementFacade tempElement = iter.next();
 			String tempTitle = tempElement.getText();
@@ -162,61 +213,7 @@ public class DAHomepage extends PageObject {
 		}
 		element.click();
 	}
-	
-	public void mouseOver() {
-		Actions action = new Actions(getDriver());
-		action.moveToElement(informationTab).perform();
-		newsFeeds.click();
-	}
-	
-	/*public void mouseOver() {
-		Actions action = new Actions(getDriver());
-		action.moveToElement(getAssistanceTab).perform();
-		/*String mouseOverScript = "if(document.createEvent){var evObj = document.createEvent('MouseEvents');evObj.initEvent('mouseover', true, false); arguments[0].dispatchEvent(evObj);} else if(document.createEventObject) { arguments[0].fireEvent('onmouseover');}";
-	    JavascriptExecutor js = (JavascriptExecutor) getDriver();
-	    js.executeScript(mouseOverScript, getAssistanceTab);
-	}
 
-	public void clickAddressLink() {
-		Actions action = new Actions(getDriver());
-		action.moveToElement(getAssistanceTab).moveToElement(addressLookUp).perform();
-		addressLookUp.click();
-	}
-	
-	public void clickFindAssistanceLink() { 
-		Actions action = new Actions(getDriver());
-		action.moveToElement(getAssistanceTab).moveToElement(findAssistance).click().build().perform();
-		//findAssistance.click();
-	} 
-	
-	public void clickApplyOnlineLink() {
-		applyOnline.click();
-	}
-	
-	public void clickCheckStatus() {
-		checkYourStatus.click();
-	}
-	
-	public void clickAssistanceCategory() {
-		assistanceCategory.click();
-	}
-	
-	public void clickAssistanceFederal() {
-		assistanceFederal.click();
-	}
-	
-	public void clickOtherHelp() {
-		otherHelp.click();
-	}
-	
-	public void clickApplicationChecklist() {
-		applicationChecklist.click();
-	}
-	
-	public void clickFormsLink() {
-		forms.click();
-	}*/
-	
 	/*************************************************************************
 	 * Checks if all states with disasters are clickable on the disaster map and
 	 * if all other states are visible.
@@ -294,11 +291,162 @@ public class DAHomepage extends PageObject {
 	public void verifyLocalResourcesResults() throws LocalResourcesException {
 		Iterator<WebElementFacade> localResourcesIter = localResourcesResults.iterator();
 		while (localResourcesIter.hasNext()) {
-			WebElementFacade resource = localResourcesIter.next(); 
+			WebElementFacade resource = localResourcesIter.next();
 			if (!resource.isVisible()) {
 				throw new LocalResourcesException("Local resource not visible");
 			}
 		}
+	}
+
+	public void mouseOverGetAssistanceTab() {
+		Actions action = new Actions(getDriver());
+		action.moveToElement(getAssistanceTab).perform();
+		/*
+		 * String mouseOverScript =
+		 * "if(document.createEvent){var evObj = document.createEvent('MouseEvents');evObj.initEvent('mouseover', true, false); arguments[0].dispatchEvent(evObj);} else if(document.createEventObject) { arguments[0].fireEvent('onmouseover');}"
+		 * ; JavascriptExecutor js = (JavascriptExecutor) getDriver();
+		 * js.executeScript(mouseOverScript, getAssistanceTab);
+		 */
+	}
+
+	public void mouseOverInfoTab() {
+		Actions action = new Actions(getDriver());
+		action.moveToElement(informationTab).perform();
+	}
+
+	public void mouseOverAboutTab() {
+		Actions action = new Actions(getDriver());
+		action.moveToElement(aboutUsTab).perform();
+	}
+
+	public void mouseOverHelpTab() {
+		Actions action = new Actions(getDriver());
+		action.moveToElement(helpTab).perform();
+	}
+
+	public void clickAddressLookUp() {
+		mouseOverGetAssistanceTab();
+		addressLookUp.click();
+	}
+
+	public void clickFindAssistance() {
+		mouseOverGetAssistanceTab();
+		findAssistance.click();
+	}
+
+	public void clickApplyOnline() {
+		mouseOverGetAssistanceTab();
+		applyOnline.click();
+	}
+
+	public void clickCheckYourStatus() {
+		mouseOverGetAssistanceTab();
+		checkYourStatus.click();
+	}
+
+	public void clickAssistanceCategory() {
+		mouseOverGetAssistanceTab();
+		assistanceByCategory.click();
+	}
+
+	public void clickAssistanceFederal() {
+		mouseOverGetAssistanceTab();
+		assistanceByFederalAgency.click();
+	}
+
+	public void clickOtherHelp() {
+		mouseOverGetAssistanceTab();
+		otherHelp.click();
+	}
+
+	public void clickApplicationChecklist() {
+		mouseOverGetAssistanceTab();
+		applicationChecklist.click();
+	}
+
+	public void clickForms() {
+		mouseOverGetAssistanceTab();
+		forms.click();
+	}
+
+	public void clickNewsFeeds() {
+		mouseOverInfoTab();
+		newsFeeds.click();
+	}
+
+	public void clickImmediateNeeds() {
+		mouseOverInfoTab();
+		immediateNeeds.click();
+	}
+
+	public void clickMovingForward() {
+		mouseOverInfoTab();
+		movingForward.click();
+	}
+
+	public void clickDisabilities() {
+		mouseOverInfoTab();
+		disabilities.click();
+	}
+
+	public void clickOlderAmericans() {
+		mouseOverInfoTab();
+		olderAmericans.click();
+	}
+
+	public void clickChildrenAndFamilies() {
+		mouseOverInfoTab();
+		childrenFamilies.click();
+	}
+
+	public void clickDisasterTypes() {
+		mouseOverInfoTab();
+		disasterTypes.click();
+	}
+
+	public void clickForeignDisasters() {
+		mouseOverInfoTab();
+		foreignDisasters.click();
+	}
+
+	public void clickFactSheets() {
+		mouseOverInfoTab();
+		factSheets.click();
+	}
+
+	public void clickOverview() {
+		mouseOverAboutTab();
+		overview.click();
+	}
+
+	public void clickPartners() {
+		mouseOverAboutTab();
+		partners.click();
+	}
+
+	public void clickFaqs() {
+		mouseOverHelpTab();
+		faqs.click();
+	}
+
+	public void clickContactUs() {
+		mouseOverHelpTab();
+		contactUs.click();
+	}
+
+	public void clickPrivacyPolicy() {
+		mouseOverHelpTab();
+		privacyPolicy.click();
+	}
+
+	public void clickAccessibility() {
+		mouseOverHelpTab();
+		accessibility.click();
+	}
+
+	public void clickDownload() {
+		mouseOverHelpTab();
+		downloadPlugIns.click();
 	}
 
 	public int numberOfLandingPageNodes() {
@@ -307,7 +455,7 @@ public class DAHomepage extends PageObject {
 
 	public String pullPageTitle() {
 		return pageTitle.getText();
-	} 
+	}
 
 	public boolean addressLookupIsDisplayed() {
 		return addressLookup.isDisplayed();

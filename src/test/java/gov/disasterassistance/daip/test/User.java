@@ -59,11 +59,6 @@ public class User {
 
 		daHomepage.openAt(url);
 	}
-	
-	@Step 
-	public void clickNewsFeeds() {
-		daHomepage.mouseOver();
-	}
 
 	@Step
 	public void clickNavNode(String node) {
@@ -197,64 +192,103 @@ public class User {
 
 		} // end switch
 	}
-	
+
 	@Step
 	public void clickMore() {
 		daLanding.clickMore();
 		Assert.assertTrue(daLanding.contentDisplayed());
 	}
-	
-	/*@Step
-	public void clickMenuLink(String menuLink) {
-		if (menuLink.equals("Address Look-Up")) {
-			daHomepage.clickAddressLink();
-		} else if (menuLink.equals("Find Assistance")) {
-			daHomepage.clickFindAssistanceLink();
-		} else if (menuLink.equals("Apply Online")) {
-			daHomepage.clickApplyOnlineLink();
-		} else if (menuLink.equals("Check Your Status")) {
-			daHomepage.clickCheckStatus();
-		} else if (menuLink.equals("Assistance by Category")) {
-			daHomepage.clickAssistanceCategory();
-		} else if (menuLink.equals("Assistance by Federal Agency")) {
-			daHomepage.clickAssistanceFederal();
-		} else if (menuLink.equals("Other Recovery Help")) {
-			daHomepage.clickOtherHelp();
-		} else if (menuLink.equals("Application Checklist")) {
-			daHomepage.clickApplicationChecklist();
-		} else if (menuLink.equals("Forms")) {
-			daHomepage.clickFormsLink();
-		}
-	}*/
 
 	@Step
-	public void clickOnTitle(String subTitle) {
-		if (subTitle.equals("Recently Declared Disaster")) {
-			daLanding.clickOnDisasterLink();
+	public void clickOnImmediateNeedsTitle(String subTitle) {
+		if (subTitle.equals("Evacuate")) {
+			daLanding.clickEvacuate();
 			daHomepage.pause(1000);
-		} else if (subTitle.equals("Severe Storms")) {
-			daLanding.clickOnSevereLink();
-			daHomepage.pause(1000); 
-		} else if (subTitle.equals("Hurricanes")) {
-			daLanding.clickOnHurricaneLink();
-			daHomepage.pause(1000);
-		} else if (subTitle.equals("Wildfire")) {
-			daLanding.clickOnWildfireLink();
-			daHomepage.pause(1000);
-		} else if (subTitle.equals("Drought")) {
-			daLanding.clickOnDroughtLink();
-			daHomepage.pause(1000);
-		} else if (subTitle.equals("Earthquakes")) {
-			daLanding.clickOnEarthquakeLink();
-			daHomepage.pause(1000);
+		} else if (subTitle.equals("Stay Put and Shelter in Place")) {
+			daLanding.clickShelterInPlace();
+		} else if (subTitle.equals("Finding Lost Family and Friends")) {
+			daLanding.clickFindingLostFamily();
+		} else if (subTitle.equals("Finding and Caring for Pets")) {
+			daLanding.clickFindingPets();
+		} else if (subTitle.equals("Find a Safe Place to Go")) {
+			daLanding.clickFindSafePlace();
+		}
+	}
+
+	@Step
+	public void clickGetAssistanceMenuLinks(String menuLinks) {
+		if (menuLinks.equals("address look-up")) {
+			daHomepage.clickAddressLookUp();
+		} else if (menuLinks.equals("find assistance")) {
+			daHomepage.clickFindAssistance();
+		} else if (menuLinks.equals("apply online")) {
+			daHomepage.clickApplyOnline();
+		} else if (menuLinks.equals("check your status")) {
+			daHomepage.clickCheckYourStatus();
+		} else if (menuLinks.equals("assistance by category")) {
+			daHomepage.clickAssistanceCategory();
+		} else if (menuLinks.equals("assistance by federal agency")) {
+			daHomepage.clickAssistanceFederal();
+		} else if (menuLinks.equals("other recovery help")) {
+			daHomepage.clickOtherHelp();
+		} else if (menuLinks.equals("application checklist")) {
+			daHomepage.clickApplicationChecklist();
+		} else if (menuLinks.equals("forms")) {
+			daHomepage.clickForms();
+		}
+	}
+
+	@Step
+	public void clickInfoMenuLinks(String menuLinks) {
+		if (menuLinks.equals("news feeds")) {
+			daHomepage.clickNewsFeeds();
+		} else if (menuLinks.equals("immediate needs")) {
+			daHomepage.clickImmediateNeeds();
+		} else if (menuLinks.equals("moving forward")) {
+			daHomepage.clickMovingForward();
+		} else if (menuLinks.equals("disabilities or access and functional needs")) {
+			daHomepage.clickDisabilities();
+		} else if (menuLinks.equals("older americans")) {
+			daHomepage.clickOlderAmericans();
+		} else if (menuLinks.equals("children and families")) {
+			daHomepage.clickChildrenAndFamilies();
+		} else if (menuLinks.equals("disaster types")) {
+			daHomepage.clickDisasterTypes();
+		} else if (menuLinks.equals("foreign disasters")) {
+			daHomepage.clickForeignDisasters();
+		} else if (menuLinks.equals("fact sheets")) {
+			daHomepage.clickFactSheets();
+		}
+	}
+
+	@Step
+	public void clickAboutMenuLinks(String menuLinks) {
+		if (menuLinks.equals("overview")) {
+			daHomepage.clickOverview();
+		} else if (menuLinks.equals("partners")) {
+			daHomepage.clickPartners();
+		}
+	}
+
+	@Step
+	public void clickHelpMenuLinks(String menuLinks) {
+		if (menuLinks.equals("faqs")) {
+			daHomepage.clickFaqs();
+		} else if (menuLinks.equals("contact us")) {
+			daHomepage.clickContactUs();
+		} else if (menuLinks.equals("privacy policy")) {
+			daHomepage.clickPrivacyPolicy();
+		} else if (menuLinks.equals("accessibility")) {
+			daHomepage.clickAccessibility();
+		} else if (menuLinks.equals("download plug-ins")) {
+			daHomepage.clickDownload();
 		}
 	}
 
 	@Step
 	public void shouldLoadPage(String subTitle) {
-			Assert.assertTrue(daLanding.urlOpened());
+		Assert.assertTrue(daLanding.urlOpened());
 	}
-	
 
 	@Step
 	public void completeQuestionnaire() {
