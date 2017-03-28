@@ -163,6 +163,16 @@ public class DailyRegression {
 	public void click_on_more_button_on_each_landing_page_node(@Named("landingPageNode") String landingPageNode) {
 		user.clickMore();
 	}
+	
+	//Scenario: Verify all of the titles on the "News Feeds" landing page node
+	//given see above
+	//when see above
+	
+	@Then("all of the sub-titles should show on the page") 
+	public void all_sub_titles_should_show_on_the_page() {
+		user.shouldSeeTitle();
+	}
+	
 
 	// Scenario: Verify all of the titles on the "Immediate Needs" landing page
 	// node
@@ -210,7 +220,7 @@ public class DailyRegression {
 	@When("I click on the <menuLinks> in the Help tab")
 	public void click_on_menu_clicks_in_help_tab(@Named("menuLinks") String menuLinks) {
 		user.clickHelpMenuLinks(menuLinks);
-	}
+	} 
 
 	// then see above
 

@@ -36,6 +36,24 @@ public class DALandingPage extends PageObject {
 
 	@FindBy(xpath = "//*[@id='more-less-content']")
 	private WebElementFacade moreContent;
+	
+	@FindBy(xpath = "//*[@id='block-aggregator-feed-8']/h2")
+	private WebElementFacade recentlyDeclaredDisasters;
+	
+	@FindBy(xpath = "//*[@id='block-aggregator-feed-19']/h2")
+	private WebElementFacade severeStorms;
+	
+	@FindBy(xpath = "//*[@id'block-aggregator-feed-23']/h2")
+	private WebElementFacade wildfire;
+	
+	@FindBy(xpath = "//*[@id='hurricanes']/h2") 
+	private WebElementFacade hurricanes;
+	
+	@FindBy(xpath = "//*[@id='block-aggregator-feed-6']/h2")
+	private WebElementFacade earthquakes;
+	
+	@FindBy(xpath = "//*[@id='block-aggregator-feed-4']/h2")
+	private WebElementFacade drought;
 
 	private List<WebElementFacade> allElements = new ArrayList<WebElementFacade>();
 
@@ -115,4 +133,28 @@ public class DALandingPage extends PageObject {
 		return moreContentText().contains("Emergency") || moreContentText().contains("Your")
 				|| moreContentText().contains("Resources") || moreContentText().contains("Flood");
 	} 
+	
+	public String disasterTitle() {
+		return recentlyDeclaredDisasters.getText();
+	}
+	
+	public String stormTitle() {
+		return severeStorms.getText();
+	}
+	
+	public String wildfireTitle() {
+		return wildfire.getText();
+	}
+	
+	public String hurricaneTitle() {
+		return hurricanes.getText();
+	}
+	
+	public String earthquakesTitle() {
+		return earthquakes.getText();
+	}
+	
+	public String droughtTitle() {
+		return drought.getText();
+	}
 }

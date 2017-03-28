@@ -96,7 +96,7 @@ public class User {
 		case "information":
 		case "información":
 		case "about us":
-		case "acerca de":
+		case "acerca de": 
 		case "help":
 		case "ayuda":
 		case "other recovery help":
@@ -288,6 +288,17 @@ public class User {
 	@Step
 	public void shouldLoadPage(String subTitle) {
 		Assert.assertTrue(daLanding.urlOpened());
+	}
+	
+	@Step
+	public void shouldSeeTitle() {
+		Assert.assertEquals("Recently Declared Disasters", daLanding.disasterTitle());
+		Assert.assertEquals("Severe Storms", daLanding.stormTitle());
+		Assert.assertEquals("Hurricanes", daLanding.hurricaneTitle());
+		Assert.assertEquals("Earthquakes", daLanding.earthquakesTitle());
+		Assert.assertEquals("Drought", daLanding.droughtTitle());
+		//FIXME
+		//Assert.assertEquals("Wildfire", daLanding.wildfireTitle());
 	}
 
 	@Step
