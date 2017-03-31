@@ -96,7 +96,7 @@ public class User {
 		case "information":
 		case "información":
 		case "about us":
-		case "acerca de": 
+		case "acerca de":
 		case "help":
 		case "ayuda":
 		case "other recovery help":
@@ -216,25 +216,66 @@ public class User {
 	}
 
 	@Step
+	public void clickOnSpanishImmediateNeedsTitle(String subTitle) {
+		if (subTitle.equals("Evacuación")) {
+			daLanding.clickEvacuate();
+			daHomepage.pause(1000);
+		} else if (subTitle.equals("Permanezca Donde Está y Refúgiese")) {
+			daLanding.clickShelterInPlace();
+		} else if (subTitle.equals("Búsqueda de familiares y amigos perdidos")) {
+			daLanding.clickFindingLostFamily();
+		} else if (subTitle.equals("Búsqueda y cuidado de mascotas")) {
+			daLanding.clickFindingPets();
+		} else if (subTitle.equals("Busque un Lugar Seguro Donde Ir")) {
+			daLanding.clickFindSafePlace();
+		}
+	}
+
+	@Step
 	public void clickGetAssistanceMenuLinks(String menuLinks) {
-		if (menuLinks.equals("address look-up")) {
+		if ((menuLinks.equals("address look-up")) || (menuLinks.equals("buscar dirección"))) {
 			daHomepage.clickAddressLookUp();
-		} else if (menuLinks.equals("find assistance")) {
+		} else if ((menuLinks.equals("find assistance")) || (menuLinks.equals("encuentre asistencia"))) {
 			daHomepage.clickFindAssistance();
-		} else if (menuLinks.equals("apply online")) {
+		} else if ((menuLinks.equals("apply online")) || (menuLinks.equals("solicitar asistencia"))) {
 			daHomepage.clickApplyOnline();
-		} else if (menuLinks.equals("check your status")) {
+		} else if ((menuLinks.equals("check your status")) || (menuLinks.equals("revisar estatus"))) {
 			daHomepage.clickCheckYourStatus();
-		} else if (menuLinks.equals("assistance by category")) {
+		} else if ((menuLinks.equals("assistance by category")) || (menuLinks.equals("asistencia por categoría"))) {
 			daHomepage.clickAssistanceCategory();
-		} else if (menuLinks.equals("assistance by federal agency")) {
+		} else if ((menuLinks.equals("assistance by federal agency"))
+				|| (menuLinks.equals("asistencia por agencia federal"))) {
 			daHomepage.clickAssistanceFederal();
-		} else if (menuLinks.equals("other recovery help")) {
+		} else if ((menuLinks.equals("other recovery help")) || (menuLinks.equals("otra ayuda para recuperación"))) {
 			daHomepage.clickOtherHelp();
-		} else if (menuLinks.equals("application checklist")) {
+		} else if ((menuLinks.equals("application checklist"))
+				|| (menuLinks.equals("lista de verificación para aplicarse"))) {
 			daHomepage.clickApplicationChecklist();
-		} else if (menuLinks.equals("forms")) {
+		} else if ((menuLinks.equals("forms")) || (menuLinks.equals("formularios"))) {
 			daHomepage.clickForms();
+		}
+	}
+
+	@Step
+	public void clickSpanishGetAssistanceTab(String menuLinks) {
+		if (menuLinks.equals("buscar dirección")) {
+			daHomepage.clickSpanishAddressLookUp();
+		} else if (menuLinks.equals("encuentre asistencia")) {
+			daHomepage.clickSpanishFindAssistance();
+		} else if (menuLinks.equals("solicitar asistencia")) {
+			daHomepage.clickSpanishApplyOnline();
+		} else if (menuLinks.equals("revisar estatus")) {
+			daHomepage.clickSpanishCheckStatus();
+		} else if (menuLinks.equals("asistencia por categoría")) {
+			daHomepage.clickSpanishAssistanceCategory();
+		} else if (menuLinks.equals("asistencia por agencia federal")) {
+			daHomepage.clickSpanishAssistanceFederal();
+		} else if (menuLinks.equals("otra ayuda para recuperación")) {
+			daHomepage.clickSpanishOtherHelp();
+		} else if (menuLinks.equals("lista de verificación para aplicarse")) {
+			daHomepage.clickSpanishApplicationChecklist();
+		} else if (menuLinks.equals("formularios")) {
+			daHomepage.clickSpanishForms();
 		}
 	}
 
@@ -262,11 +303,43 @@ public class User {
 	}
 
 	@Step
+	public void clickSpanishInfoMenuLinks(String menuLinks) {
+		if (menuLinks.equals("canales de noticias")) {
+			daHomepage.clickSpanishNewsFeeds();
+		} else if (menuLinks.equals("necesidades inmediatas")) {
+			daHomepage.clickSpanishImmediateNeeds();
+		} else if (menuLinks.equals("próximo paso")) {
+			daHomepage.clickSpanishMovingForward();
+		} else if (menuLinks.equals("discapacidades o necesidades funcionales y de acceso")) {
+			daHomepage.clickSpanishDisabilities();
+		} else if (menuLinks.equals("adultos mayores estadounidenses")) {
+			daHomepage.clickSpanishOlderAmericans();
+		} else if (menuLinks.equals("niños y familias")) {
+			daHomepage.clickSpanishChildrenAndFamilies();
+		} else if (menuLinks.equals("los recursos del desastre")) {
+			daHomepage.clickSpanishDisasterTypes();
+		} else if (menuLinks.equals("desastres en el extranjero")) {
+			daHomepage.clickSpanishForeignDisasters();
+		} else if (menuLinks.equals("hojas de datos")) {
+			daHomepage.clickSpanishFactSheets();
+		}
+	}
+
+	@Step
 	public void clickAboutMenuLinks(String menuLinks) {
 		if (menuLinks.equals("overview")) {
 			daHomepage.clickOverview();
 		} else if (menuLinks.equals("partners")) {
 			daHomepage.clickPartners();
+		}
+	}
+
+	@Step
+	public void clickSpanishAboutMenuLinks(String menuLinks) {
+		if (menuLinks.equals("descripción general")) {
+			daHomepage.clickSpanishOverview();
+		} else if (menuLinks.equals("socios")) {
+			daHomepage.clickSpanishPartners();
 		}
 	}
 
@@ -286,10 +359,25 @@ public class User {
 	}
 
 	@Step
+	public void clickSpanishHelpMenuLinks(String menuLinks) {
+		if (menuLinks.equals("preguntas comunes")) {
+			daHomepage.clickSpanishFaqs();
+		} else if (menuLinks.equals("contáctenos")) {
+			daHomepage.clickSpanishContactUs();
+		} else if (menuLinks.equals("política de privacidad")) {
+			daHomepage.clickSpanishPrivacyPolicy();
+		} else if (menuLinks.equals("accesibilidad")) {
+			daHomepage.clickSpanishAccessibility();
+		} else if (menuLinks.equals("descargar plug-ins")) {
+			daHomepage.clickSpanishDownload();
+		}
+	}
+
+	@Step
 	public void shouldLoadPage(String subTitle) {
 		Assert.assertTrue(daLanding.urlOpened());
 	}
-	
+
 	@Step
 	public void shouldSeeTitle() {
 		Assert.assertEquals("Recently Declared Disasters", daLanding.disasterTitle());
@@ -297,8 +385,19 @@ public class User {
 		Assert.assertEquals("Hurricanes", daLanding.hurricaneTitle());
 		Assert.assertEquals("Earthquakes", daLanding.earthquakesTitle());
 		Assert.assertEquals("Drought", daLanding.droughtTitle());
-		//FIXME
-		//Assert.assertEquals("Wildfire", daLanding.wildfireTitle());
+		// FIXME
+		// Assert.assertEquals("Wildfire", daLanding.wildfireTitle());
+	}
+
+	@Step
+	public void shouldSeeSpanishTitle() {
+		Assert.assertEquals("Desastres Declarados Recientemente (en inglés)", daLanding.disasterTitle());
+		Assert.assertEquals("Tormentas Severas (en inglés)", daLanding.stormTitle());
+		Assert.assertEquals("Huracanes (en inglés)", daLanding.hurricaneTitle());
+		Assert.assertEquals("Terremotos (en inglés)", daLanding.earthquakesTitle());
+		Assert.assertEquals("Sequía (en inglés)", daLanding.droughtTitle());
+		// Assert.assertEquals("Incendios Forestales (en inglés)",
+		// daLanding.wildfireTitle());
 	}
 
 	@Step

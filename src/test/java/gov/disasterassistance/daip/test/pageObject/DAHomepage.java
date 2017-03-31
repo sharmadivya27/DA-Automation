@@ -50,32 +50,62 @@ public class DAHomepage extends PageObject {
 	@FindBy(xpath = "//div[@class='block block-nodeblock homepage-main-links even']//article")
 	private List<WebElementFacade> mainLinks;
 
+	@FindBy(xpath = "//*[@id='nav']/ul/li[2]/a")
+	private WebElementFacade spanishGetAssistanceTab;
+
 	@FindBy(xpath = "//*[@id='menu-get-assistance']/a")
 	private WebElementFacade getAssistanceTab;
+
+	@FindBy(xpath = "//*[@id='nav']/ul/li[2]/ul/li[1]/a")
+	private WebElementFacade spanishAddressLookup;
 
 	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[1]/a")
 	private WebElementFacade addressLookUp;
 
+	@FindBy(xpath = "//*[@id='nav']/ul/li[2]/ul/li[2]/a")
+	private WebElementFacade spanishFindAssistance;
+
 	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[2]/a")
 	private WebElementFacade findAssistance;
+
+	@FindBy(xpath = "//*[@id='nav']/ul/li[2]/ul/li[3]/a")
+	private WebElementFacade spanishApplyOnline;
 
 	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[3]/a")
 	private WebElementFacade applyOnline;
 
+	@FindBy(xpath = "//*[@id='nav']/ul/li[2]/ul/li[4]/a")
+	private WebElementFacade spanishCheckStatus;
+
 	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[4]/a")
 	private WebElementFacade checkYourStatus;
+
+	@FindBy(xpath = "//*[@id='nav']/ul/li[2]/ul/li[5]/a")
+	private WebElementFacade spanishAssistanceCategory;
 
 	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[5]/a")
 	private WebElementFacade assistanceByCategory;
 
+	@FindBy(xpath = "//*[@id='nav']/ul/li[2]/ul/li[6]/a")
+	private WebElementFacade spanishAssistanceFederal;
+
 	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[6]/a")
 	private WebElementFacade assistanceByFederalAgency;
+
+	@FindBy(xpath = "//*[@id='nav']/ul/li[2]/ul/li[7]/a")
+	private WebElementFacade spanishOtherHelp;
 
 	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[7]/a")
 	private WebElementFacade otherHelp;
 
+	@FindBy(xpath = "//*[@id='nav']/ul/li[2]/ul/li[8]/a")
+	private WebElementFacade spanishApplicationChecklist;
+
 	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[8]/a")
 	private WebElementFacade applicationChecklist;
+
+	@FindBy(xpath = "//*[@id='nav']/ul/li[2]/ul/li[9]/a")
+	private WebElementFacade spanishForms;
 
 	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[9]/a")
 	private WebElementFacade forms;
@@ -83,56 +113,113 @@ public class DAHomepage extends PageObject {
 	@FindBy(xpath = "//*[@id='menu-info']/a")
 	private WebElementFacade informationTab;
 
+	@FindBy(xpath = "//*[@id='nav']/ul/li[3]/a")
+	private WebElementFacade spanishInfoTab;
+
 	@FindBy(xpath = "//*[@id='menu-info']/ul/li[1]/a")
 	private WebElementFacade newsFeeds;
+
+	@FindBy(xpath = "//*[@id='nav']/ul/li[3]/ul/li[1]/a")
+	private WebElementFacade spanishNewsFeeds;
 
 	@FindBy(xpath = "//*[@id='menu-info']/ul/li[2]/a")
 	private WebElementFacade immediateNeeds;
 
+	@FindBy(xpath = "//*[@id='nav']/ul/li[3]/ul/li[2]/a")
+	private WebElementFacade spanishImmediateNeeds;
+
 	@FindBy(xpath = "//*[@id='menu-info']/ul/li[3]/a")
 	private WebElementFacade movingForward;
+
+	@FindBy(xpath = "//*[@id='nav']/ul/li[3]/ul/li[3]/a")
+	private WebElementFacade spanishMovingForward;
 
 	@FindBy(xpath = "//*[@id='menu-info']/ul/li[4]/a")
 	private WebElementFacade disabilities;
 
+	@FindBy(xpath = "//*[@id='nav']/ul/li[3]/ul/li[4]/a")
+	private WebElementFacade spanishDisabilities;
+
 	@FindBy(xpath = "//*[@id='menu-info']/ul/li[5]/a")
 	private WebElementFacade olderAmericans;
+
+	@FindBy(xpath = "//*[@id='nav']/ul/li[3]/ul/li[5]/a")
+	private WebElementFacade spanishOlderAmericans;
 
 	@FindBy(xpath = "//*[@id='menu-info']/ul/li[6]/a")
 	private WebElementFacade childrenFamilies;
 
+	@FindBy(xpath = "//*[@id='nav']/ul/li[3]/ul/li[6]/a")
+	private WebElementFacade spanishChildrenFamilies;
+
 	@FindBy(xpath = "//*[@id='menu-info']/ul/li[7]/a")
 	private WebElementFacade disasterTypes;
+
+	@FindBy(xpath = "//*[@id='nav']/ul/li[3]/ul/li[7]/a")
+	private WebElementFacade spanishDisasterTypes;
 
 	@FindBy(xpath = "//*[@id='menu-info']/ul/li[8]/a")
 	private WebElementFacade foreignDisasters;
 
+	@FindBy(xpath = "//*[@id='nav']/ul/li[3]/ul/li[8]/a")
+	private WebElementFacade spanishForeignDisasters;
+
 	@FindBy(xpath = "//*[@id='menu-info']/ul/li[9]/a")
 	private WebElementFacade factSheets;
+
+	@FindBy(xpath = "//*[@id='nav']/ul/li[3]/ul/li[9]/a")
+	private WebElementFacade spanishFactSheets;
+
+	@FindBy(xpath = "//*[@id='nav']/ul/li[4]/a")
+	private WebElementFacade spanishAboutUsTab;
 
 	@FindBy(xpath = "//*[@id='menu-about']/a")
 	private WebElementFacade aboutUsTab;
 
+	@FindBy(xpath = "//*[@id='nav']/ul/li[4]/ul/li[1]/a")
+	private WebElementFacade spanishOverview;
+
 	@FindBy(xpath = "//*[@id='menu-about']/ul/li[1]/a")
 	private WebElementFacade overview;
+
+	@FindBy(xpath = "//*[@id='nav']/ul/li[4]/ul/li[2]/a")
+	private WebElementFacade spanishPartners;
 
 	@FindBy(xpath = "//*[@id='menu-about']/ul/li[2]/a")
 	private WebElementFacade partners;
 
+	@FindBy(xpath = "//*[@id='nav']/ul/li[5]/a")
+	private WebElementFacade spanishHelpTab;
+
 	@FindBy(xpath = "//*[@id='menu-help']/a")
 	private WebElementFacade helpTab;
+
+	@FindBy(xpath = "//*[@id='nav']/ul/li[5]/ul/li[1]/a")
+	private WebElementFacade spanishFaqs;
 
 	@FindBy(xpath = "//*[@id='menu-help']/ul/li[1]/a")
 	private WebElementFacade faqs;
 
+	@FindBy(xpath = "//*[@id='nav']/ul/li[5]/ul/li[2]/a")
+	private WebElementFacade spanishContactUs;
+
 	@FindBy(xpath = "//*[@id='menu-help']/ul/li[2]/a")
 	private WebElementFacade contactUs;
+
+	@FindBy(xpath = "//*[@id='nav']/ul/li[5]/ul/li[3]/a")
+	private WebElementFacade spanishPrivacyPolicy;
 
 	@FindBy(xpath = "//*[@id='menu-help']/ul/li[3]/a")
 	private WebElementFacade privacyPolicy;
 
+	@FindBy(xpath = "//*[@id='nav']/ul/li[5]/ul/li[4]/a")
+	private WebElementFacade spanishAccessibility;
+
 	@FindBy(xpath = "//*[@id='menu-help']/ul/li[4]/a")
 	private WebElementFacade accessibility;
+
+	@FindBy(xpath = "//*[@id='nav']/ul/li[5]/ul/li[5]/a")
+	private WebElementFacade spanishDownloadPlugIns;
 
 	@FindBy(xpath = "//*[@id='menu-help']/ul/li[5]/a")
 	private WebElementFacade downloadPlugIns;
@@ -302,11 +389,16 @@ public class DAHomepage extends PageObject {
 		Actions action = new Actions(getDriver());
 		action.moveToElement(getAssistanceTab).perform();
 		/*
-		 * String mouseOverScript =
+		 * // MouseOver function for Safari String mouseOverScript =
 		 * "if(document.createEvent){var evObj = document.createEvent('MouseEvents');evObj.initEvent('mouseover', true, false); arguments[0].dispatchEvent(evObj);} else if(document.createEventObject) { arguments[0].fireEvent('onmouseover');}"
 		 * ; JavascriptExecutor js = (JavascriptExecutor) getDriver();
 		 * js.executeScript(mouseOverScript, getAssistanceTab);
 		 */
+	}
+
+	public void mouseOverSpanishGetAssistanceTab() {
+		Actions action = new Actions(getDriver());
+		action.moveToElement(spanishGetAssistanceTab).perform();
 	}
 
 	public void mouseOverInfoTab() {
@@ -314,9 +406,19 @@ public class DAHomepage extends PageObject {
 		action.moveToElement(informationTab).perform();
 	}
 
+	public void mouseOverSpanishInfoTab() {
+		Actions action = new Actions(getDriver());
+		action.moveToElement(spanishInfoTab).perform();
+	}
+
 	public void mouseOverAboutTab() {
 		Actions action = new Actions(getDriver());
 		action.moveToElement(aboutUsTab).perform();
+	}
+
+	public void mouseOverSpanishAboutTab() {
+		Actions action = new Actions(getDriver());
+		action.moveToElement(spanishAboutUsTab).perform();
 	}
 
 	public void mouseOverHelpTab() {
@@ -324,9 +426,19 @@ public class DAHomepage extends PageObject {
 		action.moveToElement(helpTab).perform();
 	}
 
+	public void mouseOverSpanishHelpTab() {
+		Actions action = new Actions(getDriver());
+		action.moveToElement(spanishHelpTab).perform();
+	}
+
 	public void clickAddressLookUp() {
 		mouseOverGetAssistanceTab();
 		addressLookUp.click();
+	}
+
+	public void clickSpanishAddressLookUp() {
+		mouseOverSpanishGetAssistanceTab();
+		spanishAddressLookup.click();
 	}
 
 	public void clickFindAssistance() {
@@ -334,9 +446,19 @@ public class DAHomepage extends PageObject {
 		findAssistance.click();
 	}
 
+	public void clickSpanishFindAssistance() {
+		mouseOverSpanishGetAssistanceTab();
+		spanishFindAssistance.click();
+	}
+
 	public void clickApplyOnline() {
 		mouseOverGetAssistanceTab();
 		applyOnline.click();
+	}
+
+	public void clickSpanishApplyOnline() {
+		mouseOverSpanishGetAssistanceTab();
+		spanishApplyOnline.click();
 	}
 
 	public void clickCheckYourStatus() {
@@ -344,9 +466,19 @@ public class DAHomepage extends PageObject {
 		checkYourStatus.click();
 	}
 
+	public void clickSpanishCheckStatus() {
+		mouseOverSpanishGetAssistanceTab();
+		spanishCheckStatus.click();
+	}
+
 	public void clickAssistanceCategory() {
 		mouseOverGetAssistanceTab();
 		assistanceByCategory.click();
+	}
+
+	public void clickSpanishAssistanceCategory() {
+		mouseOverSpanishGetAssistanceTab();
+		spanishAssistanceCategory.click();
 	}
 
 	public void clickAssistanceFederal() {
@@ -354,9 +486,19 @@ public class DAHomepage extends PageObject {
 		assistanceByFederalAgency.click();
 	}
 
+	public void clickSpanishAssistanceFederal() {
+		mouseOverSpanishGetAssistanceTab();
+		spanishAssistanceFederal.click();
+	}
+
 	public void clickOtherHelp() {
 		mouseOverGetAssistanceTab();
 		otherHelp.click();
+	}
+
+	public void clickSpanishOtherHelp() {
+		mouseOverSpanishGetAssistanceTab();
+		spanishOtherHelp.click();
 	}
 
 	public void clickApplicationChecklist() {
@@ -364,9 +506,19 @@ public class DAHomepage extends PageObject {
 		applicationChecklist.click();
 	}
 
+	public void clickSpanishApplicationChecklist() {
+		mouseOverSpanishGetAssistanceTab();
+		spanishApplicationChecklist.click();
+	}
+
 	public void clickForms() {
 		mouseOverGetAssistanceTab();
 		forms.click();
+	}
+
+	public void clickSpanishForms() {
+		mouseOverSpanishGetAssistanceTab();
+		spanishForms.click();
 	}
 
 	public void clickNewsFeeds() {
@@ -374,9 +526,19 @@ public class DAHomepage extends PageObject {
 		newsFeeds.click();
 	}
 
+	public void clickSpanishNewsFeeds() {
+		mouseOverSpanishInfoTab();
+		spanishNewsFeeds.click();
+	}
+
 	public void clickImmediateNeeds() {
 		mouseOverInfoTab();
 		immediateNeeds.click();
+	}
+
+	public void clickSpanishImmediateNeeds() {
+		mouseOverSpanishInfoTab();
+		spanishImmediateNeeds.click();
 	}
 
 	public void clickMovingForward() {
@@ -384,9 +546,19 @@ public class DAHomepage extends PageObject {
 		movingForward.click();
 	}
 
+	public void clickSpanishMovingForward() {
+		mouseOverSpanishInfoTab();
+		spanishMovingForward.click();
+	}
+
 	public void clickDisabilities() {
 		mouseOverInfoTab();
 		disabilities.click();
+	}
+
+	public void clickSpanishDisabilities() {
+		mouseOverSpanishInfoTab();
+		spanishDisabilities.click();
 	}
 
 	public void clickOlderAmericans() {
@@ -394,9 +566,19 @@ public class DAHomepage extends PageObject {
 		olderAmericans.click();
 	}
 
+	public void clickSpanishOlderAmericans() {
+		mouseOverSpanishInfoTab();
+		spanishOlderAmericans.click();
+	}
+
 	public void clickChildrenAndFamilies() {
 		mouseOverInfoTab();
 		childrenFamilies.click();
+	}
+
+	public void clickSpanishChildrenAndFamilies() {
+		mouseOverSpanishInfoTab();
+		spanishChildrenFamilies.click();
 	}
 
 	public void clickDisasterTypes() {
@@ -404,9 +586,19 @@ public class DAHomepage extends PageObject {
 		disasterTypes.click();
 	}
 
+	public void clickSpanishDisasterTypes() {
+		mouseOverSpanishInfoTab();
+		spanishDisasterTypes.click();
+	}
+
 	public void clickForeignDisasters() {
 		mouseOverInfoTab();
 		foreignDisasters.click();
+	}
+
+	public void clickSpanishForeignDisasters() {
+		mouseOverSpanishInfoTab();
+		spanishForeignDisasters.click();
 	}
 
 	public void clickFactSheets() {
@@ -414,9 +606,19 @@ public class DAHomepage extends PageObject {
 		factSheets.click();
 	}
 
+	public void clickSpanishFactSheets() {
+		mouseOverSpanishInfoTab();
+		spanishFactSheets.click();
+	}
+
 	public void clickOverview() {
 		mouseOverAboutTab();
 		overview.click();
+	}
+
+	public void clickSpanishOverview() {
+		mouseOverSpanishAboutTab();
+		spanishOverview.click();
 	}
 
 	public void clickPartners() {
@@ -424,9 +626,19 @@ public class DAHomepage extends PageObject {
 		partners.click();
 	}
 
+	public void clickSpanishPartners() {
+		mouseOverSpanishAboutTab();
+		spanishPartners.click();
+	}
+
 	public void clickFaqs() {
 		mouseOverHelpTab();
 		faqs.click();
+	}
+
+	public void clickSpanishFaqs() {
+		mouseOverSpanishHelpTab();
+		spanishFaqs.click();
 	}
 
 	public void clickContactUs() {
@@ -434,9 +646,19 @@ public class DAHomepage extends PageObject {
 		contactUs.click();
 	}
 
+	public void clickSpanishContactUs() {
+		mouseOverSpanishHelpTab();
+		spanishContactUs.click();
+	}
+
 	public void clickPrivacyPolicy() {
 		mouseOverHelpTab();
 		privacyPolicy.click();
+	}
+
+	public void clickSpanishPrivacyPolicy() {
+		mouseOverSpanishHelpTab();
+		spanishPrivacyPolicy.click();
 	}
 
 	public void clickAccessibility() {
@@ -444,9 +666,19 @@ public class DAHomepage extends PageObject {
 		accessibility.click();
 	}
 
+	public void clickSpanishAccessibility() {
+		mouseOverSpanishHelpTab();
+		spanishAccessibility.click();
+	}
+
 	public void clickDownload() {
 		mouseOverHelpTab();
 		downloadPlugIns.click();
+	}
+
+	public void clickSpanishDownload() {
+		mouseOverSpanishHelpTab();
+		spanishDownloadPlugIns.click();
 	}
 
 	public int numberOfLandingPageNodes() {

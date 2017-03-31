@@ -6,7 +6,7 @@ I want to run the daily regressions at least twice a day
 Meta: 
 
 Scenario: Verify all of the navbar tabs to assert that the pages open correctly
-Meta: @skip
+Meta: 
 @category daily 
 
 Given I am on the Disaster Assistance homepage
@@ -23,7 +23,7 @@ Examples:
 |help|5|
 
 Scenario: Verify all of the quick links to assert that the pages open correctly
-Meta: @skip
+Meta: 
 @category daily 
 
 Given I am on the Disaster Assistance homepage
@@ -38,7 +38,7 @@ Examples:
 |email|
 
 Scenario: Verify the main links on homepage to assert that the pages open correctly
-Meta: @skip
+Meta: 
 @category daily 
 
 Given I am on the Disaster Assistance homepage
@@ -52,7 +52,7 @@ Examples:
 |check status|
 
 Scenario: Verify all the menu links on the "Get Assistance" tab
-Meta: @skip
+Meta: 
 @category new
 
 Given I am on the Disaster Assistance homepage
@@ -65,20 +65,19 @@ Examples:
 |find assistance|
 |apply online|
 |check your status|
-|assitance by category|
+|assistance by category|
 |assistance by federal agency|
 |other recovery help|
 |application checklist|
 |forms|
 
 Scenario: Verify all of the nodes on the "Get Assistance" landing page
-Meta: @skip 
+Meta:  
 @category daily 
                    
 Given I am on the Get Assistance landing page
 When I click on the <landingPageNode> landing page node
 Then the <landingPageNode> page should open correctly
-Then the <landingPageNode> page should load the rest of the page
 
 Examples:
 |landingPageNode|
@@ -93,7 +92,7 @@ Examples:
 |forms|
 
 Scenario: Verify all the menu links on the "Information" tab
-Meta: @skip 
+Meta:  
 @category new
 
 Given I am on the Disaster Assistance homepage
@@ -103,7 +102,7 @@ Then the <menuLinks> page should open correctly
 Examples:
 |menuLinks|
 |news feeds|
-|immediate needs|
+|immediate needs| 
 |moving forward|
 |disabilities or access and functional needs|
 |older americans|
@@ -113,7 +112,7 @@ Examples:
 |fact sheets|
 
 Scenario: Verify all of the nodes on the "Information" landing page
-Meta: @skip
+Meta: 
 @category daily 
                               
 Given I am on the Information landing page
@@ -133,7 +132,7 @@ Examples:
 |fact sheets|
 
 Scenario: Verify the More/Less button is on each of the landing page nodes under the "Information" landing page
-Meta: @skip
+Meta: 
 @category new 
 
 Given I am on the Information landing page
@@ -162,7 +161,7 @@ Examples:
 |news feeds| 
 
 Scenario: Verify all of the titles on the "Immediate Needs" landing page node 
-Meta: @skip
+Meta: 
 @category new
 
 Given I am on the Immediate Needs landing page node
@@ -178,7 +177,7 @@ Examples:
 |Find a Safe Place to Go|
 
 Scenario: Verify all the menu links on the "About Us" tab
-Meta: @skip
+Meta: 
 @category new
 
 Given I am on the Disaster Assistance homepage
@@ -191,7 +190,7 @@ Examples:
 |partners|
 
 Scenario: Verify all of the nodes on the "About Us" landing page
-Meta: @skip   
+Meta:    
 @category daily 
                               
 Given I am on the About Us landing page
@@ -204,7 +203,7 @@ Examples:
 |partners|
 
 Scenario: Verify all the menu links on the "Help" tab
-Meta: @skip
+Meta: 
 @category new
 
 Given I am on the Disaster Assistance homepage
@@ -220,7 +219,7 @@ Examples:
 |download plug-ins|
 
 Scenario: Verify all of the nodes on the "Help" landing page
-Meta: @skip
+Meta: 
 @category daily
                     
 Given I am on the Help landing page
@@ -236,7 +235,7 @@ Examples:
 |download plug-ins|
 
 Scenario: Verify benefits results display according to use cases
-Meta: @skip  
+Meta:   
 @category daily
                  
 Given I am on the Find Assistance page
@@ -244,7 +243,7 @@ When I choose only Employment and expand all the accordions
 Then I should obtain 9 results and see all the content under the accordions
 
 Scenario: Verify the number of Federal Agencies and their benefits
-Meta: @skip
+Meta: 
 @category daily 
                                  
 Given I am on the Assistance by Federal Agency page
@@ -252,7 +251,7 @@ When I check on each Federal Agency accordion
 Then the number of benefits should match with its count
 
 Scenario: Verify all the functionality of the FOA questionnaire
-Meta: @skip
+Meta: 
 @category daily 
 
 Given I am on the Find Assistance page
@@ -268,7 +267,7 @@ When I click apply online
 Then the DAC page should load
 
 Scenario: Verify states in the declared disaster map are clickable
-Meta: @skip        
+Meta:         
 @category daily 
                         
 Given I am on the Disaster Assistance homepage
@@ -276,7 +275,7 @@ When I am viewing the declared disaster map
 Then states with disasters should be clickable
 
 Scenario: Dynamically verify results of the questionnaire on the "Find Assistance" page 
-Meta: @skip        
+Meta:         
 @category daily 
           
 Given I am on the Find Assistance page
@@ -284,7 +283,7 @@ When I fully complete the questionnaire
 Then I should accumulate the same number of results as the text on the Get Results button 
 
 Scenario: Verify that the FEMA Twitter feed is present on the homepage
-Meta: @skip            
+Meta:             
 @category daily 
                
 Given I am on the Disaster Assistance homepage
@@ -292,7 +291,7 @@ When I am viewing the FEMA Twitter feed
 Then the most recent tweets should be displayed
 
 Scenario: Verify Local Resources flows correctly
-Meta: @skip 
+Meta:  
 @category daily 
 
 Given I am on the Disaster Assistance homepage

@@ -29,7 +29,7 @@ public class BrowserStackSerenityDriver implements DriverSource {
         String environment = System.getProperty("environment");
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
-        Iterator it = environmentVariables.getKeys().iterator();
+        Iterator<?> it = environmentVariables.getKeys().iterator();
         while(it.hasNext()){
             String key = (String) it.next();
 

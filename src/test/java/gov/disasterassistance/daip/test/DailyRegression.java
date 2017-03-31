@@ -105,6 +105,11 @@ public class DailyRegression {
 		user.clickGetAssistanceMenuLinks(menuLinks);
 	}
 
+	@When("I click on the <menuLinks> in the Spanish Get Assistance tab")
+	public void click_on_menu_links_spanish_in_get_assistance_tab(@Named("menuLinks") String menuLinks) {
+		user.clickSpanishGetAssistanceTab(menuLinks);
+	}
+
 	@Then("the <menuLinks> page should open correctly")
 	public void then_the_menu_links_page_should_open_correctly(@Named("menuLinks") String menuLinks) {
 		user.shouldSeePage(menuLinks);
@@ -139,6 +144,11 @@ public class DailyRegression {
 		user.clickInfoMenuLinks(menuLinks);
 	}
 
+	@When("I click on the <menuLinks> in the Spanish Information tab")
+	public void when_i_click_on_the_menu_links_in_spanish_information_tab(@Named("menuLinks") String menuLinks) {
+		user.clickSpanishInfoMenuLinks(menuLinks);
+	}
+
 	// then see above
 
 	// Scenario: Verify all of the nodes on the "Information" landing page
@@ -163,16 +173,20 @@ public class DailyRegression {
 	public void click_on_more_button_on_each_landing_page_node(@Named("landingPageNode") String landingPageNode) {
 		user.clickMore();
 	}
-	
-	//Scenario: Verify all of the titles on the "News Feeds" landing page node
-	//given see above
-	//when see above
-	
-	@Then("all of the sub-titles should show on the page") 
+
+	// Scenario: Verify all of the titles on the "News Feeds" landing page node
+	// given see above
+	// when see above
+
+	@Then("all of the sub-titles should show on the page")
 	public void all_sub_titles_should_show_on_the_page() {
 		user.shouldSeeTitle();
 	}
-	
+
+	@Then("all of the Spanish sub-titles should show on the page")
+	public void all_spanish_sub_titles_should_show_on_the_page() {
+		user.shouldSeeSpanishTitle();
+	}
 
 	// Scenario: Verify all of the titles on the "Immediate Needs" landing page
 	// node
@@ -181,9 +195,19 @@ public class DailyRegression {
 		user.open_page("/information/immediate-needs");
 	}
 
+	@Given("I am on the Immediate Needs Spanish landing page node")
+	public void i_am_on_the_immediate_needs_spanish_landing_page_node() {
+		user.open_page("/es/información/necesidades-inmediatas");
+	}
+
 	@When("I click on the link under each <subTitle> on the Immediate Needs page")
 	public void click_on_link_under_subtitle_on_immediate_needs_page(@Named("subTitle") String subTitle) {
 		user.clickOnImmediateNeedsTitle(subTitle);
+	}
+
+	@When("I click on the link under each <subTitle> on the Immediate Needs Spanish page")
+	public void click_on_link_under_subtitle_on_immediate_needs_spanish_page(@Named("subTitle") String subTitle) {
+		user.clickOnSpanishImmediateNeedsTitle(subTitle);
 	}
 
 	@Then("the link under the <subTitle> should open")
@@ -197,6 +221,11 @@ public class DailyRegression {
 	@When("I click on the <menuLinks> in the About Us tab")
 	public void click_on_menu_links_in_about_us_tab(@Named("menuLinks") String menuLinks) {
 		user.clickAboutMenuLinks(menuLinks);
+	}
+
+	@When("I click on the <menuLinks> in the Spanish About Us tab")
+	public void click_on_menu_links_in_spanish_about_us_tab(@Named("menuLinks") String menuLinks) {
+		user.clickSpanishAboutMenuLinks(menuLinks);
 	}
 
 	// then see above
@@ -220,7 +249,12 @@ public class DailyRegression {
 	@When("I click on the <menuLinks> in the Help tab")
 	public void click_on_menu_clicks_in_help_tab(@Named("menuLinks") String menuLinks) {
 		user.clickHelpMenuLinks(menuLinks);
-	} 
+	}
+
+	@When("I click on the <menuLinks> in the Spanish Help tab")
+	public void click_on_menu_clicks_in_spanish_help_tab(@Named("menuLinks") String menuLinks) {
+		user.clickSpanishHelpMenuLinks(menuLinks);
+	}
 
 	// then see above
 

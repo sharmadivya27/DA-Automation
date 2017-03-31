@@ -15,19 +15,19 @@ public class DALandingPage extends PageObject {
 
 	@FindBy(xpath = "//nav[@id='nav']/ul/li[@class[contains(., 'menu__item')]]")
 	private List<WebElementFacade> navParentNode;
-	
+
 	@FindBy(xpath = "//*[@id='U.S. Department of Homeland Security || U.S. Department of Homeland Security']")
 	private WebElementFacade evacuateLink;
-	
+
 	@FindBy(xpath = "//*[@id='Other Federal || Other Federal']")
 	private WebElementFacade shelterLink;
-	
+
 	@FindBy(xpath = "//*[@id='U.S. Department of Homeland Security || U.S. Department of Homeland Security']")
 	private WebElementFacade lostFamilyLink;
-	
+
 	@FindBy(xpath = "//*[@id='U.S. Department of Homeland Security || U.S. Department of Homeland Security']")
 	private WebElementFacade findingPetsLink;
-	
+
 	@FindBy(xpath = "//*[@id='U.S. Department of Health and Human Services || U.S. Department of Health and Human Services']")
 	private WebElementFacade safePlaceLink;
 
@@ -36,22 +36,22 @@ public class DALandingPage extends PageObject {
 
 	@FindBy(xpath = "//*[@id='more-less-content']")
 	private WebElementFacade moreContent;
-	
+
 	@FindBy(xpath = "//*[@id='block-aggregator-feed-8']/h2")
 	private WebElementFacade recentlyDeclaredDisasters;
-	
+
 	@FindBy(xpath = "//*[@id='block-aggregator-feed-19']/h2")
 	private WebElementFacade severeStorms;
-	
+
 	@FindBy(xpath = "//*[@id'block-aggregator-feed-23']/h2")
 	private WebElementFacade wildfire;
-	
-	@FindBy(xpath = "//*[@id='hurricanes']/h2") 
+
+	@FindBy(xpath = "//*[@id='hurricanes']/h2")
 	private WebElementFacade hurricanes;
-	
+
 	@FindBy(xpath = "//*[@id='block-aggregator-feed-6']/h2")
 	private WebElementFacade earthquakes;
-	
+
 	@FindBy(xpath = "//*[@id='block-aggregator-feed-4']/h2")
 	private WebElementFacade drought;
 
@@ -87,23 +87,23 @@ public class DALandingPage extends PageObject {
 
 		element.click();
 	}
-	
+
 	public void clickEvacuate() {
 		evacuateLink.click();
 	}
-	
+
 	public void clickShelterInPlace() {
 		shelterLink.click();
 	}
-	
+
 	public void clickFindingLostFamily() {
 		lostFamilyLink.click();
 	}
-	
+
 	public void clickFindingPets() {
 		findingPetsLink.click();
 	}
-	
+
 	public void clickFindSafePlace() {
 		safePlaceLink.click();
 	}
@@ -112,7 +112,7 @@ public class DALandingPage extends PageObject {
 		List<String> browserTabs = new ArrayList<String>(getDriver().getWindowHandles());
 		getDriver().switchTo().window(browserTabs.get(1));
 		String url = getDriver().getCurrentUrl();
-		//getDriver().switchTo().window(browserTabs.get(0));
+		// getDriver().switchTo().window(browserTabs.get(0));
 		return url;
 	}
 
@@ -131,29 +131,31 @@ public class DALandingPage extends PageObject {
 
 	public boolean contentDisplayed() {
 		return moreContentText().contains("Emergency") || moreContentText().contains("Your")
-				|| moreContentText().contains("Resources") || moreContentText().contains("Flood");
-	} 
-	
+				|| moreContentText().contains("Resources") || moreContentText().contains("Flood")
+				|| moreContentText().contains("Emergencia") || moreContentText().contains("Su")
+				|| moreContentText().contains("Recursos") || moreContentText().contains("Incendios");
+	}
+
 	public String disasterTitle() {
 		return recentlyDeclaredDisasters.getText();
 	}
-	
+
 	public String stormTitle() {
 		return severeStorms.getText();
 	}
-	
+
 	public String wildfireTitle() {
 		return wildfire.getText();
 	}
-	
+
 	public String hurricaneTitle() {
 		return hurricanes.getText();
 	}
-	
+
 	public String earthquakesTitle() {
 		return earthquakes.getText();
 	}
-	
+
 	public String droughtTitle() {
 		return drought.getText();
 	}
