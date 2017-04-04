@@ -177,6 +177,11 @@ public class DailyRegression {
 	// Scenario: Verify all of the titles on the "News Feeds" landing page node
 	// given see above
 	// when see above
+	
+	@When("I am on the News Feeds landing page node")
+	public void on_news_feeds_page() {
+		user.open_page("/information/news-feeds");
+	}
 
 	@Then("all of the sub-titles should show on the page")
 	public void all_sub_titles_should_show_on_the_page() {
@@ -296,11 +301,18 @@ public class DailyRegression {
 	// Scenario: Verify benefits results display according to use cases page
 
 	// Given see above
-
+	// Can't expand on mobile test
+	// FIXME
 	@When("I choose only Employment and expand all the accordions")
 	public void when_I_choose_only_Employment_and_expand_all_the_accordions() {
 		user.getEmploymentResults();
 		user.clickExpandAll();
+	}
+	
+	@When("I choose only Employment")
+	public void when_I_choose_only_Employment() {
+		user.getEmploymentResults();
+		user.getFOAResultsPage();
 	}
 
 	@When("I choose only Empleo and expand all the accordions")
@@ -313,6 +325,12 @@ public class DailyRegression {
 	public void then_I_should_obtain_9_results_and_see_all_the_content_under_the_accordions()
 			throws EmploymentException {
 		user.verifyEmploymentResultsandVisibility();
+	}
+	
+	@Then("I should obtain 9 results")
+	public void then_I_should_obtain_9_results()
+			throws EmploymentException {
+		user.verifyFOAResultsandVisibility();
 	}
 
 	// Scenario: Verify benefits on Assistance by Federal Agency page

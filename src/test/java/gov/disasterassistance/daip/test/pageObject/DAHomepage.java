@@ -47,7 +47,7 @@ public class DAHomepage extends PageObject {
 	@FindBy(xpath = "//div//ul//li//a[@class='print-email-search-icon' or @class='print-mail print-email-search-icon']")
 	private List<WebElementFacade> quickLinks;
 
-	@FindBy(xpath = "//div[@class='block block-nodeblock homepage-main-links even']//article")
+	@FindBy(xpath = "//div[@class='block block-nodeblock homepage-main-links even']l")
 	private List<WebElementFacade> mainLinks;
 
 	@FindBy(xpath = "//*[@id='nav']/ul/li[2]/a")
@@ -59,7 +59,7 @@ public class DAHomepage extends PageObject {
 	@FindBy(xpath = "//*[@id='nav']/ul/li[2]/ul/li[1]/a")
 	private WebElementFacade spanishAddressLookup;
 
-	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[1]/a")
+	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[1]/a or //*[@id='sidr-id-menu-get-assistance']/ul/li[1]/a")
 	private WebElementFacade addressLookUp;
 
 	@FindBy(xpath = "//*[@id='nav']/ul/li[2]/ul/li[2]/a")
@@ -244,11 +244,21 @@ public class DAHomepage extends PageObject {
 
 	@FindBy(xpath = "//*[@id='email-form-wrapper']")
 	private WebElementFacade emailLinkForm;
+	
+	@FindBy(xpath = "//*[@id='mobile-header']")
+	private WebElementFacade mobileMenu;
+	
+	//@FindBy(xpath = "//*[@id='block-nodeblock-14948']/div[2]/div[2]/div/div[1]/article/div[2]/div/div/a")
+	//private WebElementFacade findAssistanceMainLink;
 
 	private List<WebElementFacade> allElements = new ArrayList<WebElementFacade>();
 
 	// *************************************************************************
 	// Functions
+	
+	/*public void clickFindAssistanceMainLink() {
+		findAssistanceMainLink.click();
+	}*/
 
 	/*************************************************************************
 	 * Searches through the quick links to find the element with the same name
@@ -383,6 +393,10 @@ public class DAHomepage extends PageObject {
 				throw new LocalResourcesException("Local resource not visible");
 			}
 		}
+	}
+	
+	public void clickMobileMenu() {
+		mobileMenu.click();
 	}
 
 	public void mouseOverGetAssistanceTab() {

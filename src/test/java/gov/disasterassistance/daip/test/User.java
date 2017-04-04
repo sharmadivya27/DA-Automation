@@ -233,6 +233,7 @@ public class User {
 
 	@Step
 	public void clickGetAssistanceMenuLinks(String menuLinks) {
+		//daHomepage.clickMobileMenu();
 		if ((menuLinks.equals("address look-up")) || (menuLinks.equals("buscar dirección"))) {
 			daHomepage.clickAddressLookUp();
 		} else if ((menuLinks.equals("find assistance")) || (menuLinks.equals("encuentre asistencia"))) {
@@ -423,6 +424,11 @@ public class User {
 	public void getEmploymentResults() {
 		daQuesPage.clickEmploymentCheckbox();
 	}
+	
+	@Step
+	public void getFOAResultsPage() {
+		daQuesPage.getFOAResultsPage();
+	}
 
 	@Step
 	public void getSpanishEmploymentResults() {
@@ -432,6 +438,12 @@ public class User {
 	@Step
 	public void verifyEmploymentResultsandVisibility() throws EmploymentException {
 		Assert.assertEquals(9, daQuesPage.getNumEmploymentResults());
+		daQuesPage.verifyEmploymentVisibility();
+	}
+	
+	@Step
+	public void verifyFOAResultsandVisibility() throws EmploymentException {
+		Assert.assertEquals(9, daQuesPage.getNumQuestionnaireResults());
 		daQuesPage.verifyEmploymentVisibility();
 	}
 

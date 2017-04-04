@@ -30,8 +30,9 @@ public class DAPage extends PageObject {
 
 	/*********************************************/
 
-	private String env = System.getProperty("environment");
-	public String defaultUrl = "http://" + env + ".disasterassistance.gov";
+	//private String env = System.getProperty("environment");
+	//public String defaultUrl = "http://" + env + ".disasterassistance.gov";
+	public String defaultUrl = "http://www.disasterassistance.gov";
 
 	public DAPage(WebDriver driver) {
 		super(driver);

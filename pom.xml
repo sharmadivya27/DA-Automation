@@ -15,7 +15,7 @@
 		<serenity.jbehave.version>1.21.0</serenity.jbehave.version>
 		<appium.java.version>4.1.2</appium.java.version>
 		<maven.failsafe.version>2.19.1</maven.failsafe.version>
-		
+		<webdriver.driver>chrome</webdriver.driver>
 		<environment>www</environment>
 	</properties>
 
