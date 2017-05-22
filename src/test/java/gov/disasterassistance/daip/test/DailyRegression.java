@@ -48,6 +48,11 @@ public class DailyRegression {
 		// Homepage
 		user.open_page("");
 	}
+	
+	@Given("I am on the Disaster Assistance mobile page") 
+	public void given_I_am_on_the_disaster_assistance_mobile_page() {
+		user.open_page("/#sidr-main");
+	}
 
 	@Given("I am on the Spanish Disaster Assistance homepage")
 	public void given_I_am_on_the_Spanish_disaster_assistance_homepage() {
@@ -226,6 +231,11 @@ public class DailyRegression {
 	@When("I click on the <menuLinks> in the About Us tab")
 	public void click_on_menu_links_in_about_us_tab(@Named("menuLinks") String menuLinks) {
 		user.clickAboutMenuLinks(menuLinks);
+	}
+	
+	@When("I click on the <menuLinks> in the About Us mobile tab")
+	public void click_on_mobile_about_us(@Named("menuLinks") String menuLinks) {
+		user.clickMobileAboutMenuLinks(menuLinks);
 	}
 
 	@When("I click on the <menuLinks> in the Spanish About Us tab")

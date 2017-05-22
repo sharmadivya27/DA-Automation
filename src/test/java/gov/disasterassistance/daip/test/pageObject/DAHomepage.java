@@ -32,7 +32,7 @@ public class DAHomepage extends PageObject {
 	@FindBy(xpath = "//div[@id='block-daip-responsive-questionnaire-responsive-questionnaire-block']")
 	private WebElementFacade questionnaire;
 
-	@FindBy(xpath = "//*//div[@id='address-lookup-container']")
+	@FindBy(xpath = "//*//div[@id='address-lookup-container']") 
 	private WebElementFacade addressLookup;
 
 	@FindBy(id = "benefit-counter-count")
@@ -46,10 +46,16 @@ public class DAHomepage extends PageObject {
 
 	@FindBy(xpath = "//div//ul//li//a[@class='print-email-search-icon' or @class='print-mail print-email-search-icon']")
 	private List<WebElementFacade> quickLinks;
-
-	@FindBy(xpath = "//div[@class='block block-nodeblock homepage-main-links even']l")
-	private List<WebElementFacade> mainLinks;
-
+	
+	@FindBy(xpath = "//*[@id='block-nodeblock-14948']/div[2]/div[2]/div/div[1]/article/a/span")
+	private WebElementFacade assistanceMainLink;
+	
+	@FindBy(xpath = "//*[@id='block-nodeblock-14948']/div[2]/div[2]/div/div[2]/article/a/span")
+	private WebElementFacade applyOnlineMainLink;
+	
+	@FindBy(xpath = "//*[@id='block-nodeblock-14948']/div[2]/div[2]/div/div[3]/article/a/span")
+	private WebElementFacade checkStatusMainLink;
+	
 	@FindBy(xpath = "//*[@id='nav']/ul/li[2]/a")
 	private WebElementFacade spanishGetAssistanceTab;
 
@@ -59,8 +65,8 @@ public class DAHomepage extends PageObject {
 	@FindBy(xpath = "//*[@id='nav']/ul/li[2]/ul/li[1]/a")
 	private WebElementFacade spanishAddressLookup;
 
-	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[1]/a or //*[@id='sidr-id-menu-get-assistance']/ul/li[1]/a")
-	private WebElementFacade addressLookUp;
+	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[1]/a")
+	private WebElementFacade addressLookUpMenu;
 
 	@FindBy(xpath = "//*[@id='nav']/ul/li[2]/ul/li[2]/a")
 	private WebElementFacade spanishFindAssistance;
@@ -175,15 +181,24 @@ public class DAHomepage extends PageObject {
 
 	@FindBy(xpath = "//*[@id='menu-about']/a")
 	private WebElementFacade aboutUsTab;
+	
+	@FindBy(xpath = "//*[@id='sidr-id-menu-about']/a")
+	private WebElementFacade mobileAboutUs;
 
 	@FindBy(xpath = "//*[@id='nav']/ul/li[4]/ul/li[1]/a")
 	private WebElementFacade spanishOverview;
 
+	@FindBy(xpath = "//*[@id='sidr-id-menu-about']/ul/li[1]/a")
+	private WebElementFacade mobileOverview;
+	
 	@FindBy(xpath = "//*[@id='menu-about']/ul/li[1]/a")
 	private WebElementFacade overview;
 
 	@FindBy(xpath = "//*[@id='nav']/ul/li[4]/ul/li[2]/a")
 	private WebElementFacade spanishPartners;
+	
+	@FindBy(xpath = "//*[@id='sidr-id-menu-about']/ul/li[2]/a")
+	private WebElementFacade mobilePartners;
 
 	@FindBy(xpath = "//*[@id='menu-about']/ul/li[2]/a")
 	private WebElementFacade partners;
@@ -245,20 +260,15 @@ public class DAHomepage extends PageObject {
 	@FindBy(xpath = "//*[@id='email-form-wrapper']")
 	private WebElementFacade emailLinkForm;
 	
-	@FindBy(xpath = "//*[@id='mobile-header']")
+	//@FindBy(xpath = "//*[@id='mobile-header']")
+	//or @id='sidr-main'
+	@FindBy(xpath = "//*[@id='responsive-menu-button']")
 	private WebElementFacade mobileMenu;
-	
-	//@FindBy(xpath = "//*[@id='block-nodeblock-14948']/div[2]/div[2]/div/div[1]/article/div[2]/div/div/a")
-	//private WebElementFacade findAssistanceMainLink;
 
 	private List<WebElementFacade> allElements = new ArrayList<WebElementFacade>();
 
 	// *************************************************************************
 	// Functions
-	
-	/*public void clickFindAssistanceMainLink() {
-		findAssistanceMainLink.click();
-	}*/
 
 	/*************************************************************************
 	 * Searches through the quick links to find the element with the same name
@@ -271,32 +281,6 @@ public class DAHomepage extends PageObject {
 	public void clickQuickLink(String link) {
 		allElements.clear();
 		allElements.addAll(quickLinks);
-		Iterator<WebElementFacade> iter = allElements.iterator();
-		WebElementFacade element = null;
-		while (iter.hasNext()) {
-			WebElementFacade tempElement = iter.next();
-			String tempTitle = tempElement.getText();
-
-			if (tempTitle.toLowerCase().contains(link)) {
-				element = tempElement;
-				break;
-			}
-		}
-		element.click();
-	}
-
-	/*************************************************************************
-	 * Searches through the main links to find the element with the same name
-	 * that was passed. Once it finds the link it will click on the button.
-	 * 
-	 * @param link
-	 *            : Name of the link to be clicked on
-	 *************************************************************************/
-
-	public void clickMainLink(String link) {
-		allElements.clear();
-		allElements.addAll(mainLinks);
-
 		Iterator<WebElementFacade> iter = allElements.iterator();
 		WebElementFacade element = null;
 		while (iter.hasNext()) {
@@ -395,9 +379,23 @@ public class DAHomepage extends PageObject {
 		}
 	}
 	
-	public void clickMobileMenu() {
-		mobileMenu.click();
+	public void clickAssistanceMainLink() {
+		assistanceMainLink.click();
 	}
+	
+	public void clickApplyOnlineMainLink() {
+		applyOnlineMainLink.click();
+	}
+	
+	public void clickCheckStatusMainLink() {
+		checkStatusMainLink.click();
+	}
+	
+	public void clickMobileMenu() {
+		//JavascriptExecutor js = (JavascriptExecutor)getDriver(); 
+		//js.executeScript("arguments[0].click();", mobileMenu);  
+		mobileMenu.click();
+	} 
 
 	public void mouseOverGetAssistanceTab() {
 		Actions action = new Actions(getDriver());
@@ -435,6 +433,11 @@ public class DAHomepage extends PageObject {
 		action.moveToElement(spanishAboutUsTab).perform();
 	}
 
+	public void clickMobileAboutUs() {
+		this.evaluateJavascript("arguments[0].scrollIntoView(true);", mobileAboutUs);
+		mobileAboutUs.click();
+	}
+	
 	public void mouseOverHelpTab() {
 		Actions action = new Actions(getDriver());
 		action.moveToElement(helpTab).perform();
@@ -447,7 +450,7 @@ public class DAHomepage extends PageObject {
 
 	public void clickAddressLookUp() {
 		mouseOverGetAssistanceTab();
-		addressLookUp.click();
+		addressLookUpMenu.click();
 	}
 
 	public void clickSpanishAddressLookUp() {
@@ -629,6 +632,11 @@ public class DAHomepage extends PageObject {
 		mouseOverAboutTab();
 		overview.click();
 	}
+	
+	public void clickMobileOverview() {
+		clickMobileAboutUs();
+		mobileOverview.click();
+	}
 
 	public void clickSpanishOverview() {
 		mouseOverSpanishAboutTab();
@@ -638,6 +646,11 @@ public class DAHomepage extends PageObject {
 	public void clickPartners() {
 		mouseOverAboutTab();
 		partners.click();
+	}
+	
+	public void clickMobilePartners() {
+		clickMobileAboutUs();
+		mobilePartners.click();
 	}
 
 	public void clickSpanishPartners() {

@@ -9,16 +9,14 @@
 	<packaging>jar</packaging>
 
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>		
 		<serenity.version>1.2.2</serenity.version>
 		<serenity.jbehave.version>1.21.0</serenity.jbehave.version>
 		<appium.java.version>4.1.2</appium.java.version>
 		<maven.failsafe.version>2.19.1</maven.failsafe.version>
-		<webdriver.driver>chrome</webdriver.driver>
+		<webdriver.driver>chrome</webdriver.driver>		
 		<environment>www</environment>
 	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>net.serenity-bdd</groupId>
@@ -47,9 +45,7 @@
 		  <version>${appium.java.version}</version>
 		  <scope>test</scope>
 		</dependency>
-
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>

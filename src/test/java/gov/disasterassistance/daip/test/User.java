@@ -7,9 +7,9 @@ import gov.disasterassistance.daip.test.exceptions.EmploymentException;
 import gov.disasterassistance.daip.test.exceptions.FeedException;
 import gov.disasterassistance.daip.test.exceptions.LocalResourcesException;
 import gov.disasterassistance.daip.test.exceptions.StateException;
-import gov.disasterassistance.daip.test.pageObject.DALandingPage;
 import gov.disasterassistance.daip.test.pageObject.DAFederalAgency;
 import gov.disasterassistance.daip.test.pageObject.DAHomepage;
+import gov.disasterassistance.daip.test.pageObject.DALandingPage;
 import gov.disasterassistance.daip.test.pageObject.DAPage;
 import gov.disasterassistance.daip.test.pageObject.DAQuestionnaire;
 import net.thucydides.core.annotations.Step;
@@ -22,7 +22,7 @@ import net.thucydides.core.annotations.Step;
  * @author Chris Viqueira
  ************************************************************************/
 public class User {
-	DAPage dapage;
+	DAPage dapage;  
 	DAHomepage daHomepage;
 	DAQuestionnaire daQuesPage;
 	DALandingPage daLanding;
@@ -72,7 +72,16 @@ public class User {
 
 	@Step
 	public void clickMainLink(String mainLink) {
-		daHomepage.clickMainLink(mainLink);
+		if ((mainLink.equals("find assistance")) || (mainLink.equals("encontrar ayuda"))) {
+			daHomepage.clickAssistanceMainLink();
+			daHomepage.pause(2000);
+		} else if ((mainLink.equals("apply online")) || (mainLink.equals("solicitar asistencia")) ) {
+			daHomepage.clickApplyOnlineMainLink();
+			daHomepage.pause(2000);
+		} else if ((mainLink.equals("check status")) || (mainLink.equals("revisar estatus"))) {
+			daHomepage.clickCheckStatusMainLink();
+			daHomepage.pause(2000);
+		}
 	}
 
 	@Step
@@ -335,6 +344,18 @@ public class User {
 		}
 	}
 
+	@Step
+	public void clickMobileAboutMenuLinks(String menuLinks) {
+		if (menuLinks.equals("overview")) {
+			daHomepage.clickMobileMenu();
+			daHomepage.pause(3000);
+			daHomepage.clickMobileOverview();
+		} else if (menuLinks.equals("partners")) {
+			daHomepage.clickMobileMenu();
+			daHomepage.clickMobilePartners();
+		}
+	}
+	
 	@Step
 	public void clickSpanishAboutMenuLinks(String menuLinks) {
 		if (menuLinks.equals("descripción general")) {

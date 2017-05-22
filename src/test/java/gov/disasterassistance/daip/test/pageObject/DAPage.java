@@ -2,6 +2,7 @@ package gov.disasterassistance.daip.test.pageObject;
 
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.PageObject;
@@ -36,8 +37,9 @@ public class DAPage extends PageObject {
 
 	public DAPage(WebDriver driver) {
 		super(driver);
-		driver.manage().window().maximize();
-		this.setImplicitTimeout(10, TimeUnit.SECONDS);
+		//driver.manage().window().maximize(); 
+		//driver.manage().window().setSize(new Dimension(500, 500));
+		this.setImplicitTimeout(10, TimeUnit.SECONDS); 
 	} 
 
 	public void clearCookies() {
