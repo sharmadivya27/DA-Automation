@@ -191,20 +191,6 @@ Examples:
 |overview|
 |partners|
 
-Scenario: Verify all the menu links on the "About Us" mobile tab
-Meta: @skip
-@category new
-@tag mobile
-
-Given I am on the Disaster Assistance mobile page
-When I click on the <menuLinks> in the About Us mobile tab
-Then the <menuLinks> page should open correctly 
-
-Examples:
-|menuLinks|
-|overview|
-|partners| 
-
 Scenario: Verify all of the nodes on the "About Us" landing page
 Meta: 
 @category daily 
