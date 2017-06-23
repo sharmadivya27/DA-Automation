@@ -73,7 +73,7 @@ public class DALandingPage extends PageObject {
 		allElements.addAll(landingPageNode);
 		allElements.addAll(navParentNode);
 
-		Iterator<WebElementFacade> iter = allElements.iterator();
+		Iterator<WebElementFacade> iter = allElements.iterator(); 
 		WebElementFacade element = null;
 		while (iter.hasNext()) {
 			WebElementFacade tempElement = iter.next();

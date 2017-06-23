@@ -108,6 +108,7 @@ public class User {
 		case "acerca de":
 		case "help":
 		case "ayuda":
+		case "community leaders":
 		case "other recovery help":
 		case "otra ayuda para recuperación":
 		case "application checklist":
@@ -258,6 +259,8 @@ public class User {
 			daHomepage.clickAssistanceFederal();
 		} else if ((menuLinks.equals("other recovery help")) || (menuLinks.equals("otra ayuda para recuperación"))) {
 			daHomepage.clickOtherHelp();
+		} else if ((menuLinks.equals("community leaders"))) {
+			daHomepage.clickCommLeaders();
 		} else if ((menuLinks.equals("application checklist"))
 				|| (menuLinks.equals("lista de verificación para aplicarse"))) {
 			daHomepage.clickApplicationChecklist();

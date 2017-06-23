@@ -97,23 +97,26 @@ public class DAHomepage extends PageObject {
 
 	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[6]/a")
 	private WebElementFacade assistanceByFederalAgency;
+	
+	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[7]/a")
+	private WebElementFacade communityLeaders;
 
 	@FindBy(xpath = "//*[@id='nav']/ul/li[2]/ul/li[7]/a")
 	private WebElementFacade spanishOtherHelp;
 
-	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[7]/a")
+	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[8]/a")
 	private WebElementFacade otherHelp;
 
 	@FindBy(xpath = "//*[@id='nav']/ul/li[2]/ul/li[8]/a")
 	private WebElementFacade spanishApplicationChecklist;
 
-	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[8]/a")
+	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[9]/a")
 	private WebElementFacade applicationChecklist;
 
-	@FindBy(xpath = "//*[@id='nav']/ul/li[2]/ul/li[9]/a")
+	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[9]/a")
 	private WebElementFacade spanishForms;
 
-	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[9]/a")
+	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[10]/a")
 	private WebElementFacade forms;
 
 	@FindBy(xpath = "//*[@id='menu-info']/a")
@@ -167,13 +170,13 @@ public class DAHomepage extends PageObject {
 	@FindBy(xpath = "//*[@id='menu-info']/ul/li[8]/a")
 	private WebElementFacade foreignDisasters;
 
-	@FindBy(xpath = "//*[@id='nav']/ul/li[3]/ul/li[8]/a")
+	@FindBy(xpath = "//*[@id='menu-info']/ul/li[8]/a")
 	private WebElementFacade spanishForeignDisasters;
 
 	@FindBy(xpath = "//*[@id='menu-info']/ul/li[9]/a")
 	private WebElementFacade factSheets;
 
-	@FindBy(xpath = "//*[@id='nav']/ul/li[3]/ul/li[9]/a")
+	@FindBy(xpath = "//*[@id='menu-info']/ul/li[9]/a")
 	private WebElementFacade spanishFactSheets;
 
 	@FindBy(xpath = "//*[@id='nav']/ul/li[4]/a")
@@ -506,6 +509,11 @@ public class DAHomepage extends PageObject {
 	public void clickSpanishAssistanceFederal() {
 		mouseOverSpanishGetAssistanceTab();
 		spanishAssistanceFederal.click();
+	}
+	
+	public void clickCommLeaders() {
+		mouseOverGetAssistanceTab();
+		communityLeaders.click();
 	}
 
 	public void clickOtherHelp() {

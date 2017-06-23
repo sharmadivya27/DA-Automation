@@ -17,13 +17,13 @@ And there should be <numNodes> landing page nodes
 Examples:
 |navMenuItem|numNodes|
 |home|0|    
-|get assistance|9|
+|get assistance|10|
 |information|9|
 |about us|2|
 |help|5|
 
 Scenario: Verify all of the quick links to assert that the pages open correctly
-Meta:   
+Meta: @skip   
 @category daily 
 
 Given I am on the Disaster Assistance homepage
@@ -38,7 +38,7 @@ Examples:
 |email|
 
 Scenario: Verify the main links on homepage to assert that the pages open correctly
-Meta:  
+Meta: @skip  
 @category daily 
 @tag mobile
 
@@ -53,7 +53,7 @@ Examples:
 |check status|
 
 Scenario: Verify all the menu links on the "Get Assistance" tab
-Meta: 
+Meta:
 @category new
 @tag mobile
 
@@ -69,8 +69,9 @@ Examples:
 |check your status|
 |assistance by category|
 |assistance by federal agency|
+|community leaders|
 |other recovery help|
-|application checklist|
+|application checklist| 
 |forms|
 
 Scenario: Verify all of the nodes on the "Get Assistance" landing page
@@ -89,12 +90,13 @@ Examples:
 |check your status|
 |assistance by category|
 |assistance by federal agency|
+|community leaders|
 |other recovery help|
 |application checklist|
 |forms|
 
 Scenario: Verify all the menu links on the "Information" tab
-Meta:  
+Meta: @skip  
 @category new
 @tag mobile
 
@@ -115,7 +117,7 @@ Examples:
 |fact sheets|
 
 Scenario: Verify all of the nodes on the "Information" landing page
-Meta: 
+Meta: @skip 
 @category daily 
                               
 Given I am on the Information landing page
@@ -135,7 +137,7 @@ Examples:
 |fact sheets|
 
 Scenario: Verify the More/Less button is on each of the landing page nodes under the "Information" landing page
-Meta: 
+Meta: @skip 
 @category new 
 @tag mobile 
 
@@ -153,7 +155,7 @@ Examples:
 |disaster types|
 
 Scenario: Verify all of the titles on the "News Feeds" landing page node
-Meta: 
+Meta: @skip 
 @category new 
 @tag mobile-works
 
@@ -161,7 +163,7 @@ When I am on the News Feeds landing page node
 Then all of the sub-titles should show on the page
 
 Scenario: Verify all of the titles on the "Immediate Needs" landing page node 
-Meta:  
+Meta: @skip  
 @category new
 @tag mobile
 
@@ -178,7 +180,7 @@ Examples:
 |Find a Safe Place to Go|
 
 Scenario: Verify all the menu links on the "About Us" tab
-Meta:
+Meta: @skip
 @category new
 @tag mobile
 
@@ -192,7 +194,7 @@ Examples:
 |partners|
 
 Scenario: Verify all of the nodes on the "About Us" landing page
-Meta: 
+Meta: @skip 
 @category daily 
                               
 Given I am on the About Us landing page
@@ -205,7 +207,7 @@ Examples:
 |partners|
 
 Scenario: Verify all the menu links on the "Help" tab
-Meta: 
+Meta: @skip 
 @category new
 @tag mobile
 
@@ -222,7 +224,7 @@ Examples:
 |download plug-ins|
 
 Scenario: Verify all of the nodes on the "Help" landing page
-Meta: 
+Meta: @skip 
 @category daily
                     
 Given I am on the Help landing page
@@ -238,7 +240,7 @@ Examples:
 |download plug-ins|
 
 Scenario: Verify benefits results display according to use cases
-Meta: 
+Meta: @skip 
 @category daily
 @tag mobile
                  
@@ -247,7 +249,7 @@ When I choose only Employment and expand all the accordions
 Then I should obtain 9 results and see all the content under the accordions
 
 Scenario: Verify benefits results display according to use cases on mobile
-Meta:  
+Meta: @skip  
 @tag mobile-works
                  
 Given I am on the Find Assistance page
@@ -255,7 +257,7 @@ When I choose only Employment
 Then I should obtain 9 results
 
 Scenario: Verify the number of Federal Agencies and their benefits
-Meta: 
+Meta: @skip 
 @category daily 
 @tag mobile-works 
                                  
@@ -264,7 +266,7 @@ When I check on each Federal Agency accordion
 Then the number of benefits should match with its count
 
 Scenario: Verify all the functionality of the FOA questionnaire
-Meta: 
+Meta: @skip 
 @category daily 
 @tag mobile 
 
@@ -281,7 +283,7 @@ When I click apply online
 Then the DAC page should load
 
 Scenario: Verify states in the declared disaster map are clickable
-Meta: 
+Meta: @skip 
 @category daily 
                         
 Given I am on the Disaster Assistance homepage
@@ -289,7 +291,7 @@ When I am viewing the declared disaster map
 Then states with disasters should be clickable
 
 Scenario: Dynamically verify results of the questionnaire on the "Find Assistance" page 
-Meta:        
+Meta: @skip        
 @category daily 
 @tag mobile
           
@@ -298,7 +300,7 @@ When I fully complete the questionnaire
 Then I should accumulate the same number of results as the text on the Get Results button 
 
 Scenario: Verify that the FEMA Twitter feed is present on the homepage
-Meta:            
+Meta: @skip         
 @category daily 
 @tag mobile-works
                
@@ -307,7 +309,7 @@ When I am viewing the FEMA Twitter feed
 Then the most recent tweets should be displayed
 
 Scenario: Verify Local Resources flows correctly
-Meta: 
+Meta: @skip 
 @category daily 
 @tag mobile-works 
 
