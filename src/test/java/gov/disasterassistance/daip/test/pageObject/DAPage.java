@@ -13,6 +13,7 @@ import net.serenitybdd.core.pages.WebElementFacade;
  * elements from the given site.
  *
  * @author Chris Viqueira
+ * @author Divya Sharma
  *************************************************************************/
 public class DAPage extends PageObject {
 

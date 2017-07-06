@@ -283,7 +283,7 @@ When I click apply online
 Then the DAC page should load
 
 Scenario: Verify states in the declared disaster map are clickable
-Meta:  
+Meta:
 @category daily 
                         
 Given I am on the Disaster Assistance homepage
@@ -316,3 +316,87 @@ Meta:
 Given I am on the Disaster Assistance homepage
 When I am attempting to find local resources
 Then information on resources should be visible
+
+Scenario: Verify the search results on the Community Leaders page
+Meta:
+
+Given I am on the Community Leaders page on Disaster Assistance
+When I type those tag words into the Community Leaders search field for the <siteName>
+Then I should see that page in the search results 
+
+Examples:
+|siteName|
+|Grants|
+|Fema|
+
+Scenario: Verify the pages under each site name 
+Meta:
+
+Given I am on the drupal DA homepage
+When I log into drupal with username and password
+Then I click on the Manage Pages tab to pick a <siteName> and click on Get pages
+Then the number of pages for the <siteName> should be displayed 
+
+Examples:
+|siteName|
+|DisasterAssistance|
+|Benefits|
+|Ready|
+|NRN|
+|Grants|
+|USA.gov|
+|Fema|
+|CFDA|
+|DHS|
+|Redcross|
+|HHS|
+|SBA|
+|FCC|
+|HUD|
+|EPA|
+|Energy|
+|CDC|
+
+Scenario: Verify tag words of a specific page
+Meta:
+
+Given I am on the drupal DA homepage
+When I log into drupal with username and password
+Then I click on the Manage Pages tab to pick a <siteName> and click on Get pages
+Then I click Edit on a page to view the tag words of the <siteName>
+
+Examples:
+|siteName|
+|Grants|
+|Fema|
+
+Scenario: Verify the results of the quick search items 
+Meta:
+
+Given I am on the Community Leaders page on Disaster Assistance
+When I type the search words into the Community Leaders search field for the <quickSearch> item 
+Then the results should include those search words
+
+Examples:
+|quickSearch|
+|Community Preparedness|
+|Disaster Recovery Resources|
+|Emergency Shelter and Housing|
+|How Can You Help?|
+|Infrastructure, Utilities, and Other Public Assistance|
+
+Scenario: Verify the declared states on the declared disaster map 
+Meta: 
+
+Given I am on the Disaster Assistance homepage
+When I am viewing the declared disaster map
+Then states with disasters should be clickable
+Then I should be able to view the list of the declared states
+
+Scenario: Verify the declared counties on the declared disaster map 
+Meta: 
+
+Given I am on the Disaster Assistance homepage
+When I am viewing the declared disaster map
+Then states with disasters should be clickable
+Then I should be able to view the list of the declared counties

@@ -32,7 +32,7 @@ public class DAHomepage extends PageObject {
 	@FindBy(xpath = "//div[@id='block-daip-responsive-questionnaire-responsive-questionnaire-block']")
 	private WebElementFacade questionnaire;
 
-	@FindBy(xpath = "//*//div[@id='address-lookup-container']") 
+	@FindBy(xpath = "//*//div[@id='address-lookup-container']")
 	private WebElementFacade addressLookup;
 
 	@FindBy(id = "benefit-counter-count")
@@ -46,16 +46,16 @@ public class DAHomepage extends PageObject {
 
 	@FindBy(xpath = "//div//ul//li//a[@class='print-email-search-icon' or @class='print-mail print-email-search-icon']")
 	private List<WebElementFacade> quickLinks;
-	
+
 	@FindBy(xpath = "//*[@id='block-nodeblock-14948']/div[2]/div[2]/div/div[1]/article/a/span")
 	private WebElementFacade assistanceMainLink;
-	
+
 	@FindBy(xpath = "//*[@id='block-nodeblock-14948']/div[2]/div[2]/div/div[2]/article/a/span")
 	private WebElementFacade applyOnlineMainLink;
-	
+
 	@FindBy(xpath = "//*[@id='block-nodeblock-14948']/div[2]/div[2]/div/div[3]/article/a/span")
 	private WebElementFacade checkStatusMainLink;
-	
+
 	@FindBy(xpath = "//*[@id='nav']/ul/li[2]/a")
 	private WebElementFacade spanishGetAssistanceTab;
 
@@ -97,7 +97,7 @@ public class DAHomepage extends PageObject {
 
 	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[6]/a")
 	private WebElementFacade assistanceByFederalAgency;
-	
+
 	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[7]/a")
 	private WebElementFacade communityLeaders;
 
@@ -184,7 +184,7 @@ public class DAHomepage extends PageObject {
 
 	@FindBy(xpath = "//*[@id='menu-about']/a")
 	private WebElementFacade aboutUsTab;
-	
+
 	@FindBy(xpath = "//*[@id='sidr-id-menu-about']/a")
 	private WebElementFacade mobileAboutUs;
 
@@ -193,13 +193,13 @@ public class DAHomepage extends PageObject {
 
 	@FindBy(xpath = "//*[@id='sidr-id-menu-about']/ul/li[1]/a")
 	private WebElementFacade mobileOverview;
-	
+
 	@FindBy(xpath = "//*[@id='menu-about']/ul/li[1]/a")
 	private WebElementFacade overview;
 
 	@FindBy(xpath = "//*[@id='nav']/ul/li[4]/ul/li[2]/a")
 	private WebElementFacade spanishPartners;
-	
+
 	@FindBy(xpath = "//*[@id='sidr-id-menu-about']/ul/li[2]/a")
 	private WebElementFacade mobilePartners;
 
@@ -244,6 +244,9 @@ public class DAHomepage extends PageObject {
 
 	@FindBy(xpath = "//*[@class='state selected single-state-group']")
 	private List<WebElementFacade> disasterStates;
+	
+	@FindBy(xpath = "//*[@class='state selected single-state-group']")
+	private List<WebElementFacade> disasterStates2;
 
 	@FindBy(xpath = "//*[@class='state']")
 	private List<WebElementFacade> greyStates;
@@ -262,11 +265,17 @@ public class DAHomepage extends PageObject {
 
 	@FindBy(xpath = "//*[@id='email-form-wrapper']")
 	private WebElementFacade emailLinkForm;
-	
-	//@FindBy(xpath = "//*[@id='mobile-header']")
-	//or @id='sidr-main'
+
+	// @FindBy(xpath = "//*[@id='mobile-header']")
+	// or @id='sidr-main'
 	@FindBy(xpath = "//*[@id='responsive-menu-button']")
 	private WebElementFacade mobileMenu;
+
+	@FindBy(xpath = "/html/body")
+	private WebElementFacade stateDAC;
+
+	@FindBy(xpath = "//*[@id='disaster-results-container']")
+	private WebElementFacade declaredCounties;
 
 	private List<WebElementFacade> allElements = new ArrayList<WebElementFacade>();
 
@@ -381,24 +390,24 @@ public class DAHomepage extends PageObject {
 			}
 		}
 	}
-	
+
 	public void clickAssistanceMainLink() {
 		assistanceMainLink.click();
 	}
-	
+
 	public void clickApplyOnlineMainLink() {
 		applyOnlineMainLink.click();
 	}
-	
+
 	public void clickCheckStatusMainLink() {
 		checkStatusMainLink.click();
 	}
-	
+
 	public void clickMobileMenu() {
-		//JavascriptExecutor js = (JavascriptExecutor)getDriver(); 
-		//js.executeScript("arguments[0].click();", mobileMenu);  
+		// JavascriptExecutor js = (JavascriptExecutor)getDriver();
+		// js.executeScript("arguments[0].click();", mobileMenu);
 		mobileMenu.click();
-	} 
+	}
 
 	public void mouseOverGetAssistanceTab() {
 		Actions action = new Actions(getDriver());
@@ -440,7 +449,7 @@ public class DAHomepage extends PageObject {
 		this.evaluateJavascript("arguments[0].scrollIntoView(true);", mobileAboutUs);
 		mobileAboutUs.click();
 	}
-	
+
 	public void mouseOverHelpTab() {
 		Actions action = new Actions(getDriver());
 		action.moveToElement(helpTab).perform();
@@ -510,7 +519,7 @@ public class DAHomepage extends PageObject {
 		mouseOverSpanishGetAssistanceTab();
 		spanishAssistanceFederal.click();
 	}
-	
+
 	public void clickCommLeaders() {
 		mouseOverGetAssistanceTab();
 		communityLeaders.click();
@@ -640,7 +649,7 @@ public class DAHomepage extends PageObject {
 		mouseOverAboutTab();
 		overview.click();
 	}
-	
+
 	public void clickMobileOverview() {
 		clickMobileAboutUs();
 		mobileOverview.click();
@@ -655,7 +664,7 @@ public class DAHomepage extends PageObject {
 		mouseOverAboutTab();
 		partners.click();
 	}
-	
+
 	public void clickMobilePartners() {
 		clickMobileAboutUs();
 		mobilePartners.click();
@@ -767,6 +776,80 @@ public class DAHomepage extends PageObject {
 		localResourcesTextbox.sendKeys("New York, NY");
 	}
 
+	String state;
+
+	public String checkDisasterStates() {   
+		for (int i = 0; i < disasterStates.size(); i++) {
+			state += disasterStates.get(i).getText().replaceAll("to see if your county is in a declared area", "")
+					.replaceAll("Select", "");
+		}
+		return state;
+	}
+ 
+	/*public String checkDACDisasterStateFeed() {
+		getDriver().get("https://www.disasterassistance.gov/drupal_api/declaredStates");
+		String states = stateDAC.getText().replaceAll("\"", "").replaceAll("[ ]", "");
+		getDriver().get("https://www.disasterassistance.gov/");
+		return states;
+	}*/
+	
+	String editState; 
+	
+	public String checkDisasterStatesEdit() {
+		getDriver().get("https://edit.disasterassistance.gov/");
+		for (int i = 0; i < disasterStates.size(); i++) {
+			editState += disasterStates.get(i).getText().replaceAll("to see if your county is in a declared area", "")
+					.replaceAll("Select", "");
+		}
+		return editState;
+	}
+	
+	public String checkSpanishDisasterStatesEdit() {
+		getDriver().get("https://edit.disasterassistance.gov/es");
+		for (int i = 0; i < disasterStates.size(); i++) {
+			editState += disasterStates.get(i).getText().replaceAll("to see if your county is in a declared area", "")
+					.replaceAll("Select", "");
+		}
+		return editState;
+	}
+ 
+	String counties;
+	
+	public String clickDisasterStates() {
+		for (int i = 0; i < disasterStates.size(); i++) {
+			disasterStates.get(i).click();
+			counties += declaredCounties.getText();
+		}
+		return counties;
+	}
+
+	/*public String checkDACCountiesFeed() {
+		getDriver().get("https://www.disasterassistance.gov/drupal_api/declaredCounties/AR");
+		String counties = stateDAC.getText();
+		getDriver().get("https://www.disasterassistance.gov/");
+		return counties;
+	} */
+ 
+	String countiesEdit;
+	
+	public String clickDisasterStatesEdit() {
+		getDriver().get("https://edit.disasterassistance.gov/");
+		for (int i = 0; i < disasterStates2.size(); i++) {
+			disasterStates2.get(i).click();
+			countiesEdit += declaredCounties.getText();
+		}
+		return countiesEdit;
+	}
+	
+	public String clickSpanishDisasterStatesEdit() {
+		getDriver().get("https://edit.disasterassistance.gov/es");
+		for (int i = 0; i < disasterStates2.size(); i++) {
+			disasterStates2.get(i).click();
+			countiesEdit += declaredCounties.getText();
+		}
+		return countiesEdit;
+	}
+	
 	public void pause(long time) {
 		try {
 			Thread.sleep(time);

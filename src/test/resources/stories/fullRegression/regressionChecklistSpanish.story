@@ -3,7 +3,7 @@ In order to assert that the basic functionality of https://www.disasterassistanc
 As a tester
 I want to run the daily regressions at least twice a day
 
-Meta: 
+Meta:
 
 Scenario: (Spanish) Verify all of the navbar tabs to assert that the Spanish pages open correctly
 Meta:                           
@@ -268,3 +268,19 @@ Meta:
 Given I am on the Spanish Disaster Assistance homepage
 When I am attempting to find local resources
 Then information on resources should be visible
+
+Scenario: (Spanish) Verify the declared states on the declared disaster map 
+Meta:  
+
+Given I am on the Spanish Disaster Assistance homepage
+When I am viewing the declared disaster map
+Then states with disasters should be clickable
+Then I should be able to view the list of the declared states in Spanish
+
+Scenario: (Spanish) Verify the declared counties on the declared disaster map 
+Meta: 
+
+Given I am on the Spanish Disaster Assistance homepage
+When I am viewing the declared disaster map
+Then states with disasters should be clickable
+Then I should be able to view the list of the declared counties in Spanish

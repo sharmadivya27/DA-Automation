@@ -12,6 +12,7 @@ import gov.disasterassistance.daip.test.pageObject.DAHomepage;
 import gov.disasterassistance.daip.test.pageObject.DALandingPage;
 import gov.disasterassistance.daip.test.pageObject.DAPage;
 import gov.disasterassistance.daip.test.pageObject.DAQuestionnaire;
+import gov.disasterassistance.daip.test.pageObject.DrupalPage;
 import net.thucydides.core.annotations.Step;
 
 /*************************************************************************
@@ -20,13 +21,15 @@ import net.thucydides.core.annotations.Step;
  * actions that a real user would perform.
  * 
  * @author Chris Viqueira
+ * @author Divya Sharma
  ************************************************************************/
 public class User {
-	DAPage dapage;  
+	DAPage dapage;
 	DAHomepage daHomepage;
 	DAQuestionnaire daQuesPage;
 	DALandingPage daLanding;
 	DAFederalAgency daFedAgency;
+	DrupalPage drupalPage;
 
 	/*********************************************/
 
@@ -75,7 +78,7 @@ public class User {
 		if ((mainLink.equals("find assistance")) || (mainLink.equals("encontrar ayuda"))) {
 			daHomepage.clickAssistanceMainLink();
 			daHomepage.pause(2000);
-		} else if ((mainLink.equals("apply online")) || (mainLink.equals("solicitar asistencia")) ) {
+		} else if ((mainLink.equals("apply online")) || (mainLink.equals("solicitar asistencia"))) {
 			daHomepage.clickApplyOnlineMainLink();
 			daHomepage.pause(2000);
 		} else if ((mainLink.equals("check status")) || (mainLink.equals("revisar estatus"))) {
@@ -243,7 +246,7 @@ public class User {
 
 	@Step
 	public void clickGetAssistanceMenuLinks(String menuLinks) {
-		//daHomepage.clickMobileMenu();
+		// daHomepage.clickMobileMenu();
 		if ((menuLinks.equals("address look-up")) || (menuLinks.equals("buscar dirección"))) {
 			daHomepage.clickAddressLookUp();
 		} else if ((menuLinks.equals("find assistance")) || (menuLinks.equals("encuentre asistencia"))) {
@@ -358,7 +361,7 @@ public class User {
 			daHomepage.clickMobilePartners();
 		}
 	}
-	
+
 	@Step
 	public void clickSpanishAboutMenuLinks(String menuLinks) {
 		if (menuLinks.equals("descripción general")) {
@@ -448,7 +451,7 @@ public class User {
 	public void getEmploymentResults() {
 		daQuesPage.clickEmploymentCheckbox();
 	}
-	
+
 	@Step
 	public void getFOAResultsPage() {
 		daQuesPage.getFOAResultsPage();
@@ -464,7 +467,7 @@ public class User {
 		Assert.assertEquals(9, daQuesPage.getNumEmploymentResults());
 		daQuesPage.verifyEmploymentVisibility();
 	}
-	
+
 	@Step
 	public void verifyFOAResultsandVisibility() throws EmploymentException {
 		Assert.assertEquals(9, daQuesPage.getNumQuestionnaireResults());
@@ -569,6 +572,184 @@ public class User {
 		daHomepage.pause(2000);
 		boolean dacPageVisible = (daQuesPage.checkStatusPageIsDisplayed() || daQuesPage.dacPageIsDisplayed());
 		Assert.assertEquals(true, dacPageVisible);
+	}
+
+	@Step
+	public void onCommunityLeadersPage() {
+		drupalPage.openAt("https://www.disasterassistance.gov/get-assistance/community-leaders");
+	}
+
+	@Step
+	public void searchTextOnCommunityLeadersPage(String siteName) {
+		if (siteName.equals("Grants")) {
+			drupalPage.searchGrantsText();
+		} else if (siteName.equals("Fema")) {
+			drupalPage.searchFemaText();
+		}
+		
+	}
+
+	@Step
+	public void searchResults() {
+		drupalPage.showResults();
+	}
+
+	@Step
+	public void onHomepage() {
+		drupalPage.open();
+	}
+
+	@Step
+	public void fillInLogIn() {
+		drupalPage.logIntoDrupal();
+	}
+
+	@Step
+	public void onManagePagesTab() {
+		drupalPage.onElasticSearchPage();
+		drupalPage.clickManagePages();
+		// drupalPage.getGrantPages();
+	}
+
+	@Step
+	public void getSiteNamePages(String siteName) {
+		if (siteName.equals("DisasterAssistance")) {
+			drupalPage.getDAPages();
+		} else if (siteName.equals("Benefits")) {
+			drupalPage.getBenefitsPages();
+		} else if (siteName.equals("Ready")) {
+			drupalPage.getReadyPages();
+		} else if (siteName.equals("NRN")) {
+			drupalPage.getNRNPages();
+		} else if (siteName.equals("Grants")) {
+			drupalPage.getGrantPages();
+		} else if (siteName.equals("USA.gov")) {
+			drupalPage.getUSAGovPages();
+		} else if (siteName.equals("Fema")) {
+			drupalPage.getFemaPages();
+		} else if (siteName.equals("CFDA")) {
+			drupalPage.getCFDAPages();
+		} else if (siteName.equals("DHS")) {
+			drupalPage.getDHSPages();
+		} else if (siteName.equals("Redcross")) {
+			drupalPage.getRedcrossPages();
+		} else if (siteName.equals("HHS")) {
+			drupalPage.getHHSPages();
+		} else if (siteName.equals("SBA")) {
+			drupalPage.getSBAPages();
+		} else if (siteName.equals("FCC")) {
+			drupalPage.getFCCPages();
+		} else if (siteName.equals("HUD")) {
+			drupalPage.getHUDPages();
+		} else if (siteName.equals("EPA")) {
+			drupalPage.getEPAPages();
+		} else if (siteName.equals("Energy")) {
+			drupalPage.getEnergyPages();
+		} else if (siteName.equals("CDC")) {
+			drupalPage.getCDCPages();
+		}
+	}
+
+	@Step
+	public void numberOfPages(String siteName) {
+		// Assert.assertEquals(7, drupalPage.numberPages());
+		if (siteName.equals("DisasterAssistance")) {
+			Assert.assertEquals("7", drupalPage.getDAUrl());
+		} else if (siteName.equals("Benefits")) {
+			Assert.assertEquals("13", drupalPage.getBenefitsUrl());
+		} else if (siteName.equals("Ready")) {
+			// drupalPage.clickLastPageButton();
+			// daHomepage.pause(2000);
+			Assert.assertEquals("15", drupalPage.getReadyUrl());
+		} else if (siteName.equals("NRN")) {
+			Assert.assertEquals("12", drupalPage.getNRNUrl());
+		} else if (siteName.equals("Grants")) {
+			Assert.assertEquals("12", drupalPage.getGrantsUrl());
+		} else if (siteName.equals("USA.gov")) {
+			Assert.assertEquals("No pages available.", drupalPage.getUSAgovUrl());
+		} else if (siteName.equals("Fema")) {
+			// drupalPage.clickLastPageButton();
+			// daHomepage.pause(2000);
+			Assert.assertEquals("15", drupalPage.getFemaUrl());
+		} else if (siteName.equals("CFDA")) {
+			Assert.assertEquals("6", drupalPage.getCFDAUrl());
+		} else if (siteName.equals("DHS")) {
+			Assert.assertEquals("3", drupalPage.getDHSUrl());
+		} else if (siteName.equals("Redcross")) {
+			// drupalPage.clickLastPageButton();
+			// daHomepage.pause(2000);
+			Assert.assertEquals("15", drupalPage.getRedcrossUrl());
+		} else if (siteName.equals("HHS")) {
+			Assert.assertEquals("No pages available.", drupalPage.getHHSUrl());
+		} else if (siteName.equals("SBA")) {
+			Assert.assertEquals("1", drupalPage.getSBAUrl());
+		} else if (siteName.equals("FCC")) {
+			Assert.assertEquals("1", drupalPage.getFCCUrl());
+		} else if (siteName.equals("HUD")) {
+			Assert.assertEquals("2", drupalPage.getHUDUrl());
+		} else if (siteName.equals("EPA")) {
+			Assert.assertEquals("3", drupalPage.getEPAUrl());
+		} else if (siteName.equals("Energy")) {
+			Assert.assertEquals("6", drupalPage.getEnergyUrl());
+		} else if (siteName.equals("CDC")) {
+			Assert.assertEquals("4", drupalPage.getCDCUrl());
+		}
+	}
+
+	@Step
+	public void viewTagWords(String siteName) {
+		if (siteName.equals("Grants")) {
+			drupalPage.editGrantsPage();
+			Assert.assertEquals(
+					("FAQs" + "\n" + "Grants" + "\n" + "Application" + "\n" + "Frequently Asked Grant Questions"),
+					drupalPage.viewTagWords());
+		} else if (siteName.equals("Fema")) {
+			drupalPage.editFemaPage();
+			Assert.assertEquals(("Youth" + "\n" + "Kids" + "\n" + "Family" + "\n" + "Preparedness" + "\n" + "Counseling"
+					+ "\n" + "Training"), drupalPage.viewTagWords());
+		}
+	}
+	
+	@Step
+	public void clickQuickSearch(String quickSearch) {
+		if (quickSearch.equals("Community Preparedness")) {
+			drupalPage.clickCommunityPreparedness();
+		} else if (quickSearch.equals("Disaster Recovery Resources")) {
+			drupalPage.clickDisasterRecoveryResources();
+		} else if (quickSearch.equals("Emergency Shelter and Housing")) {
+			drupalPage.clickEmergencyShelterHousing();
+		} else if (quickSearch.equals("How Can You Help?")) {
+			drupalPage.clickHowCanYouHelp();
+		} else if (quickSearch.equals("Infrastructure, Utilities, and Other Public Assistance")) {
+			drupalPage.clickInfrastructure();
+		}
+	}
+	
+	@Step
+	public void quickSearchResults() {
+		Assert.assertTrue(drupalPage.communityResults());
+	}
+	
+	@Step 
+	public void checkDisasterState() {
+		//Assert.assertEquals(daHomepage.checkDACDisasterStateFeed(), daHomepage.checkDisasterStates());
+		Assert.assertEquals(daHomepage.checkDisasterStatesEdit(), daHomepage.checkDisasterStates());
+	}
+	
+	@Step 
+	public void checkSpanishDisasterState() {
+		//Assert.assertEquals(daHomepage.checkDACDisasterStateFeed(), daHomepage.checkDisasterStates());
+		Assert.assertEquals(daHomepage.checkSpanishDisasterStatesEdit(), daHomepage.checkDisasterStates());
+	}
+	
+	@Step
+	public void checkDisasterCounty() {
+		Assert.assertEquals (daHomepage.clickDisasterStates(), daHomepage.clickDisasterStatesEdit());
+	}
+	
+	@Step
+	public void checkSpanishDisasterCounty() {
+		Assert.assertEquals (daHomepage.clickDisasterStates(), daHomepage.clickSpanishDisasterStatesEdit());
 	}
 
 }

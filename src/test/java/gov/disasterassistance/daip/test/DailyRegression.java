@@ -17,6 +17,7 @@ import net.thucydides.core.annotations.Steps;
  * are matched with the annotation in this file.
  *
  * @author Chris Viqueira
+ * @author Divya Sharma
  ************************************************************************/
 public class DailyRegression {
 	@Steps
@@ -48,8 +49,8 @@ public class DailyRegression {
 		// Homepage
 		user.open_page("");
 	}
-	
-	@Given("I am on the Disaster Assistance mobile page") 
+
+	@Given("I am on the Disaster Assistance mobile page")
 	public void given_I_am_on_the_disaster_assistance_mobile_page() {
 		user.open_page("/#sidr-main");
 	}
@@ -182,7 +183,7 @@ public class DailyRegression {
 	// Scenario: Verify all of the titles on the "News Feeds" landing page node
 	// given see above
 	// when see above
-	
+
 	@When("I am on the News Feeds landing page node")
 	public void on_news_feeds_page() {
 		user.open_page("/information/news-feeds");
@@ -232,7 +233,7 @@ public class DailyRegression {
 	public void click_on_menu_links_in_about_us_tab(@Named("menuLinks") String menuLinks) {
 		user.clickAboutMenuLinks(menuLinks);
 	}
-	
+
 	@When("I click on the <menuLinks> in the About Us mobile tab")
 	public void click_on_mobile_about_us(@Named("menuLinks") String menuLinks) {
 		user.clickMobileAboutMenuLinks(menuLinks);
@@ -318,7 +319,7 @@ public class DailyRegression {
 		user.getEmploymentResults();
 		user.clickExpandAll();
 	}
-	
+
 	@When("I choose only Employment")
 	public void when_I_choose_only_Employment() {
 		user.getEmploymentResults();
@@ -336,10 +337,9 @@ public class DailyRegression {
 			throws EmploymentException {
 		user.verifyEmploymentResultsandVisibility();
 	}
-	
+
 	@Then("I should obtain 9 results")
-	public void then_I_should_obtain_9_results()
-			throws EmploymentException {
+	public void then_I_should_obtain_9_results() throws EmploymentException {
 		user.verifyFOAResultsandVisibility();
 	}
 
@@ -477,4 +477,94 @@ public class DailyRegression {
 		user.shouldSeeDAC();
 	}
 
+	// Scenario: Verify the search results on the Community Leaders page
+
+	@Given("I am on the Community Leaders page on Disaster Assistance")
+	public void givenOnTheCommunityLeadersPage() {
+		user.onCommunityLeadersPage();
+	}
+
+	@When("I type those tag words into the Community Leaders search field for the <siteName>")
+	public void thenTypeTagWordsIntoCommunityLeadersSearchField(@Named("siteName") String siteName) {
+		user.searchTextOnCommunityLeadersPage(siteName);
+	}
+
+	@Then("I should see that page in the search results")
+	public void thenShouldSeePageInSearchResults() {
+		user.searchResults();
+	}
+
+	// Scenario: Verify the pages under each site name
+
+	@Given("I am on the drupal DA homepage")
+	public void givenTheUserIsOnTheDrupalDAPage() {
+		user.onHomepage();
+	}
+
+	@When("I log into drupal with username and password")
+	public void whenTheUserLogsIntoDrupal() {
+		user.fillInLogIn();
+	}
+
+	@Then("I click on the Manage Pages tab to pick a <siteName> and click on Get pages")
+	public void thenClickOnManagePagesToPickASiteName(@Named("siteName") String siteName) {
+		user.onManagePagesTab();
+		user.getSiteNamePages(siteName);
+	}
+
+	@Then("the number of pages for the <siteName> should be displayed")
+	public void thenNumberOfPagesForSiteShouldBeDisplayed(@Named("siteName") String siteName) {
+		user.numberOfPages(siteName);
+	}
+
+	// Scenario: Verify tag words of a specific page
+	// given see above
+	// when see above
+	// then see above
+
+	@Then("I click Edit on a page to view the tag words of the <siteName>")
+	public void thenClickEditToViewTagWords(@Named("siteName") String siteName) {
+		user.viewTagWords(siteName);
+	}
+
+	// Scenario: Verify the results of the quick search items
+	// given see above
+
+	@When("I type the search words into the Community Leaders search field for the <quickSearch> item")
+	public void whenTypeSearchWordsForQuickSearchItems(@Named("quickSearch") String quickSearch) {
+		user.clickQuickSearch(quickSearch); 
+	}
+
+	@Then("the results should include those search words")
+	public void thenShouldIncludeSearchWords() {
+		user.quickSearchResults();
+	}
+	
+	// Scenario: Verify the declared states on the declared disaster map 
+	// given see above 
+	// when see above 
+	
+	@Then("I should be able to view the list of the declared states") 
+	public void thenShouldBeAbleToViewListOfDeclaredStates() {
+		user.checkDisasterState();
+	}
+	
+	@Then("I should be able to view the list of the declared states in Spanish") 
+	public void thenShouldBeAbleToViewListOfDeclaredStatesSpanish() {
+		user.checkSpanishDisasterState();
+	}
+	
+	// Scenario: Verify the declared counties on the declared disaster map 
+	// given see above
+	// when see above 
+	
+	@Then("I should be able to view the list of the declared counties") 
+	public void thenShouldBeAbleToViewListOfDeclaredCounties() {
+		user.checkDisasterCounty(); 
+	}
+	
+	@Then("I should be able to view the list of the declared counties in Spanish") 
+	public void thenShouldBeAbleToViewListOfDeclaredCountiesSpanish() {
+		user.checkSpanishDisasterCounty(); 
+	}
 }
