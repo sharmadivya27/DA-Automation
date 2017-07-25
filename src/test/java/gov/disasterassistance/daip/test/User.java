@@ -579,6 +579,11 @@ public class User {
 	public void onCommunityLeadersPage() {
 		drupalPage.openAt("https://www.disasterassistance.gov/get-assistance/community-leaders");
 	}
+	
+	@Step
+	public void onSpanishCommunityLeadersPage() {
+		drupalPage.openAt("https://www.disasterassistance.gov/es/obtener-asistencia/líderes-comunitarios");
+	}
 
 	@Step
 	public void searchTextOnCommunityLeadersPage(String siteName) {

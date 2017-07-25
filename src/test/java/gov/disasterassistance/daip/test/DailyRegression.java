@@ -483,6 +483,11 @@ public class DailyRegression {
 	public void givenOnTheCommunityLeadersPage() {
 		user.onCommunityLeadersPage();
 	}
+	
+	@Given("I am on the spanish Community Leaders page on Disaster Assistance")
+	public void givenOnSpanishTheCommunityLeadersPage() {
+		user.onCommunityLeadersPage();
+	}
 
 	@When("I type those tag words into the Community Leaders search field for the <siteName>")
 	public void thenTypeTagWordsIntoCommunityLeadersSearchField(@Named("siteName") String siteName) {

@@ -285,3 +285,19 @@ Given I am on the Spanish Disaster Assistance homepage
 When I am viewing the declared disaster map
 Then states with disasters should be clickable
 Then I should be able to view the list of the declared counties in Spanish
+
+Scenario: (Spanish) Verify the results of the quick search items 
+Meta: 
+@category NWD 
+
+Given I am on the spanish Community Leaders page on Disaster Assistance
+When I type the search words into the Community Leaders search field for the <quickSearch> item 
+Then the results should include those search words
+
+Examples:
+|quickSearch|
+|Infraestructura, servicios públicos y otra asistencia pública|
+|Preparación para la comunidad|
+|Recursos de Recuperación de Desastres|
+|Refugio de Emergencia y Vivienda|
+|¿Como puedes ayudar?|
