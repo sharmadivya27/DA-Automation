@@ -24,7 +24,7 @@ Examples:
 
 Scenario: Verify all of the quick links to assert that the pages open correctly
 Meta:    
-@category daily 
+@category daily   
 
 Given I am on the Disaster Assistance homepage
 When I click on <quickLinkItem> within the quick links bar
@@ -53,7 +53,7 @@ Examples:
 |check status|
 
 Scenario: Verify all the menu links on the "Get Assistance" tab
-Meta:
+Meta: 
 @category new
 @tag mobile
 
@@ -248,14 +248,6 @@ Given I am on the Find Assistance page
 When I choose only Employment and expand all the accordions
 Then I should obtain 9 results and see all the content under the accordions
 
-Scenario: Verify benefits results display according to use cases on mobile
-Meta:   
-@tag mobile-works
-                 
-Given I am on the Find Assistance page
-When I choose only Employment 
-Then I should obtain 9 results
-
 Scenario: Verify the number of Federal Agencies and their benefits
 Meta:  
 @category daily 
@@ -283,7 +275,7 @@ When I click apply online
 Then the DAC page should load
 
 Scenario: Verify states in the declared disaster map are clickable
-Meta:
+Meta: 
 @category daily 
                         
 Given I am on the Disaster Assistance homepage
@@ -318,7 +310,8 @@ When I am attempting to find local resources
 Then information on resources should be visible
 
 Scenario: Verify the search results on the Community Leaders page
-Meta:
+Meta: 
+@category daily 
 
 Given I am on the Community Leaders page on Disaster Assistance
 When I type those tag words into the Community Leaders search field for the <siteName>
@@ -331,15 +324,16 @@ Examples:
 
 Scenario: Verify the pages under each site name 
 Meta:
+@category daily 
 
 Given I am on the drupal DA homepage
 When I log into drupal with username and password
 Then I click on the Manage Pages tab to pick a <siteName> and click on Get pages
-Then the number of pages for the <siteName> should be displayed 
+Then the url for the <siteName> should be displayed 
 
 Examples:
 |siteName|
-|DisasterAssistance|
+|DisasterAssistance| 
 |Benefits|
 |Ready|
 |NRN|
@@ -357,21 +351,9 @@ Examples:
 |Energy|
 |CDC|
 
-Scenario: Verify tag words of a specific page
-Meta:
-
-Given I am on the drupal DA homepage
-When I log into drupal with username and password
-Then I click on the Manage Pages tab to pick a <siteName> and click on Get pages
-Then I click Edit on a page to view the tag words of the <siteName>
-
-Examples:
-|siteName|
-|Grants|
-|Fema|
-
 Scenario: Verify the results of the quick search items 
-Meta:
+Meta: 
+@category daily 
 
 Given I am on the Community Leaders page on Disaster Assistance
 When I type the search words into the Community Leaders search field for the <quickSearch> item 
@@ -387,6 +369,7 @@ Examples:
 
 Scenario: Verify the declared states on the declared disaster map 
 Meta: 
+@category daily 
 
 Given I am on the Disaster Assistance homepage
 When I am viewing the declared disaster map
@@ -395,6 +378,7 @@ Then I should be able to view the list of the declared states
 
 Scenario: Verify the declared counties on the declared disaster map 
 Meta: 
+@category daily  
 
 Given I am on the Disaster Assistance homepage
 When I am viewing the declared disaster map

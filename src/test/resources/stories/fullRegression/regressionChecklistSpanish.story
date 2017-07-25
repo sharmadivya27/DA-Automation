@@ -15,7 +15,7 @@ And there should be <numNodes> landing page nodes
 Examples:
 |navMenuItem|numNodes|
 |inicio|0|
-|obtener asistencia|9|
+|obtener asistencia|10| 
 |información|9|
 |acerca de|2|
 |ayuda|5|
@@ -46,7 +46,7 @@ Examples:
 |revisar estatus|
 
 Scenario: (Spanish) Verify all the menu links on the Spanish "Get Assistance" tab
-Meta:  
+Meta: 
 @category new
 
 Given I am on the Spanish Disaster Assistance homepage
@@ -62,6 +62,7 @@ Examples:
 |asistencia por categoría|
 |asistencia por agencia federal|
 |otra ayuda para recuperación|
+|líderes comunitarios|
 |lista de verificación para aplicarse|
 |formularios|
 

@@ -512,9 +512,9 @@ public class DailyRegression {
 		user.getSiteNamePages(siteName);
 	}
 
-	@Then("the number of pages for the <siteName> should be displayed")
+	@Then("the url for the <siteName> should be displayed")
 	public void thenNumberOfPagesForSiteShouldBeDisplayed(@Named("siteName") String siteName) {
-		user.numberOfPages(siteName);
+		user.urlOfPages(siteName);
 	}
 
 	// Scenario: Verify tag words of a specific page

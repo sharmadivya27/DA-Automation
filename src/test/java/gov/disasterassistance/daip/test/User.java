@@ -112,6 +112,7 @@ public class User {
 		case "help":
 		case "ayuda":
 		case "community leaders":
+		case "líderes comunitarios":
 		case "other recovery help":
 		case "otra ayuda para recuperación":
 		case "application checklist":
@@ -651,49 +652,42 @@ public class User {
 	}
 
 	@Step
-	public void numberOfPages(String siteName) {
-		// Assert.assertEquals(7, drupalPage.numberPages());
+	public void urlOfPages(String siteName) {
 		if (siteName.equals("DisasterAssistance")) {
-			Assert.assertEquals("7", drupalPage.getDAUrl());
+			Assert.assertEquals("https://www.disasterassistance.gov/get-assistance/application-checklist", drupalPage.getFirstUrl());
 		} else if (siteName.equals("Benefits")) {
-			Assert.assertEquals("13", drupalPage.getBenefitsUrl());
+			Assert.assertEquals("https://www.benefits.gov/benefits/benefit-details/1504", drupalPage.getFirstUrl());
 		} else if (siteName.equals("Ready")) {
-			// drupalPage.clickLastPageButton();
-			// daHomepage.pause(2000);
-			Assert.assertEquals("15", drupalPage.getReadyUrl());
+			Assert.assertEquals("https://www.ready.gov/american-red-cross", drupalPage.getFirstUrl());
 		} else if (siteName.equals("NRN")) {
-			Assert.assertEquals("12", drupalPage.getNRNUrl());
+			Assert.assertEquals("http://www.nationalresourcenetwork.org/en/Page/19/Communities_Eligible_for_311_for_Cities_", drupalPage.getFirstUrl());
 		} else if (siteName.equals("Grants")) {
-			Assert.assertEquals("12", drupalPage.getGrantsUrl());
+			Assert.assertEquals("https://www.grants.gov/web/grants/applicants/applicant-eligibility.html", drupalPage.getFirstUrl());
 		} else if (siteName.equals("USA.gov")) {
-			Assert.assertEquals("No pages available.", drupalPage.getUSAgovUrl());
+			Assert.assertEquals("No pages available.", drupalPage.noPages());
 		} else if (siteName.equals("Fema")) {
-			// drupalPage.clickLastPageButton();
-			// daHomepage.pause(2000);
-			Assert.assertEquals("15", drupalPage.getFemaUrl());
+			Assert.assertEquals("https://www.fema.gov/media-library-data/1448917365279-3a7949605bd9e03633af2473a5741aa9/Section_0_PM_Combined.pdf", drupalPage.getFirstUrl());
 		} else if (siteName.equals("CFDA")) {
-			Assert.assertEquals("6", drupalPage.getCFDAUrl());
+			Assert.assertEquals("https://www.cfda.gov/downloads/CFDA_2016.pdf", drupalPage.getFirstUrl());
 		} else if (siteName.equals("DHS")) {
-			Assert.assertEquals("3", drupalPage.getDHSUrl());
+			Assert.assertEquals("https://www.dhs.gov/sites/default/files/publications/2014%20National%20Emergency%20Communications%20Plan_October%2029%202014.pdf", drupalPage.getFirstUrl());
 		} else if (siteName.equals("Redcross")) {
-			// drupalPage.clickLastPageButton();
-			// daHomepage.pause(2000);
-			Assert.assertEquals("15", drupalPage.getRedcrossUrl());
+			Assert.assertEquals("http://maps.redcross.org/website/", drupalPage.getFirstUrl());
 		} else if (siteName.equals("HHS")) {
-			Assert.assertEquals("No pages available.", drupalPage.getHHSUrl());
+			Assert.assertEquals("https://search.hhs.gov/search?q=community+disaster+recovery&HHS=Search&site=HHS&entqr=3&ud=1&sort=date%3AD%3AL%3Ad1&output=xml_no_dtd&ie=UTF-8&oe=UTF-8&lr=lang_en&client=HHS&proxystylesheet=HHS", drupalPage.getFirstUrl());
 		} else if (siteName.equals("SBA")) {
-			Assert.assertEquals("1", drupalPage.getSBAUrl());
+			Assert.assertEquals("https://www.sba.gov/sites/default/files/articles/FINAL_2016_SBA_Disaster_Preparedness_Plan_v_3-0.pdf", drupalPage.getFirstUrl());
 		} else if (siteName.equals("FCC")) {
-			Assert.assertEquals("1", drupalPage.getFCCUrl());
+			Assert.assertEquals("https://www.fcc.gov/consumers/guides/emergency-communications", drupalPage.getFirstUrl());
 		} else if (siteName.equals("HUD")) {
-			Assert.assertEquals("2", drupalPage.getHUDUrl());
+			Assert.assertEquals("https://www.hudexchange.info/programs/cdbg-dr/", drupalPage.getFirstUrl());
 		} else if (siteName.equals("EPA")) {
-			Assert.assertEquals("3", drupalPage.getEPAUrl());
+			Assert.assertEquals("https://www.epa.gov/fedfunds", drupalPage.getFirstUrl());
 		} else if (siteName.equals("Energy")) {
-			Assert.assertEquals("6", drupalPage.getEnergyUrl());
+			Assert.assertEquals("https://www.energy.gov/oe/community-guidelines-energy-emergencies/local-leaders-respond-energy-emergency", drupalPage.getFirstUrl());
 		} else if (siteName.equals("CDC")) {
-			Assert.assertEquals("4", drupalPage.getCDCUrl());
-		}
+			Assert.assertEquals("https://www.atsdr.cdc.gov/hac/phamanual/ch4.html", drupalPage.getFirstUrl());
+		} 
 	}
 
 	@Step
@@ -745,7 +739,7 @@ public class User {
 	@Step
 	public void checkDisasterCounty() {
 		Assert.assertEquals (daHomepage.clickDisasterStates(), daHomepage.clickDisasterStatesEdit());
-	}
+	} 
 	
 	@Step
 	public void checkSpanishDisasterCounty() {

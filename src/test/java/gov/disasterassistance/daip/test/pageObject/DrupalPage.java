@@ -52,60 +52,12 @@ public class DrupalPage extends PageObject {
 
 	@FindBy(xpath = "//*[@id='block-daip-elastic-search-daip-preset-search-queries']/div[1]/div/div[1]")
 	private WebElementFacade searchPage;
-
-	@FindBy(xpath = "//*[@id='edit-pages']/div/div/ul[1]/li[4]/a")
-	private WebElementFacade lastPage;
-
-	@FindBy(xpath = "//*[@id='edit-pages']/div/table[2]/tbody/tr[7]/td[2]")
-	private WebElementFacade lastDAUrl;
-
-	@FindBy(xpath = "//*[@id='edit-pages']/div/table[2]/tbody/tr[13]/td[2]")
-	private WebElementFacade lastBGUrl;
-
-	@FindBy(xpath = "//*[@id='edit-pages']/div/table[2]/tbody/tr[15]/td[2]")
-	private WebElementFacade lastReadyUrl;
-
-	@FindBy(xpath = "//*[@id='edit-pages']/div/table[2]/tbody/tr[12]/td[2]")
-	private WebElementFacade lastNRNUrl;
-
-	@FindBy(xpath = "//*[@id='edit-pages']/div/table[2]/tbody/tr[12]/td[2]")
-	private WebElementFacade lastGrantsUrl;
-
+	
+	@FindBy(xpath = "//*[@id='edit-pages']/div/table[2]/tbody/tr[1]/td[3]")
+	private WebElementFacade url;
+	
 	@FindBy(xpath = "//*[@id='edit-pages']/div/table[2]/tbody/tr/td")
-	private WebElementFacade lastUSAUrl;
-
-	@FindBy(xpath = "//*[@id='edit-pages']/div/table[2]/tbody/tr[15]/td[2]")
-	private WebElementFacade lastFemaUrl;
-
-	@FindBy(xpath = "//*[@id='edit-pages']/div/table[2]/tbody/tr[6]/td[2]")
-	private WebElementFacade lastCFDAUrl;
-
-	@FindBy(xpath = "//*[@id='edit-pages']/div/table[2]/tbody/tr[3]/td[2]")
-	private WebElementFacade lastDHSUrl;
-
-	@FindBy(xpath = "//*[@id='edit-pages']/div/table[2]/tbody/tr[15]/td[2]")
-	private WebElementFacade lastRedcrossUrl;
-
-	@FindBy(xpath = "//*[@id='edit-pages']/div/table[2]/tbody/tr/td")
-	private WebElementFacade lastHHSUrl;
-
-	@FindBy(xpath = "//*[@id='edit-pages']/div/table[2]/tbody/tr/td[2]")
-	private WebElementFacade lastSBAUrl;
-
-	@FindBy(xpath = "//*[@id='edit-pages']/div/table[2]/tbody/tr/td[2]")
-	private WebElementFacade lastFCCUrl;
-
-	@FindBy(xpath = "//*[@id='edit-pages']/div/table[2]/tbody/tr[2]/td[2]")
-	private WebElementFacade lastHUDUrl;
-
-	@FindBy(xpath = "//*[@id='edit-pages']/div/table[2]/tbody/tr[3]/td[2]")
-	private WebElementFacade lastEPAUrl;
-
-	@FindBy(xpath = "//*[@id='edit-pages']/div/table[2]/tbody/tr[6]/td[2]")
-	private WebElementFacade lastEnergyUrl;
-
-	@FindBy(xpath = "//*[@id='edit-pages']/div/table[2]/tbody/tr[4]/td[2]")
-	private WebElementFacade lastCDCUrl;
+	private WebElementFacade noPages;
 
 	@FindBy(xpath = "//*[@id='block-daip-elastic-search-daip-preset-search-queries']/div[1]/div")
 	private WebElementFacade communityPreparedness;
@@ -167,180 +119,168 @@ public class DrupalPage extends PageObject {
 
 	public void getDAPages() {
 		selectSite.click();
-		selectSite.sendKeys("DisasterAssistance");
+		selectSite.sendKeys("https://www.disasterassistance.gov"); 
 		getPages.click();
 	}
 
 	public void getBenefitsPages() {
 		selectSite.click();
-		selectSite.sendKeys("Benefits");
+		selectSite.sendKeys("https://www.benefits.gov");
 		getPages.click();
 	}
 
 	public void getReadyPages() {
 		selectSite.click();
-		selectSite.sendKeys("Ready");
+		selectSite.sendKeys("https://www.ready.gov");
 		getPages.click();
 	}
 
 	public void getNRNPages() {
 		selectSite.click();
-		selectSite.sendKeys("NRN");
+		selectSite.sendKeys("http://www.nationalresourcenetwork.org/en/home");
 		getPages.click();
 	}
 
 	public void getGrantPages() {
 		selectSite.click();
-		selectSite.sendKeys("Grants");
+		selectSite.sendKeys("https://www.grants.gov");
 		getPages.click();
 	}
 
 	public void getUSAGovPages() {
 		selectSite.click();
-		selectSite.sendKeys("USA.gov");
+		selectSite.sendKeys("https://www.usa.gov");
 		getPages.click();
 	}
 
 	public void getFemaPages() {
 		selectSite.click();
-		selectSite.sendKeys("Fema");
+		selectSite.sendKeys("https://www.fema.gov");
 		getPages.click();
 	}
 
 	public void getCFDAPages() {
 		selectSite.click();
-		selectSite.sendKeys("CFDA");
+		selectSite.sendKeys("https://www.cfda.gov");
 		getPages.click();
 	}
 
 	public void getDHSPages() {
 		selectSite.click();
-		selectSite.sendKeys("DHS");
+		selectSite.sendKeys("https://www.dhs.gov");
 		getPages.click();
 	}
 
 	public void getRedcrossPages() {
 		selectSite.click();
-		selectSite.sendKeys("Redcross");
+		selectSite.sendKeys("http://www.redcross.org");
 		getPages.click();
 	}
 
 	public void getHHSPages() {
 		selectSite.click();
-		selectSite.sendKeys("HHS");
+		selectSite.sendKeys("https://www.hhs.gov");
 		getPages.click();
 	}
 
 	public void getSBAPages() {
 		selectSite.click();
-		selectSite.sendKeys("SBA");
+		selectSite.sendKeys("https://www.sba.gov");
 		getPages.click();
 	}
 
 	public void getFCCPages() {
 		selectSite.click();
-		selectSite.sendKeys("FCC");
+		selectSite.sendKeys("https://www.fcc.gov");
 		getPages.click();
 	}
 
 	public void getHUDPages() {
 		selectSite.click();
-		selectSite.sendKeys("HUD");
+		selectSite.sendKeys("https://www.hudexchange.info");
 		getPages.click();
 	}
 
 	public void getEPAPages() {
 		selectSite.click();
-		selectSite.sendKeys("EPA");
+		selectSite.sendKeys("https://www.epa.gov");
 		getPages.click();
 	}
 
 	public void getEnergyPages() {
 		selectSite.click();
-		selectSite.sendKeys("Energy");
+		selectSite.sendKeys("https://www.energy.gov");
 		getPages.click();
 	}
 
 	public void getCDCPages() {
 		selectSite.click();
-		selectSite.sendKeys("CDC");
+		selectSite.sendKeys("https://www.cdc.gov");
 		getPages.click();
 	}
-
-	public void clickLastPageButton() {
-		this.evaluateJavascript("window.scrollBy(0,50)", "");
-		Actions action = new Actions(getDriver());
-		action.moveToElement(lastPage).perform();
+	
+	public void getSpanishBenefits() {
+		selectSite.click();
+		selectSite.sendKeys("https://www.benefits.gov/es");
+		getPages.click();
 	}
-
-	public String getDAUrl() {
-		return lastDAUrl.getText();
+	
+	public void getSpanishReady() {
+		selectSite.click();
+		selectSite.sendKeys("https://www.ready.gov/es");
+		getPages.click();
 	}
-
-	public String getBenefitsUrl() {
-		return lastBGUrl.getText();
+	
+	public void getSpanishFema() {
+		selectSite.click();
+		selectSite.sendKeys("https://www.fema.gov/es");
+		getPages.click();
 	}
-
-	public String getReadyUrl() {
-		return lastReadyUrl.getText();
+	
+	public void getSpanishRedCross() {
+		selectSite.click();
+		selectSite.sendKeys("http://www.redcross.org/cruz-roja");
+		getPages.click();
 	}
-
-	public String getNRNUrl() {
-		return lastNRNUrl.getText();
+	
+	public void getSpanishSBA() {
+		selectSite.click();
+		selectSite.sendKeys("https://www.es.sba.gov");
+		getPages.click();
 	}
-
-	public String getGrantsUrl() {
-		return lastGrantsUrl.getText();
+	
+	public void getSpanishFCC() {
+		selectSite.click();
+		selectSite.sendKeys("https://www.fcc.gov/es");
+		getPages.click();
 	}
-
-	public String getUSAgovUrl() {
-		return lastUSAUrl.getText();
+	
+	public void getSpanishEPA() {
+		selectSite.click();
+		selectSite.sendKeys("https://espanol.epa.gov/");
+		getPages.click();
 	}
-
-	public String getFemaUrl() {
-		return lastFemaUrl.getText();
+	
+	public void getSpanishCDC() {
+		selectSite.click();
+		selectSite.sendKeys("https://www.cdc.gov/es");
+		getPages.click();
 	}
-
-	public String getCFDAUrl() {
-		return lastCFDAUrl.getText();
+	
+	public void getSpanishDA() {
+		selectSite.click();
+		selectSite.sendKeys("https://www.disasterassistance.gov/es/");
+		getPages.click();
 	}
-
-	public String getDHSUrl() {
-		return lastDHSUrl.getText();
+	
+	public String getFirstUrl() {
+		return url.getText();
 	}
-
-	public String getRedcrossUrl() {
-		return lastRedcrossUrl.getText();
+	
+	public String noPages() {
+		return noPages.getText();
 	}
-
-	public String getHHSUrl() {
-		return lastHHSUrl.getText();
-	}
-
-	public String getSBAUrl() {
-		return lastSBAUrl.getText();
-	}
-
-	public String getFCCUrl() {
-		return lastFCCUrl.getText();
-	}
-
-	public String getHUDUrl() {
-		return lastHUDUrl.getText();
-	}
-
-	public String getEPAUrl() {
-		return lastEPAUrl.getText();
-	}
-
-	public String getEnergyUrl() {
-		return lastEnergyUrl.getText();
-	}
-
-	public String getCDCUrl() {
-		return lastCDCUrl.getText();
-	}
-
+ 
 	public void editGrantsPage() {
 		editGrantsPage.click();
 	}
