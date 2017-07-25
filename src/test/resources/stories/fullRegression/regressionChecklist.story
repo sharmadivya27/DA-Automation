@@ -309,9 +309,27 @@ Given I am on the Disaster Assistance homepage
 When I am attempting to find local resources
 Then information on resources should be visible
 
-Scenario: Verify the search results on the Community Leaders page
+Scenario: Verify the declared states on the declared disaster map 
 Meta: 
 @category daily 
+
+Given I am on the Disaster Assistance homepage
+When I am viewing the declared disaster map
+Then states with disasters should be clickable
+Then I should be able to view the list of the declared states
+
+Scenario: Verify the declared counties on the declared disaster map 
+Meta: 
+@category daily  
+
+Given I am on the Disaster Assistance homepage
+When I am viewing the declared disaster map
+Then states with disasters should be clickable
+Then I should be able to view the list of the declared counties
+
+Scenario: Verify the search results on the Community Leaders page
+Meta: 
+@category NWD 
 
 Given I am on the Community Leaders page on Disaster Assistance
 When I type those tag words into the Community Leaders search field for the <siteName>
@@ -324,7 +342,7 @@ Examples:
 
 Scenario: Verify the pages under each site name 
 Meta:
-@category daily 
+@category NWD 
 
 Given I am on the drupal DA homepage
 When I log into drupal with username and password
@@ -353,7 +371,7 @@ Examples:
 
 Scenario: Verify the results of the quick search items 
 Meta: 
-@category daily 
+@category NWD 
 
 Given I am on the Community Leaders page on Disaster Assistance
 When I type the search words into the Community Leaders search field for the <quickSearch> item 
@@ -366,21 +384,3 @@ Examples:
 |Emergency Shelter and Housing|
 |How Can You Help?|
 |Infrastructure, Utilities, and Other Public Assistance|
-
-Scenario: Verify the declared states on the declared disaster map 
-Meta: 
-@category daily 
-
-Given I am on the Disaster Assistance homepage
-When I am viewing the declared disaster map
-Then states with disasters should be clickable
-Then I should be able to view the list of the declared states
-
-Scenario: Verify the declared counties on the declared disaster map 
-Meta: 
-@category daily  
-
-Given I am on the Disaster Assistance homepage
-When I am viewing the declared disaster map
-Then states with disasters should be clickable
-Then I should be able to view the list of the declared counties
