@@ -62,6 +62,19 @@ public class User {
 
 		daHomepage.openAt(url);
 	}
+	
+	@Step 
+	public void openMobilePage(String directoryPath) {
+		dapage.clearCookies();
+		dapage.mobilePage();
+		
+		String url = dapage.defaultUrl + directoryPath;
+		if (dapage.defaultUrl.contains("staging")) {
+			url += "?mobile=unL9HuS";
+		}
+
+		daHomepage.openAt(url);
+	}
 
 	@Step
 	public void clickNavNode(String node) {
@@ -83,6 +96,20 @@ public class User {
 			daHomepage.pause(2000);
 		} else if ((mainLink.equals("check status")) || (mainLink.equals("revisar estatus"))) {
 			daHomepage.clickCheckStatusMainLink();
+			daHomepage.pause(2000);
+		}
+	}
+	
+	@Step
+	public void clickMobileMainLink(String mainLink) {
+		if ((mainLink.equals("find assistance")) || (mainLink.equals("encontrar ayuda"))) {
+			daHomepage.clickMobileAssistanceMainLink();
+			daHomepage.pause(2000);
+		} else if ((mainLink.equals("apply online")) || (mainLink.equals("solicitar asistencia"))) {
+			daHomepage.clickMobileApplyOnlineMainLink();
+			daHomepage.pause(2000);
+		} else if ((mainLink.equals("check status")) || (mainLink.equals("revisar estatus"))) {
+			daHomepage.clickMobileCheckStatusMainLink();
 			daHomepage.pause(2000);
 		}
 	}
@@ -176,7 +203,7 @@ public class User {
 			boolean dacPageVisible = (daHomepage.checkStatusPageIsDisplayed() || daHomepage.dacPageIsDisplayed());
 			Assert.assertEquals(true, dacPageVisible);
 			break;
-		case "assistance by catgory":
+		case "assistance by category":
 			Assert.assertEquals(15, daHomepage.getNumberAccordions());
 			break;
 		case "asistencia por categoría":
@@ -244,10 +271,34 @@ public class User {
 			daLanding.clickFindSafePlace();
 		}
 	}
+	
+	@Step
+	public void clickMobileGetAssistanceMenuLinks(String menuLinks) {
+		if ((menuLinks.equals("address look-up")) || (menuLinks.equals("buscar dirección"))) {
+			daHomepage.clickMobileAddressLookUp();
+		} else if ((menuLinks.equals("find assistance")) || (menuLinks.equals("encuentra asistencia"))) {
+			daHomepage.clickMobileFindAssistance();
+		} else if ((menuLinks.equals("apply online")) || (menuLinks.equals("solicitar asistencia"))) {
+			daHomepage.clickMobileApplyOnline();
+		} else if ((menuLinks.equals("check your status")) || (menuLinks.equals("revisar estatus"))) {
+			daHomepage.clickMobileCheckYourStatus();
+		} else if ((menuLinks.equals("assistance by category")) || (menuLinks.equals("asistencia por categoría"))) {
+			daHomepage.clickMobileAssistanceCategory();
+		} else if ((menuLinks.equals("assistance by federal agency")) || (menuLinks.equals("asistencia por agencia federal"))) {
+			daHomepage.clickMobileAssistanceFederal();
+		} else if ((menuLinks.equals("community leaders")) || (menuLinks.equals("líderes comunitarios"))) {
+			daHomepage.clickMobileCommLeaders();
+		} else if ((menuLinks.equals("other recovery help")) || menuLinks.equals("otra ayuda para recuperación")) {
+			daHomepage.clickMobileOtherHelp();
+		} else if ((menuLinks.equals("application checklist")) || (menuLinks.equals("lista de verificación para aplicarse"))) {
+			daHomepage.clickMobileApplicationChecklist();
+		} else if ((menuLinks.equals("forms")) || (menuLinks.equals("formularios"))) {
+			daHomepage.clickMobileForms();
+		}
+	}
 
 	@Step
 	public void clickGetAssistanceMenuLinks(String menuLinks) {
-		// daHomepage.clickMobileMenu();
 		if ((menuLinks.equals("address look-up")) || (menuLinks.equals("buscar dirección"))) {
 			daHomepage.clickAddressLookUp();
 		} else if ((menuLinks.equals("find assistance")) || (menuLinks.equals("encuentre asistencia"))) {
@@ -263,7 +314,7 @@ public class User {
 			daHomepage.clickAssistanceFederal();
 		} else if ((menuLinks.equals("other recovery help")) || (menuLinks.equals("otra ayuda para recuperación"))) {
 			daHomepage.clickOtherHelp();
-		} else if ((menuLinks.equals("community leaders"))) {
+		} else if ((menuLinks.equals("community leaders")) || (menuLinks.equals("líderes comunitarios"))) {
 			daHomepage.clickCommLeaders();
 		} else if ((menuLinks.equals("application checklist"))
 				|| (menuLinks.equals("lista de verificación para aplicarse"))) {
@@ -318,6 +369,29 @@ public class User {
 			daHomepage.clickFactSheets();
 		}
 	}
+	
+	@Step
+	public void clickMobileInfoMenuLinks(String menuLinks) {
+		if (menuLinks.equals("news feeds")) {
+			daHomepage.clickMobileNewsFeeds();
+		} else if (menuLinks.equals("immediate needs")) {
+			daHomepage.clickMobileImmediateNeeds();
+		} else if (menuLinks.equals("moving forward")) {
+			daHomepage.clickMobileMovingForward();
+		} else if (menuLinks.equals("disabilities or access and functional needs")) {
+			daHomepage.clickMobileDisabilities();
+		} else if (menuLinks.equals("older americans")) {
+			daHomepage.clickMobileOlderAmericans();
+		} else if (menuLinks.equals("children and families")) {
+			daHomepage.clickMobileChildrenAndFamilies();
+		} else if (menuLinks.equals("disaster types")) {
+			daHomepage.clickMobileDisasterTypes();
+		} else if (menuLinks.equals("foreign disasters")) {
+			daHomepage.clickMobileForeignDisasters();
+		} else if (menuLinks.equals("fact sheets")) {
+			daHomepage.clickMobileFactSheets();
+		}
+	}
 
 	@Step
 	public void clickSpanishInfoMenuLinks(String menuLinks) {
@@ -352,16 +426,13 @@ public class User {
 	}
 
 	@Step
-	public void clickMobileAboutMenuLinks(String menuLinks) {
+	public void clickMobileAboutUsMenuLinks(String menuLinks) {
 		if (menuLinks.equals("overview")) {
-			daHomepage.clickMobileMenu();
-			daHomepage.pause(3000);
 			daHomepage.clickMobileOverview();
 		} else if (menuLinks.equals("partners")) {
-			daHomepage.clickMobileMenu();
 			daHomepage.clickMobilePartners();
-		}
-	}
+		} 
+	} 
 
 	@Step
 	public void clickSpanishAboutMenuLinks(String menuLinks) {
@@ -384,6 +455,21 @@ public class User {
 			daHomepage.clickAccessibility();
 		} else if (menuLinks.equals("download plug-ins")) {
 			daHomepage.clickDownload();
+		}
+	}
+	
+	@Step
+	public void clickMobileHelpMenuLinks(String menuLinks) {
+		if (menuLinks.equals("faqs")) {
+			daHomepage.clickMobileFaqs();
+		} else if (menuLinks.equals("contact us")) {
+			daHomepage.clickMobileContactUs();
+		} else if (menuLinks.equals("privacy policy")) {
+			daHomepage.clickMobilePrivacyPolicy();
+		} else if (menuLinks.equals("accessibility")) {
+			daHomepage.clickMobileAccessibility();
+		} else if (menuLinks.equals("download plug-ins")) {
+			daHomepage.clickMobileDownload();
 		}
 	}
 
@@ -679,7 +765,7 @@ public class User {
 		} else if (siteName.equals("Redcross")) {
 			Assert.assertEquals("http://maps.redcross.org/website/", drupalPage.getFirstUrl());
 		} else if (siteName.equals("HHS")) {
-			Assert.assertEquals("https://search.hhs.gov/search?q=community+disaster+recovery&HHS=Search&site=HHS&entqr=3&ud=1&sort=date%3AD%3AL%3Ad1&output=xml_no_dtd&ie=UTF-8&oe=UTF-8&lr=lang_en&client=HHS&proxystylesheet=HHS", drupalPage.getFirstUrl());
+			Assert.assertEquals("https://search.hhs.gov/search?q=community+disaster+volunteers&HHS=Search&site=HHS&entqr=3&ud=1&sort=date%3AD%3AL%3Ad1&output=xml_no_dtd&ie=UTF-8&oe=UTF-8&lr=lang_en&client=HHS&proxystylesheet=HHS", drupalPage.getFirstUrl());
 		} else if (siteName.equals("SBA")) {
 			Assert.assertEquals("https://www.sba.gov/sites/default/files/articles/FINAL_2016_SBA_Disaster_Preparedness_Plan_v_3-0.pdf", drupalPage.getFirstUrl());
 		} else if (siteName.equals("FCC")) {
@@ -711,17 +797,17 @@ public class User {
 	
 	@Step
 	public void clickQuickSearch(String quickSearch) {
-		if (quickSearch.equals("Community Preparedness")) {
+		if ((quickSearch.equals("Community Preparedness")) || (quickSearch.equals("Preparación para la comunidad"))) {
 			drupalPage.clickCommunityPreparedness();
-		} else if (quickSearch.equals("Disaster Recovery Resources")) {
+		} else if ((quickSearch.equals("Disaster Recovery Resources")) || (quickSearch.equals("Recursos para recuperación de desastre"))) {
 			drupalPage.clickDisasterRecoveryResources();
-		} else if (quickSearch.equals("Emergency Shelter and Housing")) {
+		} else if ((quickSearch.equals("Emergency Shelter and Housing")) || (quickSearch.equals("Viviendas y refugios de emergencia"))) {
 			drupalPage.clickEmergencyShelterHousing();
-		} else if (quickSearch.equals("How Can You Help?")) {
+		} else if ((quickSearch.equals("How Can You Help?")) || (quickSearch.equals("¿Como puede ayudar?"))) {
 			drupalPage.clickHowCanYouHelp();
-		} else if (quickSearch.equals("Infrastructure, Utilities, and Other Public Assistance")) {
+		} else if ((quickSearch.equals("Infrastructure, Utilities, and Other Public Assistance")) || (quickSearch.equals("Infraestructura, servicios públicos y otra asistencia pública"))) {
 			drupalPage.clickInfrastructure();
-		}
+		} 
 	}
 	
 	@Step

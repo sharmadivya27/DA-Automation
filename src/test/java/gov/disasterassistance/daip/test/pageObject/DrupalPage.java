@@ -52,10 +52,10 @@ public class DrupalPage extends PageObject {
 
 	@FindBy(xpath = "//*[@id='block-daip-elastic-search-daip-preset-search-queries']/div[1]/div/div[1]")
 	private WebElementFacade searchPage;
-	
+
 	@FindBy(xpath = "//*[@id='edit-pages']/div/table[2]/tbody/tr[1]/td[3]")
 	private WebElementFacade url;
-	
+
 	@FindBy(xpath = "//*[@id='edit-pages']/div/table[2]/tbody/tr/td")
 	private WebElementFacade noPages;
 
@@ -119,7 +119,7 @@ public class DrupalPage extends PageObject {
 
 	public void getDAPages() {
 		selectSite.click();
-		selectSite.sendKeys("https://www.disasterassistance.gov"); 
+		selectSite.sendKeys("https://www.disasterassistance.gov");
 		getPages.click();
 	}
 
@@ -218,69 +218,69 @@ public class DrupalPage extends PageObject {
 		selectSite.sendKeys("https://www.cdc.gov");
 		getPages.click();
 	}
-	
+
 	public void getSpanishBenefits() {
 		selectSite.click();
 		selectSite.sendKeys("https://www.benefits.gov/es");
 		getPages.click();
 	}
-	
+
 	public void getSpanishReady() {
 		selectSite.click();
 		selectSite.sendKeys("https://www.ready.gov/es");
 		getPages.click();
 	}
-	
+
 	public void getSpanishFema() {
 		selectSite.click();
 		selectSite.sendKeys("https://www.fema.gov/es");
 		getPages.click();
 	}
-	
+
 	public void getSpanishRedCross() {
 		selectSite.click();
 		selectSite.sendKeys("http://www.redcross.org/cruz-roja");
 		getPages.click();
 	}
-	
+
 	public void getSpanishSBA() {
 		selectSite.click();
 		selectSite.sendKeys("https://www.es.sba.gov");
 		getPages.click();
 	}
-	
+
 	public void getSpanishFCC() {
 		selectSite.click();
 		selectSite.sendKeys("https://www.fcc.gov/es");
 		getPages.click();
 	}
-	
+
 	public void getSpanishEPA() {
 		selectSite.click();
 		selectSite.sendKeys("https://espanol.epa.gov/");
 		getPages.click();
 	}
-	
+
 	public void getSpanishCDC() {
 		selectSite.click();
 		selectSite.sendKeys("https://www.cdc.gov/es");
 		getPages.click();
 	}
-	
+
 	public void getSpanishDA() {
 		selectSite.click();
 		selectSite.sendKeys("https://www.disasterassistance.gov/es/");
 		getPages.click();
 	}
-	
+
 	public String getFirstUrl() {
 		return url.getText();
 	}
-	
+
 	public String noPages() {
 		return noPages.getText();
 	}
- 
+
 	public void editGrantsPage() {
 		editGrantsPage.click();
 	}
@@ -304,7 +304,9 @@ public class DrupalPage extends PageObject {
 				|| quickSearchResult.containsText("Volunteers") || quickSearchResult.containsText("Utilities")
 				|| quickSearchResult.containsText("Public Assistance")
 				|| quickSearchResult.containsText("Infrastructure") || quickSearchResult.containsText("Government")
-				|| quickSearchResult.containsText("Guide") || quickSearchResult.containsText("Checklists");
+				|| quickSearchResult.containsText("Guide") || quickSearchResult.containsText("Checklists")
+				|| quickSearchResult.containsText("infraestructura") || quickSearchResult.containsText("comunidad")
+				|| quickSearchResult.containsText("gobierno") || quickSearchResult.containsText("refugio");
 	}
 
 	public void clickDisasterRecoveryResources() {

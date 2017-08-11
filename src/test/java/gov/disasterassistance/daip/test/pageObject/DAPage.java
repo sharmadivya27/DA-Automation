@@ -35,12 +35,18 @@ public class DAPage extends PageObject {
 	private String env = System.getProperty("environment");
 	public String defaultUrl = "http://" + env + ".disasterassistance.gov";
 
+
 	public DAPage(WebDriver driver) {
 		super(driver);
 		driver.manage().window().maximize(); 
+		//MobileTest
 		//driver.manage().window().setSize(new Dimension(500, 500));
 		this.setImplicitTimeout(10, TimeUnit.SECONDS); 
 	} 
+	
+	public void mobilePage() {
+		getDriver().manage().window().setSize(new Dimension(500, 500));
+	}
 
 	public void clearCookies() {
 		this.getDriver().manage().deleteAllCookies();

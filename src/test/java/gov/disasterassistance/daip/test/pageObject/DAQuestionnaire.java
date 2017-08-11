@@ -24,7 +24,7 @@ public class DAQuestionnaire extends PageObject {
 	@FindBy(xpath = "//div[@class='foatoolbar-plusminus']")
 	private WebElementFacade expandAllButton;
 
-	@FindBy(id = "benefit-counter-count")
+	@FindBy(id = "benefit-counter-head")
 	private WebElementFacade benefitCounter;
 
 	@FindBy(xpath = "//div[@class='foatoolbar-minus']")

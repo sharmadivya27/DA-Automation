@@ -221,7 +221,7 @@ Examples:
 |descargar plug-ins|
 
 Scenario: (Spanish) Verify Spanish benefits results display according to use cases
-Meta:                         
+Meta:: @skip                       
 Given I am on the Find Assistance Spanish page
 When I choose only Empleo and expand all the accordions
 Then I should obtain 9 results and see all the content under the accordions
@@ -233,7 +233,7 @@ When I check on each Federal Agency accordion
 Then the number of benefits should match with its count
 
 Scenario: (Spanish) Verify all the functionality of the FOA Spanish questionnaire
-Meta:                        
+Meta:: @skip                     
 Given I am on the Find Assistance Spanish page
 When I fully complete the questionnaire
 Then I should expand all the accordions to see all of the content under the accordions
@@ -253,7 +253,7 @@ When I am viewing the declared disaster map
 Then states with disasters should be clickable
 
 Scenario: (Spanish) Dynamically verify results of the questionnaire on the "Find Assistance" page 
-Meta:      
+Meta:: @skip    
 Given I am on the Find Assistance Spanish page
 When I fully complete the questionnaire
 Then I should accumulate the same number of results as the text on the Get Results button 
@@ -298,6 +298,6 @@ Examples:
 |quickSearch|
 |Infraestructura, servicios públicos y otra asistencia pública|
 |Preparación para la comunidad|
-|Recursos de Recuperación de Desastres|
-|Refugio de Emergencia y Vivienda|
-|¿Como puedes ayudar?|
+|Recursos para recuperación de desastre|
+|Viviendas y refugios de emergencia|
+|¿Como puede ayudar?|
