@@ -39,8 +39,6 @@ public class DAPage extends PageObject {
 	public DAPage(WebDriver driver) {
 		super(driver);
 		driver.manage().window().maximize(); 
-		//MobileTest
-		//driver.manage().window().setSize(new Dimension(500, 500));
 		this.setImplicitTimeout(10, TimeUnit.SECONDS); 
 	} 
 	

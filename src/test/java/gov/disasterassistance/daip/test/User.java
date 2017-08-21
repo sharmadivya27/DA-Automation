@@ -555,7 +555,7 @@ public class User {
 		daQuesPage.verifyEmploymentVisibility();
 	}
 
-	@Step
+	@Step 
 	public void verifyFOAResultsandVisibility() throws EmploymentException {
 		Assert.assertEquals(9, daQuesPage.getNumQuestionnaireResults());
 		daQuesPage.verifyEmploymentVisibility();
@@ -653,13 +653,29 @@ public class User {
 	public void clicksApplyOnline() {
 		daQuesPage.clickApplyOnline();
 	}
+	
+	@Step 
+	public void clickApplyOnlineMobile() {
+		daQuesPage.clickMobileApplyOnline();
+	}
+	
+	@Step
+	public void clickMobileApplyOnlineQuickSearch() {
+		daHomepage.clickApplyOnlineQuickSearch();
+	}
+	
+	@Step
+	public void shouldSeeDACOnMobile() {
+		daHomepage.pause(2000);
+		Assert.assertTrue(daLanding.getApplyOnlineUrl());
+	}
 
 	@Step
 	public void shouldSeeDAC() {
 		daHomepage.pause(2000);
 		boolean dacPageVisible = (daQuesPage.checkStatusPageIsDisplayed() || daQuesPage.dacPageIsDisplayed());
 		Assert.assertEquals(true, dacPageVisible);
-	}
+	} 
 
 	@Step
 	public void onCommunityLeadersPage() {
@@ -700,7 +716,6 @@ public class User {
 	public void onManagePagesTab() {
 		drupalPage.onElasticSearchPage();
 		drupalPage.clickManagePages();
-		// drupalPage.getGrantPages();
 	}
 
 	@Step

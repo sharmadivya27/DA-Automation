@@ -368,6 +368,9 @@ public class DAHomepage extends PageObject {
 
 	@FindBy(xpath = "//*[@id='disaster-results-container']")
 	private WebElementFacade declaredCounties;
+	
+	@FindBy(xpath = "//*[@id='block-nodeblock-14948']/div[2]/div[2]/div/div[2]/article/div[2]/div/div/a")
+	private WebElementFacade applyOnlineQuickSearch;
 
 	private List<WebElementFacade> allElements = new ArrayList<WebElementFacade>();
 
@@ -511,6 +514,10 @@ public class DAHomepage extends PageObject {
 		mobileMenu.click();
 	}
 
+	public void clickApplyOnlineQuickSearch() {
+		applyOnlineQuickSearch.click();
+	}
+	
 	public void mouseOverGetAssistanceTab() {
 		Actions action = new Actions(getDriver());
 		action.moveToElement(getAssistanceTab).perform();

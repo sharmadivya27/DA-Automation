@@ -120,6 +120,11 @@ public class DALandingPage extends PageObject {
 		return getUrl().contains("www") || getUrl().contains(".gov") || getUrl().contains(".edu")
 				|| getUrl().contains(".html") || getUrl().contains(".org");
 	}
+	
+	public boolean getApplyOnlineUrl() {
+		return getDriver().getCurrentUrl().contains("mobileBrowser=True");
+		//staging takes "mobile=True" ??
+	}
 
 	public void clickMore() {
 		moreButton.click();
@@ -128,7 +133,7 @@ public class DALandingPage extends PageObject {
 	public String moreContentText() {
 		return moreContent.getText();
 	}
-
+ 
 	public boolean contentDisplayed() {
 		return moreContentText().contains("Emergency") || moreContentText().contains("Your")
 				|| moreContentText().contains("Resources") || moreContentText().contains("Flood")
@@ -143,7 +148,7 @@ public class DALandingPage extends PageObject {
 	public String stormTitle() {
 		return severeStorms.getText();
 	}
-
+ 
 	public String wildfireTitle() {
 		return wildfire.getText();
 	}

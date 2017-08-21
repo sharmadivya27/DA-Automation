@@ -37,10 +37,14 @@ public class DAQuestionnaire extends PageObject {
 	private List<WebElementFacade> autoFOAs;
 
 	@FindBy(xpath = "//div[@class='foaccordionable']")
+	//@FindBy(xpath = "//*[@id='benefit-counter-count']")
 	private List<WebElementFacade> FOAResults;
 
 	@FindBy(xpath = "//*[@class[contains(., 'qButton') and not(contains(., 'session'))]]")
 	private List<WebElementFacade> FOAfooter;
+	
+	@FindBy(xpath = "//*[@id='applyButton']/button")
+	private WebElementFacade applyOnline;
 
 	@FindBy(xpath = "//div[@class='accordionable' and @id]")
 	private List<WebElementFacade> FOAChecklistAccordions;
@@ -314,6 +318,10 @@ public class DAQuestionnaire extends PageObject {
 
 	public void clickApplyOnline() {
 		FOAfooter.get(FOAfooter.size() - 1).click();
+	}
+	
+	public void clickMobileApplyOnline() {
+		applyOnline.click();
 	}
 
 	public boolean checkStatusPageIsDisplayed() {

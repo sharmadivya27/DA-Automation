@@ -491,6 +491,21 @@ public class DailyRegression {
 	public void when_user_clicks_apply_online() {
 		user.clicksApplyOnline();
 	}
+	
+	@When("I click apply online on mobile")
+	public void when_click_mobile_apply_online() {
+		user.clickApplyOnlineMobile();
+	}
+	
+	@When("I click on apply online quick search item on mobile")
+	public void when_i_click_mobile_apply_online_quick_search_item() {
+		user.clickMobileApplyOnlineQuickSearch();
+	}
+	
+	@Then("the DAC page should load on mobile")
+	public void should_see_mobile_dac_page() {
+		user.shouldSeeDACOnMobile();
+	}
 
 	@Then("the DAC page should load")
 	public void then_DAC_page_should_load() {

@@ -306,7 +306,9 @@ public class DrupalPage extends PageObject {
 				|| quickSearchResult.containsText("Infrastructure") || quickSearchResult.containsText("Government")
 				|| quickSearchResult.containsText("Guide") || quickSearchResult.containsText("Checklists")
 				|| quickSearchResult.containsText("infraestructura") || quickSearchResult.containsText("comunidad")
-				|| quickSearchResult.containsText("gobierno") || quickSearchResult.containsText("refugio");
+				|| quickSearchResult.containsText("gobierno") || quickSearchResult.containsText("refugio")
+				|| quickSearchResult.containsText("Vivienda") || quickSearchResult.containsText("desastres")
+				|| quickSearchResult.containsText("Lista");
 	}
 
 	public void clickDisasterRecoveryResources() {
