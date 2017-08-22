@@ -500,7 +500,7 @@ public class DAHomepage extends PageObject {
 	
 	public void clickMobileApplyOnlineMainLink() {
 		applyOnlineMobileMainLink.click();
-	}
+	} 
 
 	public void clickCheckStatusMainLink() {
 		checkStatusMainLink.click();

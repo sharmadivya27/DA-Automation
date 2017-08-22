@@ -446,7 +446,7 @@ Examples:
 |Fema|
 
 Scenario: Verify the pages under each site name 
-Meta: 
+Meta: @skip
 @category NWD 
 
 Given I am on the drupal DA homepage
