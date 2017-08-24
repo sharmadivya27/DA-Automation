@@ -328,10 +328,18 @@ When I click on apply online quick search item on mobile
 Then the DAC page should load on mobile
 
 Scenario: (Spanish) Verify the number of Federal Agencies and their benefits in Spanish
-Meta:         
+Meta:      
 @category daily 
-@tag mobile-works 
                       
+Given I am on the Assistance by Federal Agency Spanish page
+When I check on each Federal Agency accordion
+Then the number of benefits should match with its count
+
+Scenario: Verify the number of Federal Agencies and their benefits in Spanish on mobile
+Meta: 
+@tag mobile-works 
+                            
+Given I am on the Spanish Disaster Assistance mobile page     
 Given I am on the Assistance by Federal Agency Spanish page
 When I check on each Federal Agency accordion
 Then the number of benefits should match with its count
