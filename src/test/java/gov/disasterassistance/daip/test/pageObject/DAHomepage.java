@@ -133,6 +133,9 @@ public class DAHomepage extends PageObject {
 	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[7]/a")
 	private WebElementFacade communityLeaders;
 	
+	@FindBy(xpath = "//*[@id='sidr-id-menu-get-assistance']/ul/li[8]/a")
+	private WebElementFacade spanishCommunityLeadersMobile;
+	
 	@FindBy(xpath = "//*[@id='sidr-id-menu-get-assistance']/ul/li[7]/a")
 	private WebElementFacade communityLeadersMobile;
 
@@ -144,6 +147,9 @@ public class DAHomepage extends PageObject {
 	
 	@FindBy(xpath = "//*[@id='sidr-id-menu-get-assistance']/ul/li[8]/a")
 	private WebElementFacade mobileOtherHelp;
+	
+	@FindBy(xpath = "//*[@id='sidr-id-menu-get-assistance']/ul/li[7]/a")
+	private WebElementFacade spanishMobileOtherHelp;
 
 	@FindBy(xpath = "//*[@id='nav']/ul/li[2]/ul/li[8]/a")
 	private WebElementFacade spanishApplicationChecklist;
@@ -358,8 +364,6 @@ public class DAHomepage extends PageObject {
 	@FindBy(xpath = "//*[@id='email-form-wrapper']")
 	private WebElementFacade emailLinkForm;
 
-	// @FindBy(xpath = "//*[@id='mobile-header']")
-	// or @id='sidr-main'
 	@FindBy(xpath = "//*[@id='responsive-menu-button']")
 	private WebElementFacade mobileMenu;
 
@@ -594,7 +598,7 @@ public class DAHomepage extends PageObject {
 		mouseOverGetAssistanceTab();
 		applyOnline.click();
 	}
-	
+
 	public void clickMobileApplyOnline() {
 		//FIXME
 		clickMobileMenu();
@@ -619,7 +623,7 @@ public class DAHomepage extends PageObject {
 		checkYourStatusMobile.click();
 	}
 
-	public void clickSpanishCheckStatus() {
+	public void clickSpanishCheckStatus() { 
 		mouseOverSpanishGetAssistanceTab();
 		spanishCheckStatus.click();
 	}
@@ -667,6 +671,12 @@ public class DAHomepage extends PageObject {
 		communityLeadersMobile.click();
 	}
 	
+	public void clickSpanishMobileCommLeaders() {
+		clickMobileMenu();
+		getAssistanceMobile.click();
+		spanishCommunityLeadersMobile.click();
+	}
+	
 	//create SPANISH COMM LEADERS
 
 	public void clickOtherHelp() {
@@ -678,6 +688,12 @@ public class DAHomepage extends PageObject {
 		clickMobileMenu();
 		getAssistanceMobile.click();
 		mobileOtherHelp.click();
+	}
+	
+	public void clickSpanishMobileOtherHelp() {
+		clickMobileMenu();
+		getAssistanceMobile.click();
+		spanishMobileOtherHelp.click();
 	}
 
 	public void clickSpanishOtherHelp() {

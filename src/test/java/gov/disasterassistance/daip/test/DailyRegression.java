@@ -54,6 +54,11 @@ public class DailyRegression {
 	public void given_I_am_on_the_disaster_assistance_mobile_page() {
 		user.openMobilePage("");
 	}
+	
+	@Given("I am on the Spanish Disaster Assistance mobile page")
+	public void given_I_am_on_the_spanish_disaster_assistance_mobile_page() {
+		user.openMobilePage("/es");
+	}
 
 	@Given("I am on the Spanish Disaster Assistance homepage")
 	public void given_I_am_on_the_Spanish_disaster_assistance_homepage() {
@@ -125,7 +130,12 @@ public class DailyRegression {
 	public void click_on_menu_links_in_get_assistance_mobile_tab(@Named("menuLinks") String menuLinks) {
 		user.clickMobileGetAssistanceMenuLinks(menuLinks);
 	}
-
+	
+	@When("I click on the <menuLinks> in the Get Assistance tab on mobile in spanish")
+	public void click_on_spanish_menu_links_in_get_assistance_mobile_tab(@Named("menuLinks") String menuLinks) {
+		user.clickSpanishMobileGetAssistanceMenuLinks(menuLinks);
+	}
+ 
 	@Then("the <menuLinks> page should open correctly")
 	public void then_the_menu_links_page_should_open_correctly(@Named("menuLinks") String menuLinks) {
 		user.shouldSeePage(menuLinks);
@@ -163,6 +173,11 @@ public class DailyRegression {
 	@When("I click on the <menuLinks> in the Information tab on mobile")
 	public void when_i_click_on_the_menu_links_in_mobile_information(@Named("menuLinks") String menuLinks) {
 		user.clickMobileInfoMenuLinks(menuLinks);
+	}
+	
+	@When("I click on the <menuLinks> in the Information tab on mobile in spanish")
+	public void when_i_click_on_the_spanish_menu_links_in_mobile_information(@Named("menuLinks") String menuLinks) {
+		user.clickSpanishMobileInfoMenuLinks(menuLinks);
 	}
 
 	@When("I click on the <menuLinks> in the Spanish Information tab")
@@ -253,6 +268,11 @@ public class DailyRegression {
 	public void click_on_mobile_about_us(@Named("menuLinks") String menuLinks) {
 		user.clickMobileAboutUsMenuLinks(menuLinks);
 	}
+	
+	@When("I click on the <menuLinks> in the About Us tab on mobile in spanish")
+	public void click_on_mobile_spanish_about_us(@Named("menuLinks") String menuLinks) {
+		user.clickSpanishMobileAboutUsMenuLinks(menuLinks);
+	}
 
 	@When("I click on the <menuLinks> in the Spanish About Us tab")
 	public void click_on_menu_links_in_spanish_about_us_tab(@Named("menuLinks") String menuLinks) {
@@ -285,6 +305,11 @@ public class DailyRegression {
 	@When("I click on the <menuLinks> in the Help tab on mobile") 
 	public void when_i_click_on_the_menu_links_in_help_mobile_tab(@Named("menuLinks") String menuLinks) {
 		user.clickMobileHelpMenuLinks(menuLinks); 
+	}
+	
+	@When("I click on the <menuLinks> in the Help tab on mobile in spanish")
+	public void when_i_click_on_the_spanish_menu_links_in_help_mobile_tab(@Named("menuLinks") String menuLinks) {
+		user.clickSpanishMobileHelpMenuLinks(menuLinks);
 	}
 
 	@When("I click on the <menuLinks> in the Spanish Help tab")

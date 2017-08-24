@@ -276,7 +276,7 @@ public class User {
 	public void clickMobileGetAssistanceMenuLinks(String menuLinks) {
 		if ((menuLinks.equals("address look-up")) || (menuLinks.equals("buscar dirección"))) {
 			daHomepage.clickMobileAddressLookUp();
-		} else if ((menuLinks.equals("find assistance")) || (menuLinks.equals("encuentra asistencia"))) {
+		} else if ((menuLinks.equals("find assistance")) || (menuLinks.equals("encuentre asistencia"))) {
 			daHomepage.clickMobileFindAssistance();
 		} else if ((menuLinks.equals("apply online")) || (menuLinks.equals("solicitar asistencia"))) {
 			daHomepage.clickMobileApplyOnline();
@@ -286,13 +286,38 @@ public class User {
 			daHomepage.clickMobileAssistanceCategory();
 		} else if ((menuLinks.equals("assistance by federal agency")) || (menuLinks.equals("asistencia por agencia federal"))) {
 			daHomepage.clickMobileAssistanceFederal();
-		} else if ((menuLinks.equals("community leaders")) || (menuLinks.equals("líderes comunitarios"))) {
-			daHomepage.clickMobileCommLeaders();
 		} else if ((menuLinks.equals("other recovery help")) || menuLinks.equals("otra ayuda para recuperación")) {
 			daHomepage.clickMobileOtherHelp();
+		} else if ((menuLinks.equals("community leaders")) || (menuLinks.equals("líderes comunitarios"))) {
+			daHomepage.clickMobileCommLeaders(); 
 		} else if ((menuLinks.equals("application checklist")) || (menuLinks.equals("lista de verificación para aplicarse"))) {
 			daHomepage.clickMobileApplicationChecklist();
 		} else if ((menuLinks.equals("forms")) || (menuLinks.equals("formularios"))) {
+			daHomepage.clickMobileForms();
+		}
+	}
+	
+	@Step 
+	public void clickSpanishMobileGetAssistanceMenuLinks(String menuLinks) {
+		if ((menuLinks.equals("buscar dirección"))) {
+			daHomepage.clickMobileAddressLookUp();
+		} else if ((menuLinks.equals("encuentre asistencia"))) {
+			daHomepage.clickMobileFindAssistance();
+		} else if ((menuLinks.equals("solicitar asistencia"))) {
+			daHomepage.clickMobileApplyOnline();
+		} else if ((menuLinks.equals("revisar estatus"))) {
+			daHomepage.clickMobileCheckYourStatus();
+		} else if ((menuLinks.equals("asistencia por categoría"))) {
+			daHomepage.clickMobileAssistanceCategory();
+		} else if ((menuLinks.equals("asistencia por agencia federal"))) {
+			daHomepage.clickMobileAssistanceFederal();
+		} else if (menuLinks.equals("otra ayuda para recuperación")) {
+			daHomepage.clickSpanishMobileOtherHelp();
+		} else if ((menuLinks.equals("líderes comunitarios"))) {
+			daHomepage.clickSpanishMobileCommLeaders(); 
+		} else if ((menuLinks.equals("lista de verificación para aplicarse"))) {
+			daHomepage.clickMobileApplicationChecklist();
+		} else if ((menuLinks.equals("formularios"))) {
 			daHomepage.clickMobileForms();
 		}
 	}
@@ -392,6 +417,30 @@ public class User {
 			daHomepage.clickMobileFactSheets();
 		}
 	}
+	
+	
+	@Step
+	public void clickSpanishMobileInfoMenuLinks(String menuLinks) {
+		if (menuLinks.equals("canales de noticias")) {
+			daHomepage.clickMobileNewsFeeds();
+		} else if (menuLinks.equals("necesidades inmediatas")) {
+			daHomepage.clickMobileImmediateNeeds();
+		} else if (menuLinks.equals("próximo paso")) {
+			daHomepage.clickMobileMovingForward();
+		} else if (menuLinks.equals("discapacidades o necesidades funcionales y de acceso")) {
+			daHomepage.clickMobileDisabilities();
+		} else if (menuLinks.equals("adultos mayores estadounidenses")) {
+			daHomepage.clickMobileOlderAmericans();
+		} else if (menuLinks.equals("niños y familias")) {
+			daHomepage.clickMobileChildrenAndFamilies();
+		} else if (menuLinks.equals("los recursos del desastre")) {
+			daHomepage.clickMobileDisasterTypes();
+		} else if (menuLinks.equals("desastres en el extranjero")) {
+			daHomepage.clickMobileForeignDisasters();
+		} else if (menuLinks.equals("hojas de datos")) {
+			daHomepage.clickMobileFactSheets();
+		}
+	}
 
 	@Step
 	public void clickSpanishInfoMenuLinks(String menuLinks) {
@@ -433,6 +482,16 @@ public class User {
 			daHomepage.clickMobilePartners();
 		} 
 	} 
+	
+	@Step
+	public void clickSpanishMobileAboutUsMenuLinks(String menuLinks) {
+		if (menuLinks.equals("descripción general")) {
+			daHomepage.clickMobileOverview();
+		} else if (menuLinks.equals("socios")) {
+			daHomepage.clickMobilePartners();
+		} 
+	} 
+	
 
 	@Step
 	public void clickSpanishAboutMenuLinks(String menuLinks) {
@@ -469,6 +528,21 @@ public class User {
 		} else if (menuLinks.equals("accessibility")) {
 			daHomepage.clickMobileAccessibility();
 		} else if (menuLinks.equals("download plug-ins")) {
+			daHomepage.clickMobileDownload();
+		}
+	}
+	
+	@Step 
+	public void clickSpanishMobileHelpMenuLinks(String menuLinks) {
+		if (menuLinks.equals("preguntas comunes")) {
+			daHomepage.clickMobileFaqs();
+		} else if (menuLinks.equals("contáctenos")) {
+			daHomepage.clickMobileContactUs();
+		} else if (menuLinks.equals("política de privacidad")) {
+			daHomepage.clickMobilePrivacyPolicy();
+		} else if (menuLinks.equals("accesibilidad")) {
+			daHomepage.clickMobileAccessibility();
+		} else if (menuLinks.equals("descargar plug-ins")) {
 			daHomepage.clickMobileDownload();
 		}
 	}
