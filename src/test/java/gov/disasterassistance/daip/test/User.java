@@ -544,7 +544,7 @@ public class User {
 			daHomepage.clickMobileAccessibility();
 		} else if (menuLinks.equals("descargar plug-ins")) {
 			daHomepage.clickMobileDownload();
-		}
+		} 
 	}
 
 	@Step
@@ -726,11 +726,6 @@ public class User {
 	@Step
 	public void clicksApplyOnline() {
 		daQuesPage.clickApplyOnline();
-	}
-	
-	@Step 
-	public void clickApplyOnlineMobile() {
-		daQuesPage.clickMobileApplyOnline();
 	}
 	
 	@Step
