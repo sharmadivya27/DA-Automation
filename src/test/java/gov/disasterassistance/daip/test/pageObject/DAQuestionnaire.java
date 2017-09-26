@@ -12,6 +12,9 @@ import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 
 public class DAQuestionnaire extends PageObject {
+	
+	// *************************************************************************
+	// FindBy / private variables section
 
 	DAHomepage daHomepage;
 
@@ -24,7 +27,7 @@ public class DAQuestionnaire extends PageObject {
 	@FindBy(xpath = "//div[@class='foatoolbar-plusminus']")
 	private WebElementFacade expandAllButton;
 
-	@FindBy(id = "benefit-counter-head")
+	@FindBy(xpath = "//*[@id='benefit-counter-count']")
 	private WebElementFacade benefitCounter;
 
 	@FindBy(xpath = "//div[@class='foatoolbar-minus']")
@@ -37,7 +40,6 @@ public class DAQuestionnaire extends PageObject {
 	private List<WebElementFacade> autoFOAs;
 
 	@FindBy(xpath = "//div[@class='foaccordionable']")
-	//@FindBy(xpath = "//*[@id='benefit-counter-count']")
 	private List<WebElementFacade> FOAResults;
 
 	@FindBy(xpath = "//*[@class[contains(., 'qButton') and not(contains(., 'session'))]]")
@@ -69,7 +71,8 @@ public class DAQuestionnaire extends PageObject {
 			this.evaluateJavascript("window.scrollBy(0,50)", "");
 		}
 		stateSelector.sendKeys("Alabama");
-
+		this.evaluateJavascript("window.scrollBy(0,50)", "");
+		////////////getResultsButton.click();
 	}
 
 	/*************************************************************************
@@ -80,10 +83,10 @@ public class DAQuestionnaire extends PageObject {
 	 *            : The name of the element to be clicked
 	 *************************************************************************/
 	// TODO still doesn't distinguish between the yes buttons, just looks at the
-	// text by the clickable button
+	// text by the clickable button 
 	private WebElementFacade getQuestionnaireButton(String buttonName) {
 		Iterator<WebElementFacade> iter = questionnaireButtons.iterator();
-		WebElementFacade btn = null;
+		WebElementFacade btn = null; 
 		while (iter.hasNext()) {
 			WebElementFacade temp = iter.next();
 			if (temp.containsText(buttonName)) {
@@ -125,7 +128,7 @@ public class DAQuestionnaire extends PageObject {
 	public int getNumAdditionalFOA() {
 		String[] additionalFOATitles = {
 				"203(h) Mortgage Insurance for Disaster Victims and 203(k) Rehabilitation Mortgage Insurance",
-				"Disaster Recovery Center (DRC) / DRC Locator",
+				"FEMA Disaster Recovery Center (DRC) / DRC Locator",
 				"International Terrorism Victim Expense Reimbursement Program (ITVERP)",
 				"Savings Bond Redemption and Replacement", "State Crime Victims Compensation",
 				"Substance Abuse and Mental Health Services Administration (SAMHSA) Disaster Relief Information" };

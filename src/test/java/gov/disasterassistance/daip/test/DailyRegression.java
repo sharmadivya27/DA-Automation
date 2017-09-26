@@ -129,7 +129,7 @@ public class DailyRegression {
 	@When("I click on the <menuLinks> in the Get Assistance tab on mobile")
 	public void click_on_menu_links_in_get_assistance_mobile_tab(@Named("menuLinks") String menuLinks) {
 		user.clickMobileGetAssistanceMenuLinks(menuLinks);
-	}
+	} 
 	
 	@When("I click on the <menuLinks> in the Get Assistance tab on mobile in spanish")
 	public void click_on_spanish_menu_links_in_get_assistance_mobile_tab(@Named("menuLinks") String menuLinks) {
@@ -614,17 +614,25 @@ public class DailyRegression {
 		user.checkSpanishDisasterState();
 	}
 	
-	// Scenario: Verify the declared counties on the declared disaster map 
-	// given see above
-	// when see above 
+	//Scenario: Verify the declared disasters with Address Look-up
 	
-	@Then("I should be able to view the list of the declared counties") 
-	public void thenShouldBeAbleToViewListOfDeclaredCounties() {
-		user.checkDisasterCounty(); 
+	@Given("I am on the declared disasters DAC page")
+	public void givenOnDeclaredDisastersDACPage() {
+		user.openDisasterDACPage();
 	}
 	
-	@Then("I should be able to view the list of the declared counties in Spanish") 
-	public void thenShouldBeAbleToViewListOfDeclaredCountiesSpanish() {
-		user.checkSpanishDisasterCounty(); 
+	@When("I type the declared disaster into the address look-up bar")
+	public void whenTypeDeclaredDisasterIntoAddressLookUpBar() {
+		user.declaredDisasters();
+	}
+	
+	@When("I type the declared disaster into the address look-up bar in Spanish")
+	public void whenTypeDeclaredDisasterIntoSpanishAddressLookUpBar() {
+		user.declaredSpanishDisasters();
+	}
+	
+	@Then("I should get the results for the given disaster")
+	public void thenShouldGetResultsForGivenDisaster() {
+		user.disasterResults();
 	}
 }

@@ -286,9 +286,9 @@ public class User {
 			daHomepage.clickMobileAssistanceCategory();
 		} else if ((menuLinks.equals("assistance by federal agency")) || (menuLinks.equals("asistencia por agencia federal"))) {
 			daHomepage.clickMobileAssistanceFederal();
-		} else if ((menuLinks.equals("other recovery help")) || menuLinks.equals("otra ayuda para recuperación")) {
+		} else if ((menuLinks.equals("other recovery help"))) {
 			daHomepage.clickMobileOtherHelp();
-		} else if ((menuLinks.equals("community leaders")) || (menuLinks.equals("líderes comunitarios"))) {
+		} else if ((menuLinks.equals("community leaders"))) {
 			daHomepage.clickMobileCommLeaders(); 
 		} else if ((menuLinks.equals("application checklist")) || (menuLinks.equals("lista de verificación para aplicarse"))) {
 			daHomepage.clickMobileApplicationChecklist();
@@ -365,6 +365,8 @@ public class User {
 			daHomepage.clickSpanishAssistanceFederal();
 		} else if (menuLinks.equals("otra ayuda para recuperación")) {
 			daHomepage.clickSpanishOtherHelp();
+		} else if (menuLinks.equals("líderes comunitarios")) {
+			daHomepage.clickSpanishCommLeaders();
 		} else if (menuLinks.equals("lista de verificación para aplicarse")) {
 			daHomepage.clickSpanishApplicationChecklist();
 		} else if (menuLinks.equals("formularios")) {
@@ -604,7 +606,7 @@ public class User {
 	@Step
 	public void checkResults() {
 		int i = daQuesPage.getResultsVal();
-		daQuesPage.getFOAResultsPage();
+		daQuesPage.getFOAResultsPage(); 
 		Assert.assertEquals(i, daQuesPage.getNumQuestionnaireResults());
 	}
 
@@ -653,7 +655,7 @@ public class User {
 
 	@Step
 	public void verifyFOAExpandedContentVisible() {
-		int i = daQuesPage.getResultsVal();
+		int i = daQuesPage.getResultsVal(); 
 		clickExpandAll();
 		Assert.assertEquals(i, daQuesPage.getNumEmploymentResults());
 	}
@@ -901,24 +903,32 @@ public class User {
 	
 	@Step 
 	public void checkDisasterState() {
-		//Assert.assertEquals(daHomepage.checkDACDisasterStateFeed(), daHomepage.checkDisasterStates());
 		Assert.assertEquals(daHomepage.checkDisasterStatesEdit(), daHomepage.checkDisasterStates());
 	}
 	
 	@Step 
 	public void checkSpanishDisasterState() {
-		//Assert.assertEquals(daHomepage.checkDACDisasterStateFeed(), daHomepage.checkDisasterStates());
 		Assert.assertEquals(daHomepage.checkSpanishDisasterStatesEdit(), daHomepage.checkDisasterStates());
 	}
 	
 	@Step
-	public void checkDisasterCounty() {
-		Assert.assertEquals (daHomepage.clickDisasterStates(), daHomepage.clickDisasterStatesEdit());
-	} 
+	public void openDisasterDACPage() {
+		daHomepage.openAt("https://www.disasterassistance.gov/drupal_api/declaredStates");
+	}
+	
+	@Step 
+	public void declaredDisasters() {
+		daHomepage.typeAddressLookUp();
+	}
+	
+	@Step 
+	public void declaredSpanishDisasters() {
+		daHomepage.typeSpanishAddressLookUp();
+	}
 	
 	@Step
-	public void checkSpanishDisasterCounty() {
-		Assert.assertEquals (daHomepage.clickDisasterStates(), daHomepage.clickSpanishDisasterStatesEdit());
+	public void disasterResults() {
+		Assert.assertTrue(daHomepage.disasterAppears());
 	}
 
 }

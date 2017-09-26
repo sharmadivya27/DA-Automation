@@ -1,10 +1,8 @@
 package gov.disasterassistance.daip.test.pageObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -133,10 +131,13 @@ public class DAHomepage extends PageObject {
 	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[7]/a")
 	private WebElementFacade communityLeaders;
 	
+	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[8]/a")
+	private WebElementFacade spanishCommunityLeaders;
+	
 	@FindBy(xpath = "//*[@id='sidr-id-menu-get-assistance']/ul/li[8]/a")
 	private WebElementFacade spanishCommunityLeadersMobile;
 	
-	@FindBy(xpath = "//*[@id='sidr-id-menu-get-assistance']/ul/li[7]/a")
+	@FindBy(xpath = "//*[@id='sidr-id-menu-get-assistance']/ul/li[8]/a")
 	private WebElementFacade communityLeadersMobile;
 
 	@FindBy(xpath = "//*[@id='nav']/ul/li[2]/ul/li[7]/a")
@@ -145,13 +146,13 @@ public class DAHomepage extends PageObject {
 	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[8]/a")
 	private WebElementFacade otherHelp;
 	
-	@FindBy(xpath = "//*[@id='sidr-id-menu-get-assistance']/ul/li[8]/a")
+	@FindBy(xpath = "//*[@id='sidr-id-menu-get-assistance']/ul/li[7]/a")
 	private WebElementFacade mobileOtherHelp;
 	
 	@FindBy(xpath = "//*[@id='sidr-id-menu-get-assistance']/ul/li[7]/a")
 	private WebElementFacade spanishMobileOtherHelp;
 
-	@FindBy(xpath = "//*[@id='nav']/ul/li[2]/ul/li[8]/a")
+	@FindBy(xpath = "//*[@id='nav']/ul/li[2]/ul/li[9]/a")
 	private WebElementFacade spanishApplicationChecklist;
 
 	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[9]/a")
@@ -159,8 +160,11 @@ public class DAHomepage extends PageObject {
 	
 	@FindBy(xpath = "//*[@id='sidr-id-menu-get-assistance']/ul/li[9]/a")
 	private WebElementFacade mobileApplicationChecklist;
+	
+	@FindBy(xpath = "//*[@id='sidr-id-menu-get-assistance']/ul/li[9]/a")
+	private WebElementFacade mobileSpanishApplicationChecklist;
 
-	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[9]/a")
+	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[10]/a")
 	private WebElementFacade spanishForms;
 
 	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[10]/a")
@@ -168,6 +172,9 @@ public class DAHomepage extends PageObject {
 	
 	@FindBy(xpath = "//*[@id='sidr-id-menu-get-assistance']/ul/li[10]/a")
 	private WebElementFacade mobileForms;
+	
+	@FindBy(xpath = "//*[@id='sidr-id-menu-get-assistance']/ul/li[10]/a")
+	private WebElementFacade spanishMobileForms;
 
 	@FindBy(xpath = "//*[@id='menu-info']/a")
 	private WebElementFacade informationTab;
@@ -360,6 +367,9 @@ public class DAHomepage extends PageObject {
 
 	@FindBy(xpath = "//*[@class='location-item clickable']")
 	private List<WebElementFacade> localResourcesResults;
+	
+	@FindBy(xpath = "//*[@id='local-resources-button']")
+	private WebElementFacade localResourcesSearch;
 
 	@FindBy(xpath = "//*[@id='email-form-wrapper']")
 	private WebElementFacade emailLinkForm;
@@ -376,6 +386,18 @@ public class DAHomepage extends PageObject {
 	@FindBy(xpath = "//*[@id='block-nodeblock-14948']/div[2]/div[2]/div/div[2]/article/div[2]/div/div/a")
 	private WebElementFacade applyOnlineQuickSearch;
 
+	@FindBy(xpath = "/html/body/pre")
+	private WebElementFacade declaredDisasterDAC;
+	
+	@FindBy(xpath = "//*[@id='address-text-field']")
+	private WebElementFacade addressLookUpTextField;
+	
+	@FindBy(xpath = "//*[@id='disaster-results-table-body']/tr/td[1]/div/a")
+	private WebElementFacade disasterName;
+	
+	@FindBy(xpath = "//*[@id='address-lookup-submit']")
+	private WebElementFacade addressLookUpButton;
+	
 	private List<WebElementFacade> allElements = new ArrayList<WebElementFacade>();
 
 	// *************************************************************************
@@ -489,6 +511,109 @@ public class DAHomepage extends PageObject {
 			}
 		}
 	}
+	
+	/*************************************************************************
+	 * Checks the currently declared disasters in prod.  
+	 * 
+	*************************************************************************/
+	String state; 
+
+	public String checkDisasterStates() {   
+		for (int i = 0; i < disasterStates.size(); i++) {
+			state += disasterStates.get(i).getText().replaceAll("to see if your county is in a declared area", "")
+					.replaceAll("Select", "");
+		}
+		return state;
+	}
+	
+	/*************************************************************************
+	 * Checks the currently declared disasters in edit.  
+	 * 
+	*************************************************************************/
+	String editState; 
+	
+	public String checkDisasterStatesEdit() {
+		getDriver().get("https://edit.disasterassistance.gov/");
+		for (int i = 0; i < disasterStates.size(); i++) {
+			editState += disasterStates.get(i).getText().replaceAll("to see if your county is in a declared area", "")
+					.replaceAll("Select", "");
+		}
+		return editState;
+	}
+	
+	/*************************************************************************
+	 * Checks the currently declared disasters in edit in Spanish.  
+	 * 
+	*************************************************************************/
+	public String checkSpanishDisasterStatesEdit() {
+		getDriver().get("https://edit.disasterassistance.gov/es");
+		for (int i = 0; i < disasterStates.size(); i++) {
+			editState += disasterStates.get(i).getText().replaceAll("to see if your county is in a declared area", "")
+					.replaceAll("Select", "");
+		}
+		return editState;
+	}
+ 
+	
+	/*************************************************************************
+	 * Finds the second declared disaster state on the DAC feed. 
+	 * 
+	*************************************************************************/
+	public String getDeclaredDisasterState() {
+		String declaredStates =  declaredDisasterDAC.getText();
+		String[] states = declaredStates.split(",");
+		state = states[1].replaceAll("\"", "");
+		this.openAt("https://www.disasterassistance.gov/drupal_api/declaredCounties/" + state);
+		return state;
+	}
+	
+	/*************************************************************************
+	 * Finds the second declared disaster county on the DAC feed. 
+	 * 
+	*************************************************************************/
+	public String getDeclaredDisasterCounty() {
+		String declaredCounties = declaredDisasterDAC.getText();
+		String[] counties = declaredCounties.split(",");
+		return counties[1].replaceAll("\"", "");
+	}
+	
+	/*************************************************************************
+	 * Types the declared disaster state and county into the Address Look-up
+	 * search field. 
+	 * 
+	*************************************************************************/
+	public void typeAddressLookUp() {
+		String state = getDeclaredDisasterState();
+		String county = getDeclaredDisasterCounty();
+		this.openAt("https://www.disasterassistance.gov/");
+		addressLookUpTextField.click();
+		addressLookUpTextField.type(county + "," + state);
+		addressLookUpButton.click();
+		pause(4000);
+	}
+	
+	/*************************************************************************
+	 * Types the declared disaster state and county into the Spanish Address 
+	 * Look-up search field. 
+	 * 
+	*************************************************************************/
+	public void typeSpanishAddressLookUp() {
+		String state = getDeclaredDisasterState();
+		String county = getDeclaredDisasterCounty();
+		this.openAt("https://www.disasterassistance.gov/es");
+		addressLookUpTextField.click();
+		addressLookUpTextField.type(county + "," + state);
+		addressLookUpButton.click();
+		pause(4000);
+	}
+	
+	/*************************************************************************
+	 * Checks if the state and county typed has a current disaster. 
+	 * 
+	*************************************************************************/
+	public boolean disasterAppears() {
+		return disasterName.isDisplayed();
+	}
 
 	public void clickAssistanceMainLink() {
 		assistanceMainLink.click();
@@ -527,7 +652,7 @@ public class DAHomepage extends PageObject {
 		action.moveToElement(getAssistanceTab).perform();
 	}
 
-	public void mouseOverSpanishGetAssistanceTab() {
+	public void mouseOverSpanishGetAssistanceTab() { 
 		Actions action = new Actions(getDriver());
 		action.moveToElement(spanishGetAssistanceTab).perform();
 	}
@@ -569,6 +694,7 @@ public class DAHomepage extends PageObject {
 	
 	public void clickMobileAddressLookUp() {
 		clickMobileMenu();
+		pause(3000);
 		getAssistanceMobile.click();
 		addressLookUpMobile.click();
 	}
@@ -585,6 +711,7 @@ public class DAHomepage extends PageObject {
 	
 	public void clickMobileFindAssistance() {
 		clickMobileMenu();
+		pause(3000);
 		getAssistanceMobile.click();
 		findAssistanceMobile.click();
 	}
@@ -602,6 +729,7 @@ public class DAHomepage extends PageObject {
 	public void clickMobileApplyOnline() {
 		//FIXME
 		clickMobileMenu();
+		pause(3000);
 		getAssistanceMobile.click();
 		applyOnlineMobile.click();
 	}
@@ -619,6 +747,7 @@ public class DAHomepage extends PageObject {
 	public void clickMobileCheckYourStatus() {
 		//FIXME
 		clickMobileMenu();
+		pause(3000);
 		getAssistanceMobile.click();
 		checkYourStatusMobile.click();
 	}
@@ -635,6 +764,7 @@ public class DAHomepage extends PageObject {
 	
 	public void clickMobileAssistanceCategory() {
 		clickMobileMenu();
+		pause(3000);
 		getAssistanceMobile.click();
 		assistanceByCategoryMobile.click();
 	}
@@ -651,6 +781,7 @@ public class DAHomepage extends PageObject {
 	
 	public void clickMobileAssistanceFederal() {
 		clickMobileMenu();
+		pause(3000);
 		getAssistanceMobile.click();
 		assistanceByFederalAgencyMobile.click();
 	}
@@ -665,19 +796,24 @@ public class DAHomepage extends PageObject {
 		communityLeaders.click();
 	}
 	
+	public void clickSpanishCommLeaders() {
+		mouseOverGetAssistanceTab();
+		spanishCommunityLeaders.click();
+	}
+	
 	public void clickMobileCommLeaders() {
 		clickMobileMenu();
+		pause(3000);
 		getAssistanceMobile.click();
 		communityLeadersMobile.click();
 	}
 	
 	public void clickSpanishMobileCommLeaders() {
 		clickMobileMenu();
+		pause(3000);
 		getAssistanceMobile.click();
 		spanishCommunityLeadersMobile.click();
 	}
-	
-	//create SPANISH COMM LEADERS
 
 	public void clickOtherHelp() {
 		mouseOverGetAssistanceTab();
@@ -686,12 +822,14 @@ public class DAHomepage extends PageObject {
 	
 	public void clickMobileOtherHelp() {
 		clickMobileMenu();
+		pause(3000);
 		getAssistanceMobile.click();
 		mobileOtherHelp.click();
 	}
 	
 	public void clickSpanishMobileOtherHelp() {
 		clickMobileMenu();
+		pause(3000);
 		getAssistanceMobile.click();
 		spanishMobileOtherHelp.click();
 	}
@@ -708,8 +846,16 @@ public class DAHomepage extends PageObject {
 	
 	public void clickMobileApplicationChecklist() {
 		clickMobileMenu();
+		pause(3000);
 		getAssistanceMobile.click();
 		mobileApplicationChecklist.click();
+	}
+	
+	public void clickSpanishMobileApplicationChecklist() {
+		clickMobileMenu();
+		pause(3000);
+		getAssistanceMobile.click();
+		mobileSpanishApplicationChecklist.click();
 	}
 
 	public void clickSpanishApplicationChecklist() {
@@ -724,11 +870,20 @@ public class DAHomepage extends PageObject {
 	
 	public void clickMobileForms() {
 		clickMobileMenu();
+		pause(3000);
 		getAssistanceMobile.click();
 		mobileForms.click();
 	}
+	
+	public void clickSpanishMobileForms() {
+		clickMobileMenu();
+		pause(3000);
+		getAssistanceMobile.click();
+		spanishMobileForms.click();
+	}
 
 	public void clickSpanishForms() {
+		getDriver().manage().window().maximize(); 
 		mouseOverSpanishGetAssistanceTab();
 		spanishForms.click();
 	}
@@ -740,6 +895,7 @@ public class DAHomepage extends PageObject {
 	
 	public void clickMobileNewsFeeds() {
 		clickMobileMenu();
+		pause(3000);
 		informationMobile.click();
 		newsFeedsMobile.click();
 	}
@@ -756,6 +912,7 @@ public class DAHomepage extends PageObject {
 	
 	public void clickMobileImmediateNeeds() {
 		clickMobileMenu();
+		pause(3000);
 		informationMobile.click();
 		immediateNeedsMobile.click();
 	}
@@ -772,6 +929,7 @@ public class DAHomepage extends PageObject {
 	
 	public void clickMobileMovingForward() {
 		clickMobileMenu();
+		pause(3000);
 		informationMobile.click();
 		movingForwardMobile.click();
 	}
@@ -788,6 +946,7 @@ public class DAHomepage extends PageObject {
 	
 	public void clickMobileDisabilities() {
 		clickMobileMenu();
+		pause(3000);
 		informationMobile.click();
 		disabilitiesMobile.click();
 	}
@@ -804,6 +963,7 @@ public class DAHomepage extends PageObject {
 	
 	public void clickMobileOlderAmericans() {
 		clickMobileMenu();
+		pause(3000);
 		informationMobile.click();
 		olderAmericansMobile.click();
 	}
@@ -820,6 +980,7 @@ public class DAHomepage extends PageObject {
 	
 	public void clickMobileChildrenAndFamilies() {
 		clickMobileMenu();
+		pause(3000);
 		informationMobile.click();
 		childrenFamiliesMobile.click();
 	}
@@ -836,6 +997,7 @@ public class DAHomepage extends PageObject {
 	
 	public void clickMobileDisasterTypes() {
 		clickMobileMenu();
+		pause(3000);
 		informationMobile.click();
 		disasterTypesMobile.click();
 	}
@@ -852,6 +1014,7 @@ public class DAHomepage extends PageObject {
 	
 	public void clickMobileForeignDisasters() {
 		clickMobileMenu();
+		pause(3000);
 		informationMobile.click();
 		foreignDisastersMobile.click();
 	}
@@ -868,6 +1031,7 @@ public class DAHomepage extends PageObject {
 	
 	public void clickMobileFactSheets() {
 		clickMobileMenu();
+		pause(3000);
 		informationMobile.click();
 		factSheetsMobile.click();
 	}
@@ -884,6 +1048,7 @@ public class DAHomepage extends PageObject {
 	
 	public void clickMobileOverview() {
 		clickMobileMenu();
+		pause(3000);
 		aboutUsMobile.click();
 		overviewMobile.click();
 	}
@@ -900,7 +1065,9 @@ public class DAHomepage extends PageObject {
 	
 	public void clickMobilePartners() {
 		clickMobileMenu();
+		pause(3000);
 		aboutUsMobile.click();
+		this.evaluateJavascript("window.scrollBy(0,50)", "");
 		partnersMobile.click();
 	}
 
@@ -916,9 +1083,10 @@ public class DAHomepage extends PageObject {
 	
 	public void clickMobileFaqs() {
 		clickMobileMenu();
+		pause(3000);
 		helpMobile.click();
 		faqsMobile.click();
-	}
+	} 
 
 	public void clickSpanishFaqs() {
 		mouseOverSpanishHelpTab();
@@ -932,6 +1100,7 @@ public class DAHomepage extends PageObject {
 	
 	public void clickMobileContactUs() {
 		clickMobileMenu();
+		pause(3000);
 		helpMobile.click();
 		contactUsMobile.click();
 	}
@@ -944,10 +1113,11 @@ public class DAHomepage extends PageObject {
 	public void clickPrivacyPolicy() {
 		mouseOverHelpTab();
 		privacyPolicy.click();
-	}
+	}  
 	
-	public void clickMobilePrivacyPolicy() {
+	public void clickMobilePrivacyPolicy() {  
 		clickMobileMenu();
+		pause(3000);
 		helpMobile.click();
 		privacyPolicyMobile.click();
 	}
@@ -963,9 +1133,10 @@ public class DAHomepage extends PageObject {
 	}
 	
 	public void clickMobileAccessibility() {
-		clickMobileMenu();
+		clickMobileMenu();  
+		pause(3000);
 		helpMobile.click();
-		accessibilityMobile.click();
+		accessibilityMobile.click(); 
 	}
 
 	public void clickSpanishAccessibility() {
@@ -980,6 +1151,7 @@ public class DAHomepage extends PageObject {
 	
 	public void clickMobileDownload() {
 		clickMobileMenu();
+		pause(3000);
 		helpMobile.click();
 		downloadPlugInsMobile.click();
 	}
@@ -1037,147 +1209,16 @@ public class DAHomepage extends PageObject {
 	}
 
 	public void lookUpLocation() {
+		pause(4000);
 		localResourcesTextbox.sendKeys("New York, NY");
-	}
-   
-	String state; 
-
-	public String checkDisasterStates() {   
-		for (int i = 0; i < disasterStates.size(); i++) {
-			state += disasterStates.get(i).getText().replaceAll("to see if your county is in a declared area", "")
-					.replaceAll("Select", "");
-		}
-		return state;
-	}
-	
- 
-	public void checkDACDisasterStateFeed() {
-		/*getDriver().get("https://www.disasterassistance.gov/drupal_api/declaredStates");
-		String states = stateDAC.getText().replaceAll("\"", "").replaceAll("[ ]", "");
-		getDriver().get("https://www.disasterassistance.gov/");
-		return states;*/ 
-		Map<String, String> states = new HashMap<String, String>();
-		states.put("Alabama","AL");
-		states.put("Alaska","AK");
-		states.put("Alberta","AB");
-		states.put("American Samoa","AS");
-		states.put("Arizona","AZ");
-		states.put("Arkansas","AR");
-		states.put("California","CA");
-		states.put("Colorado","CO");
-		states.put("Connecticut","CT");
-		states.put("Delaware","DE");
-		states.put("District Of Columbia","DC");
-		states.put("Florida","FL");
-		states.put("Georgia","GA");
-		states.put("Guam","GU");
-		states.put("Hawaii","HI");
-		states.put("Idaho","ID");
-		states.put("Illinois","IL");
-		states.put("Indiana","IN");
-		states.put("Iowa","IA");
-		states.put("Kansas","KS");
-		states.put("Kentucky","KY");
-		states.put("Louisiana","LA");
-		states.put("Maine","ME");
-		states.put("Manitoba","MB");
-		states.put("Maryland","MD");
-		states.put("Massachusetts","MA");
-		states.put("Michigan","MI");
-		states.put("Minnesota","MN");
-		states.put("Mississippi","MS");
-		states.put("Missouri","MO");
-		states.put("Montana","MT");
-		states.put("Nebraska","NE");
-		states.put("Nevada","NV");
-		states.put("New Hampshire","NH");
-		states.put("New Jersey","NJ");
-		states.put("New Mexico","NM");
-		states.put("New York","NY");
-		states.put("North Carolina","NC");
-		states.put("North Dakota","ND");
-		states.put("Ohio","OH");
-		states.put("Oklahoma","OK");
-		states.put("Oregon","OR");
-		states.put("Pennsylvania","PA");
-		states.put("Puerto Rico","PR");
-		states.put("Rhode Island","RI");
-		states.put("South Carolina","SC");
-		states.put("South Dakota","SD");
-		states.put("Tennessee","TN");
-		states.put("Texas","TX");
-		states.put("Utah","UT");
-		states.put("Vermont","VT");
-		states.put("Virgin Islands","VI");
-		states.put("Virginia","VA");
-		states.put("Washington","WA");
-		states.put("West Virginia","WV");
-		states.put("Wisconsin","WI");
-		states.put("Wyoming","WY");
-	}
-	
-	String editState; 
-	
-	public String checkDisasterStatesEdit() {
-		getDriver().get("https://edit.disasterassistance.gov/");
-		for (int i = 0; i < disasterStates.size(); i++) {
-			editState += disasterStates.get(i).getText().replaceAll("to see if your county is in a declared area", "")
-					.replaceAll("Select", "");
-		}
-		return editState;
-	}
-	
-	public String checkSpanishDisasterStatesEdit() {
-		getDriver().get("https://edit.disasterassistance.gov/es");
-		for (int i = 0; i < disasterStates.size(); i++) {
-			editState += disasterStates.get(i).getText().replaceAll("to see if your county is in a declared area", "")
-					.replaceAll("Select", "");
-		}
-		return editState;
-	}
- 
-	String counties;
-	
-	public String clickDisasterStates() {
-		for (int i = 0; i < disasterStates.size(); i++) {
-			disasterStates.get(i).click();
-			counties += declaredCounties.getText();
-		}
-		return counties;
-	}
-
-	/*public String checkDACCountiesFeed() {
-		getDriver().get("https://www.disasterassistance.gov/drupal_api/declaredCounties/AR");
-		String counties = stateDAC.getText();
-		getDriver().get("https://www.disasterassistance.gov/");
-		return counties;
-	} */
- 
-	String countiesEdit;
-	
-	public String clickDisasterStatesEdit() {
-		getDriver().get("https://edit.disasterassistance.gov/");
-		for (int i = 0; i < disasterStates2.size(); i++) {
-			disasterStates2.get(i).click();
-			countiesEdit += declaredCounties.getText();
-		}
-		return countiesEdit;
-	}
-	
-	public String clickSpanishDisasterStatesEdit() {
-		getDriver().get("https://edit.disasterassistance.gov/es");
-		for (int i = 0; i < disasterStates2.size(); i++) {
-			disasterStates2.get(i).click();
-			countiesEdit += declaredCounties.getText();
-		}
-		return countiesEdit; 
+		localResourcesSearch.click();
 	}
 	
 	public void pause(long time) {
 		try { 
 			Thread.sleep(time);
 		} catch (InterruptedException e) {
-			e.printStackTrace();
+			e.printStackTrace(); 
 		}
 	}
 }

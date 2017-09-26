@@ -44,7 +44,7 @@ public class DAPage extends PageObject {
 	
 	public void mobilePage() {
 		getDriver().manage().window().setSize(new Dimension(500, 500));
-	}
+	}    
 
 	public void clearCookies() {
 		this.getDriver().manage().deleteAllCookies();

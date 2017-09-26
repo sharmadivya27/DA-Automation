@@ -9,6 +9,9 @@ import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 
 public class DALandingPage extends PageObject {
+	
+	// *************************************************************************
+	// FindBy / private variables section
 
 	@FindBy(xpath = "//div[@id='landing-page-container']/a")
 	private List<WebElementFacade> landingPageNode;
@@ -88,6 +91,46 @@ public class DALandingPage extends PageObject {
 		element.click();
 	}
 
+	/*************************************************************************
+	 * Switches focus to the next tab and gets the url. 
+	 * 
+	*************************************************************************/
+	public String getUrl() {
+		List<String> browserTabs = new ArrayList<String>(getDriver().getWindowHandles());
+		getDriver().switchTo().window(browserTabs.get(1));
+		String url = getDriver().getCurrentUrl();
+		return url;
+	}
+
+	/*************************************************************************
+	 * Checks the text of the URL. 
+	 * 
+	*************************************************************************/
+	public boolean urlOpened() {
+		return getUrl().contains("www") || getUrl().contains(".gov") || getUrl().contains(".edu")
+				|| getUrl().contains(".html") || getUrl().contains(".org");
+	}
+	
+	/*************************************************************************
+	 * Gets the URL of Apply Online and checks if it contains the specific 
+	 * text. 
+	 * 
+	*************************************************************************/
+	public boolean getApplyOnlineUrl() {
+		return getDriver().getCurrentUrl().contains("mobileBrowser=True");
+	}
+	
+	/*************************************************************************
+	 * Checks if the More tab contains these specific words. 
+	 * 
+	*************************************************************************/
+	public boolean contentDisplayed() {
+		return moreContentText().contains("Emergency") || moreContentText().contains("Your")
+				|| moreContentText().contains("Resources") || moreContentText().contains("Flood")
+				|| moreContentText().contains("Emergencia") || moreContentText().contains("Su")
+				|| moreContentText().contains("Recursos") || moreContentText().contains("Incendios");
+	}
+	
 	public void clickEvacuate() {
 		evacuateLink.click();
 	}
@@ -108,37 +151,12 @@ public class DALandingPage extends PageObject {
 		safePlaceLink.click();
 	}
 
-	public String getUrl() {
-		List<String> browserTabs = new ArrayList<String>(getDriver().getWindowHandles());
-		getDriver().switchTo().window(browserTabs.get(1));
-		String url = getDriver().getCurrentUrl();
-		// getDriver().switchTo().window(browserTabs.get(0));
-		return url;
-	}
-
-	public boolean urlOpened() {
-		return getUrl().contains("www") || getUrl().contains(".gov") || getUrl().contains(".edu")
-				|| getUrl().contains(".html") || getUrl().contains(".org");
-	}
-	
-	public boolean getApplyOnlineUrl() {
-		return getDriver().getCurrentUrl().contains("mobileBrowser=True");
-		//staging takes "mobile=True" ??
-	}
-
 	public void clickMore() {
 		moreButton.click();
 	}
 
 	public String moreContentText() {
 		return moreContent.getText();
-	}
- 
-	public boolean contentDisplayed() {
-		return moreContentText().contains("Emergency") || moreContentText().contains("Your")
-				|| moreContentText().contains("Resources") || moreContentText().contains("Flood")
-				|| moreContentText().contains("Emergencia") || moreContentText().contains("Su")
-				|| moreContentText().contains("Recursos") || moreContentText().contains("Incendios");
 	}
 
 	public String disasterTitle() {
