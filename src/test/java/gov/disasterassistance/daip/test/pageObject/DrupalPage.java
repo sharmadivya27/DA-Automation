@@ -10,7 +10,7 @@ import net.thucydides.core.pages.PageObject;
 
 @DefaultUrl("https://edit.disasterassistance.gov/user")
 public class DrupalPage extends PageObject {
-	
+
 	// *************************************************************************
 	// FindBy / private variables section
 
@@ -84,9 +84,9 @@ public class DrupalPage extends PageObject {
 	// Functions
 
 	/*************************************************************************
-	 * Logs into the Drupal DA site with a test account. 
+	 * Logs into the Drupal DA site with a test account.
 	 * 
-	*************************************************************************/
+	 *************************************************************************/
 	public void logIntoDrupal() {
 		getDriver().manage().window().maximize();
 		username.type("automatedUser");
@@ -95,27 +95,27 @@ public class DrupalPage extends PageObject {
 	}
 
 	/*************************************************************************
-	 * Navigates to the elastic search page.  
+	 * Navigates to the elastic search page.
 	 * 
-	*************************************************************************/
+	 *************************************************************************/
 	public void onElasticSearchPage() {
 		disasterAssistance.click();
 		elasticSearchSettings.click();
 	}
 
 	/*************************************************************************
-	 * Clicks the 'Manage Pages' tab in Drupal. 
+	 * Clicks the 'Manage Pages' tab in Drupal.
 	 * 
-	*************************************************************************/
+	 *************************************************************************/
 	public void clickManagePages() {
 		managePagesTab.click();
 	}
 
 	/*************************************************************************
-	 * Collects the key words of the Grants page from Drupal and types it
-	 * into the Community Leaders search box. 
+	 * Collects the key words of the Grants page from Drupal and types it into
+	 * the Community Leaders search box.
 	 * 
-	*************************************************************************/
+	 *************************************************************************/
 	public void searchGrantsText() {
 		Actions actions = new Actions(getDriver());
 		actions.moveToElement(searchField);
@@ -123,13 +123,13 @@ public class DrupalPage extends PageObject {
 		actions.sendKeys("FAQs Grants Application Frequently Asked Grant Questions");
 		actions.build().perform();
 		searchSubmit.click();
-	} 
+	}
 
 	/*************************************************************************
-	 * Collects the key words of the Fema page from Drupal and types it
-	 * into the Community Leaders search box. 
+	 * Collects the key words of the Fema page from Drupal and types it into the
+	 * Community Leaders search box.
 	 * 
-	*************************************************************************/
+	 *************************************************************************/
 	public void searchFemaText() {
 		Actions actions = new Actions(getDriver());
 		actions.moveToElement(searchField);
@@ -138,24 +138,24 @@ public class DrupalPage extends PageObject {
 		actions.build().perform();
 		searchSubmit.click();
 	}
-	
+
 	/*************************************************************************
-	 * Checks if the Community Leaders search box contains any of these 
-	 * keywords.  
+	 * Checks if the Community Leaders search box contains any of these
+	 * keywords.
 	 * 
-	*************************************************************************/
+	 *************************************************************************/
 	public boolean communityResults() {
-		return quickSearchResult.containsText("Community") || quickSearchResult.containsText("Preparedness")
-				|| quickSearchResult.containsText("Recovery") || quickSearchResult.containsText("leaders")
-				|| quickSearchResult.containsText("housing") || quickSearchResult.containsText("Shelter")
-				|| quickSearchResult.containsText("Volunteers") || quickSearchResult.containsText("Utilities")
-				|| quickSearchResult.containsText("Public Assistance") || quickSearchResult.containsText("community")
-				|| quickSearchResult.containsText("Infrastructure") || quickSearchResult.containsText("Government")
-				|| quickSearchResult.containsText("Guide") || quickSearchResult.containsText("Checklists")
-				|| quickSearchResult.containsText("infraestructura") || quickSearchResult.containsText("comunidad")
-				|| quickSearchResult.containsText("gobierno") || quickSearchResult.containsText("refugio")
-				|| quickSearchResult.containsText("Vivienda") || quickSearchResult.containsText("desastres")
-				|| quickSearchResult.containsText("Lista");
+		return quickSearchResult.containsText("Community") || quickSearchResult.containsText("community")
+				|| quickSearchResult.containsText("Preparedness") || quickSearchResult.containsText("recovery")
+				|| quickSearchResult.containsText("leaders") || quickSearchResult.containsText("housing")
+				|| quickSearchResult.containsText("Shelter") || quickSearchResult.containsText("Volunteers")
+				|| quickSearchResult.containsText("Utilities") || quickSearchResult.containsText("Public Assistance")
+				|| quickSearchResult.containsText("community") || quickSearchResult.containsText("Infrastructure")
+				|| quickSearchResult.containsText("Governments") || quickSearchResult.containsText("Guide")
+				|| quickSearchResult.containsText("Checklists") || quickSearchResult.containsText("infraestructura")
+				|| quickSearchResult.containsText("comunidad") || quickSearchResult.containsText("gobierno")
+				|| quickSearchResult.containsText("refugio") || quickSearchResult.containsText("Vivienda")
+				|| quickSearchResult.containsText("desastres") || quickSearchResult.containsText("Lista");
 	}
 
 	public void showResults() {
@@ -332,7 +332,7 @@ public class DrupalPage extends PageObject {
 
 	public void editFemaPage() {
 		editFemaPage.click();
-	} 
+	}
 
 	public String viewTagWords() {
 		return tagWords.getText();
@@ -341,7 +341,7 @@ public class DrupalPage extends PageObject {
 	public void clickCommunityPreparedness() {
 		communityPreparedness.click();
 	}
- 
+
 	public void clickDisasterRecoveryResources() {
 		disasterRecoveryResources.click();
 	}

@@ -274,34 +274,34 @@ public class User {
 	
 	@Step
 	public void clickMobileGetAssistanceMenuLinks(String menuLinks) {
-		if ((menuLinks.equals("address look-up")) || (menuLinks.equals("buscar dirección"))) {
+		if ((menuLinks.equals("address look-up"))) {
 			daHomepage.clickMobileAddressLookUp();
-		} else if ((menuLinks.equals("find assistance")) || (menuLinks.equals("encuentre asistencia"))) {
+		} else if ((menuLinks.equals("find assistance"))) {
 			daHomepage.clickMobileFindAssistance();
-		} else if ((menuLinks.equals("apply online")) || (menuLinks.equals("solicitar asistencia"))) {
+		} else if ((menuLinks.equals("apply online"))) {
 			daHomepage.clickMobileApplyOnline();
-		} else if ((menuLinks.equals("check your status")) || (menuLinks.equals("revisar estatus"))) {
+		} else if ((menuLinks.equals("check your status"))) {
 			daHomepage.clickMobileCheckYourStatus();
-		} else if ((menuLinks.equals("assistance by category")) || (menuLinks.equals("asistencia por categoría"))) {
+		} else if ((menuLinks.equals("assistance by category"))) {
 			daHomepage.clickMobileAssistanceCategory();
-		} else if ((menuLinks.equals("assistance by federal agency")) || (menuLinks.equals("asistencia por agencia federal"))) {
+		} else if ((menuLinks.equals("assistance by federal agency"))) {
 			daHomepage.clickMobileAssistanceFederal();
-		} else if ((menuLinks.equals("other recovery help"))) {
-			daHomepage.clickMobileOtherHelp();
-		} else if ((menuLinks.equals("community leaders"))) {
+		}  else if ((menuLinks.equals("community leaders"))) {
 			daHomepage.clickMobileCommLeaders(); 
-		} else if ((menuLinks.equals("application checklist")) || (menuLinks.equals("lista de verificación para aplicarse"))) {
+		}else if ((menuLinks.equals("other recovery help"))) {
+			daHomepage.clickMobileOtherHelp();
+		} else if ((menuLinks.equals("application checklist"))) {
 			daHomepage.clickMobileApplicationChecklist();
-		} else if ((menuLinks.equals("forms")) || (menuLinks.equals("formularios"))) {
+		} else if ((menuLinks.equals("forms"))) {
 			daHomepage.clickMobileForms();
 		}
 	}
 	
 	@Step 
 	public void clickSpanishMobileGetAssistanceMenuLinks(String menuLinks) {
-		if ((menuLinks.equals("buscar dirección"))) {
+		if ((menuLinks.equals("buscador de direcciones"))) {
 			daHomepage.clickMobileAddressLookUp();
-		} else if ((menuLinks.equals("encuentre asistencia"))) {
+		} else if ((menuLinks.equals("encontrar ayuda"))) {
 			daHomepage.clickMobileFindAssistance();
 		} else if ((menuLinks.equals("solicitar asistencia"))) {
 			daHomepage.clickMobileApplyOnline();
@@ -312,7 +312,7 @@ public class User {
 		} else if ((menuLinks.equals("asistencia por agencia federal"))) {
 			daHomepage.clickMobileAssistanceFederal();
 		} else if (menuLinks.equals("otra ayuda para recuperación")) {
-			daHomepage.clickSpanishMobileOtherHelp();
+			daHomepage.clickMobileSpanishOtherHelp();
 		} else if ((menuLinks.equals("líderes comunitarios"))) {
 			daHomepage.clickSpanishMobileCommLeaders(); 
 		} else if ((menuLinks.equals("lista de verificación para aplicarse"))) {
@@ -324,9 +324,9 @@ public class User {
 
 	@Step
 	public void clickGetAssistanceMenuLinks(String menuLinks) {
-		if ((menuLinks.equals("address look-up")) || (menuLinks.equals("buscar dirección"))) {
+		if ((menuLinks.equals("address look-up")) || (menuLinks.equals("buscador de direcciones"))) {
 			daHomepage.clickAddressLookUp();
-		} else if ((menuLinks.equals("find assistance")) || (menuLinks.equals("encuentre asistencia"))) {
+		} else if ((menuLinks.equals("find assistance")) || (menuLinks.equals("encontrar ayuda"))) {
 			daHomepage.clickFindAssistance();
 		} else if ((menuLinks.equals("apply online")) || (menuLinks.equals("solicitar asistencia"))) {
 			daHomepage.clickApplyOnline();
@@ -353,7 +353,7 @@ public class User {
 	public void clickSpanishGetAssistanceTab(String menuLinks) {
 		if (menuLinks.equals("buscar dirección")) {
 			daHomepage.clickSpanishAddressLookUp();
-		} else if (menuLinks.equals("encuentre asistencia")) {
+		} else if (menuLinks.equals("encontrar ayuda")) {
 			daHomepage.clickSpanishFindAssistance();
 		} else if (menuLinks.equals("solicitar asistencia")) {
 			daHomepage.clickSpanishApplyOnline();
@@ -761,7 +761,7 @@ public class User {
 	@Step
 	public void searchTextOnCommunityLeadersPage(String siteName) {
 		if (siteName.equals("Grants")) {
-			drupalPage.searchGrantsText();
+			drupalPage.searchGrantsText(); 
 		} else if (siteName.equals("Fema")) {
 			drupalPage.searchFemaText();
 		}

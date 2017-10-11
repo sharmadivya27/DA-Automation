@@ -134,11 +134,11 @@ public class DAHomepage extends PageObject {
 	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[8]/a")
 	private WebElementFacade spanishCommunityLeaders;
 	
-	@FindBy(xpath = "//*[@id='sidr-id-menu-get-assistance']/ul/li[8]/a")
-	private WebElementFacade spanishCommunityLeadersMobile;
+	@FindBy(xpath = "//*[@id='sidr-id-menu-get-assistance']/ul/li[7]/a")
+	private WebElementFacade communityLeadersMobile;
 	
 	@FindBy(xpath = "//*[@id='sidr-id-menu-get-assistance']/ul/li[8]/a")
-	private WebElementFacade communityLeadersMobile;
+	private WebElementFacade spanishMobileCommunityLeaders;
 
 	@FindBy(xpath = "//*[@id='nav']/ul/li[2]/ul/li[7]/a")
 	private WebElementFacade spanishOtherHelp;
@@ -146,7 +146,7 @@ public class DAHomepage extends PageObject {
 	@FindBy(xpath = "//*[@id='menu-get-assistance']/ul/li[8]/a")
 	private WebElementFacade otherHelp;
 	
-	@FindBy(xpath = "//*[@id='sidr-id-menu-get-assistance']/ul/li[7]/a")
+	@FindBy(xpath = "//*[@id='sidr-id-menu-get-assistance']/ul/li[8]/a")
 	private WebElementFacade mobileOtherHelp;
 	
 	@FindBy(xpath = "//*[@id='sidr-id-menu-get-assistance']/ul/li[7]/a")
@@ -696,6 +696,7 @@ public class DAHomepage extends PageObject {
 		clickMobileMenu();
 		pause(3000);
 		getAssistanceMobile.click();
+		pause(4000);
 		addressLookUpMobile.click();
 	}
 
@@ -713,6 +714,7 @@ public class DAHomepage extends PageObject {
 		clickMobileMenu();
 		pause(3000);
 		getAssistanceMobile.click();
+		pause(4000);
 		findAssistanceMobile.click();
 	}
 
@@ -731,6 +733,7 @@ public class DAHomepage extends PageObject {
 		clickMobileMenu();
 		pause(3000);
 		getAssistanceMobile.click();
+		pause(4000);
 		applyOnlineMobile.click();
 	}
 
@@ -763,6 +766,7 @@ public class DAHomepage extends PageObject {
 	}
 	
 	public void clickMobileAssistanceCategory() {
+		pause(2000);
 		clickMobileMenu();
 		pause(3000);
 		getAssistanceMobile.click();
@@ -780,10 +784,13 @@ public class DAHomepage extends PageObject {
 	}
 	
 	public void clickMobileAssistanceFederal() {
-		clickMobileMenu();
 		pause(3000);
+		clickMobileMenu();
+		pause(4000);
 		getAssistanceMobile.click();
+		pause(4000);
 		assistanceByFederalAgencyMobile.click();
+		pause(3000);
 	}
 
 	public void clickSpanishAssistanceFederal() {
@@ -803,16 +810,18 @@ public class DAHomepage extends PageObject {
 	
 	public void clickMobileCommLeaders() {
 		clickMobileMenu();
-		pause(3000);
+		pause(4000);
 		getAssistanceMobile.click();
+		pause(4000);
 		communityLeadersMobile.click();
 	}
 	
 	public void clickSpanishMobileCommLeaders() {
 		clickMobileMenu();
-		pause(3000);
+		pause(4000);
 		getAssistanceMobile.click();
-		spanishCommunityLeadersMobile.click();
+		pause(4000);
+		spanishMobileCommunityLeaders.click();
 	}
 
 	public void clickOtherHelp() {
@@ -822,18 +831,21 @@ public class DAHomepage extends PageObject {
 	
 	public void clickMobileOtherHelp() {
 		clickMobileMenu();
-		pause(3000);
+		pause(4000);
 		getAssistanceMobile.click();
+		pause(4000);
 		mobileOtherHelp.click();
 	}
+
 	
-	public void clickSpanishMobileOtherHelp() {
+	public void clickMobileSpanishOtherHelp() {
 		clickMobileMenu();
-		pause(3000);
+		pause(4000);
 		getAssistanceMobile.click();
+		pause(4000);
 		spanishMobileOtherHelp.click();
 	}
-
+	
 	public void clickSpanishOtherHelp() {
 		mouseOverSpanishGetAssistanceTab();
 		spanishOtherHelp.click();
@@ -848,12 +860,13 @@ public class DAHomepage extends PageObject {
 		clickMobileMenu();
 		pause(3000);
 		getAssistanceMobile.click();
+		pause(4000);
 		mobileApplicationChecklist.click();
 	}
 	
 	public void clickSpanishMobileApplicationChecklist() {
 		clickMobileMenu();
-		pause(3000);
+		pause(4000);
 		getAssistanceMobile.click();
 		mobileSpanishApplicationChecklist.click();
 	}
@@ -870,16 +883,10 @@ public class DAHomepage extends PageObject {
 	
 	public void clickMobileForms() {
 		clickMobileMenu();
-		pause(3000);
+		pause(4000);
 		getAssistanceMobile.click();
+		pause(4000);
 		mobileForms.click();
-	}
-	
-	public void clickSpanishMobileForms() {
-		clickMobileMenu();
-		pause(3000);
-		getAssistanceMobile.click();
-		spanishMobileForms.click();
 	}
 
 	public void clickSpanishForms() {

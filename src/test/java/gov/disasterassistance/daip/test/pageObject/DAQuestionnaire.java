@@ -12,7 +12,7 @@ import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 
 public class DAQuestionnaire extends PageObject {
-	
+
 	// *************************************************************************
 	// FindBy / private variables section
 
@@ -72,7 +72,7 @@ public class DAQuestionnaire extends PageObject {
 		}
 		stateSelector.sendKeys("Alabama");
 		this.evaluateJavascript("window.scrollBy(0,50)", "");
-		////////////getResultsButton.click();
+		//////////// getResultsButton.click();
 	}
 
 	/*************************************************************************
@@ -83,10 +83,10 @@ public class DAQuestionnaire extends PageObject {
 	 *            : The name of the element to be clicked
 	 *************************************************************************/
 	// TODO still doesn't distinguish between the yes buttons, just looks at the
-	// text by the clickable button 
+	// text by the clickable button
 	private WebElementFacade getQuestionnaireButton(String buttonName) {
 		Iterator<WebElementFacade> iter = questionnaireButtons.iterator();
-		WebElementFacade btn = null; 
+		WebElementFacade btn = null;
 		while (iter.hasNext()) {
 			WebElementFacade temp = iter.next();
 			if (temp.containsText(buttonName)) {
@@ -155,14 +155,14 @@ public class DAQuestionnaire extends PageObject {
 	 * @return Number of FOA titles that match with the given list
 	 *************************************************************************/
 	public int getNumAdditionalSpanishFOA() {
-		String[] additionalFOATitles = { "Centros de Recuperación de Desastres (DRC) / Localizador de DRC",
+		String[] additionalFOATitles = { "Centros de Recuperación de Desastres de FEMA (DRC) / Localizador de DRC",
 				"Indemnización Estatal para Víctimas del Crimen",
 				"Información de Asistencia para Desastres de la Administración de Servicios para el Abuso de Sustancias y Enfermedades Mentales (SAMHSA)",
 				"Programa de Reembolso de Gastos a las Víctimas del Terrorismo Internacional (ITVERP, por sus siglas en inglés)",
-				"Seguro Hipotecario para Víctimas de Desastres - Sección 203(h) y Seguro Hipotecario para Rehabilitación - Sección 203(k)",
-				"Reemplazo y Liquidación de Bonos de Ahorros" };
+				"Reemplazo y Liquidación de Bonos de Ahorros",
+				"Seguro Hipotecario para Víctimas de Desastres - Sección 203(h) y Seguro Hipotecario para Rehabilitación - Sección 203(k)" };
 
-		int foaCounter = 0;
+		int foaCounter = 0; 
 
 		Iterator<WebElementFacade> iter = autoFOAs.iterator();
 		while (iter.hasNext()) {
